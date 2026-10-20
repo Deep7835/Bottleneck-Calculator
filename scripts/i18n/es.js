@@ -126,13 +126,13 @@ module.exports = {
   // ======================================================================
   home: {
     title: "Calculadora de cuello de botella CPU y GPU (2026) + FPS estimados",
-    description: "Calculadora de cuello de botella gratis: comprueba si tu procesador frena a tu tarjeta gráfica, mira los FPS estimados a 1080p, 1440p y 4K y descubre qué mejora lo soluciona. Más de 280 CPU y GPU, incluidas las RTX 50 y RX 9000.",
+    description: "Calculadora de cuello de botella gratis: comprueba si tu procesador frena a tu tarjeta gráfica, mira los FPS estimados a 1080p, 1440p y 4K y descubre qué mejora lo soluciona. Más de 430 CPU y GPU, incluidas las RTX 50 y RX 9000.",
     ogTitle: "Calculadora de cuello de botella: ¿tu CPU frena a tu GPU?",
     ogDescription: "Comprueba el equilibrio entre CPU y GPU, los FPS estimados y los mínimos del 1% a cualquier resolución, y la mejora exacta que elimina el cuello de botella.",
     appName: "Calculadora de cuello de botella",
     appDescription: "Calculadora gratuita de cuello de botella de CPU y GPU con FPS estimados a 1080p, 1440p, ultrawide y 4K, modelado por tipo de juego, comprobación de VRAM y recomendaciones de mejora.",
     trademarks: "Los nombres de productos son marcas registradas de sus respectivos propietarios. Este sitio no está afiliado a AMD, Intel ni NVIDIA.",
-    eyebrow: "Actualizado en octubre de 2026 · 284 CPU y GPU",
+    eyebrow: "Actualizado en octubre de 2026 · 436 CPU y GPU",
     h1: "Calculadora de cuello de botella",
     lead: "Comprueba si hay cuello de botella entre tu CPU y tu GPU, cuántos FPS puedes esperar y qué mejora lo soluciona de verdad.",
     calcAria: "Calculadora de cuello de botella",

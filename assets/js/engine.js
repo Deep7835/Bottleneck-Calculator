@@ -135,7 +135,8 @@
     const out = { cpu: [], gpu: [], sameSocket: [] };
     const target = 10;
     if (r.limiter === "cpu" && r.pct >= 15 && cpu.type !== "l") {
-      const desktop = HW.cpus.filter((x) => x.type === "d" && x.g > cpu.g && x.year >= 2022);
+      // Only recommend sensible gaming chips: current-ish, at least 6 cores / 12 threads.
+      const desktop = HW.cpus.filter((x) => x.type === "d" && x.g > cpu.g && x.year >= 2022 && x.threads >= 12);
       const solve = (list) => list
         .map((x) => ({ part: x, r: evaluate(x, gpu, o) }))
         .filter((x) => x.r.pct < target || x.r.limiter === "gpu")
