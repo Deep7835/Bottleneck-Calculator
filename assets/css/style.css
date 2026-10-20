@@ -677,3 +677,18 @@ a.up { text-decoration: none; }
   .cmp-pick { padding: 18px 16px; }
   .cmp-who { display: block; }
 }
+
+/* ===== i18n ===== */
+/* Language switcher in the footer (English · Español · 日本語). */
+.lang-switch { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin: -6px 0 12px; }
+.lang-switch a { color: var(--text-2); text-decoration: none; padding: 6px 0; transition: color var(--t-fast); }
+.lang-switch a:hover, .lang-switch a[aria-current="page"] { color: var(--text); }
+.lang-switch span { color: var(--text-3); }
+
+/* Japanese: Geist (latin subset) for latin glyphs, system Japanese fonts for the rest. No CJK webfont download. */
+:root:lang(ja) { --font: "Geist", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; }
+.lang-switch a:lang(ja) { font-family: "Geist", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; }
+/* Tight latin tracking makes kana and kanji collide; break headings at phrase boundaries. */
+:lang(ja) :is(h1, h2, h3) { letter-spacing: 0; }
+:lang(ja) :is(h1, h2, h3, .lead) { word-break: auto-phrase; line-break: strict; }
+:lang(ja) .article :is(p, li) { line-height: 1.8; }

@@ -3,11 +3,12 @@
  * calculator, plus per-game profiles from games.js.
  */
 (function () {
-  const { HW, Engine, Games, Combobox } = window;
+  const { HW, Engine, Games, Combobox, I18N } = window;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const byId = (list, id) => list.find((x) => x.id === id);
-  const fmt = (n) => Math.round(n).toLocaleString("en-US");
+  const t = I18N.t;
+  const fmt = I18N.fmt;
   const short = Engine.shortName;
 
   const DEFAULTS = {
@@ -92,25 +93,25 @@
 
   // Same four bands as the legend under the FPS table.
   const fpsTone = (fps) => fps >= 144 ? "excellent" : fps >= 60 ? "gpu" : fps >= 30 ? "moderate" : "severe";
-  const limitText = (r) => r.capped ? '<span class="dot" data-tone="excellent"></span>Game cap'
-    : r.verdict.key === "excellent" ? '<span class="dot" data-tone="excellent"></span>Balanced'
+  const limitText = (r) => r.capped ? `<span class="dot" data-tone="excellent"></span>${t("fps.limit.game")}`
+    : r.verdict.key === "excellent" ? `<span class="dot" data-tone="excellent"></span>${t("limit.balanced")}`
     : `<span class="dot" data-tone="${r.verdict.tone}"></span>${r.limiter.toUpperCase()}`;
   const qLabel = (q) => Engine.QUALITY[q].label;
   const upperFirst = (s) => s[0].toUpperCase() + s.slice(1);
 
   function summary(cpu, gpu, r) {
     const c = short(cpu.name), g = short(gpu.name);
-    const at = `${Engine.RES[state.res].label} ${qLabel(state.quality)}`;
+    const at = t("fps.at", { res: Engine.RES[state.res].label, q: qLabel(state.quality) });
     const game = Games.byId[state.game];
     if (r.capped) {
-      return `${game.name} is locked to ${game.cap} FPS, and the ${c} with the ${g} holds that cap at ${at} with room to spare (≈${fmt(r.uncapped)} FPS uncapped).`;
+      return t("fps.sum.capped", { game: game.name, cap: game.cap, c, g, at, unc: fmt(r.uncapped) });
     }
-    const lead = `Expect about ${fmt(r.fps)} FPS with 1% lows near ${fmt(r.low1)} at ${at}.`;
-    if (r.verdict.key === "excellent") return `${lead} Both parts work close to their limit, so this build is well matched for ${Games.name(state.game)}.`;
+    const lead = t("fps.sum.lead", { fps: fmt(r.fps), low: fmt(r.low1), at });
+    if (r.verdict.key === "excellent") return t("fps.sum.excellent", { lead, game: Games.name(state.game) });
     if (r.limiter === "cpu") {
-      return `${lead} The ${c} is the limit: the ${g} could render about ${fmt(r.gpuFps)} FPS, so lowering graphics settings won't add much. Raising quality is nearly free.`;
+      return t("fps.sum.cpu", { lead, c, g, gpuFps: fmt(r.gpuFps) });
     }
-    return `${lead} The ${g} sets the pace. Lower settings or DLSS/FSR raise FPS, and the ${c} has headroom up to about ${fmt(r.cpuFps)} FPS.`;
+    return t("fps.sum.gpu", { lead, c, g, cpuFps: fmt(r.cpuFps) });
   }
 
   // How to reach each common refresh rate with this build.
@@ -118,7 +119,7 @@
     const game = Games.byId[state.game];
     const label = `<b>${T} Hz</b>`;
     if (game && game.cap && game.cap < T) {
-      return { type: "info", text: `${label}: not possible. ${game.name} is locked to ${game.cap} FPS.` };
+      return { type: "info", text: t("fps.tgt.capped", { label, game: game.name, cap: game.cap }) };
     }
     const curIdx = QUALITIES.indexOf(state.quality);
     const best = [...QUALITIES].reverse().find((q) => run({ quality: q }).fps >= T);
@@ -126,21 +127,21 @@
       const r = run({ quality: best });
       if (QUALITIES.indexOf(best) >= curIdx) {
         const now = run();
-        return { type: "good", text: `${label}: reached at your settings (≈${fmt(now.fps)} FPS)${best !== state.quality ? `, even at ${qLabel(best)}` : ""}.` };
+        return { type: "good", text: t("fps.tgt.reached", { label, fps: fmt(now.fps), q: best !== state.quality ? qLabel(best) : "" }) };
       }
-      return { type: "info", text: `${label}: drop to ${qLabel(best)} for ≈${fmt(r.fps)} FPS.` };
+      return { type: "info", text: t("fps.tgt.drop", { label, q: qLabel(best), fps: fmt(r.fps) }) };
     }
     const low = run({ quality: "low" });
     if (low.cpuFps < T) {
-      return { type: "warn", text: `${label}: out of reach. The ${short(cpu.name)} tops out near ${fmt(low.cpuFps)} FPS here even at Low, so a faster CPU is needed.` };
+      return { type: "warn", text: t("fps.tgt.cpu", { label, c: short(cpu.name), fps: fmt(low.cpuFps) }) };
     }
     // Stronger upscaling modes than the current one, mildest first.
     const ups = Object.keys(Engine.UPSCALE);
     for (const up of ups.slice(ups.indexOf(state.upscale) + 1)) {
       const r = run({ quality: "low", upscale: up });
-      if (r.fps >= T) return { type: "info", text: `${label}: possible at Low with ${Engine.UPSCALE[up].label} (≈${fmt(r.fps)} FPS).` };
+      if (r.fps >= T) return { type: "info", text: t("fps.tgt.upscale", { label, up: Engine.UPSCALE[up].label, fps: fmt(r.fps) }) };
     }
-    return { type: "warn", text: `${label}: out of reach at ${Engine.RES[state.res].label}. Even at Low the GPU manages about ${fmt(low.fps)} FPS.` };
+    return { type: "warn", text: t("fps.tgt.gpu", { label, res: Engine.RES[state.res].label, fps: fmt(low.fps) }) };
   }
 
   // ---------- Rendering ----------
@@ -154,18 +155,18 @@
     const gameName = Games.name(state.game);
     const r = run();
 
-    $("#cpu-meta").textContent = `${cpu.cores} cores / ${cpu.threads} threads · ${cpu.socket} · ${cpu.year}`;
-    $("#gpu-meta").textContent = `${gpu.vram ? gpu.vram + " GB VRAM · " : "Shared memory · "}${gpu.rt ? "Ray tracing ✓" : "No hardware RT"} · ${gpu.year}`;
+    $("#cpu-meta").textContent = I18N.meta.cpu(cpu);
+    $("#gpu-meta").textContent = I18N.meta.gpu(gpu);
 
     // Gauge: how much of the monitor's refresh rate this build fills.
     const tone = fpsTone(r.fps);
     $("#results").dataset.tone = tone;
     $("#gauge-fill").style.strokeDashoffset = String(100 - Math.max(2, Math.min(100, (r.fps / state.hz) * 100)));
     Motion.countUp($("#fps"), r.fps, fmt, 900);
-    $("#fps-label").textContent = `avg FPS · ${state.hz} Hz`;
-    $("#tone-pill").textContent = r.capped ? `Capped at ${game.cap} FPS`
-      : r.verdict.key === "excellent" ? "Balanced" : r.limiter === "cpu" ? "CPU-limited" : "GPU-limited";
-    const title = `≈${fmt(r.fps)} FPS in ${gameName}`;
+    $("#fps-label").textContent = t("fps.gauge", { hz: state.hz });
+    $("#tone-pill").textContent = r.capped ? t("fps.pill.capped", { cap: game.cap })
+      : r.verdict.key === "excellent" ? t("pill.balanced") : t(r.limiter === "cpu" ? "pill.cpu" : "pill.gpu");
+    const title = t("fps.title", { fps: fmt(r.fps), game: gameName });
     const verdict = $(".verdict");
     if ($("#verdict-title").textContent !== title) {
       verdict.classList.remove("swap");
@@ -183,26 +184,27 @@
     Motion.countUp($("#cap-cpu-val"), r.cpuFps, fmt);
     Motion.countUp($("#cap-gpu-val"), r.gpuFps, fmt);
     $("#cap-hz-val").textContent = state.hz + " Hz";
-    $("#pipeline").setAttribute("aria-label", `CPU can deliver ${fmt(r.cpuFps)} FPS, GPU ${fmt(r.gpuFps)} FPS, display ${state.hz} Hz.`);
+    $("#pipeline").setAttribute("aria-label", t("pipe.aria", { cpu: fmt(r.cpuFps), gpu: fmt(r.gpuFps), hz: state.hz }));
     pipeline.set(r.capped ? { fps: r.fps, limiter: "gpu", pct: 0 } : r);
 
     // Stats
     Motion.countUp($("#s-fps"), r.fps, fmt);
     Motion.countUp($("#s-low"), r.low1, fmt);
-    Motion.countUp($("#s-ms"), 1000 / r.fps, (v) => v.toFixed(1));
-    $("#s-limit").textContent = r.capped ? "Cap" : r.verdict.key === "excellent" ? "Both" : r.limiter.toUpperCase();
-    $("#opt-summary").textContent = `${qLabel(state.quality)} · ${state.ram} GB · ${state.hz} Hz${state.upscale !== "off" ? " · Upscaling" : ""}`;
-    $("#context-line").textContent = `${upperFirst(gameName)} · ${Engine.RES[state.res].full} · ${qLabel(state.quality)}${state.upscale !== "off" ? " · " + Engine.UPSCALE[state.upscale].label : ""}`;
+    Motion.countUp($("#s-ms"), 1000 / r.fps, I18N.dec1);
+    $("#s-limit").textContent = r.capped ? t("fps.limit.cap") : r.verdict.key === "excellent" ? t("fps.limit.both") : r.limiter.toUpperCase();
+    const qCtx = t("ctx.q", { q: qLabel(state.quality) });
+    $("#opt-summary").textContent = `${qCtx} · ${state.ram} GB · ${state.hz} Hz${state.upscale !== "off" ? t("opt.upscaling") : ""}`;
+    $("#context-line").textContent = `${upperFirst(gameName)} · ${Engine.RES[state.res].full} · ${qCtx}${state.upscale !== "off" ? " · " + Engine.UPSCALE[state.upscale].label : ""}`;
 
     // Resolution × quality grid
     const rows = ["1080p", "1440p", "4k"];
     if (state.res === "uw1440") rows.splice(2, 0, "uw1440");
-    $("#grid-sub").textContent = `${gameName}, ${state.upscale === "off" ? "native resolution" : Engine.UPSCALE[state.upscale].label}. Select a cell to use those settings.`;
+    $("#grid-sub").textContent = t("fps.grid.sub", { game: gameName, mode: state.upscale === "off" ? t("fps.grid.native") : Engine.UPSCALE[state.upscale].label });
     $("#fps-grid tbody").innerHTML = rows.map((res) => {
       const cells = QUALITIES.map((q) => {
         const x = run({ res, quality: q });
         const cur = res === state.res && q === state.quality;
-        return `<td class="r"><button type="button" class="fps-cell num" data-res="${res}" data-q="${q}" data-tone="${fpsTone(x.fps)}" aria-pressed="${cur}" aria-label="${Engine.RES[res].label} ${qLabel(q)}: ${fmt(x.fps)} FPS"><span class="dot"></span>${fmt(x.fps)}</button></td>`;
+        return `<td class="r"><button type="button" class="fps-cell num" data-res="${res}" data-q="${q}" data-tone="${fpsTone(x.fps)}" aria-pressed="${cur}" aria-label="${t("fps.cell.aria", { res: Engine.RES[res].label, q: qLabel(q), fps: fmt(x.fps) })}"><span class="dot"></span>${fmt(x.fps)}</button></td>`;
       }).join("");
       return `<tr><th scope="row">${Engine.RES[res].label}</th>${cells}</tr>`;
     }).join("");
@@ -214,11 +216,11 @@
     // Recommendations: the game's own note first, then the shared engine tips.
     const o = game ? { ...opts(), workload: game.base, game } : { ...opts(), workload: state.game };
     const tips = Engine.tips(cpu, gpu, r.capped ? { ...o, hz: 0 } : o, r);
-    tips.unshift({ type: "info", text: game ? game.note : `Averaged across ${Engine.WORKLOAD[state.game].examples} and similar games. Pick a specific game for a closer estimate.` });
+    tips.unshift({ type: "info", text: game ? game.note : t("fps.tip.type", { ex: Engine.WORKLOAD[state.game].examples }) });
     $("#tips").innerHTML = tips.map((t) => `<li class="${t.type}">${ICONS[t.type] || ICONS.info}<span>${t.text}</span></li>`).join("");
 
     // Every game with this build
-    $("#games-sub").textContent = `${short(cpu.name)} + ${short(gpu.name)} at ${Engine.RES[state.res].label} ${qLabel(state.quality)}. Select a game to load it.`;
+    $("#games-sub").textContent = t("fps.games.sub", { c: short(cpu.name), g: short(gpu.name), res: Engine.RES[state.res].label, q: qLabel(state.quality) });
     $("#games-table tbody").innerHTML = Games.list.map((g) => {
       const x = run({}, g.id);
       const href = `?cpu=${state.cpu}&amp;gpu=${state.gpu}&amp;game=${g.id}`;
@@ -226,7 +228,7 @@
     }).join("");
 
     if (touched) history.replaceState(null, "", shareUrl().replace(location.origin, "") + location.hash);
-    if (touched || hadParams) document.title = `${upperFirst(gameName)} FPS: ${short(cpu.name)} + ${short(gpu.name)} – FPS Calculator`;
+    if (touched || hadParams) document.title = t("fps.doc.title", { game: upperFirst(gameName), c: short(cpu.name), g: short(gpu.name) });
   }
 
   $("#fps-grid").addEventListener("click", (e) => {
@@ -273,9 +275,9 @@
     const url = shareUrl();
     try {
       await navigator.clipboard.writeText(url);
-      toast("Result link copied");
+      toast(t("toast.copied"));
     } catch {
-      window.prompt("Copy this link:", url);
+      window.prompt(t("prompt.copy"), url);
     }
   });
 

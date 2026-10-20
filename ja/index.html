@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ボトルネックチェッカー（2026年版）｜CPU・GPUのボトルネック計算とFPS目安</title>
+  <meta name="description" content="CPUとグラボの組み合わせでボトルネックが起きるかを無料でチェック。1080p・1440p・4Kの推定FPSや、最適なアップグレード候補もわかるボトルネック計算ツールです。RTX 50シリーズ・RX 9000シリーズを含む284種類のCPU・GPUに対応。">
+  <link rel="canonical" href="https://www.example.com/ja/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/">
+  <link rel="alternate" hreflang="es" href="https://www.example.com/es/">
+  <link rel="alternate" hreflang="ja" href="https://www.example.com/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:title" content="ボトルネックチェッカー：そのCPU、グラボの足を引っ張っていませんか？">
+  <meta property="og:description" content="CPUとGPUのバランス、推定FPSと1% Low、ボトルネックを解消するアップグレードを解像度別にチェックできます。">
+  <meta property="og:url" content="https://www.example.com/ja/">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ボトルネックチェッカー：CPUとGPUのバランス、FPS、アップグレード候補">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ボトルネックチェッカー：そのCPU、グラボの足を引っ張っていませんか？">
+  <meta name="twitter:description" content="CPUとGPUのバランス、推定FPSと1% Low、ボトルネックを解消するアップグレードを解像度別にチェックできます。">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=12">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "ボトルネックチェッカー",
+      "url": "https://www.example.com/ja/",
+      "inLanguage": "ja",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScriptが必要です",
+      "description": "1080p・1440p・ウルトラワイド・4KのFPS推定、ゲームタイプ別のモデル化、VRAMチェック、アップグレード提案に対応した無料のCPU・GPUボトルネック計算ツール。",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "dateModified": "2026-10-20"
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:START -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ボトルネック率は何%なら良いですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "10%未満なら非常に良いバランス、10〜20%ならゲーム用途で問題ありません。20〜35%になるとCPUボトルネックが1% Lowに表れ始め、35%を超えるとGPU性能の大部分を無駄にしています。律速しているのがGPUなら、FPSが目標に届いている限り、もっと高い数値でも問題ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ボトルネックチェッカーの精度はどれくらいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "良いツールなら、バランスの判断やおおよそのFPSを知るには十分な精度で、ベンチマーク平均との差は通常10〜15%程度です。ゲームエンジン、パッチ、ドライバー、冷却、メモリ速度、バックグラウンドのソフトで結果が変わるため、特定のゲームを正確に予測できる計算ツールはありません。PassMarkのような合成スコアに基づくツールは、ゲームのベンチマークに基づくツールに比べて、ゲーム用途での信頼性がずっと低くなります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CPUボトルネックとGPUボトルネック、どちらの方がマシですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPUボトルネックです。GPU律速のゲームはフレームタイムが滑らかで安定しており、設定やアップスケーリングでFPSを上げられます。CPU律速のゲームは1% Lowが悪くカクつきやすいうえ、設定を下げても改善しません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "解像度を上げるとCPUボトルネックは減りますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "減ります。解像度を上げるとGPUの仕事は増えますが、CPUの仕事はほとんど変わらないため、GPUが律速するようになります。強力なグラボと古いCPUの組み合わせなら、1080pから1440pに上げるのが最も簡単な解決策になることが多いです。平均FPSは上がりませんが、ほぼノーコストで画質が良くなります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLSSやFSRでCPUボトルネックは解消できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "できません。アップスケーリングは低い内部解像度で描画するため、GPUの仕事が減ってかえってCPUボトルネックが強まります。フレーム生成は別物で、CPUを介さずに生成フレームを挿入するため、CPU律速でも体感の滑らかさを改善できます。ただし入力遅延はわずかに増えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "メモリ（RAM）がボトルネックになることはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "あります。最近のゲームに8GBは少なすぎ、カクつきの原因になります。1枚挿し（シングルチャネル）やXMP/EXPOの設定忘れでも、CPU律速時の性能が10〜25%落ちることがあります。2026年のゲーミングなら、DDR5 32GBのデュアルチャネル（またはDDR4-3600の16〜32GB）がおすすめです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ボトルネックでPCが壊れることはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ありません。ボトルネックは性能の釣り合いの問題で、故障ではありません。どちらのパーツにも設計を超えた負荷はかかっていません。失うのは、お金を払ったのに使い切れていない性能だけです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ボトルネック0%は実現できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現実的には無理です。どのフレームでも片方のパーツがもう片方より遅れて処理を終え、バランスはゲームごと、さらにはシーンごとに変わります。10%未満なら、現実的に望める最高レベルの組み合わせです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ノートPCにも使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "使えます。人気のノートPC向けCPU・GPUを収録しており、「ノート」と表示されます。ノートPC向けGPUは電力制限（TGP）や冷却によって性能が大きく変わるため、薄型軽量モデルでは推定値より10〜25%低くなることがあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ボトルネック計算サイトによって結果が違うのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "使っているデータと計算式が違うからです。多くのサイトは、ゲーム性能を反映しない合成CPUスコアを比較していたり、解像度を考慮していなかったり、GPUボトルネックを問題として扱っていたりします。このツールはゲームに特化した指数を使い、解像度、画質、アップスケーリング、VRAM、ゲームタイプをモデル化したうえで、計算式もすべて上で公開しています。"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:END -->
+</head>
+<body>
+  <a class="skip" href="#calculator">計算ツールへスキップ</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../ja/" aria-label="ボトルネックチェッカー ホーム">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="メイン">
+        <a href="../ja/fps-calculator/">FPS計算</a>
+        <a href="#how-it-works">計算方法</a>
+        <a href="#min-cpu">GPU別おすすめCPU</a>
+        <a href="#popular">人気構成</a>
+        <a href="#faq">よくある質問</a>
+      </nav>
+      <details class="menu">
+        <summary aria-label="メニュー"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="menu-panel" aria-label="メイン">
+          <a href="../ja/fps-calculator/">FPS計算</a>
+        <a href="#how-it-works">計算方法</a>
+        <a href="#min-cpu">GPU別おすすめCPU</a>
+        <a href="#popular">人気構成</a>
+        <a href="#faq">よくある質問</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>2026年10月更新 · CPU・GPU 284種類</p>
+        <h1 class="reveal">ボトルネックチェッカー</h1>
+        <p class="lead reveal">CPUがグラボの足を引っ張っていないか、何FPS出るのか、どのアップグレードが本当に効くのか。ボトルネック計算でまとめてチェックできます。</p>
+      </section>
+
+      <section id="calculator" class="calc reveal" aria-label="ボトルネック計算ツール">
+        <form class="card builder" id="calc-form" autocomplete="off" onsubmit="return false">
+          <div class="builder-main">
+            <div class="field">
+              <label for="cpu-input">CPU（プロセッサー）</label>
+              <div class="combo" data-kind="cpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <input id="cpu-input" value="AMD Ryzen 7 7800X3D" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cpu-list" aria-describedby="cpu-meta" spellcheck="false" placeholder="CPUを検索（例: 7800X3D）">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="すべてのCPUを表示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="cpu-list" class="combo-list" role="listbox" aria-label="CPU一覧" hidden></ul>
+              </div>
+              <div class="field-meta" id="cpu-meta">8コア / 16スレッド · AM5 · 2023</div>
+            </div>
+            <div class="builder-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="field">
+              <label for="gpu-input">グラフィックボード</label>
+              <div class="combo" data-kind="gpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="9" cy="12" r="2.5"/><circle cx="16" cy="12" r="2.5"/><path d="M5 17v2"/></svg>
+                <input id="gpu-input" value="NVIDIA GeForce RTX 5070 Ti" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gpu-list" aria-describedby="gpu-meta" spellcheck="false" placeholder="GPUを検索（例: RTX 5070）">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="すべてのグラボを表示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="gpu-list" class="combo-list" role="listbox" aria-label="グラフィックボード一覧" hidden></ul>
+              </div>
+              <div class="field-meta" id="gpu-meta">16 GB VRAM · レイトレーシング ✓ · 2025</div>
+            </div>
+          </div>
+
+          <div class="builder-sub">
+            <div class="field field-res">
+              <span class="field-label" id="res-label">解像度</span>
+              <div class="seg" role="radiogroup" aria-labelledby="res-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="res" value="1080p"><span>1080p</span></label>
+                <label><input type="radio" name="res" value="1440p" checked><span>1440p</span></label>
+                <label><input type="radio" name="res" value="uw1440"><span>UW</span></label>
+                <label><input type="radio" name="res" value="4k"><span>4K</span></label>
+              </div>
+            </div>
+            <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false" aria-controls="more">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+              <span class="more-text"><b>詳細設定</b><span id="opt-summary">高画質 · AAAタイトル · 32 GB · 165 Hz</span></span>
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <div class="more" id="more">
+            <div class="more-inner">
+              <div class="more-grid">
+                <div class="field">
+                  <span class="field-label" id="q-label">画質設定</span>
+              <div class="seg" role="radiogroup" aria-labelledby="q-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="quality" value="low"><span>低</span></label>
+                <label><input type="radio" name="quality" value="medium"><span>中</span></label>
+                <label><input type="radio" name="quality" value="high" checked><span>高</span></label>
+                <label><input type="radio" name="quality" value="ultra"><span>最高</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <span class="field-label" id="ram-label">メモリ（RAM）</span>
+              <div class="seg" role="radiogroup" aria-labelledby="ram-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="ram" value="8"><span>8 GB</span></label>
+                <label><input type="radio" name="ram" value="16"><span>16 GB</span></label>
+                <label><input type="radio" name="ram" value="32" checked><span>32 GB</span></label>
+                <label><input type="radio" name="ram" value="64"><span>64 GB</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <label for="workload">プレイするゲーム</label>
+                  <select id="workload" name="workload">
+                    <option value="general" selected>AAA・一般的なゲーム</option>
+                    <option value="esports">競技系eスポーツ（CS2、VALORANT、フォートナイト）</option>
+                    <option value="cpuheavy">CPU負荷大（ストラテジー、シミュレーター、MMO）</option>
+                    <option value="raytracing">レイトレーシング／パストレーシング</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="upscale">アップスケーリング</label>
+                  <select id="upscale" name="upscale">
+                    <option value="off" selected>オフ（ネイティブ）</option>
+                    <option value="quality">DLSS/FSR クオリティ</option>
+                    <option value="balanced">DLSS/FSR バランス</option>
+                    <option value="performance">DLSS/FSR パフォーマンス</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hz">モニターのリフレッシュレート</label>
+                  <select id="hz" name="hz">
+                    <option value="60">60 Hz</option>
+                    <option value="75">75 Hz</option>
+                    <option value="120">120 Hz</option>
+                    <option value="144">144 Hz</option>
+                    <option value="165" selected>165 Hz</option>
+                    <option value="180">180 Hz</option>
+                    <option value="240">240 Hz</option>
+                    <option value="360">360 Hz</option>
+                  </select>
+                </div>
+                <label class="switch"><input type="checkbox" id="streaming" name="streaming" role="switch"><span class="switch-track" aria-hidden="true"></span>配信・録画（CPUエンコード）</label>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <section class="card results" id="results" data-tone="gpu" aria-label="計算結果">
+          <div class="results-head">
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 124">
+                <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <path class="fill" id="gauge-fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+              </svg>
+              <div class="gauge-value"><strong class="num" id="pct">30%</strong><small id="pct-label">GPUボトルネック</small></div>
+            </div>
+            <div class="verdict" aria-live="polite">
+              <span class="tone-pill" id="tone-pill">GPU律速</span>
+              <h2 id="verdict-title">GPU律速・CPUに余裕あり</h2>
+              <p id="verdict-text">1440pではRTX 5070 Tiが性能の上限になっています。これはゲーミングPCとしてごく普通で、むしろ望ましい状態です。Ryzen 7 7800X3Dには約176 FPSまで余裕があるので、将来もっと速いGPUに載せ替えても対応できます。</p>
+            </div>
+          </div>
+
+          <div class="pipeline" id="pipeline" role="img" aria-label="フレームの流れ">
+            <canvas id="pipe-canvas" aria-hidden="true"></canvas>
+            <div class="pipe-node node-cpu" id="node-cpu"><span class="pipe-name">CPU</span><span class="pipe-val num"><span id="cap-cpu-val">176</span><span class="pu"> FPS</span></span><span class="pipe-tag">ボトルネック</span></div>
+            <div class="pipe-node node-gpu" id="node-gpu"><span class="pipe-name">GPU</span><span class="pipe-val num"><span id="cap-gpu-val">124</span><span class="pu"> FPS</span></span><span class="pipe-tag">ボトルネック</span></div>
+            <div class="pipe-node node-display" id="node-display"><span class="pipe-name">モニター</span><span class="pipe-val num" id="cap-hz-val">165 Hz</span></div>
+          </div>
+          <p class="pipe-note">各パーツが出せる最大フレーム数です。遅い方の手前でフレームが詰まります。</p>
+
+          <div class="stats">
+            <div class="stat"><small>平均FPS</small><strong class="num" id="s-fps">123</strong></div>
+            <div class="stat"><small>1% Low</small><strong class="num" id="s-low">101</strong></div>
+            <div class="stat"><small>CPU使用率</small><strong class="num"><span id="s-cpu">70</span><span class="unit">%</span></strong><div class="meter"><i id="m-cpu"></i></div></div>
+            <div class="stat"><small>GPU使用率</small><strong class="num"><span id="s-gpu">99</span><span class="unit">%</span></strong><div class="meter"><i id="m-gpu"></i></div></div>
+          </div>
+
+          <div class="result-actions">
+            <span class="context" id="context-line">1440p (2560×1440) · 高画質 · AAAタイトル</span>
+            <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>リンクをコピー</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="details reveal-group" id="details">
+        <section class="card panel">
+          <h3>解像度別のボトルネック</h3>
+          <p class="sub">同じ構成・設定で解像度だけを変えた場合。</p>
+          <div class="table-scroll"><table id="res-table"><thead><tr><th>解像度</th><th class="r">平均FPS</th><th class="r">1% Low</th><th>ボトルネック</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>ゲームタイプ別のFPS</h3>
+          <p class="sub" id="wl-sub">選んだ解像度と画質での値です。</p>
+          <div class="table-scroll"><table id="wl-table"><thead><tr><th>ゲームタイプ</th><th class="r">平均FPS</th><th>律速</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>おすすめの対策</h3>
+          <p class="sub">あなたのパーツと設定に合わせた内容です。</p>
+          <ul class="tips" id="tips"></ul>
+        </section>
+        <section class="card panel">
+          <h3 id="up-title">アップグレード候補</h3>
+          <p class="sub" id="up-sub">構成のバランスを整える最小限のアップグレードです。</p>
+          <div class="upgrades" id="upgrades"></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="このページの内容">
+        <p>このページの内容</p>
+        <ol>
+          <li><a href="#what-is">ボトルネックとは</a></li>
+          <li><a href="#how-to-use">使い方</a></li>
+          <li><a href="#how-it-works">計算方法</a></li>
+          <li><a href="#thresholds">許容できるボトルネック率</a></li>
+          <li><a href="#cpu-vs-gpu">CPUとGPU、悪いのはどっち？</a></li>
+          <li><a href="#resolution">解像度による違い</a></li>
+          <li><a href="#min-cpu">GPU別おすすめCPU</a></li>
+          <li><a href="#popular">人気の構成</a></li>
+          <li><a href="#fix">ボトルネックの解消方法</a></li>
+          <li><a href="#check">自分のPCで確認する</a></li>
+          <li><a href="#platforms">プラットフォーム別おすすめCPU</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="what-is">
+          <h2>PCのボトルネックとは？</h2>
+          <p>ゲームの1フレームは2段階で作られます。まず<strong>CPU</strong>がゲームロジック、物理演算、AI、描画命令（ドローコール）を処理し、次に<strong>GPU（グラボ）</strong>がそのフレームをピクセルとして描画します。2つのパーツは流れ作業でつながっているため、フレームレートは遅い方のパーツを超えられません。この遅い方のパーツが<strong>ボトルネック</strong>です。</p>
+          <p>ボトルネックチェッカーは、各パーツが単体で出せるフレーム数を推定して比較します。たとえばCPUが毎秒110フレームしか準備できないのに、GPUは180フレーム描画できる場合、GPUは約39%の時間CPUを待っていることになります。その分のGPU性能は無駄になり、この割合がこのツールで表示される「ボトルネック率」です。</p>
+          <div class="callout"><p><strong>要点：</strong>どちらかが必ず遅いので、ボトルネックは常に存在します。大事なのは<em>どちらの</em>パーツがどれだけ足を引っ張っているか、そしてモニターに対してFPSが十分かどうかです。4KでのGPUボトルネックは正常で健全な状態です。1080pで大きなCPUボトルネックが出ているなら、使い切れないGPU性能にお金を払っていることになります。</p></div>
+        </section>
+
+        <section id="how-to-use">
+          <h2>ボトルネックチェッカーの使い方</h2>
+          <ol class="steps">
+            <li><strong>CPUとグラボを選びます。</strong>「5600」「14600K」「5070 Ti」のように型番を入力し始めてください。ノートPC向けチップや内蔵GPUも収録しています。</li>
+            <li><strong>解像度と画質を選びます。</strong>GPU負荷を最も大きく左右する項目です。モニターの最大解像度ではなく、実際にプレイする解像度を選んでください。</li>
+            <li><strong>プレイするゲームの種類を選びます。</strong>eスポーツタイトル、シミュレーター、レイトレーシング対応ゲームでは、CPUとGPUへの負荷のかかり方がまったく違います。</li>
+            <li><strong>アップスケーリング、リフレッシュレート、メモリを設定します。</strong>DLSS/FSRはGPU負荷を下げ、リフレッシュレートは実際に表示できるフレーム数の目安になります。メモリ8GBはそれだけでカクつきの原因になります。</li>
+            <li><strong>判定とおすすめを確認します。</strong>解像度別の表、ゲームタイプ別の表、アップグレード候補をチェックしましょう。結果のリンクをコピーすれば、XやDiscordで構成を共有できます。</li>
+          </ol>
+        </section>
+
+        <section id="how-it-works">
+          <h2>ボトルネックとFPSの計算方法</h2>
+          <p>多くのボトルネック計算サイトは、PassMarkやCinebenchのような合成ベンチマークのスコアを比べています。これらはゲーム性能ではなくマルチコアのレンダリング性能を測るものなので、16コアのワークステーション向けCPUを、8コアのゲーミング向けX3D CPUよりはるかに上に評価してしまいます。ゲームではむしろ逆です。このツールは<strong>ゲームに特化した性能指数</strong>を使っています。</p>
+          <h3>1. CPUのフレームレート上限</h3>
+          <p>各CPUには、公開されているCPU律速ベンチマーク（1080p、最速GPU、最近のタイトル）の平均値で較正したゲーミング指数があり、Ryzen 7 9800X3Dを100としています。この指数をフレームレートの上限に換算し、ゲームタイプ、画質、メモリ容量、配信負荷に応じて補正します。CPUは1080pでも4Kでも1フレームあたりの仕事量がほぼ同じなので、CPUの上限は解像度に左右されません。</p>
+          <h3>2. GPUのフレームレート上限</h3>
+          <p>各GPUには、GPU律速ベンチマークの平均値で較正したラスタライズ性能指数（RTX 4090 = 100）があります。これを実測に基づく曲線（ピクセル数の<sup>−0.62</sup>乗。単純な比例ではありません）で解像度に合わせて補正し、さらに画質、アップスケーリング、レイトレーシング効率（NVIDIA・AMD・Intelでアーキテクチャごとに異なります）と、設定に必要なVRAMがグラボの搭載量を超えた場合のペナルティを適用します。</p>
+          <h3>3. 2つの上限の組み合わせ方</h3>
+<div class="formula">CPU上限 = CPU指数 × 2.0 × ゲームタイプ × 画質 × メモリ × 配信
+GPU上限 = GPU指数 × 2.3 × (ピクセル数 ÷ 1080p)^−0.62 × ゲームタイプ
+          × 画質 × アップスケーリング × レイトレーシング × VRAM
+平均FPS = ソフト最小値(CPU上限, GPU上限)
+ボトルネック率 = (速い方の上限 − 遅い方の上限) ÷ 速い方の上限 × 100%</div>
+          <p>ソフト最小値は実際の挙動を反映したものです。両方のパーツが上限に近いとフレームペーシングが乱れ、結果はどちらの上限よりも少し低くなります。1% Lowは律速しているパーツから推定します。CPU律速のゲームは1% Lowが悪化しやすく、3D V-Cacheを積んだX3Dチップは良好です。</p>
+          <p><strong>精度について：</strong>多数のゲームの平均で見ると、推定値は実際のベンチマークとおおむね10〜15%以内に収まります。ゲームエンジンのクセ、ドライバーのバージョン、パッチ、冷却、電力制限、メモリ速度、バックグラウンドアプリの影響で、個別のゲームではそれ以上ずれることもあります。特定のゲームの正確なFPSではなく、バランスやアップグレードの判断材料として使ってください。</p>
+        </section>
+
+        <section id="thresholds">
+          <h2>ボトルネック率は何%までなら許容範囲？</h2>
+          <p>当サイトでは以下の基準を共通で使っています。計算ツール、この表、よくある質問はすべて同じ数値です。</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>ボトルネック率</th><th>CPUが律速の場合</th><th>GPUが律速の場合</th></tr></thead>
+              <tbody>
+                <tr><td><span class="dot" data-tone="excellent"></span><strong>0〜10%</strong></td><td>非常に良いバランス</td><td>非常に良いバランス</td></tr>
+                <tr><td><span class="dot" data-tone="good"></span><strong>10〜20%</strong></td><td>軽度。ほとんど体感できない</td><td>バランス良好。ゲーミングでは理想的な状態</td></tr>
+                <tr><td><span class="dot" data-tone="moderate"></span><strong>20〜35%</strong></td><td>中程度。1% Lowが下がり、GPUが一部遊んでいる</td><td>GPU律速。将来より強いGPUにしてもCPUが対応できる</td></tr>
+                <tr><td><span class="dot" data-tone="severe"></span><strong>35%以上</strong></td><td>深刻。GPUより先にCPUを交換</td><td>強いGPU律速。FPSが足りていれば問題なし、足りなければGPUを交換</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>2つの列の扱いが違う点に注目してください。GPUボトルネックは、グラボがフル稼働しているという意味でしかなく、まさにお金を払った分の性能を引き出せている状態です。一方、CPUボトルネックはフレームタイムの乱れ、重い場面でのカクつき、GPUの遊びを引き起こします。</p>
+        </section>
+
+        <section id="cpu-vs-gpu">
+          <h2>CPUボトルネックとGPUボトルネック、悪いのはどっち？</h2>
+          <p><strong>ゲームにとってはCPUボトルネックの方が悪い状態です。</strong>CPUが律速していると、爆発や群衆、物理演算が起きるたびにフレームタイムが跳ね上がり、平均FPSが十分に見えても1% Lowが落ちてカクカクした感触になります。GPUが原因ではないので、画質を下げてもほとんど改善しません。</p>
+          <p><strong>GPUボトルネックは正常で、むしろ望ましい状態です。</strong>フレームは安定して届き、影の品質を下げる、DLSSやFSRを有効にする、解像度を下げるといった設定でパフォーマンスをコントロールできます。うまく組まれたゲーミングPCの多くは、目標の解像度でわずかにGPU律速になっています。</p>
+          <h3>CPUがボトルネックになっているサイン</h3>
+          <ul>
+            <li>FPSが物足りないのに、ゲーム中のGPU使用率が95%を大きく下回っている。</li>
+            <li>解像度や画質を下げてもFPSが上がらない。</li>
+            <li>街中、大規模な戦闘、プレイヤーが多い場面などでカクつく。</li>
+            <li>CPU全体の使用率はそこそこなのに、1〜2スレッドだけが100%近くに張り付いている。</li>
+          </ul>
+        </section>
+
+        <section id="resolution">
+          <h2>解像度でボトルネックが変わる理由</h2>
+          <p>CPUの1フレームあたりの仕事量は、解像度が変わってもほとんど同じです。一方GPUの仕事量はピクセルが増えるほど増え、4Kは1080pの4倍のピクセル数があります。そのため解像度を上げるとGPU側のフレームレートは下がり、CPUの上限はそのまま。ボトルネックはCPUからGPUへと移っていきます。</p>
+          <p>以下は、このツールで計算したRyzen 5 3600とRTX 4070 Superの組み合わせ（画質「高」）です。</p>
+          <div class="table-scroll"><table><thead><tr><th>解像度</th><th class="r">CPU上限</th><th class="r">GPU上限</th><th class="r">平均FPS</th><th>ボトルネック</th></tr></thead><tbody><tr><td>1080p (1920×1080)</td><td class="r num">80</td><td class="r num">138</td><td class="r num">80</td><td><span class="dot" data-tone="severe"></span>CPU 42%</td></tr><tr><td>1440p (2560×1440)</td><td class="r num">80</td><td class="r num">96</td><td class="r num">78</td><td><span class="dot" data-tone="good"></span>CPU 17%</td></tr><tr><td>ウルトラワイド 1440p (3440×1440)</td><td class="r num">80</td><td class="r num">80</td><td class="r num">74</td><td><span class="dot" data-tone="excellent"></span>バランス良好</td></tr><tr><td>4K (3840×2160)</td><td class="r num">80</td><td class="r num">58</td><td class="r num">58</td><td><span class="dot" data-tone="gpu"></span>GPU 27%</td></tr></tbody></table></div>
+          <p>同じGPUでも、1080pでは大きく足を引っ張られ、1440pではほぼバランスが取れ、4Kでは性能を使い切っています。だからこそ「ボトルネックになる？」という質問は、解像度とセットでなければ意味がありません。内部解像度を下げて描画するアップスケーリングが、CPUボトルネックを<em>悪化させる</em>ことがあるのも同じ理由です。</p>
+        </section>
+
+        <section id="min-cpu">
+          <h2>GPU別おすすめCPU（ボトルネックが出ない最低ライン）</h2>
+          <p>画質「高」のAAAタイトルで、各グラボのボトルネック率を10%未満に抑えられる最も手頃な人気CPUをまとめました。これより速いCPUならどれでも問題ありません。「Ryzen 5 3600+」は、最近の6コアCPUなら何でも十分という意味です。上の計算ツールと同じデータで算出しています。</p>
+          <div class="table-scroll"><table><thead><tr><th>グラフィックボード</th><th>1080p</th><th>1440p</th><th>4K</th></tr></thead><tbody><tr><td><strong>RTX 5090</strong></td><td>Ryzen 7 9800X3D <small>（それでもCPU律速）</small></td><td>Ryzen 7 9800X3D</td><td>Core i5-12400F</td></tr><tr><td><strong>RTX 5080</strong></td><td>Ryzen 7 9800X3D</td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070 Ti</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070 XT</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070</strong></td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070</strong></td><td>Ryzen 7 7700X</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4070 Super</strong></td><td>Core i5-13400F</td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 7800 XT</strong></td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060 Ti 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9060 XT 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060</strong></td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4060</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>Arc B580</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 3060 12GB</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr></tbody></table></div>
+          <p>240Hz以上でeスポーツタイトルを遊ぶなら、表よりも速いCPUを選びましょう。低画質の競技系ゲームでは負荷のほとんどがCPUに移るため、Ryzen 7 7800X3Dや9800X3DのようなX3Dチップが真価を発揮します。</p>
+        </section>
+
+        <section id="popular">
+          <h2>人気のCPU＋グラボの組み合わせ</h2>
+          <p>よく質問される構成のリアルタイム計算結果です。カードをクリックすると計算ツールに読み込まれ、設定を変えて試せます。</p>
+          <div class="combos"><a class="combo-card" href="?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti#calculator"><b>Ryzen 7 7800X3D + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">GPU律速 30%</em> · ≈123 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5090&amp;res=4k#calculator"><b>Ryzen 7 9800X3D + RTX 5090</b><span>4K · <em data-tone="gpu">GPU律速 40%</em> · ≈120 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080#calculator"><b>Ryzen 7 9800X3D + RTX 5080</b><span>1440p · <em data-tone="gpu">GPU律速 29%</em> · ≈140 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070#calculator"><b>Ryzen 5 7600 + RTX 5070</b><span>1440p · <em data-tone="gpu">GPU律速 26%</em> · ≈100 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p#calculator"><b>Ryzen 5 5600 + RTX 4060</b><span>1080p · <em data-tone="gpu">GPU律速 28%</em> · ≈75 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=rtx-5060&amp;res=1080p#calculator"><b>Core i5-12400F + RTX 5060</b><span>1080p · <em data-tone="gpu">GPU律速 25%</em> · ≈89 FPS</span></a><a class="combo-card" href="?cpu=i5-13400f&amp;gpu=rtx-4070-super#calculator"><b>Core i5-13400F + RTX 4070 Super</b><span>1440p · <em data-tone="gpu">GPU律速 23%</em> · ≈95 FPS</span></a><a class="combo-card" href="?cpu=i5-14600k&amp;gpu=rx-9070-xt#calculator"><b>Core i5-14600K + RX 9070 XT</b><span>1440p · <em data-tone="gpu">GPU律速 20%</em> · ≈120 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5700x3d&amp;gpu=rx-9070#calculator"><b>Ryzen 7 5700X3D + RX 9070</b><span>1440p · <em data-tone="gpu">GPU律速 20%</em> · ≈104 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-3600&amp;gpu=rtx-3060-12gb&amp;res=1080p#calculator"><b>Ryzen 5 3600 + RTX 3060 12GB</b><span>1080p · <em data-tone="gpu">GPU律速 20%</em> · ≈63 FPS</span></a><a class="combo-card" href="?cpu=i7-14700k&amp;gpu=rtx-4070-ti-super#calculator"><b>Core i7-14700K + RTX 4070 Ti Super</b><span>1440p · <em data-tone="gpu">GPU律速 29%</em> · ≈112 FPS</span></a><a class="combo-card" href="?cpu=ultra-7-265k&amp;gpu=rtx-5070-ti#calculator"><b>Core Ultra 7 265K + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">GPU律速 17%</em> · ≈121 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5800x3d&amp;gpu=rtx-4080-super#calculator"><b>Ryzen 7 5800X3D + RTX 4080 Super</b><span>1440p · <em data-tone="excellent">バランス良好</em> · ≈122 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600x&amp;gpu=rx-7800-xt#calculator"><b>Ryzen 5 5600X + RX 7800 XT</b><span>1440p · <em data-tone="gpu">GPU律速 18%</em> · ≈86 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=arc-b580&amp;res=1080p#calculator"><b>Core i5-12400F + Arc B580</b><span>1080p · <em data-tone="gpu">GPU律速 35%</em> · ≈78 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9700x&amp;gpu=rx-9060-xt-16gb&amp;res=1080p#calculator"><b>Ryzen 7 9700X + RX 9060 XT 16GB</b><span>1080p · <em data-tone="gpu">GPU律速 34%</em> · ≈101 FPS</span></a></div>
+          <p><a href="../bottleneck/" hreflang="en"><strong>人気のCPU＋GPU構成をすべて見る</strong></a>（英語）では、1080p・1440p・4Kのボトルネック率とFPSを計算済みで確認できます。</p>
+        </section>
+
+        <section id="fix">
+          <h2>ボトルネックの解消方法</h2>
+          <h3>CPUボトルネックの場合</h3>
+          <ul>
+            <li><strong>解像度や画質を上げる。</strong>GPUに余裕があるならほぼノーコストで、ほとんど同じFPSのまま見た目が良くなります。</li>
+            <li><strong>XMP/EXPOを有効にし、メモリをデュアルチャネルで使う。</strong>メモリ1枚挿しや、定格の2133/4800 MT/sのままだと、CPU律速時の性能が10〜25%落ちることがあります。</li>
+            <li><strong>まずは同じソケット内でアップグレードする。</strong>AM4ならRyzen 7 5700X3Dや5800X3Dが、マザーボードを替えずに済む最も安上がりな大幅強化になることが多いです。</li>
+            <li><strong>バックグラウンドアプリを閉じ、配信にはハードウェアエンコード</strong>（NVENC、AMF、Quick Sync）を使う。</li>
+            <li><strong>フレーム生成を使う</strong>（DLSS 3/4 フレーム生成、FSR 3/4）。CPU律速でも体感の滑らかさが上がります。「本物の」フレームが増えるわけではありませんが、シングルプレイのゲームでは有効です。</li>
+            <li><strong>冷却を確認する。</strong>95〜100℃に達したCPUはクロックが下がり、本来ならないはずのボトルネックになります。</li>
+          </ul>
+          <h3>GPUボトルネックの場合</h3>
+          <ul>
+            <li><strong>DLSS、FSR、XeSSをクオリティモードで有効にする。</strong>見た目の劣化はわずかで、通常30〜50%FPSが伸びます。</li>
+            <li><strong>重い設定から下げる：</strong>レイトレーシング、影、ボリュメトリックフォグ、スクリーンスペースリフレクションの順に。</li>
+            <li><strong>VRAMが足りないならテクスチャ品質を下げる。</strong>8GBのグラボで起きるカクつきやぼやけたテクスチャは、VRAMのボトルネックです。</li>
+            <li><strong>グラフィックドライバーを更新し</strong>、モニターのケーブルがマザーボードではなくグラボに挿さっているか確認する。</li>
+            <li><strong>グラボを買い替える。</strong>上のアップグレード候補に、新たなCPUボトルネックを生まずにあなたのCPUと釣り合うモデルが表示されます。</li>
+          </ul>
+        </section>
+
+        <section id="check">
+          <h2>自分のPCでボトルネックを確認する方法</h2>
+          <p>計算ツールで得られるのはあくまで予測です。実際のゲームで確かめるには、無料のパフォーマンスオーバーレイを使いましょう。</p>
+          <ol>
+            <li><strong>MSI Afterburner</strong>とRivaTuner Statistics Serverを入れるか、NVIDIA AppやAMD Adrenalinのオーバーレイを使います。</li>
+            <li><strong>GPU使用率、スレッドごとのCPU使用率、FPS、フレームタイム</strong>を画面に表示させます。</li>
+            <li>垂直同期とFPS制限をオフにして、ゲームで最も重い場面を数分プレイします。</li>
+            <li><strong>GPU使用率が95〜99%</strong>ならGPU律速で、健全な状態です。FPSが目標に届かないのに<strong>GPU使用率が90%を明らかに下回る</strong>なら、CPU（またはメモリ）がボトルネックです。</li>
+            <li>解像度を下げて再確認します。FPSが上がらなければCPU律速です。</li>
+          </ol>
+          <p>Windowsのタスクマネージャーはこの判定には向きません。CPU使用率の合計は全コアの平均なので、16スレッドのCPUで2スレッドを使い切っているゲームでも「CPU使用率25%」としか表示されず、実際には完全にCPU律速ということがあります。</p>
+        </section>
+
+        <section id="platforms">
+          <h2>プラットフォーム別・おすすめのゲーミングCPUアップグレード</h2>
+          <p>今のマザーボードのままCPUを交換するのが、CPUボトルネックを解消する最も安い方法です。CPUを載せ替える前にBIOSを更新しておきましょう。</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>ソケット</th><th>ゲーム最強</th><th>コスパ重視</th><th>メモ</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AM4</strong></td><td>Ryzen 7 5800X3D / 5700X3D</td><td>Ryzen 5 5600 / 5600X</td><td>AM4でゲームに最適なのはX3Dモデルです。5600G/5700Gはキャッシュが半分でPCIe 3.0のため、高性能なグラボとの組み合わせは避けましょう。</td></tr>
+                <tr><td><strong>AM5</strong></td><td>Ryzen 7 9850X3D / 9800X3D</td><td>Ryzen 5 7600 / 9600X</td><td>7800X3Dも依然としてコスパに優れます。AMDはAM5を今後のCPUでもサポートすると表明しています。</td></tr>
+                <tr><td><strong>LGA1700</strong></td><td>Core i7-14700K / i9-14900K</td><td>Core i5-13400F / i5-14600K</td><td>アップグレード前に、Intelの第13/14世代向け安定性マイクロコードを含む最新BIOSを入れてください。</td></tr>
+                <tr><td><strong>LGA1851</strong></td><td>Core Ultra 9 285K</td><td>Core Ultra 5 245K</td><td>クリエイティブ用途に強い一方、ゲーム性能は第14世代と同程度なので、高速なDDR5が効きます。</td></tr>
+                <tr><td><strong>LGA1200</strong></td><td>Core i9-11900K / i9-10900K</td><td>Core i5-11400F</td><td>今後の発展がないプラットフォームです。RTX 4060クラスまでなら問題ありませんが、より速いグラボにはプラットフォームごとの刷新を検討しましょう。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>よくある質問</h2>
+          <details open><summary>ボトルネック率は何%なら良いですか？</summary><div><p>10%未満なら非常に良いバランス、10〜20%ならゲーム用途で問題ありません。20〜35%になるとCPUボトルネックが1% Lowに表れ始め、35%を超えるとGPU性能の大部分を無駄にしています。律速しているのがGPUなら、FPSが目標に届いている限り、もっと高い数値でも問題ありません。</p></div></details>
+          <details><summary>ボトルネックチェッカーの精度はどれくらいですか？</summary><div><p>良いツールなら、バランスの判断やおおよそのFPSを知るには十分な精度で、ベンチマーク平均との差は通常10〜15%程度です。ゲームエンジン、パッチ、ドライバー、冷却、メモリ速度、バックグラウンドのソフトで結果が変わるため、特定のゲームを正確に予測できる計算ツールはありません。PassMarkのような合成スコアに基づくツールは、ゲームのベンチマークに基づくツールに比べて、ゲーム用途での信頼性がずっと低くなります。</p></div></details>
+          <details><summary>CPUボトルネックとGPUボトルネック、どちらの方がマシですか？</summary><div><p>GPUボトルネックです。GPU律速のゲームはフレームタイムが滑らかで安定しており、設定やアップスケーリングでFPSを上げられます。CPU律速のゲームは1% Lowが悪くカクつきやすいうえ、設定を下げても改善しません。</p></div></details>
+          <details><summary>解像度を上げるとCPUボトルネックは減りますか？</summary><div><p>減ります。解像度を上げるとGPUの仕事は増えますが、CPUの仕事はほとんど変わらないため、GPUが律速するようになります。強力なグラボと古いCPUの組み合わせなら、1080pから1440pに上げるのが最も簡単な解決策になることが多いです。平均FPSは上がりませんが、ほぼノーコストで画質が良くなります。</p></div></details>
+          <details><summary>DLSSやFSRでCPUボトルネックは解消できますか？</summary><div><p>できません。アップスケーリングは低い内部解像度で描画するため、GPUの仕事が減ってかえってCPUボトルネックが強まります。フレーム生成は別物で、CPUを介さずに生成フレームを挿入するため、CPU律速でも体感の滑らかさを改善できます。ただし入力遅延はわずかに増えます。</p></div></details>
+          <details><summary>メモリ（RAM）がボトルネックになることはありますか？</summary><div><p>あります。最近のゲームに8GBは少なすぎ、カクつきの原因になります。1枚挿し（シングルチャネル）やXMP/EXPOの設定忘れでも、CPU律速時の性能が10〜25%落ちることがあります。2026年のゲーミングなら、DDR5 32GBのデュアルチャネル（またはDDR4-3600の16〜32GB）がおすすめです。</p></div></details>
+          <details><summary>ボトルネックでPCが壊れることはありますか？</summary><div><p>ありません。ボトルネックは性能の釣り合いの問題で、故障ではありません。どちらのパーツにも設計を超えた負荷はかかっていません。失うのは、お金を払ったのに使い切れていない性能だけです。</p></div></details>
+          <details><summary>ボトルネック0%は実現できますか？</summary><div><p>現実的には無理です。どのフレームでも片方のパーツがもう片方より遅れて処理を終え、バランスはゲームごと、さらにはシーンごとに変わります。10%未満なら、現実的に望める最高レベルの組み合わせです。</p></div></details>
+          <details><summary>ノートPCにも使えますか？</summary><div><p>使えます。人気のノートPC向けCPU・GPUを収録しており、「ノート」と表示されます。ノートPC向けGPUは電力制限（TGP）や冷却によって性能が大きく変わるため、薄型軽量モデルでは推定値より10〜25%低くなることがあります。</p></div></details>
+          <details><summary>ボトルネック計算サイトによって結果が違うのはなぜですか？</summary><div><p>使っているデータと計算式が違うからです。多くのサイトは、ゲーム性能を反映しない合成CPUスコアを比較していたり、解像度を考慮していなかったり、GPUボトルネックを問題として扱っていたりします。このツールはゲームに特化した指数を使い、解像度、画質、アップスケーリング、VRAM、ゲームタイプをモデル化したうえで、計算式もすべて上で公開しています。</p></div></details>
+        </section>
+
+        <section id="updates">
+          <h2>データ更新履歴</h2>
+          <p><strong>2026年10月：</strong>Ryzen 7 9850X3D、RTX 5050、RX 9060 XT、Arc B570を追加しました。最新ドライバーの結果でGPU指数を再較正し、ノートPC向けGPU・内蔵GPU、レイトレーシング効率モデル、VRAMペナルティを追加しました。</p>
+          <p>お探しのCPUやGPUがありませんか？新しいハードウェアの発売に合わせて、データベースを定期的に更新しています。</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="サイト"><a href="../ja/" aria-current="page">ボトルネックチェッカー</a><a href="../ja/fps-calculator/">FPS計算ツール</a><a href="../bottleneck/" hreflang="en">人気の構成（英語）</a><a href="../guides/" hreflang="en">ガイド（英語）</a><a href="../about/" hreflang="en">運営者情報</a><a href="../editorial-policy/" hreflang="en">編集方針</a><a href="../privacy/" hreflang="en">プライバシー</a><a href="../contact/" hreflang="en">お問い合わせ</a></nav>
+      <nav class="lang-switch" aria-label="言語"><a href="../" lang="en" hreflang="en">English</a><span aria-hidden="true">·</span><a href="../es/" lang="es" hreflang="es">Español</a><span aria-hidden="true">·</span><a href="../ja/" lang="ja" hreflang="ja" aria-current="page">日本語</a></nav>
+      <p>© 2026 Bottleneck Calculator. 推定値はあくまで目安です。実際の性能はゲーム、設定、ドライバー、冷却によって変わります。</p>
+      <p>製品名は各社の商標です。当サイトはAMD、Intel、NVIDIAとは提携していません。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../assets/js/i18n.js?v=12"></script>
+  <script src="../assets/js/hardware.js?v=12"></script>
+  <script src="../assets/js/engine.js?v=12"></script>
+  <script src="../assets/js/motion.js?v=12"></script>
+  <script src="../assets/js/combobox.js?v=12"></script>
+  <script src="../assets/js/app.js?v=12"></script>
+</body>
+</html>

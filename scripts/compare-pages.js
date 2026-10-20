@@ -579,7 +579,7 @@ module.exports = function buildComparePages({ ROOT, SITE_URL, HW, Engine, buildP
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=11">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=12">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -759,7 +759,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=11"></script>
+  <script src="../../assets/js/motion.js?v=12"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>
@@ -835,7 +835,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=11"></script>
+  <script src="../assets/js/motion.js?v=12"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>

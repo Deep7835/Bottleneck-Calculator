@@ -5,8 +5,10 @@
 (function () {
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+  const t = (key) => window.I18N.t(key);
 
-  const norm = (s) => s.toLowerCase().replace(/geforce|radeon|core|intel|nvidia|amd/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
+  // NFKC folds full-width input from Japanese IMEs ("５６００") to ASCII.
+  const norm = (s) => s.normalize("NFKC").toLowerCase().replace(/geforce|radeon|core|intel|nvidia|amd/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
 
   // Common shorthand people type: "r5 5600" → "ryzen 5 5600".
   const expand = (q) => q.replace(/\br\s?([3579])\b/gi, "ryzen $1");
@@ -27,7 +29,7 @@
     const meta = (it) => kind === "cpu"
       ? `${it.cores}C/${it.threads}T · ${it.socket === "Laptop" ? "" : it.socket + " · "}${it.year}`
       : `${it.vram ? it.vram + " GB · " : ""}${it.year}`;
-    const badge = (it) => it.type === "l" ? '<span class="badge">Laptop</span>' : it.type === "i" ? '<span class="badge">iGPU</span>' : "";
+    const badge = (it) => it.type === "l" ? `<span class="badge">${t("badge.laptop")}</span>` : it.type === "i" ? `<span class="badge">${t("badge.igpu")}</span>` : "";
 
     function filter(q) {
       const nq = norm(expand(q));
@@ -63,7 +65,7 @@
       shown = filter(q).slice(0, 80);
       active = shown.length ? 0 : -1;
       if (!shown.length) {
-        list.innerHTML = '<li class="empty" role="option" aria-disabled="true">No match. Try only the model number, e.g. “4060”.</li>';
+        list.innerHTML = `<li class="empty" role="option" aria-disabled="true">${t("combo.empty")}</li>`;
       } else {
         list.innerHTML = shown.map((it, i) =>
           `<li role="option" id="${kind}-opt-${i}" data-i="${i}" aria-selected="${current && it.id === current.id}"><span class="opt-name">${highlight(it.name, q)}${badge(it)}</span><span class="opt-meta">${meta(it)}</span></li>`

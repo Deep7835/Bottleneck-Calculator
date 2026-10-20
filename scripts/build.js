@@ -171,6 +171,9 @@ const buildPages = require("./combo-pages")({ ROOT, SITE_URL, HW, Engine });
 // ---- FPS calculator page (/fps-calculator/)
 const fpsPage = require("./fps-page")({ ROOT, SITE_URL, HW, Engine, inject, faqSchema });
 
+// ---- Spanish + Japanese calculator pages (/es/, /ja/, and their FPS calculators)
+const i18n = require("./i18n-pages")({ ROOT, SITE_URL, HW, Engine, faqSchema });
+
 // ---- Guides (/guides/ and one page per guide)
 const guidePages = require("./guides")({ ROOT, SITE_URL, HW, Engine, buildPages });
 
@@ -200,11 +203,13 @@ for (const [loc, root, current] of [
 }
 
 const today = new Date().toISOString().slice(0, 10);
-const sitemapUrl = (loc, freq, priority) => `  <url><loc>${SITE_URL}${loc}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${priority}</priority></url>\n`;
+const hreflang = (loc) => (i18n.alternates(loc) || []).map(([l, href]) => `<xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`).join("");
+const sitemapUrl = (loc, freq, priority) => `  <url><loc>${SITE_URL}${loc}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${priority}</priority>${hreflang(loc)}</url>\n`;
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
   sitemapUrl("", "weekly", "1.0") +
   sitemapUrl(fpsPage, "weekly", "0.9") +
+  i18n.pages.map((loc) => sitemapUrl(loc, "weekly", "0.9")).join("") +
   buildPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
   guidePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.7" : "0.8")).join("") +
   comparePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.7")).join("") +
@@ -212,4 +217,4 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   `</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`);
 
-console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${guidePages.length - 1} guides + hub in guides/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, sitemap.xml, robots.txt for ${SITE_URL}`);
+console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${guidePages.length - 1} guides + hub in guides/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, ${i18n.pages.join(", ")}, sitemap.xml, robots.txt for ${SITE_URL}`);
