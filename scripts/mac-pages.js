@@ -10,7 +10,7 @@ const layout = require("./layout");
 module.exports = function buildMacPages({ ROOT, SITE_URL, HW, Engine, faqSchema }) {
   require(path.join(ROOT, "assets/js/macs.js"));
   const { Macs } = global.window;
-  const V = "?v=27";
+  const V = "?v=28";
   const MODIFIED = "2026-10-20";
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const fmt = (n) => Math.round(n).toLocaleString("en-US");

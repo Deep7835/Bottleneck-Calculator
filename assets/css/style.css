@@ -528,7 +528,7 @@ td small { color: var(--text-3); font-size: 12.5px; }
 
 .wordmark {
   position: relative; margin-top: 28px; text-align: center; white-space: nowrap; user-select: none;
-  font-weight: 600; font-size: clamp(32px, 13.4vw, 196px); line-height: 0.82; letter-spacing: -0.045em;
+  font-weight: 600; font-size: clamp(24px, 8.6vw, 150px); line-height: 0.82; letter-spacing: -0.045em;
   height: 0.86em; overflow: hidden; --mx: 50%; --my: 40%;
 }
 .wordmark span {
@@ -917,3 +917,16 @@ a.up { color: inherit; }
 .lang-panel a[aria-current]::after { content: "✓"; margin-left: auto; color: var(--accent); }
 .lang-panel a:lang(ja) { font-family: "Geist", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; }
 @media (max-width: 420px) { .lang-code { display: none; } .lang-menu summary { padding: 0; width: 40px; justify-content: center; } }
+
+/* Full brand name in the header: on small phones the theme switch moves into the menu */
+.menu-theme { display: none; }
+.menu-panel .menu-theme { min-height: 44px; padding: 0 12px; border: 0; border-top: 1px solid var(--border); border-radius: 0; margin-top: 4px; background: none; color: var(--text-2); font: inherit; text-align: left; cursor: pointer; }
+.menu-panel .menu-theme:hover { color: var(--text); background: var(--surface-2); }
+.logo span { white-space: nowrap; }
+@media (max-width: 480px) {
+  .header-tools .theme-btn { display: none; }
+  .menu-panel .menu-theme { display: flex; align-items: center; }
+  .header-tools { gap: 0; }
+  .icon-btn { width: 38px; }
+  .logo { font-size: 15.5px; gap: 7px; }
+}

@@ -203,19 +203,19 @@
 
   // ---------- Light/dark switch (choice saved in localStorage as "theme") ----------
   function initTheme() {
+    const btns = document.querySelectorAll(".theme-btn, .menu-theme");
     const btn = document.querySelector(".theme-btn");
-    if (!btn) return;
+    if (!btns.length) return;
     const html = document.documentElement;
     const light = window.matchMedia("(prefers-color-scheme: light)");
     const current = () => html.dataset.theme || (light.matches ? "light" : "dark");
-    btn.addEventListener("click", () => {
+    btns.forEach((b) => b.addEventListener("click", () => {
       const next = current() === "light" ? "dark" : "light";
       html.dataset.theme = next;
       try { localStorage.setItem("theme", next); } catch {}
-      btn.classList.add("spin");
-      setTimeout(() => btn.classList.remove("spin"), 500);
+      if (btn) { btn.classList.add("spin"); setTimeout(() => btn.classList.remove("spin"), 500); }
       window.dispatchEvent(new Event("themechange"));
-    });
+    }));
   }
 
   // ---------- Site search: loads search.js and the index only when first opened ----------

@@ -45,9 +45,9 @@ const TRANSLATED = { calculator: { es: "es/", ja: "ja/" }, fps: { es: "es/calcul
 function header(root = "", current = "") {
   return `<header class="site-header">
     <div class="wrap">
-      <a class="logo" href="${root || "./"}" aria-label="BottleneckCalc home">
+      <a class="logo" href="${root || "./"}" aria-label="Bottleneck Calculator home">
         ${LOGO}
-        <span>Bottleneck<b>Calc</b></span>
+        <span>Bottleneck <b>Calculator</b></span>
       </a>
       <nav class="nav" aria-label="Main">
         ${links(root, current)}
@@ -65,6 +65,7 @@ function header(root = "", current = "") {
         <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
         <nav class="menu-panel" aria-label="Main (mobile)">
           ${links(root, current)}
+          <button type="button" class="menu-theme">Light / dark theme</button>
         </nav>
       </details>
     </div>
@@ -100,9 +101,9 @@ function footerShell(o) {
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo footer-logo" href="${o.home}" aria-label="BottleneckCalc home">
+          <a class="logo footer-logo" href="${o.home}" aria-label="Bottleneck Calculator home">
             ${LOGO}
-            <span>Bottleneck<b>Calc</b></span>
+            <span>Bottleneck <b>Calculator</b></span>
           </a>
           <p class="footer-tagline">${o.tagline}</p>
           <a class="footer-cta" href="${o.cta.href}">${o.cta.label}<span class="footer-cta-icon">${ICON.arrow}</span></a>
@@ -121,7 +122,7 @@ function footerShell(o) {
       </div>
       <p class="footer-disclaimer">${o.disclaimer}</p>
     </div>
-    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">Bottleneck Calculator</span><span class="wm-glow">Bottleneck Calculator</span></div>
   </footer>`;
 }
 

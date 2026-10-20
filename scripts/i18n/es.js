@@ -8,7 +8,7 @@ module.exports = {
 
   site: {
     skip: "Saltar a la calculadora",
-    logoAria: "BottleneckCalc: inicio",
+    logoAria: "Bottleneck Calculator: inicio",
     navLabel: "Principal",
     footerNavLabel: "Sitio",
     langLabel: "Idioma",

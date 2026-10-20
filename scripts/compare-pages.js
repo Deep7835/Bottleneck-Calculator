@@ -573,7 +573,7 @@ module.exports = function buildComparePages({ ROOT, SITE_URL, HW, Engine, buildP
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=27">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=28">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -755,7 +755,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=27"></script>
+  <script src="../../assets/js/motion.js?v=28"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>
@@ -831,7 +831,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=27"></script>
+  <script src="../assets/js/motion.js?v=28"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>

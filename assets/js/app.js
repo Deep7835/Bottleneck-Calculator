@@ -297,9 +297,9 @@
     ctx.lineCap = "round"; ctx.lineWidth = 5;
     ctx.strokeStyle = "rgba(250,250,250,.25)"; ctx.beginPath(); ctx.arc(98, 98, 17, Math.PI, 0); ctx.stroke();
     ctx.strokeStyle = "#34d399"; ctx.beginPath(); ctx.arc(98, 98, 17, Math.PI, Math.PI * 1.62); ctx.stroke();
-    ctx.fillStyle = "#fafafa"; ctx.font = `600 26px ${FONT}`; ctx.fillText("Bottleneck", 128, 106);
-    const bw = ctx.measureText("Bottleneck").width;
-    ctx.fillStyle = "#34d399"; ctx.fillText("Calc", 128 + bw, 106);
+    ctx.fillStyle = "#fafafa"; ctx.font = `600 26px ${FONT}`; ctx.fillText("Bottleneck ", 128, 106);
+    const bw = ctx.measureText("Bottleneck ").width;
+    ctx.fillStyle = "#34d399"; ctx.fillText("Calculator", 128 + bw, 106);
 
     // Build + settings
     ctx.fillStyle = "#fafafa";

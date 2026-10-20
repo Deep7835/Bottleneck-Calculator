@@ -104,7 +104,7 @@ module.exports = function buildI18nPages({ ROOT, SITE_URL, HW, Engine, faqSchema
   <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="${r}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${r}assets/css/style.css?v=27">
+  <link rel="stylesheet" href="${r}assets/css/style.css?v=28">
 
   <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
@@ -132,7 +132,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
     <div class="wrap">
       <a class="logo" href="${r}${GROUPS.home[L.lang]}" aria-label="${esc(L.site.logoAria)}">
         ${LOGO}
-        <span>Bottleneck<b>Calc</b></span>
+        <span>Bottleneck <b>Calculator</b></span>
       </a>
       <nav class="nav" aria-label="${L.site.navLabel}">
         ${nav}
@@ -146,6 +146,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
         <summary aria-label="${MENU_LABEL[L.lang] || "Menu"}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
         <nav class="menu-panel" aria-label="${L.site.navLabel}">
           ${nav}
+          <button type="button" class="menu-theme">${L.lang === "ja" ? "ライト／ダーク" : "Tema claro / oscuro"}</button>
         </nav>
       </details>
     </div>
@@ -177,7 +178,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
 `;
   }
 
-  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=27"></script>`).join("\n");
+  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=28"></script>`).join("\n");
 
   const seg = (name, id, label, items, checked) => `<span class="field-label" id="${id}">${label}</span>
               <div class="seg" role="radiogroup" aria-labelledby="${id}">
