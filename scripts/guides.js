@@ -22,6 +22,8 @@ const GUIDES = [
 const MODIFIED = "2026-10-20";
 const PUBLISHED = "2026-10-20";
 
+const layout = require("./layout");
+
 module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }) {
   const short = Engine.shortName;
   const fmt = (n) => Math.round(n).toLocaleString("en-US");
@@ -85,20 +87,7 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
 
   // ---- Shared chrome (same header/footer as the rest of the site)
   const header = (root) => `<a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="logo" href="${root}" aria-label="Bottleneck Calculator home">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
-        <span>Bottleneck<b>Calc</b></span>
-      </a>
-      <nav class="nav" aria-label="Main">
-        <a href="${root}#calculator">Calculator</a>
-        <a href="${root}fps-calculator/">FPS calculator</a>
-        <a href="${root}bottleneck/">Builds</a>
-        <a href="${root}guides/">Guides</a>
-      </nav>
-    </div>
-  </header>`;
+  ${layout.header(root, "guides")}`;
 
   const footer = (root) => `<footer class="site-footer">
     <div class="wrap">
@@ -136,7 +125,7 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=8">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=9">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -234,7 +223,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=8"></script>
+  <script src="../../assets/js/motion.js?v=9"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>
@@ -289,7 +278,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=8"></script>
+  <script src="../assets/js/motion.js?v=9"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>

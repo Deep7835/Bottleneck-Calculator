@@ -26,7 +26,7 @@
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=8">
+  <link rel="stylesheet" href="assets/css/style.css?v=9">
 
   <script type="application/ld+json">
   {
@@ -138,17 +138,24 @@
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="./" aria-label="Bottleneck Calculator home">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
         <span>Bottleneck<b>Calc</b></span>
       </a>
       <nav class="nav" aria-label="Main">
+        <a href="#calculator" aria-current="page">Calculator</a>
         <a href="fps-calculator/">FPS calculator</a>
-        <a href="#how-it-works">Method</a>
-        <a href="#min-cpu">CPU for your GPU</a>
-        <a href="#popular">Builds</a>
+        <a href="bottleneck/">Builds</a>
         <a href="guides/">Guides</a>
-        <a href="#faq">FAQ</a>
       </nav>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="menu-panel" aria-label="Main (mobile)">
+          <a href="#calculator" aria-current="page">Calculator</a>
+        <a href="fps-calculator/">FPS calculator</a>
+        <a href="bottleneck/">Builds</a>
+        <a href="guides/">Guides</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -524,10 +531,10 @@ Bottleneck = (faster limit − slower limit) ÷ faster limit × 100%</div>
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/hardware.js?v=8"></script>
-  <script src="assets/js/engine.js?v=8"></script>
-  <script src="assets/js/motion.js?v=8"></script>
-  <script src="assets/js/combobox.js?v=8"></script>
-  <script src="assets/js/app.js?v=8"></script>
+  <script src="assets/js/hardware.js?v=9"></script>
+  <script src="assets/js/engine.js?v=9"></script>
+  <script src="assets/js/motion.js?v=9"></script>
+  <script src="assets/js/combobox.js?v=9"></script>
+  <script src="assets/js/app.js?v=9"></script>
 </body>
 </html>

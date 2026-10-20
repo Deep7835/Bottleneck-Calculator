@@ -184,6 +184,18 @@ for (const loc of TRUST_PAGES) {
     .replace(/@example\.com\b/g, `@${host}`));
 }
 
+// ---- One shared header on every hand-written page (generated pages call layout.header directly)
+const layout = require("./layout");
+for (const [loc, root, current] of [
+  ["index.html", "", "calculator"],
+  ["fps-calculator/index.html", "../", "fps"],
+  ...TRUST_PAGES.map((t) => [`${t}index.html`, "../", ""]),
+  ["404.html", "/", ""],
+]) {
+  const f = path.join(ROOT, loc);
+  fs.writeFileSync(f, layout.stampHeader(fs.readFileSync(f, "utf8"), root, current));
+}
+
 const today = new Date().toISOString().slice(0, 10);
 const sitemapUrl = (loc, freq, priority) => `  <url><loc>${SITE_URL}${loc}</loc><lastmod>${today}</lastmod><changefreq>${freq}</changefreq><priority>${priority}</priority></url>\n`;
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"),

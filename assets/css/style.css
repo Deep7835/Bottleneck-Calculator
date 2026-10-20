@@ -610,3 +610,28 @@ a.up { text-decoration: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .js .reveal, .js .reveal-group > * { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   Header menu (compact menu below 900px so the nav never wraps)
+   ========================================================================== */
+.nav a { white-space: nowrap; }
+.nav a[aria-current="page"] { color: var(--text); }
+.menu { display: none; position: relative; margin-left: auto; }
+.menu summary {
+  list-style: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--r-md);
+  cursor: pointer; color: var(--text-2); transition: background var(--t-fast), color var(--t-fast);
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary:hover, .menu[open] summary { background: var(--surface-2); color: var(--text); }
+.menu summary svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.menu-panel {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; min-width: 220px; padding: 6px;
+  display: grid; background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--r-md);
+  box-shadow: var(--pop-shadow); transform-origin: top right; animation: pop-in 180ms var(--ease-out);
+}
+.menu-panel a { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: var(--r-sm); color: var(--text-2); text-decoration: none; }
+.menu-panel a:hover, .menu-panel a[aria-current="page"] { background: var(--surface-2); color: var(--text); }
+@media (max-width: 900px) {
+  .site-header .nav { display: none; }
+  .menu { display: block; }
+}

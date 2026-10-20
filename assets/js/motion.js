@@ -140,6 +140,13 @@
 
   // ---------- Page-level motion ----------
   function initPage() {
+    // Close the compact header menu on outside click or Escape.
+    const menu = document.querySelector(".menu");
+    if (menu) {
+      document.addEventListener("click", (e) => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); } });
+    }
+
     // Scroll reveals
     document.querySelectorAll(".article > section").forEach((s) => s.classList.add("reveal"));
     const targets = document.querySelectorAll(".reveal, .reveal-group");

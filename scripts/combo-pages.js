@@ -26,6 +26,8 @@ const TIER_RES = { 1: "1080p", 2: "1440p", 3: "1440p", 4: "4k" };
 // A worse CPU bottleneck than this at 1440p is a mistake, not a popular build.
 const MAX_CPU_BOTTLENECK = 30;
 
+const layout = require("./layout");
+
 module.exports = function buildComboPages({ ROOT, SITE_URL, HW, Engine }) {
   const short = Engine.shortName;
   const fmt = (n) => Math.round(n).toLocaleString("en-US");
@@ -70,20 +72,7 @@ module.exports = function buildComboPages({ ROOT, SITE_URL, HW, Engine }) {
   }
 
   const header = (root, builds) => `<a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="logo" href="${root}" aria-label="Bottleneck Calculator home">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
-        <span>Bottleneck<b>Calc</b></span>
-      </a>
-      <nav class="nav" aria-label="Main">
-        <a href="${root}#calculator">Calculator</a>
-        <a href="${root}#min-cpu">CPU for your GPU</a>
-        <a href="${builds}">Builds</a>
-        <a href="${root}#faq">FAQ</a>
-      </nav>
-    </div>
-  </header>`;
+  ${layout.header(root, "builds")}`;
 
   const footer = (root) => `<footer class="site-footer">
     <div class="wrap">
@@ -121,7 +110,7 @@ module.exports = function buildComboPages({ ROOT, SITE_URL, HW, Engine }) {
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=8">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=9">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -401,7 +390,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=8"></script>
+  <script src="../../assets/js/motion.js?v=9"></script>
   <script>Motion.initPage(); Motion.autoPipelines();</script>
 </body>
 </html>
@@ -452,7 +441,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=8"></script>
+  <script src="../assets/js/motion.js?v=9"></script>
   <script>Motion.initPage(); Motion.autoPipelines();</script>
 </body>
 </html>
