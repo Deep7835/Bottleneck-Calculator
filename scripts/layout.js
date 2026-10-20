@@ -7,6 +7,7 @@
 const NAV = [
   { key: "calculator", href: "#calculator", label: "Calculator" },
   { key: "fps", href: "fps-calculator/", label: "FPS calculator" },
+  { key: "compare", href: "compare/", label: "Compare" },
   { key: "builds", href: "bottleneck/", label: "Builds" },
   { key: "guides", href: "guides/", label: "Guides" },
 ];
@@ -21,7 +22,7 @@ function links(root, current) {
 function header(root = "", current = "") {
   return `<header class="site-header">
     <div class="wrap">
-      <a class="logo" href="${root || "./"}" aria-label="Bottleneck Calculator home">
+      <a class="logo" href="${root || "./"}" aria-label="BottleneckCalc home">
         ${LOGO}
         <span>Bottleneck<b>Calc</b></span>
       </a>
