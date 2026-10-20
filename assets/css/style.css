@@ -905,3 +905,15 @@ a.up { color: inherit; }
 .consent-link { margin-left: 4px; padding: 0; border: 0; background: none; color: var(--text-2); font: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; }
 .consent-link:hover { color: var(--text); }
 @media print { .ad-slot, .consent-link { display: none !important; } }
+
+/* Globe language menu */
+.lang-menu { position: relative; }
+.lang-menu summary { list-style: none; width: auto; gap: 5px; padding: 0 9px; display: flex; align-items: center; }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu[open] summary { background: var(--surface-2); color: var(--text); }
+.lang-code { font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; }
+.lang-panel { min-width: 170px; }
+.lang-panel a[aria-current] { color: var(--text); background: var(--surface-2); }
+.lang-panel a[aria-current]::after { content: "✓"; margin-left: auto; color: var(--accent); }
+.lang-panel a:lang(ja) { font-family: "Geist", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; }
+@media (max-width: 420px) { .lang-code { display: none; } .lang-menu summary { padding: 0; width: 40px; justify-content: center; } }

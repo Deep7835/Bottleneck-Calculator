@@ -156,11 +156,13 @@
     });
 
     // Close the compact header menu on outside click or Escape.
-    const menu = document.querySelector(".menu");
-    if (menu) {
-      document.addEventListener("click", (e) => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); } });
-    }
+    const drops = document.querySelectorAll(".site-header details");
+    drops.forEach((d) => d.addEventListener("toggle", () => { if (d.open) drops.forEach((o) => { if (o !== d) o.open = false; }); }));
+    document.addEventListener("click", (e) => drops.forEach((d) => { if (d.open && !d.contains(e.target)) d.open = false; }));
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      drops.forEach((d) => { if (d.open) { d.open = false; d.querySelector("summary").focus(); } });
+    });
 
     // Scroll reveals
     document.querySelectorAll(".article > section").forEach((s) => s.classList.add("reveal"));

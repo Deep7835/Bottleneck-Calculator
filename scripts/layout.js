@@ -24,6 +24,24 @@ function links(root, current) {
     .join("\n        ");
 }
 
+// Globe language menu shared by English and translated headers.
+// hrefs: { en, es, ja } — the same page in each language, or the translated calculator.
+const LANGS = [["en", "EN", "English"], ["es", "ES", "Español"], ["ja", "日本", "日本語"]];
+const GLOBE = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>';
+function langMenu(lang, hrefs, label = "Language") {
+  const code = LANGS.find(([l]) => l === lang)[1];
+  const items = LANGS.map(([l, , name]) => `<a href="${hrefs[l]}" lang="${l}" hreflang="${l}"${l === lang ? ' aria-current="true"' : ""}>${name}</a>`).join("\n          ");
+  return `<details class="lang-menu">
+        <summary class="icon-btn lang-btn" aria-label="${label}: ${LANGS.find(([l]) => l === lang)[2]}">${GLOBE}<span class="lang-code">${code}</span></summary>
+        <nav class="menu-panel lang-panel" aria-label="${label}">
+          ${items}
+        </nav>
+      </details>`;
+}
+
+// Which translated page matches an English page (by nav key); everything else goes to the calculator.
+const TRANSLATED = { calculator: { es: "es/", ja: "ja/" }, fps: { es: "es/calculadora-fps/", ja: "ja/fps-calculator/" } };
+
 function header(root = "", current = "") {
   return `<header class="site-header">
     <div class="wrap">
@@ -37,6 +55,11 @@ function header(root = "", current = "") {
       <div class="header-tools">
         <button type="button" class="icon-btn search-btn" data-root="${root}" aria-label="Search the site" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
         <button type="button" class="icon-btn theme-btn" aria-label="Switch light or dark theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+        ${langMenu("en", {
+          en: root === "/" ? "/" : current === "calculator" ? (root || "./") : current === "fps" ? `${root}fps-calculator/` : "./",
+          es: `${root}${(TRANSLATED[current] || TRANSLATED.calculator).es}`,
+          ja: `${root}${(TRANSLATED[current] || TRANSLATED.calculator).ja}`,
+        })}
       </div>
       <details class="menu">
         <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
@@ -133,4 +156,4 @@ function stampFooter(html, root) {
   return html.replace(re, footer(root, lang));
 }
 
-module.exports = { OWNER, OWNER_SCHEMA, NAV, LOGO, header, stampHeader, footer, footerShell, stampFooter };
+module.exports = { langMenu, OWNER, OWNER_SCHEMA, NAV, LOGO, header, stampHeader, footer, footerShell, stampFooter };
