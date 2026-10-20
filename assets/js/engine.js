@@ -90,13 +90,17 @@
     return f;
   }
 
+  // o.mp (megapixels) overrides the resolution preset, e.g. a Mac's built-in Retina display.
+  const resVram = (o) => (o.mp ? (o.mp > 7 ? 3 : o.mp > 4.5 ? 2 : o.mp > 3 ? 1.5 : 0) : RES[o.res].vram);
+  const resMp = (o) => o.mp || RES[o.res].mp;
+
   function vramNeed(o) {
-    return Math.max(2, 8 + RES[o.res].vram + QUALITY[o.quality].vram + workload(o).vram + UPSCALE[o.upscale].vram);
+    return Math.max(2, 8 + resVram(o) + QUALITY[o.quality].vram + workload(o).vram + UPSCALE[o.upscale].vram);
   }
 
   function gpuCeiling(gpu, o) {
     const wl = workload(o);
-    const resF = Math.pow(RES[o.res].mp / RES["1080p"].mp, -RES_EXPONENT);
+    const resF = Math.pow(resMp(o) / RES["1080p"].mp, -RES_EXPONENT);
     let f = gpu.g * GPU_FPS_PER_POINT * resF * wl.gpu * QUALITY[o.quality].gpu * UPSCALE[o.upscale].gpu;
     if (wl.rt) f *= gpu.rt > 0 ? gpu.rt : 0.22;
     // Integrated GPUs use system RAM, so they have no fixed VRAM budget.

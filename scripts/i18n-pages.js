@@ -104,7 +104,7 @@ module.exports = function buildI18nPages({ ROOT, SITE_URL, HW, Engine, faqSchema
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${r}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${r}assets/css/style.css?v=21">
+  <link rel="stylesheet" href="${r}assets/css/style.css?v=24">
 
   <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
@@ -172,7 +172,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
 `;
   }
 
-  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=21"></script>`).join("\n");
+  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=24"></script>`).join("\n");
 
   const seg = (name, id, label, items, checked) => `<span class="field-label" id="${id}">${label}</span>
               <div class="seg" role="radiogroup" aria-labelledby="${id}">

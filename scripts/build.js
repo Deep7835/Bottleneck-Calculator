@@ -180,6 +180,9 @@ const guidePages = require("./guides")({ ROOT, SITE_URL, HW, Engine, buildPages 
 // ---- GPU vs GPU and CPU vs CPU comparisons (/compare/ and one page per pair)
 const comparePages = require("./compare-pages")({ ROOT, SITE_URL, HW, Engine, buildPages });
 
+// ---- Mac gaming calculator + one page per Apple Silicon Mac (/mac/...)
+const macPages = require("./mac-pages")({ ROOT, SITE_URL, HW, Engine, faqSchema });
+
 // ---- Trust pages (hand-written; only the domain placeholder is filled in)
 const TRUST_PAGES = ["about/", "editorial-policy/", "privacy/", "contact/"];
 const host = new URL(SITE_URL).hostname.replace(/^www\./, "");
@@ -213,8 +216,9 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   buildPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
   guidePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.7" : "0.8")).join("") +
   comparePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.7")).join("") +
+  macPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
   TRUST_PAGES.map((loc) => sitemapUrl(loc, "yearly", "0.3")).join("") +
   `</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`);
 
-console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${guidePages.length - 1} guides + hub in guides/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, ${i18n.pages.join(", ")}, sitemap.xml, robots.txt for ${SITE_URL}`);
+console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${guidePages.length - 1} guides + hub in guides/, ${macPages.length - 1} Mac pages + calculator in mac/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, ${i18n.pages.join(", ")}, sitemap.xml, robots.txt for ${SITE_URL}`);

@@ -104,7 +104,7 @@ module.exports = function buildComboPages({ ROOT, SITE_URL, HW, Engine }) {
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=21">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=24">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -384,7 +384,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=21"></script>
+  <script src="../../assets/js/motion.js?v=24"></script>
   <script>Motion.initPage(); Motion.autoPipelines();</script>
 </body>
 </html>
@@ -435,7 +435,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=21"></script>
+  <script src="../assets/js/motion.js?v=24"></script>
   <script>Motion.initPage(); Motion.autoPipelines();</script>
 </body>
 </html>

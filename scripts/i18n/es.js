@@ -21,7 +21,7 @@ module.exports = {
       cta: "Comprueba tu equipo",
       badges: ["Gratis, sin registro", "Datos actualizados cada mes"],
       columns: [
-        { title: "Herramientas", links: [["home", "Calculadora de cuello de botella"], ["fps", "Calculadora de FPS"], ["compare/", "Comparar piezas (en inglés)", true], ["bottleneck/", "Combinaciones populares (en inglés)", true]] },
+        { title: "Herramientas", links: [["home", "Calculadora de cuello de botella"], ["fps", "Calculadora de FPS"], ["compare/", "Comparar piezas (en inglés)", true], ["mac/", "Juegos en Mac (en inglés)", true], ["bottleneck/", "Combinaciones populares (en inglés)", true]] },
         { title: "Recursos", links: [["guides/", "Guías (en inglés)", true], ["#how-it-works", "Cómo funciona"], ["#min-cpu", "La mejor CPU para tu GPU"], ["editorial-policy/", "Política editorial", true]] },
         { title: "Sitio", links: [["about/", "Quiénes somos", true], ["contact/", "Contacto", true], ["privacy/", "Privacidad", true]] },
       ],

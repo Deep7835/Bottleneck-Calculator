@@ -12,6 +12,7 @@ const NAV = [
   { key: "calculator", href: "#calculator", label: "Calculator" },
   { key: "fps", href: "fps-calculator/", label: "FPS calculator" },
   { key: "compare", href: "compare/", label: "Compare" },
+  { key: "mac", href: "mac/", label: "Mac" },
   { key: "builds", href: "bottleneck/", label: "Builds" },
   { key: "guides", href: "guides/", label: "Guides" },
 ];
@@ -108,7 +109,7 @@ function footer(root = "", langSwitch = "") {
     badges: ["Free, no sign-up", "Data updated monthly"],
     siteLabel: "Site",
     columns: [
-      { title: "Tools", links: [[home, "Bottleneck calculator"], [`${r}fps-calculator/`, "FPS calculator"], [`${r}compare/`, "Compare parts"], [`${r}bottleneck/`, "Popular builds"]] },
+      { title: "Tools", links: [[home, "Bottleneck calculator"], [`${r}fps-calculator/`, "FPS calculator"], [`${r}compare/`, "Compare parts"], [`${r}mac/`, "Mac gaming"], [`${r}bottleneck/`, "Popular builds"]] },
       { title: "Resources", links: [[`${r}guides/`, "Guides"], [`${r}#how-it-works`, "How it works"], [`${r}#min-cpu`, "Best CPU for your GPU"], [`${r}editorial-policy/`, "Editorial policy"]] },
       { title: "Company", links: [[`${r}about/`, "About"], [`${r}contact/`, "Contact"], [`${r}privacy/`, "Privacy"]] },
     ],
