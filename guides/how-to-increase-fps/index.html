@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Increase FPS: Settings and Fixes That Actually Work (2026)</title>
+  <meta name="description" content="Raise your FPS in the right order: quick Windows and driver checks, the settings worth changing, upscaling, and why the same fix helps one PC and does nothing for another.">
+  <link rel="canonical" href="https://bottleneckcalculator.si/guides/how-to-increase-fps/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Increase FPS: Settings and Fixes That Actually Work (2026)">
+  <meta property="og:description" content="Raise your FPS in the right order: quick Windows and driver checks, the settings worth changing, upscaling, and why the same fix helps one PC and does nothing for another.">
+  <meta property="og:url" content="https://bottleneckcalculator.si/guides/how-to-increase-fps/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://bottleneckcalculator.si/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://bottleneckcalculator.si/og-image.png">
+
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=26">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://bottleneckcalculator.si/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://bottleneckcalculator.si/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to increase FPS: the settings and fixes that actually work",
+          "item": "https://bottleneckcalculator.si/guides/how-to-increase-fps/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "How to increase FPS: the settings and fixes that actually work",
+      "description": "Raise your FPS in the right order: quick Windows and driver checks, the settings worth changing, upscaling, and why the same fix helps one PC and does nothing for another.",
+      "image": "https://bottleneckcalculator.si/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 1852,
+      "author": {
+        "@type": "Person",
+        "@id": "https://deepammishra.com/#person",
+        "name": "Deepam Mishra",
+        "url": "https://deepammishra.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://bottleneckcalculator.si/"
+      },
+      "mainEntityOfPage": "https://bottleneckcalculator.si/guides/how-to-increase-fps/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the fastest way to increase FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If your graphics card is the limit, turn on DLSS, FSR or XeSS upscaling at the Quality preset, or lower the graphics preset one step. In our model either step is worth about 43–46% on a GPU-bound PC. If your processor is the limit, graphics settings barely help and you need CPU-side fixes such as enabling XMP and closing background apps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does lowering my graphics settings not increase FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your PC is probably CPU-bound. Graphics settings mostly change the graphics card's workload, so when the processor is already the limit, lighter settings only give the GPU more idle time. Check GPU usage: if it's well below 90%, look at CPU fixes or a CPU upgrade instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does updating drivers increase FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sometimes. New graphics drivers often include optimizations and fixes for recently released games, so updating is worth it when you play a new title or see problems. In older games the difference is usually small."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do FPS booster apps work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generally no. Windows already manages memory and process priority, and most booster apps simply close background programs, which you can do yourself. Some add background load of their own. Registry tweaks and debloat scripts carry similar risks for little or no gain on an up-to-date PC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Windows Game Mode increase FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Game Mode mainly keeps background tasks such as Windows Update from interrupting a game, which helps frame-time consistency more than average FPS. It's on by default in Windows 11 and is worth leaving on."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does lowering resolution increase FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if your graphics card is the limit. On a GPU-bound PC, dropping from 1440p to 1080p is a large gain, though upscaling usually looks better for a similar boost. On a CPU-bound PC, a lower resolution barely changes the frame rate."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="BottleneckCalc home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+      </nav>
+      <div class="header-tools">
+        <button type="button" class="icon-btn search-btn" data-root="../../" aria-label="Search the site" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="icon-btn theme-btn" aria-label="Switch light or dark theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </div>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="menu-panel" aria-label="Main (mobile)">
+          <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">Increase FPS</span></nav>
+      <section class="hero combo-hero">
+        <h1>How to increase FPS: the settings and fixes that actually work</h1>
+        <p class="lead">Most “boost your FPS” advice treats every PC the same. It isn't. A fix that doubles the frame rate on one machine does nothing on another, depending on which part is the limit. This guide shows how much each setting is worth on both kinds of PC, the setup mistakes worth checking first, and the tweaks you can skip.</p>
+        <p class="updated">By <a href="../../about/">Deepam Mishra</a> · Updated <time datetime="2026-10-20">October 20, 2026</time> · 8 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#limiter">Find your limit first</a></li>
+          <li><a href="#settings">Settings that work</a></li>
+          <li><a href="#per-game">Game by game</a></li>
+          <li><a href="#basics">Windows and driver basics</a></li>
+          <li><a href="#myths">What doesn't work</a></li>
+          <li><a href="#checklist">Checklist in priority order</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article" data-progress>
+        <section id="short-answer">
+          <h2>The short answer</h2>
+          <p>First rule out setup problems: the monitor plugged into the graphics card, the right refresh rate selected in Windows, memory running at its rated speed, current drivers and, on a laptop, the charger connected. Then find out what limits your frame rate. If it's the <strong>graphics card</strong>, lower the quality preset one step or turn on upscaling, and you can expect a large gain. If it's the <strong>processor</strong>, graphics settings barely help, and you need the CPU-side fixes instead.</p>
+          <p>Skip registry hacks, “FPS booster” apps and Windows debloat scripts. On a healthy PC they do little or nothing, and some cause problems.</p>
+        </section>
+
+        <section id="limiter">
+          <h2>Find out what limits your FPS first</h2>
+          <p>Every frame needs work from both the processor and the graphics card, and your frame rate is set by whichever is slower. Turn on an overlay with GPU usage (the NVIDIA App with Alt+R, AMD Adrenalin with Ctrl+Shift+O, or MSI Afterburner) and play a busy scene with any frame cap turned off.</p>
+          <ul>
+            <li><strong>GPU usage at 95–99%:</strong> you're GPU-bound. Graphics settings and upscaling will raise FPS.</li>
+            <li><strong>GPU usage well under 90%</strong> while FPS is below your target: you're probably CPU-bound. Settings won't do much; see our guide on <a href="../how-to-fix-cpu-bottleneck/">fixing a CPU bottleneck</a>.</li>
+          </ul>
+          <p>Our <a href="../how-to-check-for-bottleneck/">bottleneck check walkthrough</a> covers the overlay setup and the false alarms. To keep this guide concrete, it uses two example PCs at 1440p High. The <a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060#calculator">Ryzen 5 7600 with an RTX 5060</a> is 57% GPU-limited at about 58 FPS. The <a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti#calculator">Core i5-10400F with an RTX 5070 Ti</a> is 29% CPU-limited at about 87 FPS.</p>
+        </section>
+        <!-- AD:inArticle -->
+
+        <section id="settings">
+          <h2>Graphics settings: what each one is worth</h2>
+          <p>Here's what the main levers do to both example PCs in AAA games, as estimated by the same model as our <a href="../../#calculator">bottleneck calculator</a>. Upscaling means DLSS, FSR or XeSS Super Resolution at the named preset.</p>
+          <div class="table-scroll"><table><thead><tr><th>Change</th><th class="r">RTX 5060 build</th><th class="r">RTX 5070 Ti build</th></tr></thead><tbody><tr><td>Starting point: 1440p, High preset</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060#calculator">58</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 57%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti#calculator">87</a><br><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 29%</small></td></tr><tr><td>High → Medium preset</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;q=medium#calculator">84</a> <small>+46%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 40%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;q=medium#calculator">91</a> <small>+4%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 46%</small></td></tr><tr><td>High → Low preset</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;q=low#calculator">108</a> <small>+87%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 24%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;q=low#calculator">93</a> <small>+7%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 57%</small></td></tr><tr><td>Drop to 1080p</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;res=1080p#calculator">89</a> <small>+54%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 34%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;res=1080p#calculator">88</a> <small>+1%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 50%</small></td></tr><tr><td>Upscaling: Quality</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;up=quality#calculator">83</a> <small>+43%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 39%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;up=quality#calculator">88</a> <small>+1%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 49%</small></td></tr><tr><td>Upscaling: Balanced</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;up=balanced#calculator">96</a> <small>+66%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 29%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;up=balanced#calculator">88</a> <small>+1%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 56%</small></td></tr><tr><td>Upscaling: Performance</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;up=performance#calculator">110</a> <small>+90%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 17%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;up=performance#calculator">88</a> <small>+1%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 62%</small></td></tr><tr><td>Low preset + Performance upscaling</td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5060&amp;q=low&amp;up=performance#calculator">143</a> <small>+147%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 29%</small></td><td class="r"><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070-ti&amp;q=low&amp;up=performance#calculator">93</a> <small>+7%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 77%</small></td></tr></tbody></table></div>
+          <p>On the GPU-bound RTX 5060 build, one step does a lot: Medium or Quality upscaling takes it from 58 FPS to 84 or 83, past 60. The Low preset (+87%) and Performance upscaling (+90%) nearly double it. Stack both and it reaches 143 FPS, at which point the Ryzen 5 7600 becomes the limit, so further cuts would stop paying off.</p>
+          <p>On the CPU-bound RTX 5070 Ti build, nothing in the table moves the frame rate by more than 7%, and upscaling adds nothing at all. The processor is already preparing frames as fast as it can, and lighter graphics only give an idle graphics card more idle time. For this kind of PC, keep the settings high and look at the CPU fixes instead.</p>
+          <h3>Which individual settings to lower first</h3>
+          <p>If you'd rather not drop the whole preset, these settings cost the most GPU time in most modern games:</p>
+          <ul>
+            <li><strong>Ray tracing</strong> (reflections, shadows, global illumination, path tracing). Often the single biggest cost, and it loads the CPU too.</li>
+            <li><strong>Volumetric fog, clouds and lighting</strong>, which are expensive and often hard to tell apart at Medium.</li>
+            <li><strong>Shadow quality</strong> and <strong>screen-space reflections</strong>.</li>
+            <li><strong>Ambient occlusion</strong> modes above the basic one.</li>
+            <li><strong>Render resolution or resolution scale</strong>. Upscaling is usually a better way to do this than lowering the monitor's resolution, which blurs the whole image.</li>
+          </ul>
+          <p><strong>Texture quality</strong> is the exception. It costs almost no GPU time but uses video memory. Keep it high unless the card runs out of VRAM, which shows up as heavy stutter. Our guide on whether <a href="../is-8gb-vram-enough/">8 GB of VRAM is enough</a> covers that case.</p>
+        </section>
+
+        <section id="per-game">
+          <h2>The same fixes, game by game</h2>
+          <p>The pattern holds across individual games, though the size of the gain varies with how each engine loads the processor and graphics card. This table shows the gain from switching from High to Low, or from turning on Quality upscaling, for both example PCs at 1440p. The small figures are each build's average at High, RTX 5060 build first. The <a href="../../fps-calculator/">FPS calculator</a> has the full numbers for each title.</p>
+          <div class="table-scroll"><table><thead><tr><th>Game</th><th class="r">RTX 5060: Low</th><th class="r">RTX 5060: upscaling</th><th class="r">RTX 5070 Ti: Low</th><th class="r">RTX 5070 Ti: upscaling</th></tr></thead><tbody><tr><td><strong>Counter-Strike 2</strong><br><small>200 and 262 FPS at High</small></td><td class="r num">+71%</td><td class="r num">+39%</td><td class="r num">+6%</td><td class="r num">±0%</td></tr><tr><td><strong>Fortnite</strong><br><small>90 and 105 FPS at High</small></td><td class="r num">+75%</td><td class="r num">+41%</td><td class="r num">+6%</td><td class="r num">±0%</td></tr><tr><td><strong>Cyberpunk 2077</strong><br><small>56 and 83 FPS at High</small></td><td class="r num">+91%</td><td class="r num">+43%</td><td class="r num">+7%</td><td class="r num">±0%</td></tr><tr><td><strong>Call of Duty: Warzone</strong><br><small>67 and 84 FPS at High</small></td><td class="r num">+89%</td><td class="r num">+43%</td><td class="r num">+6%</td><td class="r num">±0%</td></tr><tr><td><strong>Marvel Rivals</strong><br><small>55 and 87 FPS at High</small></td><td class="r num">+97%</td><td class="r num">+44%</td><td class="r num">+7%</td><td class="r num">+1%</td></tr><tr><td><strong>Baldur's Gate 3</strong><br><small>72 and 63 FPS at High</small></td><td class="r num">+42%</td><td class="r num">+28%</td><td class="r num">+6%</td><td class="r num">±0%</td></tr></tbody></table></div>
+          <p>On the RTX 5060 build the Low preset is worth at least 42% in every game listed. Baldur's Gate 3 gains the least from upscaling (+28%) because it's a CPU-heavy game, so the Ryzen 5 7600 becomes the limit soon after the graphics load drops. On the RTX 5070 Ti build, no game gains more than 7% from Low, and upscaling changes nothing.</p>
+          <p>If you play competitive games and need more frames on a CPU-bound PC, look for settings that load the processor in that specific game, such as view distance or crowd and physics detail. Our <a href="../what-is-a-good-fps/">guide to good frame rates</a> helps you decide how many frames you actually need.</p>
+        </section>
+
+        <section id="basics">
+          <h2>Windows, driver and hardware basics that matter</h2>
+          <p>These checks are quick and free, and each one is a common cause of lower frame rates than a PC should manage:</p>
+          <ul>
+            <li><strong>Plug the monitor into the graphics card,</strong> not the motherboard. On a desktop with a dedicated card, a cable in the motherboard's video port can leave the game running on integrated graphics or routing frames through it.</li>
+            <li><strong>Set the right refresh rate.</strong> Windows often defaults to 60 Hz on a new monitor. Check Settings › System › Display › Advanced display, pick the highest rate, and use a cable that supports it (DisplayPort, or a recent HDMI cable).</li>
+            <li><strong>Turn on XMP (Intel) or EXPO (AMD)</strong> in the BIOS and run two memory sticks in dual channel. Without the profile, memory runs at a slow default speed. Having too little RAM hurts too: our CPU-bound example drops from 87 to 70 FPS with only 8 GB.</li>
+            <li><strong>Update the graphics driver</strong> from NVIDIA, AMD or Intel, especially for a newly released game. New drivers often include fixes and optimizations for recent titles.</li>
+            <li><strong>Leave Game Mode on</strong> (Settings › Gaming) and use the Balanced or a performance power plan. Power-saving plans hold clock speeds down.</li>
+            <li><strong>Close heavy background apps,</strong> such as a browser playing video, launchers downloading updates or a second game client. Check Task Manager while playing.</li>
+            <li><strong>Laptops:</strong> plug in the charger, select the manufacturer's performance mode, and make sure the game runs on the dedicated GPU. If the laptop has a MUX switch or a “dGPU only” mode, use it. See our <a href="../gaming-laptop-bottleneck/">gaming laptop guide</a> for more.</li>
+            <li><strong>Check temperatures and dust.</strong> A clogged cooler or filter makes the CPU and GPU lower their clocks under load.</li>
+          </ul>
+        </section>
+
+        <section id="myths">
+          <h2>What doesn't work</h2>
+          <p>A lot of popular advice promises big gains and delivers none on a healthy, up-to-date PC:</p>
+          <ul>
+            <li><strong>Registry hacks and “performance tweak” packs.</strong> Most change settings Windows already handles well. Some disable security features or break updates.</li>
+            <li><strong>“FPS booster”, “game booster” and RAM cleaner apps.</strong> Windows already manages memory and process priority. These tools add background load of their own.</li>
+            <li><strong>Debloat scripts that strip Windows services.</strong> The gain is a few frames at best, and they can break the Microsoft Store, Xbox app or Game Pass games.</li>
+            <li><strong>Setting a game's priority to High in Task Manager.</strong> It rarely changes anything and doesn't survive a restart.</li>
+            <li><strong>Lowering texture quality on a card with plenty of VRAM.</strong> It makes the game look worse for no extra frames.</li>
+            <li><strong>Lowering graphics settings on a CPU-bound PC.</strong> As the tables show, the frame rate barely moves.</li>
+          </ul>
+          <p>Frame generation is a special case. It raises the number on the FPS counter by inserting extra frames, which does make motion look smoother, but it doesn't make the game respond faster. Our <a href="../dlss-vs-fsr-vs-xess/">DLSS vs FSR vs XeSS guide</a> explains when it's worth using.</p>
+        </section>
+
+        <section id="checklist">
+          <h2>Checklist: what to try, in order</h2>
+          <ol class="steps">
+            <li><strong>Check the setup:</strong> monitor in the graphics card, correct refresh rate, VRR on, charger connected on a laptop.</li>
+            <li><strong>Check the memory:</strong> XMP or EXPO enabled, two sticks in dual channel, 16 GB at the very least.</li>
+            <li><strong>Update the graphics driver,</strong> leave Game Mode on, and close heavy background apps.</li>
+            <li><strong>Find the limit</strong> with an overlay: GPU usage near 99% means GPU-bound, well below 90% means CPU-bound.</li>
+            <li><strong>If GPU-bound:</strong> turn on upscaling at Quality, then lower the preset one step or cut ray tracing, volumetrics and shadows. Go to Balanced or Performance upscaling if you need more.</li>
+            <li><strong>If CPU-bound:</strong> keep graphics settings high, lower CPU-heavy options, cap the frame rate for steady frame times, and work through the <a href="../how-to-fix-cpu-bottleneck/">CPU bottleneck fixes</a>.</li>
+            <li><strong>Consider frame generation</strong> for single-player games once you reach about 60 FPS without it.</li>
+            <li><strong>Upgrade the part that limits you.</strong> The <a href="../../#calculator">bottleneck calculator</a> shows which one it is and suggests the smallest upgrade that balances your build. The <a href="../../bottleneck/">popular builds</a> list shows how common pairings perform.</li>
+          </ol>
+        </section>
+
+        <!-- AD:endOfPage -->
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>What is the fastest way to increase FPS?</summary><div><p>If your graphics card is the limit, turn on DLSS, FSR or XeSS upscaling at the Quality preset, or lower the graphics preset one step. In our model either step is worth about 43–46% on a GPU-bound PC. If your processor is the limit, graphics settings barely help and you need CPU-side fixes such as enabling XMP and closing background apps.</p></div></details>
+          <details><summary>Why does lowering my graphics settings not increase FPS?</summary><div><p>Your PC is probably CPU-bound. Graphics settings mostly change the graphics card's workload, so when the processor is already the limit, lighter settings only give the GPU more idle time. Check GPU usage: if it's well below 90%, look at CPU fixes or a CPU upgrade instead.</p></div></details>
+          <details><summary>Does updating drivers increase FPS?</summary><div><p>Sometimes. New graphics drivers often include optimizations and fixes for recently released games, so updating is worth it when you play a new title or see problems. In older games the difference is usually small.</p></div></details>
+          <details><summary>Do FPS booster apps work?</summary><div><p>Generally no. Windows already manages memory and process priority, and most booster apps simply close background programs, which you can do yourself. Some add background load of their own. Registry tweaks and debloat scripts carry similar risks for little or no gain on an up-to-date PC.</p></div></details>
+          <details><summary>Does Windows Game Mode increase FPS?</summary><div><p>Game Mode mainly keeps background tasks such as Windows Update from interrupting a game, which helps frame-time consistency more than average FPS. It's on by default in Windows 11 and is worth leaving on.</p></div></details>
+          <details><summary>Does lowering resolution increase FPS?</summary><div><p>Only if your graphics card is the limit. On a GPU-bound PC, dropping from 1440p to 1080p is a large gain, though upscaling usually looks better for a similar boost. On a CPU-bound PC, a lower resolution barely changes the frame rate.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-to-fix-cpu-bottleneck/"><b>How to fix a CPU bottleneck</b><span>Free settings changes first, then RAM, XMP and Windows fixes, then the drop-in CPU upgrade that gives the most FPS per dollar.</span></a><a class="combo-card" href="../dlss-vs-fsr-vs-xess/"><b>DLSS vs FSR vs XeSS: upscaling, frame generation and CPU bottlenecks</b><span>What each upscaling preset is worth, which GPUs support DLSS, FSR 4 and XeSS, how frame generation affects latency, and why none of it fixes a CPU bottleneck.</span></a><a class="combo-card" href="../what-is-a-good-fps/"><b>What is a good FPS for gaming? 30, 60, 144 and 240 explained</b><span>Frame times for every common target, what 60, 144 and 240 FPS are each good for, refresh rate and VRR, and why 1% lows matter more than averages.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo footer-logo" href="../../" aria-label="BottleneckCalc home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+            <span>Bottleneck<b>Calc</b></span>
+          </a>
+          <p class="footer-tagline">Free CPU and GPU bottleneck calculator. See your FPS, compare parts and find the upgrade that actually helps.</p>
+          <a class="footer-cta" href="../../#calculator">Check your build<span class="footer-cta-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <ul class="footer-badges">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Free, no sign-up</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>Data updated monthly</li>
+          </ul>
+        </div>
+        <nav class="footer-cols" aria-label="Site">
+        <div class="fcol">
+          <h2>Tools</h2>
+          <ul><li><a href="../../">Bottleneck calculator</a></li><li><a href="../../fps-calculator/">FPS calculator</a></li><li><a href="../../compare/">Compare parts</a></li><li><a href="../../mac/">Mac gaming</a></li><li><a href="../../bottleneck/">Popular builds</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Resources</h2>
+          <ul><li><a href="../../guides/">Guides</a></li><li><a href="../../#how-it-works">How it works</a></li><li><a href="../../#min-cpu">Best CPU for your GPU</a></li><li><a href="../../editorial-policy/">Editorial policy</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Company</h2>
+          <ul><li><a href="../../about/">About</a></li><li><a href="../../contact/">Contact</a></li><li><a href="../../privacy/">Privacy</a></li><li><a href="../../terms/">Terms</a></li></ul>
+        </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Bottleneck Calculator · Built by <a href="https://deepammishra.com/">Deepam Mishra</a></p><!-- CONSENT-LINK -->
+        <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>Hardware data updated October 2026</p>
+      </div>
+      <p class="footer-disclaimer">Estimates are for guidance only; real performance varies by game, settings, drivers and cooling. Product names are trademarks of their owners. Not affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=26"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>

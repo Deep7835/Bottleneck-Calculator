@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Does RAM Speed Matter for Gaming? XMP, EXPO and Dual Channel (2026)</title>
+  <meta name="description" content="When RAM speed matters for gaming and when it doesn't: CPU- vs GPU-bound builds, XMP and EXPO, single vs dual channel, DDR4 and DDR5 sweet spots, and APUs.">
+  <link rel="canonical" href="https://bottleneckcalculator.si/guides/does-ram-speed-matter-for-gaming/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Does RAM Speed Matter for Gaming? XMP, EXPO and Dual Channel (2026)">
+  <meta property="og:description" content="When RAM speed matters for gaming and when it doesn't: CPU- vs GPU-bound builds, XMP and EXPO, single vs dual channel, DDR4 and DDR5 sweet spots, and APUs.">
+  <meta property="og:url" content="https://bottleneckcalculator.si/guides/does-ram-speed-matter-for-gaming/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://bottleneckcalculator.si/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://bottleneckcalculator.si/og-image.png">
+
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=26">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://bottleneckcalculator.si/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://bottleneckcalculator.si/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Does RAM speed matter for gaming? XMP, EXPO and dual channel explained",
+          "item": "https://bottleneckcalculator.si/guides/does-ram-speed-matter-for-gaming/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Does RAM speed matter for gaming? XMP, EXPO and dual channel explained",
+      "description": "When RAM speed matters for gaming and when it doesn't: CPU- vs GPU-bound builds, XMP and EXPO, single vs dual channel, DDR4 and DDR5 sweet spots, and APUs.",
+      "image": "https://bottleneckcalculator.si/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 2100,
+      "author": {
+        "@type": "Person",
+        "@id": "https://deepammishra.com/#person",
+        "name": "Deepam Mishra",
+        "url": "https://deepammishra.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://bottleneckcalculator.si/"
+      },
+      "mainEntityOfPage": "https://bottleneckcalculator.si/guides/does-ram-speed-matter-for-gaming/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does RAM speed affect FPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only when the processor is the limit, such as 1080p with a fast graphics card, high-refresh esports, simulators and strategy games. When the graphics card is the limit, as in most AAA games at 1440p and 4K with a mid-range card, faster memory changes little. Integrated graphics are the exception, because they use system RAM as video memory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I enable XMP or EXPO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Without it, memory runs at a slow default speed, typically DDR4-2133 to 2666 or DDR5-4800 to 5600, instead of its rated speed. It's supported by the board and the memory maker. Enable it in the BIOS, then run a memory test to confirm it's stable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is single-channel RAM bad for gaming?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, in CPU-bound games it can cost a large share of performance, and with integrated graphics even more. Use two matched sticks in the slots your motherboard manual recommends, usually A2 and B2, and check that CPU-Z shows dual channel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best RAM speed for AM5?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DDR5-6000 CL30. Up to about that speed the memory controller runs in step with the memory. Faster kits usually push it to half speed, adding latency, so they rarely help games on Ryzen 7000 and 9000."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is DDR4-3200 fast enough for gaming?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. DDR4-3200 CL16 is close to the sweet spot on AM4 and Intel DDR4 boards, with DDR4-3600 CL16 a little better. Dual channel and XMP being on matter more than the step between them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do X3D CPUs need fast RAM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Less than any other CPU. Their large stacked L3 cache keeps much of the game's data on the chip, so they're the least sensitive to memory speed. A standard DDR5-6000 kit on AM5, or DDR4-3200 to 3600 on AM4, is plenty."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="BottleneckCalc home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+      </nav>
+      <div class="header-tools">
+        <button type="button" class="icon-btn search-btn" data-root="../../" aria-label="Search the site" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="icon-btn theme-btn" aria-label="Switch light or dark theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </div>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="menu-panel" aria-label="Main (mobile)">
+          <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">Does RAM speed matter?</span></nav>
+      <section class="hero combo-hero">
+        <h1>Does RAM speed matter for gaming? XMP, EXPO and dual channel explained</h1>
+        <p class="lead">RAM speed matters when your processor is the limit, and barely at all when your graphics card is. Before you pay for a faster kit, check two free things: that XMP or EXPO is on, and that you have two sticks in dual channel. This guide shows where your build sits, using the same model as our <a href="../../#calculator">bottleneck calculator</a>, and covers the setup steps.</p>
+        <p class="updated">By <a href="../../about/">Deepam Mishra</a> · Updated <time datetime="2026-10-20">October 20, 2026</time> · 9 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#answer">The short answer</a></li>
+          <li><a href="#model">What our numbers show</a></li>
+          <li><a href="#when">When speed matters</a></li>
+          <li><a href="#dual-channel">Single vs dual channel</a></li>
+          <li><a href="#xmp">Turn on XMP or EXPO</a></li>
+          <li><a href="#sweet-spots">Which speed to buy</a></li>
+          <li><a href="#apu">Integrated graphics</a></li>
+          <li><a href="#stability">Stability tips</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article" data-progress>
+        <section id="answer">
+          <h2>The short answer</h2>
+          <div class="callout">
+            <p><strong>Configuration matters more than the kit.</strong> Memory running at its slow default speed, or a single stick in single channel, can cost a large share of performance in CPU-bound games. Both are free to fix.</p>
+            <p><strong>Speed only shows when the CPU is the limit:</strong> 1080p with a fast graphics card, high-refresh esports, simulators and strategy games. At 1440p and 4K with a mid-range card, the graphics card hides it.</p>
+            <p><strong>Sweet spots:</strong> DDR5-6000 CL30 on AM5, DDR4-3200 or 3600 on AM4 and DDR4 Intel boards, DDR5-6000 or a little faster on Intel DDR5 boards. Paying much more for faster kits rarely buys you frames.</p>
+            <p><strong>Integrated graphics are the exception.</strong> APUs use system RAM as video memory, so memory speed and dual channel matter a lot.</p>
+          </div>
+        </section>
+
+        <section id="model">
+          <h2>What our calculator does and doesn't model</h2>
+          <p>To be clear up front: our <a href="../../#calculator">bottleneck calculator</a> models memory <em>capacity</em> (8, 16, 32 or 64 GB, covered in our guide to <a href="../how-much-ram-for-gaming/">how much RAM you need for gaming</a>), but not memory speed, timings or channels. It assumes a correctly configured dual-channel kit. Everything this guide says about speed, XMP and dual channel comes from general, well-established knowledge about how PC memory works, not from the calculator, and we keep those claims general because the real effect varies a lot by game, CPU and kit.</p>
+          <p>What the calculator can show is the part that decides whether speed matters for you at all: whether your build is CPU-bound or GPU-bound at the resolution you play. Faster memory helps the processor prepare frames sooner. If the graphics card is the limit, the processor already has time to spare, and a faster processor, or faster memory feeding it, can't raise the frame rate.</p>
+        </section>
+        <!-- AD:inArticle -->
+
+        <section id="when">
+          <h2>When RAM speed matters: CPU-bound vs GPU-bound</h2>
+          <p>To make that concrete, the table shows average FPS in AAA games at High settings, and in brackets what a 10% faster CPU would add. That 10% is an illustration of a CPU-side speed-up, of the kind memory tuning can give in CPU-bound games, not a measured result for any kit.</p>
+          <div class="table-scroll"><table><thead><tr><th>CPU + GPU</th><th class="r">1080p</th><th class="r">1440p</th><th class="r">4K</th></tr></thead><tbody><tr><td><a href="../../bottleneck/ryzen-5-5600-rtx-5060/">Ryzen 5 5600 + RTX 5060</a></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-5060&amp;res=1080p#calculator">87</a> <small>(+1%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 15%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-5060#calculator">58</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 45%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-5060&amp;res=4k#calculator">32</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 70%</small></td></tr><tr><td><a href="../../bottleneck/i5-12400f-rtx-5070/">Core i5-12400F + RTX 5070</a></td><td class="r"><a href="../../?cpu=i5-12400f&amp;gpu=rtx-5070&amp;res=1080p#calculator">117</a> <small>(+7%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="good"></span>CPU 17%</small></td><td class="r"><a href="../../?cpu=i5-12400f&amp;gpu=rtx-5070#calculator">98</a> <small>(+1%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 16%</small></td><td class="r"><a href="../../?cpu=i5-12400f&amp;gpu=rtx-5070&amp;res=4k#calculator">61</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 49%</small></td></tr><tr><td><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070#calculator">Ryzen 5 3600 + RTX 5070</a></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070&amp;res=1080p#calculator">80</a> <small>(+10%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 45%</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070#calculator">79</a> <small>(+8%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 21%</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070&amp;res=4k#calculator">60</a> <small>(+1%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 23%</small></td></tr><tr><td><a href="../../bottleneck/ryzen-5-7600-rtx-5070-ti/">Ryzen 5 7600 + RTX 5070 Ti</a></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070-ti&amp;res=1080p#calculator">134</a> <small>(+8%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 23%</small></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070-ti#calculator">118</a> <small>(+2%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="excellent"></span>Balanced</small></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070-ti&amp;res=4k#calculator">75</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 45%</small></td></tr><tr><td><a href="../../bottleneck/ryzen-7-7800x3d-rtx-5070-ti/">Ryzen 7 7800X3D + RTX 5070 Ti</a></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti&amp;res=1080p#calculator">162</a> <small>(+4%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="excellent"></span>Balanced</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti#calculator">123</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 30%</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti&amp;res=4k#calculator">75</a> <small>(+0%)</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 57%</small></td></tr></tbody></table></div>
+          <p>The pattern is the same in every build. Where the result is clearly CPU-limited, such as the <a href="../../bottleneck/ryzen-5-7600-rtx-5070-ti/">Ryzen 5 7600 + RTX 5070 Ti</a> at 1080p (23% CPU-limited) or the Ryzen 5 3600 with an RTX 5070 at 1440p, most of the CPU speed-up turns into frames: +8% in both cases. Where the graphics card is clearly the limit, it turns into nothing. At 4K, no build here gains more than 1%. The <a href="../../bottleneck/ryzen-5-5600-rtx-5060/">Ryzen 5 5600 + RTX 5060</a> is GPU-limited even at 1080p, so on that build a faster RAM kit is money better spent elsewhere.</p>
+          <p>The type of game matters just as much. The same <a href="../../bottleneck/ryzen-5-7600-rtx-5070/">Ryzen 5 7600 + RTX 5070</a> across four kinds of games:</p>
+          <div class="table-scroll"><table><thead><tr><th>Game type</th><th class="r">FPS</th><th class="r">Bottleneck</th><th class="r">+10% CPU</th></tr></thead><tbody><tr><td><strong>AAA, 1440p High</strong></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070#calculator">100</a></td><td class="r"><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 26%</small></td><td class="r num">+1%</td></tr><tr><td><strong>Ray tracing, 1440p</strong></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=raytracing#calculator">59</a></td><td class="r"><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 49%</small></td><td class="r num">+0%</td></tr><tr><td><strong>Esports, 1080p</strong></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;res=1080p&amp;game=esports#calculator">349</a></td><td class="r"><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 24%</small></td><td class="r num">+8%</td></tr><tr><td><strong>Sims and strategy, 1440p</strong></td><td class="r"><a href="../../?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=cpuheavy#calculator">75</a></td><td class="r"><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 41%</small></td><td class="r num">+10%</td></tr></tbody></table></div>
+          <p>Ray tracing and AAA at 1440p are GPU-limited, so a faster CPU side adds 0% and 1%. Simulators, strategy games and esports at high frame rates are CPU-limited, and they take nearly all of it. If those are your main games, memory configuration is worth getting right. Our guide to <a href="../cpu-vs-gpu-bottleneck/">CPU vs GPU bottlenecks</a> explains why, and <a href="../does-resolution-affect-bottleneck/">how resolution affects bottlenecks</a> shows how the balance moves.</p>
+        </section>
+
+        <section id="dual-channel">
+          <h2>Single vs dual channel</h2>
+          <p>Desktop platforms (AM4, AM5 and Intel's LGA1700 and LGA1851) have two memory channels. One stick uses one channel; two sticks in the right slots use both and double the bandwidth. A single stick is the most common memory mistake in prebuilt and budget PCs, and in CPU-bound games it can cost a large share of your frame rate, often more than running a slow kit would. It hurts integrated graphics even more.</p>
+          <ul>
+            <li><strong>Use the right slots.</strong> With two sticks on a four-slot board, the manual almost always names A2 and B2, usually the second and fourth slots from the CPU. Two sticks side by side in the same channel still run in single channel.</li>
+            <li><strong>Check it in CPU-Z.</strong> On the Memory tab, the Channel field should read Dual, or "2 x 64-bit" for DDR4. DDR5 splits each stick into two 32-bit subchannels, so a correct DDR5 pair usually shows "4 x 32-bit".</li>
+            <li><strong>Two sticks beat four.</strong> Four sticks also run in dual channel, but they put more load on the memory controller, and four DDR5 sticks often won't run at the kit's rated speed. For more capacity, buy two bigger sticks.</li>
+          </ul>
+        </section>
+
+        <section id="xmp">
+          <h2>XMP and EXPO: how to turn them on</h2>
+          <p>Memory is sold with a rated speed, but it boots at a conservative standard speed: typically DDR4-2133 to 2666 and DDR5-4800 to 5600. The rated speed and timings are stored on the stick as a profile, called XMP (Intel's Extreme Memory Profile) or EXPO (AMD's equivalent). Until you enable it, you're running the slow default. Most AMD boards accept XMP kits and most Intel boards accept EXPO kits, but the matching profile is the safest choice.</p>
+          <ol class="steps">
+            <li><strong>Check the current speed.</strong> Open Task Manager (Ctrl + Shift + Esc), go to Performance › Memory and read Speed. In CPU-Z's Memory tab, DRAM Frequency shows half the effective rate because DDR transfers twice per clock, so DDR5-6000 shows about 3,000 MHz.</li>
+            <li><strong>Enter the BIOS.</strong> Restart and press Delete or F2 during boot.</li>
+            <li><strong>Find the profile.</strong> It's called XMP, EXPO, DOCP (older ASUS AMD boards) or A-XMP (older MSI AMD boards), usually on the main page or under Overclocking or Ai Tweaker. Select Profile 1.</li>
+            <li><strong>Save and restart.</strong> On AM5, the first boot after a memory change can sit on a black screen for a minute or more while the board trains the memory. That's normal; don't power off.</li>
+            <li><strong>Confirm</strong> the new speed in Task Manager, then run a stability test (see below).</li>
+          </ol>
+          <p>Enabling the profile is technically overclocking the memory, but it's supported by the board and the memory maker and is the normal way to run a gaming PC. A BIOS update or a cleared CMOS turns it off again, so check after every update. Our guide to <a href="../how-to-fix-cpu-bottleneck/">fixing a CPU bottleneck</a> puts this step first for that reason.</p>
+        </section>
+
+        <section id="sweet-spots">
+          <h2>Which speed to buy: DDR4 and DDR5 sweet spots</h2>
+          <p>Two numbers describe a kit: the transfer rate (MT/s), which sets bandwidth, and CAS latency (CL), counted in clock cycles. Because faster kits have shorter cycles, compare latency in nanoseconds: CL × 2,000 ÷ MT/s.</p>
+          <div class="table-scroll"><table><thead><tr><th>Kit</th><th class="r">Bandwidth per channel</th><th class="r">First-word latency</th></tr></thead><tbody><tr><td>DDR4-3200 CL16</td><td class="r num">26 GB/s</td><td class="r num">10.0 ns</td></tr><tr><td>DDR4-3600 CL16</td><td class="r num">29 GB/s</td><td class="r num">8.9 ns</td></tr><tr><td>DDR5-4800 CL40</td><td class="r num">38 GB/s</td><td class="r num">16.7 ns</td></tr><tr><td>DDR5-6000 CL30</td><td class="r num">48 GB/s</td><td class="r num">10.0 ns</td></tr><tr><td>DDR5-6000 CL36</td><td class="r num">48 GB/s</td><td class="r num">12.0 ns</td></tr></tbody></table></div>
+          <p>So DDR5-6000 CL30 responds as quickly as DDR4-3200 CL16 (10.0 ns) with far more bandwidth, while a cheap DDR5-4800 CL40 kit is slower to respond than either.</p>
+          <h3>AM5 (Ryzen 7000 and 9000): DDR5-6000 CL30</h3>
+          <p>The memory controller runs in step with the memory (1:1) up to around DDR5-6000. Faster kits usually force it to half speed, which adds latency and can cancel out the extra bandwidth. That's why 6000 CL30 is the standard recommendation, and why paying more for 7200 or 8000 rarely helps games on AM5. See our guide to the <a href="../best-am5-cpu/">best AM5 CPU</a> for the chips themselves.</p>
+          <h3>AM4 (Ryzen 3000 and 5000): DDR4-3200 or 3600</h3>
+          <p>The Infinity Fabric runs 1:1 with the memory up to about DDR4-3600 on most Ryzen 5000 chips. DDR4-3600 CL16 is the classic sweet spot and 3200 CL16 is nearly as good. Our <a href="../best-am4-cpu/">best AM4 CPU guide</a> covers upgrades on the platform.</p>
+          <h3>Intel 12th to 14th gen and Core Ultra 200S</h3>
+          <p>On DDR4 boards, the same DDR4-3200 to 3600 advice applies. On DDR5 boards, a 6000 to 6400 kit is a sensible target, and Intel chips generally tolerate faster kits than AMD's, with smaller returns the further you go. On 13th and 14th gen, install the BIOS with Intel's stability microcode before tuning memory. See the <a href="../best-lga1700-cpu-upgrade/">best LGA1700 upgrade guide</a>.</p>
+          <h3>X3D chips care least</h3>
+          <p>The Ryzen 7 5700X3D, Ryzen 7 7800X3D and Ryzen 7 9800X3D carry a large stacked L3 cache, so games go out to main memory far less often. They're the least sensitive CPUs to RAM speed, and a sensible mid-range kit is all they need. Our <a href="../9800x3d-vs-7800x3d/">9800X3D vs 7800X3D comparison</a> covers the two AM5 chips.</p>
+        </section>
+
+        <section id="apu">
+          <h2>Integrated graphics: where RAM speed matters most</h2>
+          <p>APUs have no video memory. The integrated GPU reads textures and frame buffers from system RAM, so memory bandwidth is often what holds it back. That makes memory speed and dual channel far more important on an APU than on a PC with a graphics card, and a single stick is especially costly. Here's how three APUs do in our model, which assumes a dual-channel kit:</p>
+          <div class="table-scroll"><table><thead><tr><th>APU + integrated GPU</th><th class="r">AAA, 1080p Low</th><th class="r">Esports, 1080p Low</th></tr></thead><tbody><tr><td>Ryzen 7 8700G + 780M (iGPU)</td><td class="r"><a href="../../?cpu=ryzen-7-8700g&amp;gpu=780m&amp;res=1080p&amp;q=low#calculator">34</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 72%</small></td><td class="r"><a href="../../?cpu=ryzen-7-8700g&amp;gpu=780m&amp;res=1080p&amp;q=low&amp;game=esports#calculator">109</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 66%</small></td></tr><tr><td>Ryzen 5 8600G + 760M (iGPU)</td><td class="r"><a href="../../?cpu=ryzen-5-8600g&amp;gpu=760m&amp;res=1080p&amp;q=low#calculator">28</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 76%</small></td><td class="r"><a href="../../?cpu=ryzen-5-8600g&amp;gpu=760m&amp;res=1080p&amp;q=low&amp;game=esports#calculator">90</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 70%</small></td></tr><tr><td>Ryzen 7 5700G + Vega 8 (iGPU)</td><td class="r"><a href="../../?cpu=ryzen-7-5700g&amp;gpu=vega-8&amp;res=1080p&amp;q=low#calculator">14</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 86%</small></td><td class="r"><a href="../../?cpu=ryzen-7-5700g&amp;gpu=vega-8&amp;res=1080p&amp;q=low&amp;game=esports#calculator">45</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 83%</small></td></tr></tbody></table></div>
+          <p>Every result is heavily GPU-limited, the opposite of the builds above. On an APU, the integrated GPU is the part that benefits from faster memory, and anything that speeds it up passes straight through: in our model a 10% faster Radeon 780M adds 10% to the Ryzen 7 8700G's frame rate. For an APU build, buy the fastest sensible kit your platform supports (DDR5-6000 or a little faster for the 8000G series), always as two sticks, and enable EXPO. Our guide to <a href="../budget-gaming-pc-build/">budget gaming PC builds</a> covers when a cheap graphics card is the better buy.</p>
+        </section>
+
+        <section id="stability">
+          <h2>Stability tips</h2>
+          <ul>
+            <li><strong>Test after any change.</strong> Run a dedicated memory test such as MemTest86 (bootable) or TestMem5 for at least an hour. Windows Memory Diagnostic only catches obvious faults. Random crashes in games, corrupted saves or failed Windows updates can all be memory errors.</li>
+            <li><strong>Update the BIOS first.</strong> Memory compatibility improves with BIOS updates, especially on newer platforms.</li>
+            <li><strong>If the profile isn't stable, step down.</strong> Try the next speed down (6000 to 5600, or 3600 to 3200) with the same timings. A stable slower setting beats an unstable fast one.</li>
+            <li><strong>Don't mix kits.</strong> Sticks from different packs, even the same model, may not run together at the rated speed.</li>
+            <li><strong>Keep voltages at the kit's rating.</strong> Manual tuning beyond the profile is for enthusiasts and gains little in GPU-bound games.</li>
+          </ul>
+          <p>Once memory is set up, put your exact parts into the <a href="../../#calculator">bottleneck calculator</a> to see whether you're CPU- or GPU-bound, or use the <a href="../../fps-calculator/">FPS calculator</a> for individual games.</p>
+        </section>
+
+        <!-- AD:endOfPage -->
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>Does RAM speed affect FPS?</summary><div><p>Only when the processor is the limit, such as 1080p with a fast graphics card, high-refresh esports, simulators and strategy games. When the graphics card is the limit, as in most AAA games at 1440p and 4K with a mid-range card, faster memory changes little. Integrated graphics are the exception, because they use system RAM as video memory.</p></div></details>
+          <details><summary>Should I enable XMP or EXPO?</summary><div><p>Yes. Without it, memory runs at a slow default speed, typically DDR4-2133 to 2666 or DDR5-4800 to 5600, instead of its rated speed. It's supported by the board and the memory maker. Enable it in the BIOS, then run a memory test to confirm it's stable.</p></div></details>
+          <details><summary>Is single-channel RAM bad for gaming?</summary><div><p>Yes, in CPU-bound games it can cost a large share of performance, and with integrated graphics even more. Use two matched sticks in the slots your motherboard manual recommends, usually A2 and B2, and check that CPU-Z shows dual channel.</p></div></details>
+          <details><summary>What is the best RAM speed for AM5?</summary><div><p>DDR5-6000 CL30. Up to about that speed the memory controller runs in step with the memory. Faster kits usually push it to half speed, adding latency, so they rarely help games on Ryzen 7000 and 9000.</p></div></details>
+          <details><summary>Is DDR4-3200 fast enough for gaming?</summary><div><p>Yes. DDR4-3200 CL16 is close to the sweet spot on AM4 and Intel DDR4 boards, with DDR4-3600 CL16 a little better. Dual channel and XMP being on matter more than the step between them.</p></div></details>
+          <details><summary>Do X3D CPUs need fast RAM?</summary><div><p>Less than any other CPU. Their large stacked L3 cache keeps much of the game's data on the chip, so they're the least sensitive to memory speed. A standard DDR5-6000 kit on AM5, or DDR4-3200 to 3600 on AM4, is plenty.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-much-ram-for-gaming/"><b>How much RAM do you need for gaming? 16 vs 32 vs 64 GB in 2026</b><span>FPS and 1% lows with 8, 16, 32 and 64 GB in four builds, why the answer depends on whether you're CPU-bound, and who actually needs 64 GB.</span></a><a class="combo-card" href="../how-to-fix-cpu-bottleneck/"><b>How to fix a CPU bottleneck</b><span>Free settings changes first, then RAM, XMP and Windows fixes, then the drop-in CPU upgrade that gives the most FPS per dollar.</span></a><a class="combo-card" href="../cpu-vs-gpu-bottleneck/"><b>CPU bottleneck vs GPU bottleneck: which is worse?</b><span>Why a CPU bottleneck feels worse at the same average FPS, when a GPU bottleneck is the real problem, and which part to upgrade first.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo footer-logo" href="../../" aria-label="BottleneckCalc home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+            <span>Bottleneck<b>Calc</b></span>
+          </a>
+          <p class="footer-tagline">Free CPU and GPU bottleneck calculator. See your FPS, compare parts and find the upgrade that actually helps.</p>
+          <a class="footer-cta" href="../../#calculator">Check your build<span class="footer-cta-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <ul class="footer-badges">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Free, no sign-up</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>Data updated monthly</li>
+          </ul>
+        </div>
+        <nav class="footer-cols" aria-label="Site">
+        <div class="fcol">
+          <h2>Tools</h2>
+          <ul><li><a href="../../">Bottleneck calculator</a></li><li><a href="../../fps-calculator/">FPS calculator</a></li><li><a href="../../compare/">Compare parts</a></li><li><a href="../../mac/">Mac gaming</a></li><li><a href="../../bottleneck/">Popular builds</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Resources</h2>
+          <ul><li><a href="../../guides/">Guides</a></li><li><a href="../../#how-it-works">How it works</a></li><li><a href="../../#min-cpu">Best CPU for your GPU</a></li><li><a href="../../editorial-policy/">Editorial policy</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Company</h2>
+          <ul><li><a href="../../about/">About</a></li><li><a href="../../contact/">Contact</a></li><li><a href="../../privacy/">Privacy</a></li><li><a href="../../terms/">Terms</a></li></ul>
+        </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Bottleneck Calculator · Built by <a href="https://deepammishra.com/">Deepam Mishra</a></p><!-- CONSENT-LINK -->
+        <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>Hardware data updated October 2026</p>
+      </div>
+      <p class="footer-disclaimer">Estimates are for guidance only; real performance varies by game, settings, drivers and cooling. Product names are trademarks of their owners. Not affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=26"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>

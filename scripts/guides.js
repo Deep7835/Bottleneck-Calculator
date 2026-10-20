@@ -21,13 +21,31 @@ const GUIDES = [
   "best-cpu-for-rtx-5060",
   "best-cpu-for-rtx-5070",
   "ryzen-7-7800x3d-rtx-5070-ti",
+  "what-is-a-good-fps",
+  "how-to-increase-fps",
+  "how-much-ram-for-gaming",
+  "does-ram-speed-matter-for-gaming",
+  "is-8gb-vram-enough",
+  "dlss-vs-fsr-vs-xess",
+  "best-lga1700-cpu-upgrade",
+  "best-am5-cpu",
+  "9800x3d-vs-7800x3d",
+  "budget-gaming-pc-build",
+  "1440p-gaming-pc-build",
+  "best-cpu-for-rx-9070-xt",
+  "best-cpu-for-rtx-5080-5090",
+  "gaming-laptop-bottleneck",
+  "mac-vs-gaming-pc",
 ];
 const MODIFIED = "2026-10-20";
 const PUBLISHED = "2026-10-20";
 
 const layout = require("./layout");
 
-module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }) {
+module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages, comparePages = [], macPages = [] }) {
+  require(path.join(ROOT, "assets/js/games.js"));
+  require(path.join(ROOT, "assets/js/macs.js"));
+  const { Games, Macs } = global.window;
   const short = Engine.shortName;
   const fmt = (n) => Math.round(n).toLocaleString("en-US");
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -73,10 +91,24 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
     if (!GUIDES.includes(slug)) throw new Error(`guides: unknown guide ${slug}`);
     return `<a href="../${slug}/">${text}</a>`;
   }
+  // Head-to-head page for two parts (either order); throws if the pair has no indexed page.
+  const comparable = new Set(comparePages.filter((u) => !(comparePages.weak || []).includes(u)));
+  function compare(a, b, text) {
+    const loc = [`compare/${a}-vs-${b}/`, `compare/${b}-vs-${a}/`].find((u) => comparable.has(u));
+    if (!loc) throw new Error(`guides: no compare page for ${a} vs ${b}`);
+    return `<a href="../../${loc}">${text || `${name(a)} vs ${name(b)}`}</a>`;
+  }
+  // Mac model page (id from macs.js) or the Mac calculator.
+  function mac(id, text) {
+    if (!macPages.includes(`mac/${id}/`)) throw new Error(`guides: no Mac page ${id}`);
+    return `<a href="../../mac/${id}/">${text || Macs.byId[id].name}</a>`;
+  }
   const link = {
     calculator: (text) => `<a href="../../#calculator">${text}</a>`,
     fps: (text) => `<a href="../../fps-calculator/">${text}</a>`,
     builds: (text) => `<a href="../../bottleneck/">${text}</a>`,
+    compare: (text) => `<a href="../../compare/">${text}</a>`,
+    mac: (text) => `<a href="../../mac/">${text}</a>`,
     home: (hash, text) => `<a href="../../#${hash}">${text}</a>`,
   };
   const table = (head, rows, cls = "") =>
@@ -86,7 +118,7 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
     }).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.join("")}</tr>`).join("")}</tbody></table></div>`;
   const td = (v, num) => num ? `<td class="r num">${v}</td>` : `<td>${v}</td>`;
 
-  const h = { HW, Engine, BASE, cpu, gpu, ev, res, pct, gain, name, fmt, verdict, limitCell, limitTag, expect, calc, calcHref, build, hasBuild, guide, link, table, td };
+  const h = { HW, Engine, Games, Macs, BASE, compare, mac, cpu, gpu, ev, res, pct, gain, name, fmt, verdict, limitCell, limitTag, expect, calc, calcHref, build, hasBuild, guide, link, table, td };
 
   // ---- Shared chrome (same header/footer as the rest of the site)
   const header = (root) => `<a class="skip" href="#main">Skip to content</a>
@@ -242,15 +274,18 @@ ${JSON.stringify(schema, null, 2)}
       ],
     };
     const groups = [
-      ["Diagnose", "Find out what's actually limiting your frame rate.", ["how-to-check-for-bottleneck", "cpu-vs-gpu-bottleneck", "does-resolution-affect-bottleneck"]],
-      ["Fix and upgrade", "Get more FPS from the parts you have, then spend upgrade money where it counts.", ["how-to-fix-cpu-bottleneck", "best-am4-cpu"]],
-      ["Plan a build", "Match the processor and graphics card to each other and to your monitor before you buy.", ["balanced-gaming-pc-build", "best-cpu-for-rtx-5060", "best-cpu-for-rtx-5070", "ryzen-7-7800x3d-rtx-5070-ti"]],
+      ["Diagnose", "Find out what's actually limiting your frame rate, and what a good frame rate is.", ["how-to-check-for-bottleneck", "cpu-vs-gpu-bottleneck", "does-resolution-affect-bottleneck", "what-is-a-good-fps"]],
+      ["Fix and tune", "Get more FPS from the parts you already have before you spend anything.", ["how-to-increase-fps", "how-to-fix-cpu-bottleneck", "dlss-vs-fsr-vs-xess"]],
+      ["Memory and VRAM", "How much RAM and video memory games need, and when speed matters.", ["how-much-ram-for-gaming", "does-ram-speed-matter-for-gaming", "is-8gb-vram-enough"]],
+      ["Upgrade your CPU", "The best drop-in upgrade for each socket, and whether the newest chip is worth it.", ["best-am4-cpu", "best-lga1700-cpu-upgrade", "best-am5-cpu", "9800x3d-vs-7800x3d"]],
+      ["Pair a CPU with your GPU", "Which processor keeps each graphics card fully busy at 1080p, 1440p and 4K.", ["best-cpu-for-rtx-5060", "best-cpu-for-rtx-5070", "best-cpu-for-rx-9070-xt", "best-cpu-for-rtx-5080-5090", "ryzen-7-7800x3d-rtx-5070-ti"]],
+      ["Plan a build", "Match the processor and graphics card to each other, to your monitor and to your budget.", ["balanced-gaming-pc-build", "budget-gaming-pc-build", "1440p-gaming-pc-build", "gaming-laptop-bottleneck", "mac-vs-gaming-pc"]],
     ];
     const grouped = groups.flatMap(([, , slugs]) => slugs);
     if (grouped.length !== GUIDES.length || GUIDES.some((s) => !grouped.includes(s))) throw new Error("guides: every guide must appear in exactly one hub group");
     return `${head({
-      title: "PC Bottleneck Guides: Check, Fix and Upgrade (2026)",
-      description: "Practical guides to CPU and GPU bottlenecks: how to check and fix yours, how resolution changes it, which CPU to pair with your GPU, and how to plan a balanced PC build.",
+      title: "PC Gaming Guides: Bottlenecks, FPS, RAM and Builds (2026)",
+      description: "Practical PC gaming guides: check and fix bottlenecks, raise FPS, size RAM and VRAM, pick the right CPU for your GPU or socket, and plan a balanced desktop, laptop or Mac setup.",
       url, root: "../", schema, type: "website",
     })}
 <body>
@@ -261,7 +296,7 @@ ${JSON.stringify(schema, null, 2)}
       <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <span aria-current="page">Guides</span></nav>
       <section class="hero combo-hero">
         <h1>PC bottleneck guides</h1>
-        <p class="lead">The calculator tells you what to expect. These guides cover the rest: how to confirm a bottleneck on your own PC, why it moves when you change resolution, what fixes it without spending money, which CPU to pair with your graphics card, and how to plan a balanced build from scratch. Every table is calculated from the same data as the <a href="../#calculator">bottleneck calculator</a> and the <a href="../fps-calculator/">FPS calculator</a>, so the numbers match.</p>
+        <p class="lead">The calculator tells you what to expect. These guides cover the rest: how to confirm a bottleneck on your own PC, what frame rate to aim for, what raises FPS without spending money, how much RAM and VRAM you need, which CPU to pair with your graphics card or put in your current socket, and how to plan a balanced desktop, laptop or Mac setup. Every table is calculated from the same data as the <a href="../#calculator">bottleneck calculator</a> and the <a href="../fps-calculator/">FPS calculator</a>, so the numbers match.</p>
       </section>
 
       <div class="article combo-article">

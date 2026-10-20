@@ -174,14 +174,14 @@ const fpsPage = require("./fps-page")({ ROOT, SITE_URL, HW, Engine, inject, faqS
 // ---- Spanish + Japanese calculator pages (/es/, /ja/, and their FPS calculators)
 const i18n = require("./i18n-pages")({ ROOT, SITE_URL, HW, Engine, faqSchema });
 
-// ---- Guides (/guides/ and one page per guide)
-const guidePages = require("./guides")({ ROOT, SITE_URL, HW, Engine, buildPages });
-
 // ---- GPU vs GPU and CPU vs CPU comparisons (/compare/ and one page per pair)
 const comparePages = require("./compare-pages")({ ROOT, SITE_URL, HW, Engine, buildPages });
 
 // ---- Mac gaming calculator + one page per Apple Silicon Mac (/mac/...)
 const macPages = require("./mac-pages")({ ROOT, SITE_URL, HW, Engine, faqSchema });
+
+// ---- Guides (/guides/ and one page per guide); after compare + Mac so guides can link to those pages
+const guidePages = require("./guides")({ ROOT, SITE_URL, HW, Engine, buildPages, comparePages, macPages });
 
 // ---- Trust pages (hand-written; only the domain placeholder is filled in)
 const TRUST_PAGES = ["about/", "editorial-policy/", "privacy/", "terms/", "contact/"];

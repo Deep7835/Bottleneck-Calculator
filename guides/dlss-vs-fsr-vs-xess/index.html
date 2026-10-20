@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DLSS vs FSR vs XeSS (2026): Upscaling and Frame Generation Explained</title>
+  <meta name="description" content="DLSS, FSR and XeSS compared: how much FPS each preset adds, which graphics cards support what, frame generation latency, and why upscaling can't fix a CPU bottleneck.">
+  <link rel="canonical" href="https://bottleneckcalculator.si/guides/dlss-vs-fsr-vs-xess/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="DLSS vs FSR vs XeSS (2026): Upscaling and Frame Generation Explained">
+  <meta property="og:description" content="DLSS, FSR and XeSS compared: how much FPS each preset adds, which graphics cards support what, frame generation latency, and why upscaling can't fix a CPU bottleneck.">
+  <meta property="og:url" content="https://bottleneckcalculator.si/guides/dlss-vs-fsr-vs-xess/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://bottleneckcalculator.si/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://bottleneckcalculator.si/og-image.png">
+
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=26">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://bottleneckcalculator.si/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://bottleneckcalculator.si/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "DLSS vs FSR vs XeSS: upscaling, frame generation and CPU bottlenecks",
+          "item": "https://bottleneckcalculator.si/guides/dlss-vs-fsr-vs-xess/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "DLSS vs FSR vs XeSS: upscaling, frame generation and CPU bottlenecks",
+      "description": "DLSS, FSR and XeSS compared: how much FPS each preset adds, which graphics cards support what, frame generation latency, and why upscaling can't fix a CPU bottleneck.",
+      "image": "https://bottleneckcalculator.si/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 1918,
+      "author": {
+        "@type": "Person",
+        "@id": "https://deepammishra.com/#person",
+        "name": "Deepam Mishra",
+        "url": "https://deepammishra.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://bottleneckcalculator.si/"
+      },
+      "mainEntityOfPage": "https://bottleneckcalculator.si/guides/dlss-vs-fsr-vs-xess/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is DLSS better than FSR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DLSS generally gives better image quality than FSR 3.1, with less shimmering and ghosting, but it only runs on NVIDIA RTX cards. FSR 4 on Radeon RX 9000 cards closes most of the gap. FSR 3.1 runs on almost any graphics card, which makes it the fallback for everyone else."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use DLSS on an AMD graphics card?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. DLSS runs on NVIDIA's Tensor cores and needs a GeForce RTX card. On AMD cards, use FSR, or XeSS, which also runs on Radeon and GeForce cards through its DP4a fallback."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does DLSS or FSR fix a CPU bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Upscaling lowers the graphics card's workload, and a CPU-bound game isn't waiting on the graphics card. In our example, a Ryzen 5 3600 with an RTX 5070 Ti at 1080p stays at about 80 FPS with upscaling off or on Performance. Frame generation can raise the displayed frame rate, but the game still responds at the base frame rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does frame generation add input lag?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, a little. The game has to hold back a rendered frame to generate the one in between, and it still responds at the base frame rate. NVIDIA Reflex or AMD Anti-Lag 2 recover much of the delay. It's best used from a base of about 60 FPS and avoided in competitive shooters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which GPUs support DLSS 4 Multi Frame Generation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only GeForce RTX 50 series cards. RTX 40 cards support standard DLSS Frame Generation, which inserts one frame per rendered frame, and every RTX card from the 20 series on supports DLSS upscaling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use Quality, Balanced or Performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use Quality at 1080p, Quality or Balanced at 1440p, and Balanced or Performance at 4K, where the upscaler has more pixels to work with. Lower presets give more FPS but a softer, less stable image, especially at lower output resolutions."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="BottleneckCalc home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+      </nav>
+      <div class="header-tools">
+        <button type="button" class="icon-btn search-btn" data-root="../../" aria-label="Search the site" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="icon-btn theme-btn" aria-label="Switch light or dark theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </div>
+      <details class="menu">
+        <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <nav class="menu-panel" aria-label="Main (mobile)">
+          <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../mac/">Mac</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/" aria-current="page">Guides</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">DLSS vs FSR vs XeSS</span></nav>
+      <section class="hero combo-hero">
+        <h1>DLSS vs FSR vs XeSS: upscaling, frame generation and CPU bottlenecks</h1>
+        <p class="lead">DLSS, FSR and XeSS all do the same basic job: render fewer pixels and rebuild a sharp image at your monitor's resolution. The differences are in image quality, which graphics cards they run on, and the extras that come with them, such as frame generation. The one thing none of them can do is speed up your processor.</p>
+        <p class="updated">By <a href="../../about/">Deepam Mishra</a> · Updated <time datetime="2026-10-20">October 20, 2026</time> · 8 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#how">How upscaling works</a></li>
+          <li><a href="#cpu-bound">Why it can't fix a CPU bottleneck</a></li>
+          <li><a href="#support">Which GPUs support what</a></li>
+          <li><a href="#quality">Image quality</a></li>
+          <li><a href="#frame-gen">Frame generation and latency</a></li>
+          <li><a href="#latency">Reflex and Anti-Lag</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article" data-progress>
+        <section id="short-answer">
+          <h2>The short answer</h2>
+          <p><strong>On an NVIDIA RTX card, use DLSS.</strong> It's generally the best-looking upscaler. <strong>On a Radeon RX 9000 card, use FSR 4.</strong> <strong>On anything else</strong>, including older Radeon and GTX cards, use FSR 3.1 or XeSS, whichever looks better in the game you're playing. On an Intel Arc card, XeSS runs on the card's own AI hardware and is usually the better choice.</p>
+          <p>Upscaling is one of the most effective ways to raise FPS, but only when the <strong>graphics card</strong> is the limit. If your PC is CPU-bound, it adds nothing. Frame generation is different again: it makes motion look smoother without making the game respond faster.</p>
+        </section>
+
+        <section id="how">
+          <h2>How upscaling works, and what the presets mean</h2>
+          <p>An upscaler renders each frame at a lower internal resolution, then uses motion data from the game and previous frames to reconstruct a full-resolution image. DLSS, FSR 4 and XeSS on Arc cards use machine learning for the reconstruction. FSR 3.1 and older use a hand-tuned algorithm that runs on any modern GPU.</p>
+          <p>The presets set the internal resolution. DLSS and FSR use almost the same scale factors per axis, while XeSS names its presets similarly but its ratios have shifted between versions:</p>
+          <div class="table-scroll"><table><thead><tr><th>Output</th><th class="r">Quality <small>(67%)</small></th><th class="r">Balanced <small>(58%)</small></th><th class="r">Performance <small>(50%)</small></th></tr></thead><tbody><tr><td>1080p</td><td class="r num">1,280 × 720</td><td class="r num">1,114 × 626</td><td class="r num">960 × 540</td></tr><tr><td>1440p</td><td class="r num">1,707 × 960</td><td class="r num">1,485 × 835</td><td class="r num">1,280 × 720</td></tr><tr><td>4K</td><td class="r num">2,560 × 1,440</td><td class="r num">2,227 × 1,253</td><td class="r num">1,920 × 1,080</td></tr></tbody></table></div>
+          <p>Quality mode renders only about 44% of the pixels, and Performance mode 25%, yet the frame rate doesn't rise in proportion. Some of each frame's work doesn't depend on resolution, and the upscaler itself takes time to run. In our model, Quality raises the graphics card's frame-rate limit by about 40% and Performance by about 85%.</p>
+          <p>Output resolution matters for image quality. At 4K, Quality mode starts from a 1440p image and usually looks very close to native. At 1080p, Quality starts from 720p, so there's much less detail to work with and the softness is easier to see. As a rule: Quality at 1080p, Quality or Balanced at 1440p, and Performance is often fine at 4K.</p>
+        </section>
+        <!-- AD:inArticle -->
+
+        <section id="cpu-bound">
+          <h2>What upscaling is worth, and why it can't fix a CPU bottleneck</h2>
+          <p>Here are the same four presets on four builds, from fully GPU-bound to fully CPU-bound, as estimated by the <a href="../../#calculator">bottleneck calculator</a>:</p>
+          <div class="table-scroll"><table><thead><tr><th>Preset</th><th class="r">Ryzen 7 7800X3D + RTX 5070<br><small>4K, AAA</small></th><th class="r">Ryzen 7 7800X3D + RTX 5070<br><small>4K, ray tracing</small></th><th class="r">Ryzen 5 5600 + RTX 4060<br><small>1080p, AAA</small></th><th class="r">Ryzen 5 3600 + RTX 5070 Ti<br><small>1080p, AAA</small></th></tr></thead><tbody><tr><td>Native (off)</td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k#calculator">61</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 65%</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;game=raytracing#calculator">35</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 77%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p#calculator">75</a><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 28%</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti&amp;res=1080p#calculator">80</a><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 55%</small></td></tr><tr><td>Quality</td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;up=quality#calculator">86</a> <small>+40%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 51%</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;game=raytracing&amp;up=quality#calculator">50</a> <small>+44%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 67%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p&amp;up=quality#calculator">97</a> <small>+29%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="excellent"></span>Balanced</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti&amp;res=1080p&amp;up=quality#calculator">80</a> <small>±0%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 68%</small></td></tr><tr><td>Balanced</td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;up=balanced#calculator">98</a> <small>+60%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 44%</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;game=raytracing&amp;up=balanced#calculator">57</a> <small>+64%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 62%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p&amp;up=balanced#calculator">102</a> <small>+36%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="good"></span>CPU 13%</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti&amp;res=1080p&amp;up=balanced#calculator">80</a> <small>±0%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 72%</small></td></tr><tr><td>Performance</td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;up=performance#calculator">113</a> <small>+84%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 36%</small></td><td class="r"><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070&amp;res=4k&amp;game=raytracing&amp;up=performance#calculator">66</a> <small>+90%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="gpu"></span>GPU 56%</small></td><td class="r"><a href="../../?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p&amp;up=performance#calculator">105</a> <small>+39%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="moderate"></span>CPU 25%</small></td><td class="r"><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti&amp;res=1080p&amp;up=performance#calculator">80</a> <small>±0%</small><br><small style="white-space:nowrap"><span class="dot" data-tone="severe"></span>CPU 76%</small></td></tr></tbody></table></div>
+          <p><strong>GPU-bound at 4K:</strong> the RTX 5070 gains 40% at Quality and 84% at Performance. With ray tracing on, it goes from 35 FPS native to 66 at Performance. That's what upscaling is for.</p>
+          <p><strong>Borderline:</strong> the Ryzen 5 5600 with an RTX 4060 at 1080p starts GPU-limited, but from Balanced on it's limited by the processor instead, and Performance adds only 2% over Balanced. Upscaling only helps until the CPU becomes the limit.</p>
+          <p><strong>CPU-bound:</strong> the Ryzen 5 3600 with an RTX 5070 Ti stays at about 80 FPS whatever the preset. Upscaling raises the card's limit from 177 to 328 FPS, but the processor can only prepare about 80 frames per second, so the extra capacity goes unused. The bottleneck grows from 55% to 76%.</p>
+          <div class="callout"><p><strong>If you're CPU-bound, do the opposite.</strong> Turn upscaling off, or use DLAA, FSR Native AA or XeSS Native AA, which apply the same reconstruction at full resolution for a cleaner image. You lose few or no frames, because the graphics card had capacity to spare. For real CPU fixes, see our guide on <a href="../how-to-fix-cpu-bottleneck/">fixing a CPU bottleneck</a>.</p></div>
+        </section>
+
+        <section id="support">
+          <h2>Which graphics cards support DLSS, FSR and XeSS</h2>
+          <div class="table-scroll"><table><thead><tr><th>Graphics cards</th><th>DLSS upscaling</th><th>DLSS Frame Gen</th><th>Multi Frame Gen</th><th>FSR 4</th><th>FSR 3.1</th><th>XeSS</th></tr></thead><tbody><tr><td><strong>GeForce RTX 50</strong><br><small>e.g. RTX 5070</small></td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes (DP4a)</td></tr><tr><td><strong>GeForce RTX 40</strong><br><small>e.g. RTX 4060</small></td><td>Yes</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td><td>Yes (DP4a)</td></tr><tr><td><strong>GeForce RTX 20 and 30</strong><br><small>e.g. RTX 3060 12GB</small></td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes (DP4a)</td></tr><tr><td><strong>GeForce GTX 16</strong><br><small>e.g. GTX 1660 Super</small></td><td>No</td><td>No</td><td>No</td><td>No</td><td>Upscaling only</td><td>Yes (DP4a)</td></tr><tr><td><strong>Radeon RX 9000</strong><br><small>e.g. RX 9070 XT</small></td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes (DP4a)</td></tr><tr><td><strong>Radeon RX 6000 and 7000</strong><br><small>e.g. RX 7800 XT</small></td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes (DP4a)</td></tr><tr><td><strong>Intel Arc A and B series</strong><br><small>e.g. Arc B580</small></td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes (XMX)</td></tr></tbody></table></div>
+          <ul>
+            <li><strong>DLSS</strong> needs an NVIDIA RTX card, because it runs on the Tensor cores. Every RTX generation gets the upscaler. DLSS Frame Generation needs RTX 40 or newer, and DLSS 4 Multi Frame Generation, which generates several frames for each rendered one, is limited to RTX 50 cards.</li>
+            <li><strong>FSR 4</strong> is AMD's machine-learning upscaler, built for the RDNA 4 architecture in the Radeon RX 9000 series. Older Radeon cards use FSR 3.1.</li>
+            <li><strong>FSR 3.1</strong> is open and vendor-neutral. Its upscaling runs on practically any modern graphics card, including NVIDIA and Intel ones, and its frame generation works on most recent cards too.</li>
+            <li><strong>XeSS</strong> runs on any recent GPU. On Intel Arc it uses the cards' XMX AI units, which gives better image quality and speed. On other cards it falls back to a slower DP4a path.</li>
+          </ul>
+          <p>Support also depends on the game: each one has to include the technique, and many offer two or all three. Choosing a card partly on upscaler support is reasonable. Our comparisons of the <a href="../../compare/rtx-5070-ti-vs-rx-9070-xt/">RTX 5070 Ti vs RX 9070 XT</a>, <a href="../../compare/rx-9070-vs-rtx-5070/">RX 9070 vs RTX 5070</a> and <a href="../../compare/rtx-5060-vs-arc-b580/">RTX 5060 vs Arc B580</a> cover the raw performance side.</p>
+        </section>
+
+        <section id="quality">
+          <h2>Image quality: how they compare</h2>
+          <p>Image quality varies from game to game and version to version, so treat this as a general picture rather than a ranking that holds everywhere:</p>
+          <ul>
+            <li><strong>DLSS</strong> is broadly regarded as the most consistent, especially since the transformer-based model introduced with DLSS 4. Fine detail and motion hold up well even in Performance mode at 4K. The NVIDIA App can switch many games to a newer DLSS model.</li>
+            <li><strong>FSR 4</strong> is a large step up from FSR 3.1 and is generally considered close to DLSS, though only in games that support it and only on RX 9000 cards.</li>
+            <li><strong>FSR 3.1</strong> works everywhere but shows more shimmering on fine detail such as foliage and fences, and more ghosting behind moving objects, particularly at 1080p and in Performance mode.</li>
+            <li><strong>XeSS</strong> on Arc cards is generally competitive with the better upscalers. The DP4a version on other cards looks softer and gives a smaller FPS boost.</li>
+          </ul>
+          <p>If a game offers several upscalers, try each at the same preset in a scene with foliage and fast movement. Your own eyes are the best judge.</p>
+        </section>
+
+        <section id="frame-gen">
+          <h2>Frame generation: smoother motion, not lower latency</h2>
+          <p>Frame generation creates extra frames between the ones the game actually renders. DLSS Frame Generation and FSR Frame Generation insert one frame per rendered frame (2x). DLSS 4 Multi Frame Generation on RTX 50 cards launched with 3x and 4x modes. Because generated frames need no work from the processor, frame generation is the one GPU feature that raises the displayed frame rate of a CPU-bound game.</p>
+          <p>There are two catches. First, the game still responds at the <strong>base</strong> frame rate, the frames it actually renders, and frame generation holds back a frame to interpolate between, which adds some latency on top. Second, generated frames are guesses, and the lower the base frame rate, the bigger the gap between real frames and the more visible the mistakes.</p>
+          <div class="table-scroll"><table><thead><tr><th class="r">Base FPS</th><th class="r">Base frame time</th><th class="r">2x output, up to</th><th class="r">4x output, up to</th><th>How it plays</th></tr></thead><tbody><tr><td class="r num">30</td><td class="r num">33.3 ms</td><td class="r num">60</td><td class="r num">120</td><td>Looks smoother, still feels like 30 FPS. Artifacts are easy to spot. Avoid.</td></tr><tr><td class="r num">45</td><td class="r num">22.2 ms</td><td class="r num">90</td><td class="r num">180</td><td>Usable in slow games with a controller. Mouse aiming feels heavy.</td></tr><tr><td class="r num">60</td><td class="r num">16.7 ms</td><td class="r num">120</td><td class="r num">240</td><td>The usual recommended minimum. Feels close to normal in single-player games.</td></tr><tr><td class="r num">90</td><td class="r num">11.1 ms</td><td class="r num">180</td><td class="r num">360</td><td>Ideal. Little visible artifacting, and latency stays low.</td></tr></tbody></table></div>
+          <p>This is the reason for the common advice to reach about <strong>60 FPS before turning frame generation on</strong>. It also tells you when multi frame generation makes sense: 4x from a base of 60 produces up to 240 FPS, which only a 240 Hz or faster monitor can show. On a 144 Hz screen, 2x is usually enough.</p>
+          <p>For the CPU-bound <a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti&amp;res=1080p#calculator">Ryzen 5 3600 + RTX 5070 Ti</a> above, with a base of about 80 FPS, 2x frame generation could put up to 160 frames on screen. It will look much smoother but still respond like 80 FPS. That's a good trade in a single-player game and a bad one in a competitive shooter.</p>
+        </section>
+
+        <section id="latency">
+          <h2>Reflex, Anti-Lag and keeping latency in check</h2>
+          <p><strong>NVIDIA Reflex</strong> cuts input latency by stopping the processor from queuing frames ahead of the graphics card. It helps most when the GPU is the limit, which is exactly when the queue builds up. Games with DLSS Frame Generation include Reflex and turn it on with frame generation, which recovers much of the added delay.</p>
+          <p><strong>AMD Anti-Lag 2</strong> does the same job on Radeon cards in games that build it in, and is the recommended companion to FSR Frame Generation. The older driver-level Anti-Lag works more broadly but less effectively. Intel offers its own low-latency mode alongside XeSS in supported games.</p>
+          <p>Turn these on in any competitive game that offers them, with or without frame generation. They cost nothing in frame rate. To decide what frame rate you actually need, see our guide to <a href="../what-is-a-good-fps/">good frame rates</a>, and for the other settings that help, our guide on <a href="../how-to-increase-fps/">increasing FPS</a>.</p>
+        </section>
+
+        <!-- AD:endOfPage -->
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>Is DLSS better than FSR?</summary><div><p>DLSS generally gives better image quality than FSR 3.1, with less shimmering and ghosting, but it only runs on NVIDIA RTX cards. FSR 4 on Radeon RX 9000 cards closes most of the gap. FSR 3.1 runs on almost any graphics card, which makes it the fallback for everyone else.</p></div></details>
+          <details><summary>Can I use DLSS on an AMD graphics card?</summary><div><p>No. DLSS runs on NVIDIA's Tensor cores and needs a GeForce RTX card. On AMD cards, use FSR, or XeSS, which also runs on Radeon and GeForce cards through its DP4a fallback.</p></div></details>
+          <details><summary>Does DLSS or FSR fix a CPU bottleneck?</summary><div><p>No. Upscaling lowers the graphics card's workload, and a CPU-bound game isn't waiting on the graphics card. In our example, a Ryzen 5 3600 with an RTX 5070 Ti at 1080p stays at about 80 FPS with upscaling off or on Performance. Frame generation can raise the displayed frame rate, but the game still responds at the base frame rate.</p></div></details>
+          <details><summary>Does frame generation add input lag?</summary><div><p>Yes, a little. The game has to hold back a rendered frame to generate the one in between, and it still responds at the base frame rate. NVIDIA Reflex or AMD Anti-Lag 2 recover much of the delay. It's best used from a base of about 60 FPS and avoided in competitive shooters.</p></div></details>
+          <details><summary>Which GPUs support DLSS 4 Multi Frame Generation?</summary><div><p>Only GeForce RTX 50 series cards. RTX 40 cards support standard DLSS Frame Generation, which inserts one frame per rendered frame, and every RTX card from the 20 series on supports DLSS upscaling.</p></div></details>
+          <details><summary>Should I use Quality, Balanced or Performance?</summary><div><p>Use Quality at 1080p, Quality or Balanced at 1440p, and Balanced or Performance at 4K, where the upscaler has more pixels to work with. Lower presets give more FPS but a softer, less stable image, especially at lower output resolutions.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-to-increase-fps/"><b>How to increase FPS: the settings and fixes that actually work</b><span>Which settings raise FPS and by how much, why they help GPU-bound PCs but not CPU-bound ones, the Windows basics that matter and the tweaks that don't.</span></a><a class="combo-card" href="../how-to-fix-cpu-bottleneck/"><b>How to fix a CPU bottleneck</b><span>Free settings changes first, then RAM, XMP and Windows fixes, then the drop-in CPU upgrade that gives the most FPS per dollar.</span></a><a class="combo-card" href="../what-is-a-good-fps/"><b>What is a good FPS for gaming? 30, 60, 144 and 240 explained</b><span>Frame times for every common target, what 60, 144 and 240 FPS are each good for, refresh rate and VRR, and why 1% lows matter more than averages.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo footer-logo" href="../../" aria-label="BottleneckCalc home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+            <span>Bottleneck<b>Calc</b></span>
+          </a>
+          <p class="footer-tagline">Free CPU and GPU bottleneck calculator. See your FPS, compare parts and find the upgrade that actually helps.</p>
+          <a class="footer-cta" href="../../#calculator">Check your build<span class="footer-cta-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <ul class="footer-badges">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Free, no sign-up</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>Data updated monthly</li>
+          </ul>
+        </div>
+        <nav class="footer-cols" aria-label="Site">
+        <div class="fcol">
+          <h2>Tools</h2>
+          <ul><li><a href="../../">Bottleneck calculator</a></li><li><a href="../../fps-calculator/">FPS calculator</a></li><li><a href="../../compare/">Compare parts</a></li><li><a href="../../mac/">Mac gaming</a></li><li><a href="../../bottleneck/">Popular builds</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Resources</h2>
+          <ul><li><a href="../../guides/">Guides</a></li><li><a href="../../#how-it-works">How it works</a></li><li><a href="../../#min-cpu">Best CPU for your GPU</a></li><li><a href="../../editorial-policy/">Editorial policy</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Company</h2>
+          <ul><li><a href="../../about/">About</a></li><li><a href="../../contact/">Contact</a></li><li><a href="../../privacy/">Privacy</a></li><li><a href="../../terms/">Terms</a></li></ul>
+        </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Bottleneck Calculator · Built by <a href="https://deepammishra.com/">Deepam Mishra</a></p><!-- CONSENT-LINK -->
+        <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>Hardware data updated October 2026</p>
+      </div>
+      <p class="footer-disclaimer">Estimates are for guidance only; real performance varies by game, settings, drivers and cooling. Product names are trademarks of their owners. Not affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=26"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>
