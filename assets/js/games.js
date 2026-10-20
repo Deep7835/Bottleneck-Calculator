@@ -37,7 +37,11 @@
       "Vanilla Java at 12 chunks. Sodium can roughly double these numbers; shader packs make it GPU-heavy."],
   ];
 
-  const list = G.map(([id, name, base, cpu, gpu, vram, cap, note]) => ({ id, name, base, cpu, gpu, vram, cap, note }));
+  // The English note above is the fallback; translations live in i18n.js ("note.<id>").
+  const list = G.map(([id, name, base, cpu, gpu, vram, cap, note]) => ({
+    id, name, base, cpu, gpu, vram, cap,
+    get note() { return window.I18N.t(`note.${id}`, null, note); },
+  }));
   const byId = Object.fromEntries(list.map((g) => [g.id, g]));
 
   // gameId is a game from the table above or a plain workload type ("general", "esports", ...).
@@ -54,8 +58,7 @@
   }
 
   // Game types read as "≈120 FPS in AAA games".
-  const TYPE_NAMES = { general: "AAA games", esports: "esports games", cpuheavy: "CPU-heavy games", raytracing: "ray-traced games" };
-  const name = (id) => byId[id] ? byId[id].name : TYPE_NAMES[id] || window.Engine.WORKLOAD[id].label;
+  const name = (id) => byId[id] ? byId[id].name : window.I18N.t(`gtype.${id}`, null, window.Engine.WORKLOAD[id].label);
   const valid = (id) => !!(byId[id] || window.Engine.WORKLOAD[id]);
 
   window.Games = { list, byId, evaluate, name, valid };

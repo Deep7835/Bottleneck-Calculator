@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de cuello de botella CPU y GPU (2026) + FPS estimados</title>
+  <meta name="description" content="Calculadora de cuello de botella gratis: comprueba si tu procesador frena a tu tarjeta gráfica, mira los FPS estimados a 1080p, 1440p y 4K y descubre qué mejora lo soluciona. Más de 280 CPU y GPU, incluidas las RTX 50 y RX 9000.">
+  <link rel="canonical" href="https://www.example.com/es/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/">
+  <link rel="alternate" hreflang="es" href="https://www.example.com/es/">
+  <link rel="alternate" hreflang="ja" href="https://www.example.com/ja/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:title" content="Calculadora de cuello de botella: ¿tu CPU frena a tu GPU?">
+  <meta property="og:description" content="Comprueba el equilibrio entre CPU y GPU, los FPS estimados y los mínimos del 1% a cualquier resolución, y la mejora exacta que elimina el cuello de botella.">
+  <meta property="og:url" content="https://www.example.com/es/">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Calculadora de cuello de botella: equilibrio entre CPU y GPU, FPS y mejoras recomendadas">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadora de cuello de botella: ¿tu CPU frena a tu GPU?">
+  <meta name="twitter:description" content="Comprueba el equilibrio entre CPU y GPU, los FPS estimados y los mínimos del 1% a cualquier resolución, y la mejora exacta que elimina el cuello de botella.">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de cuello de botella",
+      "url": "https://www.example.com/es/",
+      "inLanguage": "es",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requiere JavaScript",
+      "description": "Calculadora gratuita de cuello de botella de CPU y GPU con FPS estimados a 1080p, 1440p, ultrawide y 4K, modelado por tipo de juego, comprobación de VRAM y recomendaciones de mejora.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "dateModified": "2026-10-20"
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:START -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué porcentaje de cuello de botella es bueno?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por debajo del 10% es un equilibrio excelente y entre el 10 y el 20% está bien para jugar. Entre el 20 y el 35%, un cuello de botella de CPU empieza a notarse en los mínimos del 1%. Por encima del 35% estás desperdiciando buena parte de tu GPU. Si la pieza que limita es la GPU, incluso porcentajes más altos están bien mientras tus FPS lleguen a tu objetivo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué precisión tiene una calculadora de cuello de botella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una buena es precisa para valorar el equilibrio y obtener unos FPS aproximados, normalmente con un margen de un 10–15% respecto a la media de los benchmarks. Ninguna calculadora puede predecir exactamente un juego concreto, porque el motor, los parches, los drivers, la refrigeración, la velocidad de la RAM y el software en segundo plano cambian los resultados. Las herramientas basadas en puntuaciones sintéticas como PassMark son mucho menos fiables para juegos que las basadas en benchmarks de juegos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es mejor tener cuello de botella de CPU o de GPU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De GPU. Un juego limitado por la GPU tiene tiempos de fotograma suaves y constantes, y puedes subir los FPS con los ajustes o con el escalado. Un juego limitado por la CPU tiene peores mínimos del 1% y tirones, y bajar los ajustes no ayuda."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Jugar a más resolución reduce el cuello de botella de CPU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Las resoluciones más altas añaden trabajo a la GPU pero apenas cambian el de la CPU, así que la GPU pasa a ser la pieza que limita. Pasar de 1080p a 1440p suele ser la solución más sencilla para una GPU potente con una CPU antigua. Tus FPS medios no subirán, pero la calidad de imagen mejora casi sin coste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿DLSS o FSR solucionan un cuello de botella de CPU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El escalado renderiza a una resolución interna más baja, lo que reduce el trabajo de la GPU y te mete todavía más en un cuello de botella de CPU. La generación de fotogramas es distinta: inserta fotogramas generados sin intervención de la CPU, así que puede mejorar la fluidez percibida cuando limita la CPU, a cambio de una latencia algo mayor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La RAM puede provocar un cuello de botella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. 8 GB de RAM se quedan cortos para los juegos actuales y provocan tirones. Usar un solo módulo (un canal) u olvidarse de activar XMP/EXPO también puede recortar entre un 10 y un 25% el rendimiento cuando limita la CPU. Para jugar en 2026, lo ideal son 32 GB de DDR5 en doble canal (o 16–32 GB de DDR4-3600)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Un cuello de botella puede dañar mi PC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Un cuello de botella es un desajuste de rendimiento, no una avería. Ninguna pieza trabaja por encima de lo que permite su diseño. El único coste es el rendimiento que has pagado y no puedes aprovechar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es posible un cuello de botella del 0%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En la práctica, no. En cada fotograma una pieza termina después que la otra, y el equilibrio cambia entre juegos e incluso entre escenas. Un resultado por debajo del 10% significa que las piezas están todo lo bien emparejadas que se puede conseguir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La calculadora sirve para portátiles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluye los procesadores y las gráficas de portátil más populares, marcados como «Portátil». Las GPU de portátil varían mucho según su límite de potencia (TGP) y su refrigeración, así que los modelos finos y ligeros pueden rendir un 10–25% por debajo de la estimación."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué cada calculadora de cuello de botella da un resultado distinto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque usan datos y fórmulas diferentes. Muchas comparan puntuaciones sintéticas de CPU que no reflejan el rendimiento en juegos, ignoran la resolución o tratan un cuello de botella de GPU como un problema. Esta calculadora usa índices específicos para juegos, tiene en cuenta la resolución, la calidad, el escalado, la VRAM y el tipo de juego, y muestra su fórmula completa más arriba."
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:END -->
+</head>
+<body>
+  <a class="skip" href="#calculator">Saltar a la calculadora</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../es/" aria-label="Inicio de la calculadora de cuello de botella">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../es/calculadora-fps/">Calculadora de FPS</a>
+        <a href="#how-it-works">Método</a>
+        <a href="#min-cpu">CPU para tu GPU</a>
+        <a href="#popular">Combinaciones</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>Actualizado en octubre de 2026 · 284 CPU y GPU</p>
+        <h1 class="reveal">Calculadora de cuello de botella</h1>
+        <p class="lead reveal">Comprueba si hay cuello de botella entre tu CPU y tu GPU, cuántos FPS puedes esperar y qué mejora lo soluciona de verdad.</p>
+      </section>
+
+      <section id="calculator" class="calc reveal" aria-label="Calculadora de cuello de botella">
+        <form class="card builder" id="calc-form" autocomplete="off" onsubmit="return false">
+          <div class="builder-main">
+            <div class="field">
+              <label for="cpu-input">Procesador</label>
+              <div class="combo" data-kind="cpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <input id="cpu-input" value="AMD Ryzen 7 7800X3D" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cpu-list" aria-describedby="cpu-meta" spellcheck="false" placeholder="Busca tu CPU, p. ej. 7800X3D">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Mostrar todos los procesadores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="cpu-list" class="combo-list" role="listbox" aria-label="Procesadores" hidden></ul>
+              </div>
+              <div class="field-meta" id="cpu-meta">8 núcleos / 16 hilos · AM5 · 2023</div>
+            </div>
+            <div class="builder-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="field">
+              <label for="gpu-input">Tarjeta gráfica</label>
+              <div class="combo" data-kind="gpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="9" cy="12" r="2.5"/><circle cx="16" cy="12" r="2.5"/><path d="M5 17v2"/></svg>
+                <input id="gpu-input" value="NVIDIA GeForce RTX 5070 Ti" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gpu-list" aria-describedby="gpu-meta" spellcheck="false" placeholder="Busca tu GPU, p. ej. RTX 5070">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Mostrar todas las tarjetas gráficas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="gpu-list" class="combo-list" role="listbox" aria-label="Tarjetas gráficas" hidden></ul>
+              </div>
+              <div class="field-meta" id="gpu-meta">16 GB VRAM · Ray tracing ✓ · 2025</div>
+            </div>
+          </div>
+
+          <div class="builder-sub">
+            <div class="field field-res">
+              <span class="field-label" id="res-label">Resolución</span>
+              <div class="seg" role="radiogroup" aria-labelledby="res-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="res" value="1080p"><span>1080p</span></label>
+                <label><input type="radio" name="res" value="1440p" checked><span>1440p</span></label>
+                <label><input type="radio" name="res" value="uw1440"><span>UW</span></label>
+                <label><input type="radio" name="res" value="4k"><span>4K</span></label>
+              </div>
+            </div>
+            <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false" aria-controls="more">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+              <span class="more-text"><b>Ajustes</b><span id="opt-summary">Alto · Juegos AAA · 32 GB · 165 Hz</span></span>
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <div class="more" id="more">
+            <div class="more-inner">
+              <div class="more-grid">
+                <div class="field">
+                  <span class="field-label" id="q-label">Calidad gráfica</span>
+              <div class="seg" role="radiogroup" aria-labelledby="q-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="quality" value="low"><span>Bajo</span></label>
+                <label><input type="radio" name="quality" value="medium"><span>Medio</span></label>
+                <label><input type="radio" name="quality" value="high" checked><span>Alto</span></label>
+                <label><input type="radio" name="quality" value="ultra"><span>Ultra</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <span class="field-label" id="ram-label">Memoria (RAM)</span>
+              <div class="seg" role="radiogroup" aria-labelledby="ram-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="ram" value="8"><span>8 GB</span></label>
+                <label><input type="radio" name="ram" value="16"><span>16 GB</span></label>
+                <label><input type="radio" name="ram" value="32" checked><span>32 GB</span></label>
+                <label><input type="radio" name="ram" value="64"><span>64 GB</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <label for="workload">Juegos a los que juegas</label>
+                  <select id="workload" name="workload">
+                    <option value="general" selected>AAA / juegos variados</option>
+                    <option value="esports">Esports competitivos (CS2, Valorant, Fortnite)</option>
+                    <option value="cpuheavy">Exigentes en CPU (estrategia, simuladores, MMO)</option>
+                    <option value="raytracing">Ray tracing / path tracing</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="upscale">Escalado</label>
+                  <select id="upscale" name="upscale">
+                    <option value="off" selected>Desactivado (nativo)</option>
+                    <option value="quality">DLSS/FSR Calidad</option>
+                    <option value="balanced">DLSS/FSR Equilibrado</option>
+                    <option value="performance">DLSS/FSR Rendimiento</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hz">Frecuencia del monitor</label>
+                  <select id="hz" name="hz">
+                    <option value="60">60 Hz</option>
+                    <option value="75">75 Hz</option>
+                    <option value="120">120 Hz</option>
+                    <option value="144">144 Hz</option>
+                    <option value="165" selected>165 Hz</option>
+                    <option value="180">180 Hz</option>
+                    <option value="240">240 Hz</option>
+                    <option value="360">360 Hz</option>
+                  </select>
+                </div>
+                <label class="switch"><input type="checkbox" id="streaming" name="streaming" role="switch"><span class="switch-track" aria-hidden="true"></span>Streaming o grabación (codificación por CPU)</label>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <section class="card results" id="results" data-tone="gpu" aria-label="Resultado">
+          <div class="results-head">
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 124">
+                <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <path class="fill" id="gauge-fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+              </svg>
+              <div class="gauge-value"><strong class="num" id="pct">30%</strong><small id="pct-label">cuello de botella de GPU</small></div>
+            </div>
+            <div class="verdict" aria-live="polite">
+              <span class="tone-pill" id="tone-pill">Limitado por GPU</span>
+              <h2 id="verdict-title">Limitado por GPU, la CPU tiene margen</h2>
+              <p id="verdict-text">Tu RTX 5070 Ti es la pieza que marca el límite a 1440p, que es la situación normal y la preferible para jugar. El Ryzen 7 7800X3D tiene margen para unos 176 FPS, así que podrá con una GPU más rápida en el futuro.</p>
+            </div>
+          </div>
+
+          <div class="pipeline" id="pipeline" role="img" aria-label="Cadena de fotogramas">
+            <canvas id="pipe-canvas" aria-hidden="true"></canvas>
+            <div class="pipe-node node-cpu" id="node-cpu"><span class="pipe-name">CPU</span><span class="pipe-val num"><span id="cap-cpu-val">176</span><span class="pu"> FPS</span></span><span class="pipe-tag">Límite</span></div>
+            <div class="pipe-node node-gpu" id="node-gpu"><span class="pipe-name">GPU</span><span class="pipe-val num"><span id="cap-gpu-val">124</span><span class="pu"> FPS</span></span><span class="pipe-tag">Límite</span></div>
+            <div class="pipe-node node-display" id="node-display"><span class="pipe-name">Monitor</span><span class="pipe-val num" id="cap-hz-val">165 Hz</span></div>
+          </div>
+          <p class="pipe-note">Fotogramas máximos que puede entregar cada pieza. Se acumulan delante de la más lenta.</p>
+
+          <div class="stats">
+            <div class="stat"><small>FPS medios</small><strong class="num" id="s-fps">123</strong></div>
+            <div class="stat"><small>Mín. 1%</small><strong class="num" id="s-low">101</strong></div>
+            <div class="stat"><small>Uso de CPU</small><strong class="num"><span id="s-cpu">70</span><span class="unit">%</span></strong><div class="meter"><i id="m-cpu"></i></div></div>
+            <div class="stat"><small>Uso de GPU</small><strong class="num"><span id="s-gpu">99</span><span class="unit">%</span></strong><div class="meter"><i id="m-gpu"></i></div></div>
+          </div>
+
+          <div class="result-actions">
+            <span class="context" id="context-line">1440p (2560×1440) · Alto · Juegos AAA</span>
+            <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Copiar enlace</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="details reveal-group" id="details">
+        <section class="card panel">
+          <h3>Cuello de botella por resolución</h3>
+          <p class="sub">Mismo equipo y ajustes, distintas resoluciones.</p>
+          <div class="table-scroll"><table id="res-table"><thead><tr><th>Resolución</th><th class="r">FPS medios</th><th class="r">Mín. 1%</th><th>Cuello de botella</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>FPS por tipo de juego</h3>
+          <p class="sub" id="wl-sub">Con la resolución y la calidad que has elegido.</p>
+          <div class="table-scroll"><table id="wl-table"><thead><tr><th>Tipo de juego</th><th class="r">FPS medios</th><th>Limitado por</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>Recomendaciones</h3>
+          <p class="sub">Específicas para tus piezas y tus ajustes.</p>
+          <ul class="tips" id="tips"></ul>
+        </section>
+        <section class="card panel">
+          <h3 id="up-title">Sugerencias de mejora</h3>
+          <p class="sub" id="up-sub">Las mejoras mínimas que equilibran tu equipo.</p>
+          <div class="upgrades" id="upgrades"></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="En esta página">
+        <p>En esta página</p>
+        <ol>
+          <li><a href="#what-is">¿Qué es un cuello de botella?</a></li>
+          <li><a href="#how-to-use">Cómo usar la calculadora</a></li>
+          <li><a href="#how-it-works">Cómo lo calculamos</a></li>
+          <li><a href="#thresholds">Qué % es aceptable</a></li>
+          <li><a href="#cpu-vs-gpu">Cuello de botella de CPU o de GPU</a></li>
+          <li><a href="#resolution">Por qué importa la resolución</a></li>
+          <li><a href="#min-cpu">La mejor CPU para tu GPU</a></li>
+          <li><a href="#popular">Combinaciones populares</a></li>
+          <li><a href="#fix">Cómo solucionarlo</a></li>
+          <li><a href="#check">Compruébalo en tu PC</a></li>
+          <li><a href="#platforms">Mejor CPU por plataforma</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="what-is">
+          <h2>¿Qué es un cuello de botella en un PC?</h2>
+          <p>Cada fotograma de un juego se crea en dos fases. Primero el <strong>procesador (CPU)</strong> calcula la lógica del juego, la física, la IA y las llamadas de dibujado. Después la <strong>tarjeta gráfica (GPU)</strong> convierte ese fotograma en píxeles. Las dos piezas trabajan en cadena, así que tu tasa de FPS nunca puede superar a la más lenta de las dos. Esa pieza más lenta es el <strong>cuello de botella</strong>.</p>
+          <p>Una calculadora de cuello de botella estima cuántos fotogramas puede entregar cada pieza por sí sola y los compara. Si tu CPU puede preparar 110 fotogramas por segundo pero tu GPU podría renderizar 180, la GPU pasa cerca del 39% del tiempo esperando a la CPU. Ese rendimiento de la gráfica se desperdicia, y esa es la cifra que esta herramienta muestra como porcentaje de cuello de botella.</p>
+          <div class="callout"><p><strong>En resumen:</strong> siempre hay algo de cuello de botella, porque una pieza siempre es la más lenta. Lo que importa es <em>qué</em> pieza te limita, cuánto, y si tus FPS son suficientes para tu monitor. Un cuello de botella de GPU a 4K es normal y sano. Un cuello de botella grande de CPU a 1080p significa que has pagado por potencia gráfica que no puedes usar.</p></div>
+        </section>
+
+        <section id="how-to-use">
+          <h2>Cómo usar esta calculadora de cuello de botella</h2>
+          <ol class="steps">
+            <li><strong>Elige tu CPU y tu GPU.</strong> Empieza a escribir un número de modelo como «5600», «14600K» o «5070 Ti». Se incluyen los chips de portátil y las gráficas integradas.</li>
+            <li><strong>Elige la resolución y la calidad.</strong> Son lo que más cambia la carga de la GPU. Pon la resolución a la que juegas de verdad, no la máxima que admite tu monitor.</li>
+            <li><strong>Selecciona el tipo de juegos.</strong> Los esports, los simuladores y los juegos con ray tracing cargan la CPU y la GPU de formas muy distintas.</li>
+            <li><strong>Ajusta el escalado, la frecuencia y la RAM.</strong> DLSS/FSR reduce la carga de la GPU, la frecuencia del monitor indica cuántos fotogramas puedes ver realmente y 8 GB de RAM provocan tirones por sí solos.</li>
+            <li><strong>Lee el veredicto y las recomendaciones.</strong> Revisa la tabla por resolución, la tabla por tipo de juego y las tarjetas de mejora. Copia el enlace del resultado para compartir tu equipo en Reddit o Discord.</li>
+          </ol>
+        </section>
+
+        <section id="how-it-works">
+          <h2>Cómo calculamos el cuello de botella y los FPS</h2>
+          <p>Muchas calculadoras de cuello de botella comparan puntuaciones sintéticas como PassMark o Cinebench. Esas pruebas miden renderizado multinúcleo, no rendimiento en juegos, así que colocan un procesador de estación de trabajo de 16 núcleos muy por encima de una CPU gaming X3D de 8 núcleos. En juegos es justo al revés. Esta calculadora usa <strong>índices de rendimiento específicos para juegos</strong>.</p>
+          <h3>1. Límite de FPS de la CPU</h3>
+          <p>Cada CPU tiene un índice gaming calibrado con medias de benchmarks publicados limitados por CPU (1080p, la GPU más rápida, juegos actuales). El Ryzen 7 9800X3D vale 100. Ese índice se convierte en un límite de fotogramas por segundo y después se ajusta según el tipo de juego, la calidad gráfica, la cantidad de RAM y la carga del streaming. El límite de la CPU no depende de la resolución, porque la CPU hace el mismo trabajo por fotograma a 1080p que a 4K.</p>
+          <h3>2. Límite de FPS de la GPU</h3>
+          <p>Cada GPU tiene un índice de rendimiento en rasterización (RTX 4090 = 100) calibrado con medias de benchmarks limitados por GPU. Lo escalamos según la resolución con una curva medida (número de píxeles<sup>−0,62</sup>, no una caída lineal ingenua). Después aplicamos la calidad, el escalado, la eficiencia en ray tracing (distinta entre las arquitecturas de NVIDIA, AMD e Intel) y una penalización de VRAM cuando tus ajustes necesitan más memoria de vídeo de la que tiene la tarjeta.</p>
+          <h3>3. Cómo se combinan</h3>
+<div class="formula">Límite CPU = índice CPU × 2,0 × tipo de juego × calidad × RAM × streaming
+Límite GPU = índice GPU × 2,3 × (píxeles ÷ 1080p)^−0,62 × tipo de juego
+             × calidad × escalado × ray tracing × VRAM
+FPS medios = mín. suave(límite CPU, límite GPU)
+Cuello de botella = (límite mayor − límite menor) ÷ límite mayor × 100%</div>
+          <p>El mínimo suave refleja lo que pasa en la realidad: cuando las dos piezas están cerca de su límite, el ritmo de fotogramas empeora y el resultado queda un poco por debajo de ambos límites. Los mínimos del 1% se estiman a partir de la pieza que limita. Los juegos limitados por CPU tienen peores mínimos, y los chips X3D, con su caché extra, los tienen mejores.</p>
+          <p><strong>Precisión:</strong> de media en muchos juegos, las estimaciones suelen quedar a un 10–15% de los benchmarks reales. Un juego concreto puede variar más por particularidades del motor, versiones de drivers, parches, refrigeración, límites de potencia, velocidad de la RAM y aplicaciones en segundo plano. Usa el resultado para valorar el equilibrio y las mejoras, no como una cifra exacta de FPS para un juego.</p>
+        </section>
+
+        <section id="thresholds">
+          <h2>¿Qué porcentaje de cuello de botella es aceptable?</h2>
+          <p>Estos son los umbrales que usamos en todo el sitio. La calculadora, esta tabla y las preguntas frecuentes usan las mismas cifras.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Cuello de botella</th><th>Si limita la CPU</th><th>Si limita la GPU</th></tr></thead>
+              <tbody>
+                <tr><td><span class="dot" data-tone="excellent"></span><strong>0–10%</strong></td><td>Equilibrio excelente</td><td>Equilibrio excelente</td></tr>
+                <tr><td><span class="dot" data-tone="good"></span><strong>10–20%</strong></td><td>Leve. Apenas se nota</td><td>Bien equilibrado. Es el estado ideal para jugar</td></tr>
+                <tr><td><span class="dot" data-tone="moderate"></span><strong>20–35%</strong></td><td>Moderado. Peores mínimos y GPU parcialmente ociosa</td><td>Limitado por GPU. Tu CPU podrá con una GPU más potente en el futuro</td></tr>
+                <tr><td><span class="dot" data-tone="severe"></span><strong>35%+</strong></td><td>Grave. Cambia la CPU antes que la GPU</td><td>Muy limitado por la GPU. Bien si los FPS te bastan; si no, cambia la GPU</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Fíjate en que las dos columnas no se tratan igual. Un cuello de botella de GPU solo significa que tu tarjeta gráfica trabaja a pleno rendimiento, que es justo para lo que la compraste. Un cuello de botella de CPU provoca tiempos de fotograma irregulares, tirones en las escenas cargadas y una GPU parada.</p>
+        </section>
+
+        <section id="cpu-vs-gpu">
+          <h2>Cuello de botella de CPU o de GPU: ¿cuál es peor?</h2>
+          <p><strong>Para jugar, un cuello de botella de CPU es peor.</strong> Cuando limita la CPU, los tiempos de fotograma se disparan con cada explosión, multitud o evento de física, así que los mínimos del 1% caen y el juego va a trompicones aunque la media de FPS parezca buena. Bajar los gráficos apenas ayuda, porque el problema no era la GPU.</p>
+          <p><strong>Un cuello de botella de GPU es el estado normal y preferible.</strong> Los fotogramas llegan de forma regular y controlas el rendimiento con los ajustes: bajar las sombras, activar DLSS o FSR o reducir la resolución. La mayoría de los PC gaming bien montados están ligeramente limitados por la GPU a su resolución objetivo.</p>
+          <h3>Señales de que tu CPU es el cuello de botella</h3>
+          <ul>
+            <li>El uso de la GPU se queda muy por debajo del 95% en partida mientras los FPS son más bajos de lo que quieres.</li>
+            <li>Bajar la resolución o los ajustes gráficos no sube los FPS.</li>
+            <li>Tirones en zonas concurridas, como ciudades, batallas grandes o partidas con muchos jugadores.</li>
+            <li>Uno o dos hilos de la CPU están cerca del 100% aunque el uso total parezca moderado.</li>
+          </ul>
+        </section>
+
+        <section id="resolution">
+          <h2>Por qué la resolución cambia el cuello de botella</h2>
+          <p>El trabajo de la CPU por fotograma es casi el mismo a cualquier resolución. El de la GPU crece con cada píxel extra, y 4K tiene cuatro veces los píxeles de 1080p. Por eso, al subir de resolución bajan los FPS de la GPU mientras el límite de la CPU se mantiene. El cuello de botella se desplaza de la CPU hacia la GPU.</p>
+          <p>Este es un Ryzen 5 3600 con una RTX 4070 Super en calidad Alta, calculado con esta herramienta:</p>
+          <div class="table-scroll"><table><thead><tr><th>Resolución</th><th class="r">Límite CPU</th><th class="r">Límite GPU</th><th class="r">FPS medios</th><th>Cuello de botella</th></tr></thead><tbody><tr><td>1080p (1920×1080)</td><td class="r num">84</td><td class="r num">138</td><td class="r num">84</td><td><span class="dot" data-tone="severe"></span>CPU 39%</td></tr><tr><td>1440p (2560×1440)</td><td class="r num">84</td><td class="r num">96</td><td class="r num">81</td><td><span class="dot" data-tone="good"></span>CPU 13%</td></tr><tr><td>Ultrawide 1440p (3440×1440)</td><td class="r num">84</td><td class="r num">80</td><td class="r num">75</td><td><span class="dot" data-tone="excellent"></span>Equilibrado</td></tr><tr><td>4K (3840×2160)</td><td class="r num">84</td><td class="r num">58</td><td class="r num">58</td><td><span class="dot" data-tone="gpu"></span>GPU 30%</td></tr></tbody></table></div>
+          <p>La misma GPU está muy frenada a 1080p, casi equilibrada a 1440p y aprovechada al completo a 4K. Por eso la pregunta «¿me hará cuello de botella?» solo tiene sentido si va acompañada de una resolución. También explica por qué el escalado (que renderiza a una resolución interna más baja) puede <em>aumentar</em> un cuello de botella de CPU.</p>
+        </section>
+
+        <section id="min-cpu">
+          <h2>La mejor CPU para tu GPU (CPU mínima sin cuello de botella)</h2>
+          <p>Esta es la CPU popular más asequible que mantiene cada tarjeta gráfica por debajo de un 10% de cuello de botella en calidad Alta y juegos AAA. Cualquier procesador más rápido también sirve. «Ryzen 5 3600+» significa que basta con cualquier CPU moderna de 6 núcleos. Calculado con los mismos datos que la herramienta de arriba.</p>
+          <div class="table-scroll"><table><thead><tr><th>Tarjeta gráfica</th><th>1080p</th><th>1440p</th><th>4K</th></tr></thead><tbody><tr><td><strong>RTX 5090</strong></td><td>Ryzen 7 9800X3D <small>(sigue limitado por CPU)</small></td><td>Ryzen 7 9800X3D</td><td>Core i5-12400F</td></tr><tr><td><strong>RTX 5080</strong></td><td>Ryzen 7 9800X3D</td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070 Ti</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070 XT</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070</strong></td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070</strong></td><td>Ryzen 7 7700X</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4070 Super</strong></td><td>Core i5-13400F</td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 7800 XT</strong></td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060 Ti 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9060 XT 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060</strong></td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4060</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>Arc B580</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 3060 12GB</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr></tbody></table></div>
+          <p>¿Juegas a esports a 240 Hz o más? Elige una CPU más rápida de lo que indica la tabla. Los juegos competitivos en calidad baja trasladan casi todo el trabajo a la CPU, y ahí es donde brillan los chips X3D como el Ryzen 7 7800X3D y el 9800X3D.</p>
+        </section>
+
+        <section id="popular">
+          <h2>Combinaciones populares de CPU y GPU</h2>
+          <p>Resultados en directo de los equipos por los que más se pregunta. Haz clic en cualquier tarjeta para cargarla en la calculadora y cambiar los ajustes.</p>
+          <div class="combos"><a class="combo-card" href="?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti#calculator"><b>Ryzen 7 7800X3D + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">Limitado por GPU 30%</em> · ≈123 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5090&amp;res=4k#calculator"><b>Ryzen 7 9800X3D + RTX 5090</b><span>4K · <em data-tone="gpu">Limitado por GPU 36%</em> · ≈127 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080#calculator"><b>Ryzen 7 9800X3D + RTX 5080</b><span>1440p · <em data-tone="gpu">Limitado por GPU 29%</em> · ≈140 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070#calculator"><b>Ryzen 5 7600 + RTX 5070</b><span>1440p · <em data-tone="gpu">Limitado por GPU 26%</em> · ≈100 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p#calculator"><b>Ryzen 5 5600 + RTX 4060</b><span>1080p · <em data-tone="gpu">Limitado por GPU 28%</em> · ≈75 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=rtx-5060&amp;res=1080p#calculator"><b>Core i5-12400F + RTX 5060</b><span>1080p · <em data-tone="gpu">Limitado por GPU 21%</em> · ≈93 FPS</span></a><a class="combo-card" href="?cpu=i5-13400f&amp;gpu=rtx-4070-super#calculator"><b>Core i5-13400F + RTX 4070 Super</b><span>1440p · <em data-tone="gpu">Limitado por GPU 23%</em> · ≈95 FPS</span></a><a class="combo-card" href="?cpu=i5-14600k&amp;gpu=rx-9070-xt#calculator"><b>Core i5-14600K + RX 9070 XT</b><span>1440p · <em data-tone="gpu">Limitado por GPU 22%</em> · ≈117 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5700x3d&amp;gpu=rx-9070#calculator"><b>Ryzen 7 5700X3D + RX 9070</b><span>1440p · <em data-tone="gpu">Limitado por GPU 20%</em> · ≈104 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-3600&amp;gpu=rtx-3060-12gb&amp;res=1080p#calculator"><b>Ryzen 5 3600 + RTX 3060 12GB</b><span>1080p · <em data-tone="gpu">Limitado por GPU 23%</em> · ≈63 FPS</span></a><a class="combo-card" href="?cpu=i7-14700k&amp;gpu=rtx-4070-ti-super#calculator"><b>Core i7-14700K + RTX 4070 Ti Super</b><span>1440p · <em data-tone="gpu">Limitado por GPU 31%</em> · ≈112 FPS</span></a><a class="combo-card" href="?cpu=ultra-7-265k&amp;gpu=rtx-5070-ti#calculator"><b>Core Ultra 7 265K + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">Limitado por GPU 21%</em> · ≈122 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5800x3d&amp;gpu=rtx-4080-super#calculator"><b>Ryzen 7 5800X3D + RTX 4080 Super</b><span>1440p · <em data-tone="excellent">Equilibrado</em> · ≈122 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600x&amp;gpu=rx-7800-xt#calculator"><b>Ryzen 5 5600X + RX 7800 XT</b><span>1440p · <em data-tone="gpu">Limitado por GPU 18%</em> · ≈86 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=arc-b580&amp;res=1080p#calculator"><b>Core i5-12400F + Arc B580</b><span>1080p · <em data-tone="gpu">Limitado por GPU 35%</em> · ≈78 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9700x&amp;gpu=rx-9060-xt-16gb&amp;res=1080p#calculator"><b>Ryzen 7 9700X + RX 9060 XT 16GB</b><span>1080p · <em data-tone="gpu">Limitado por GPU 34%</em> · ≈101 FPS</span></a></div>
+          <p><a href="../bottleneck/" hreflang="en"><strong>Ver todas las combinaciones populares de CPU y GPU</strong></a> (en inglés), con el cuello de botella y los FPS ya calculados a 1080p, 1440p y 4K.</p>
+        </section>
+
+        <section id="fix">
+          <h2>Cómo solucionar un cuello de botella</h2>
+          <h3>Si el cuello de botella es la CPU</h3>
+          <ul>
+            <li><strong>Sube la resolución o la calidad gráfica.</strong> Casi no cuesta nada cuando la GPU está ociosa, y el juego se ve mejor con prácticamente los mismos FPS.</li>
+            <li><strong>Activa XMP/EXPO y usa la RAM en doble canal.</strong> Un solo módulo de memoria o la RAM a los 2133/4800 MT/s de fábrica pueden costar un 10–25% de rendimiento cuando limita la CPU.</li>
+            <li><strong>Mejora primero dentro de tu socket.</strong> En AM4, un Ryzen 7 5700X3D o 5800X3D suele ser el salto grande más barato, sin cambiar de placa base.</li>
+            <li><strong>Cierra las aplicaciones en segundo plano y usa codificación por hardware</strong> (NVENC, AMF o Quick Sync) para hacer streaming.</li>
+            <li><strong>Usa la generación de fotogramas</strong> (DLSS 3/4 Frame Generation o FSR 3/4) para ganar fluidez percibida cuando limita la CPU. No añade fotogramas «reales», pero puede ayudar en juegos para un jugador.</li>
+            <li><strong>Revisa la refrigeración.</strong> Una CPU que llega a 95–100 °C baja frecuencias y se convierte en un cuello de botella que no debería ser.</li>
+          </ul>
+          <h3>Si el cuello de botella es la GPU</h3>
+          <ul>
+            <li><strong>Activa DLSS, FSR o XeSS</strong> en modo Calidad. Normalmente da un 30–50% más de FPS con poca pérdida visible.</li>
+            <li><strong>Baja los ajustes más pesados:</strong> ray tracing, sombras, niebla volumétrica y reflejos en espacio de pantalla, en ese orden.</li>
+            <li><strong>Reduce la calidad de las texturas si te quedas sin VRAM.</strong> Los tirones y las texturas borrosas en tarjetas de 8 GB son un cuello de botella de VRAM.</li>
+            <li><strong>Actualiza los drivers gráficos</strong> y asegúrate de que el cable del monitor está conectado a la tarjeta gráfica, no a la placa base.</li>
+            <li><strong>Cambia de GPU.</strong> Las tarjetas de mejora de arriba muestran qué modelos encajan con tu CPU sin crear un nuevo cuello de botella de CPU.</li>
+          </ul>
+        </section>
+
+        <section id="check">
+          <h2>Cómo comprobar el cuello de botella en tu propio PC</h2>
+          <p>Una calculadora te da una predicción. Para confirmarla en un juego real, usa una superposición de rendimiento gratuita:</p>
+          <ol>
+            <li>Instala <strong>MSI Afterburner</strong> con RivaTuner Statistics Server, o usa la superposición de la NVIDIA App o de AMD Adrenalin.</li>
+            <li>Activa en pantalla el <strong>uso de la GPU, el uso de la CPU por hilo, los FPS y el tiempo de fotograma</strong>.</li>
+            <li>Juega unos minutos en la parte más exigente de tu juego con el V-Sync y los límites de FPS desactivados.</li>
+            <li><strong>Un uso de GPU del 95–99%</strong> significa que estás limitado por la GPU, lo cual es sano. <strong>Un uso de GPU claramente por debajo del 90%</strong> con FPS inferiores a tu objetivo significa que el cuello de botella es la CPU (o la RAM).</li>
+            <li>Compruébalo bajando la resolución. Si los FPS no suben, estás limitado por la CPU.</li>
+          </ol>
+          <p>El Administrador de tareas de Windows no es fiable para esto. Su porcentaje total de CPU promedia todos los núcleos, así que un juego que satura dos hilos de una CPU de 16 hilos muestra solo un «25% de uso de CPU» aunque esté completamente limitado por la CPU.</p>
+        </section>
+
+        <section id="platforms">
+          <h2>Las mejores CPU gaming para actualizar, por plataforma</h2>
+          <p>Cambiar la CPU manteniendo la placa base es la forma más barata de eliminar un cuello de botella de CPU. Actualiza la BIOS antes de cambiar el procesador.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Socket</th><th>La mejor para jugar</th><th>La de mejor calidad-precio</th><th>Notas</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AM4</strong></td><td>Ryzen 7 5800X3D / 5700X3D</td><td>Ryzen 5 5600 / 5600X</td><td>Los X3D son las mejores CPU AM4 para jugar. Evita los 5600G/5700G con gráficas rápidas: tienen la mitad de caché y PCIe 3.0.</td></tr>
+                <tr><td><strong>AM5</strong></td><td>Ryzen 7 9850X3D / 9800X3D</td><td>Ryzen 5 7600 / 9600X</td><td>El 7800X3D sigue siendo una compra excelente. AMD se ha comprometido a dar soporte a AM5 en futuras CPU.</td></tr>
+                <tr><td><strong>LGA1700</strong></td><td>Core i7-14700K / i9-14900K</td><td>Core i5-13400F / i5-14600K</td><td>Instala la última BIOS con el microcódigo de estabilidad de Intel para 13.ª y 14.ª generación antes de cambiar de CPU.</td></tr>
+                <tr><td><strong>LGA1851</strong></td><td>Core Ultra 9 285K</td><td>Core Ultra 5 245K</td><td>Muy buena en productividad. En juegos está cerca de la 14.ª generación, así que la DDR5 rápida ayuda.</td></tr>
+                <tr><td><strong>LGA1200</strong></td><td>Core i9-11900K / i9-10900K</td><td>Core i5-11400F</td><td>Plataforma sin futuro. Vale para GPU del nivel de una RTX 4060; para tarjetas más rápidas, plantéate cambiar de plataforma.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Preguntas frecuentes</h2>
+          <details open><summary>¿Qué porcentaje de cuello de botella es bueno?</summary><div><p>Por debajo del 10% es un equilibrio excelente y entre el 10 y el 20% está bien para jugar. Entre el 20 y el 35%, un cuello de botella de CPU empieza a notarse en los mínimos del 1%. Por encima del 35% estás desperdiciando buena parte de tu GPU. Si la pieza que limita es la GPU, incluso porcentajes más altos están bien mientras tus FPS lleguen a tu objetivo.</p></div></details>
+          <details><summary>¿Qué precisión tiene una calculadora de cuello de botella?</summary><div><p>Una buena es precisa para valorar el equilibrio y obtener unos FPS aproximados, normalmente con un margen de un 10–15% respecto a la media de los benchmarks. Ninguna calculadora puede predecir exactamente un juego concreto, porque el motor, los parches, los drivers, la refrigeración, la velocidad de la RAM y el software en segundo plano cambian los resultados. Las herramientas basadas en puntuaciones sintéticas como PassMark son mucho menos fiables para juegos que las basadas en benchmarks de juegos.</p></div></details>
+          <details><summary>¿Es mejor tener cuello de botella de CPU o de GPU?</summary><div><p>De GPU. Un juego limitado por la GPU tiene tiempos de fotograma suaves y constantes, y puedes subir los FPS con los ajustes o con el escalado. Un juego limitado por la CPU tiene peores mínimos del 1% y tirones, y bajar los ajustes no ayuda.</p></div></details>
+          <details><summary>¿Jugar a más resolución reduce el cuello de botella de CPU?</summary><div><p>Sí. Las resoluciones más altas añaden trabajo a la GPU pero apenas cambian el de la CPU, así que la GPU pasa a ser la pieza que limita. Pasar de 1080p a 1440p suele ser la solución más sencilla para una GPU potente con una CPU antigua. Tus FPS medios no subirán, pero la calidad de imagen mejora casi sin coste.</p></div></details>
+          <details><summary>¿DLSS o FSR solucionan un cuello de botella de CPU?</summary><div><p>No. El escalado renderiza a una resolución interna más baja, lo que reduce el trabajo de la GPU y te mete todavía más en un cuello de botella de CPU. La generación de fotogramas es distinta: inserta fotogramas generados sin intervención de la CPU, así que puede mejorar la fluidez percibida cuando limita la CPU, a cambio de una latencia algo mayor.</p></div></details>
+          <details><summary>¿La RAM puede provocar un cuello de botella?</summary><div><p>Sí. 8 GB de RAM se quedan cortos para los juegos actuales y provocan tirones. Usar un solo módulo (un canal) u olvidarse de activar XMP/EXPO también puede recortar entre un 10 y un 25% el rendimiento cuando limita la CPU. Para jugar en 2026, lo ideal son 32 GB de DDR5 en doble canal (o 16–32 GB de DDR4-3600).</p></div></details>
+          <details><summary>¿Un cuello de botella puede dañar mi PC?</summary><div><p>No. Un cuello de botella es un desajuste de rendimiento, no una avería. Ninguna pieza trabaja por encima de lo que permite su diseño. El único coste es el rendimiento que has pagado y no puedes aprovechar.</p></div></details>
+          <details><summary>¿Es posible un cuello de botella del 0%?</summary><div><p>En la práctica, no. En cada fotograma una pieza termina después que la otra, y el equilibrio cambia entre juegos e incluso entre escenas. Un resultado por debajo del 10% significa que las piezas están todo lo bien emparejadas que se puede conseguir.</p></div></details>
+          <details><summary>¿La calculadora sirve para portátiles?</summary><div><p>Sí. Incluye los procesadores y las gráficas de portátil más populares, marcados como «Portátil». Las GPU de portátil varían mucho según su límite de potencia (TGP) y su refrigeración, así que los modelos finos y ligeros pueden rendir un 10–25% por debajo de la estimación.</p></div></details>
+          <details><summary>¿Por qué cada calculadora de cuello de botella da un resultado distinto?</summary><div><p>Porque usan datos y fórmulas diferentes. Muchas comparan puntuaciones sintéticas de CPU que no reflejan el rendimiento en juegos, ignoran la resolución o tratan un cuello de botella de GPU como un problema. Esta calculadora usa índices específicos para juegos, tiene en cuenta la resolución, la calidad, el escalado, la VRAM y el tipo de juego, y muestra su fórmula completa más arriba.</p></div></details>
+        </section>
+
+        <section id="updates">
+          <h2>Actualizaciones de datos</h2>
+          <p><strong>Octubre de 2026:</strong> añadidos el Ryzen 7 9850X3D, la RTX 5050, la RX 9060 XT y la Arc B570. Recalibrados los índices de GPU con los resultados de los últimos drivers. Añadidas las gráficas de portátil e integradas, el modelo de eficiencia en ray tracing y la penalización por VRAM.</p>
+          <p>¿Falta alguna CPU o GPU? La base de datos se actualiza con regularidad a medida que sale hardware nuevo.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Sitio"><a href="../es/" aria-current="page">Calculadora de cuello de botella</a><a href="../es/calculadora-fps/">Calculadora de FPS</a><a href="../bottleneck/" hreflang="en">Combinaciones populares (en inglés)</a><a href="../guides/" hreflang="en">Guías (en inglés)</a><a href="../about/" hreflang="en">Quiénes somos</a><a href="../editorial-policy/" hreflang="en">Política editorial</a><a href="../privacy/" hreflang="en">Privacidad</a><a href="../contact/" hreflang="en">Contacto</a></nav>
+      <nav class="lang-switch" aria-label="Idioma"><a href="../" lang="en" hreflang="en">English</a><span aria-hidden="true">·</span><a href="../es/" lang="es" hreflang="es" aria-current="page">Español</a><span aria-hidden="true">·</span><a href="../ja/" lang="ja" hreflang="ja">日本語</a></nav>
+      <p>© 2026 Bottleneck Calculator. Las estimaciones son orientativas. El rendimiento real varía según el juego, los ajustes, los drivers y la refrigeración.</p>
+      <p>Los nombres de productos son marcas registradas de sus respectivos propietarios. Este sitio no está afiliado a AMD, Intel ni NVIDIA.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../assets/js/i18n.js?v=8"></script>
+  <script src="../assets/js/hardware.js?v=8"></script>
+  <script src="../assets/js/engine.js?v=8"></script>
+  <script src="../assets/js/motion.js?v=8"></script>
+  <script src="../assets/js/combobox.js?v=8"></script>
+  <script src="../assets/js/app.js?v=8"></script>
+</body>
+</html>

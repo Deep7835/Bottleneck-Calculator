@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FPS計算ツール（2026年版）｜CPU・グラボ・ゲーム別にFPSを推定</title>
+  <meta name="description" content="CPU、グラボ、ゲームを選ぶだけで、1080p・1440p・4Kの推定FPSと1% Lowを低画質から最高画質までチェックできる無料のFPS計算ツール。CS2、VALORANT、フォートナイト、Cyberpunk 2077、Warzoneなどに対応。">
+  <link rel="canonical" href="https://www.example.com/ja/fps-calculator/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/fps-calculator/">
+  <link rel="alternate" hreflang="es" href="https://www.example.com/es/calculadora-fps/">
+  <link rel="alternate" hreflang="ja" href="https://www.example.com/ja/fps-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/fps-calculator/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:title" content="FPS計算ツール：あなたのPCで何FPS出る？">
+  <meta property="og:description" content="人気ゲーム12本で、あなたのCPUとGPUの推定FPSと1% Lowを、解像度・画質プリセット別に確認できます。">
+  <meta property="og:url" content="https://www.example.com/ja/fps-calculator/">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ボトルネックチェッカー：CPUとGPUのバランス、FPS、アップグレード候補">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FPS計算ツール：あなたのPCで何FPS出る？">
+  <meta name="twitter:description" content="人気ゲーム12本で、あなたのCPUとGPUの推定FPSと1% Lowを、解像度・画質プリセット別に確認できます。">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=8">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "FPS計算ツール",
+      "url": "https://www.example.com/ja/fps-calculator/",
+      "inLanguage": "ja",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "JavaScriptが必要です",
+      "description": "あらゆるCPUとGPUの組み合わせについて、人気ゲームの平均FPSと1% Lowを1080p・1440p・4K、低〜最高画質で推定する無料のFPS計算ツール。",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "dateModified": "2026-10-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "ボトルネックチェッカー",
+          "item": "https://www.example.com/ja/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FPS計算ツール",
+          "item": "https://www.example.com/ja/fps-calculator/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:START -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "このFPS計算ツールの精度は？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "多くのシステムで、推定値はベンチマーク平均とおおむね10〜15%以内に収まります。ゲームのパッチ、ドライバー、プレイするマップや場面、メモリ速度、冷却、バックグラウンドアプリによって個別の結果は変わります。数値はハードウェアや設定の比較に使い、1回のプレイでの正確な約束とは考えないでください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "自分のPCで何FPS出るか計算するには？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "上の計算ツールでCPU、グラボ、ゲームを選び、解像度と画質を設定してください。CPUが準備できるフレーム数とGPUが描画できるフレーム数を推定し、低い方を平均FPSとして、すべての解像度と画質プリセットの1% Lowとあわせて表示します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "FPSにはCPUとGPUのどちらが重要ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ゲームと解像度によります。AAAタイトルを1440pや4Kで遊ぶならGPUが最も重要です。CS2やVALORANTのようなeスポーツタイトル、1080p、Microsoft Flight Simulatorのようなシミュレーターでは、CPUが上限を決めることがよくあります。計算ツールの「律速パーツ」列で、ゲームごとにどちらが律速しているかがわかります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ELDEN RING（エルデンリング）はなぜどのPCでも60 FPSなのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ELDEN RINGはゲーム自体が60 FPSに固定しているためです。速いハードウェアでも上限は上がりませんが、フレームタイムが安定し、60 FPS張り付きに近づきます。Apex Legendsにも300 FPSという同様の上限があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ゲームは60 FPSあれば十分ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "シングルプレイやストーリー重視のゲームなら、60 FPSで十分滑らかで操作感も良好です。競技系シューターでは、高リフレッシュレートモニターで144 FPS以上出すと、動きが明らかに滑らかになり入力遅延も減ります。240 FPSを超えて恩恵を受けられる人はごく一部です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "メモリはFPSに影響しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "します。主に1% Lowに影響します。最近のゲームでは8GBだとカクつきが出ますし、シングルチャネルやXMP/EXPOなしのメモリでは、CPU律速時のFPSが10〜25%落ちることがあります。2026年のゲーミングなら、32GBのデュアルチャネルがおすすめです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DLSSやFSRでFPSはどれくらい上がりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPU律速のゲームでは、クオリティモードで通常30〜50%、パフォーマンスモードで60〜90%FPSが伸びます。すでにCPUが上限なら、GPUが足を引っ張っていたわけではないので、アップスケーリングの効果は小さくなります。フレーム生成はこれとは別で、表示フレームレートをおおむね2倍にしますが、遅延がわずかに増えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "実際のFPSが推定値より低いのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "よくある原因は、XMP/EXPOを有効にせず定格速度で動いているメモリ、熱でスロットリングするノートPCや小型ケース、グラボではなくマザーボードに挿さったモニターケーブル、古いドライバー、バックグラウンドアプリ、特に重いマップや場面などです。MSI AfterburnerなどのオーバーレイでGPU使用率を確認し、90%を下回っていればCPUかメモリが原因と考えられます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "FPS計算ツールはノートPCにも使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "使えます。人気のノートPC向けCPU・GPUを収録しており、「ノート」と表示されます。ノートPC向けGPUは電力制限と冷却で性能が大きく変わるため、薄型軽量モデルでは推定値より10〜25%低くなることがあります。"
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:END -->
+</head>
+<body>
+  <a class="skip" href="#calculator">計算ツールへスキップ</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../ja/" aria-label="ボトルネックチェッカー ホーム">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="メイン">
+        <a href="../../ja/">ボトルネックチェッカー</a>
+        <a href="../../ja/fps-calculator/" aria-current="page">FPS計算</a>
+        <a href="#builds">人気構成</a>
+        <a href="#faq">よくある質問</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>2026年10月更新 · 人気ゲーム12本</p>
+        <h1 class="reveal">FPS計算ツール</h1>
+        <p class="lead reveal">CPU、グラフィックボード、ゲームを選ぶだけで、1080p・低画質から4K・最高画質まで、何FPS出るかの目安がわかります。</p>
+      </section>
+
+      <section id="calculator" class="calc reveal" aria-label="FPS計算ツール">
+        <form class="card builder" id="calc-form" autocomplete="off" onsubmit="return false">
+          <div class="builder-main">
+            <div class="field">
+              <label for="cpu-input">CPU（プロセッサー）</label>
+              <div class="combo" data-kind="cpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <input id="cpu-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cpu-list" aria-describedby="cpu-meta" spellcheck="false" placeholder="CPUを検索（例: 7800X3D）">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="すべてのCPUを表示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="cpu-list" class="combo-list" role="listbox" aria-label="CPU一覧" hidden></ul>
+              </div>
+              <div class="field-meta" id="cpu-meta"></div>
+            </div>
+            <div class="builder-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="field">
+              <label for="gpu-input">グラフィックボード</label>
+              <div class="combo" data-kind="gpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="9" cy="12" r="2.5"/><circle cx="16" cy="12" r="2.5"/><path d="M5 17v2"/></svg>
+                <input id="gpu-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gpu-list" aria-describedby="gpu-meta" spellcheck="false" placeholder="GPUを検索（例: RTX 5070）">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="すべてのグラボを表示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="gpu-list" class="combo-list" role="listbox" aria-label="グラフィックボード一覧" hidden></ul>
+              </div>
+              <div class="field-meta" id="gpu-meta"></div>
+            </div>
+          </div>
+
+          <div class="builder-sub">
+            <div class="field field-game">
+              <label for="game">ゲーム</label>
+              <select id="game" name="game">
+                <optgroup label="人気ゲーム"><option value="cs2">Counter-Strike 2</option><option value="valorant">Valorant</option><option value="fortnite">Fortnite</option><option value="cyberpunk">Cyberpunk 2077</option><option value="elden-ring">Elden Ring</option><option value="gta-5">GTA V</option><option value="warzone">Call of Duty: Warzone</option><option value="apex">Apex Legends</option><option value="marvel-rivals">Marvel Rivals</option><option value="bg3">Baldur's Gate 3</option><option value="msfs-2024">Microsoft Flight Simulator 2024</option><option value="minecraft">Minecraft (Java)</option></optgroup><optgroup label="ゲームタイプ"><option value="general">AAA・一般的なゲーム</option><option value="esports">競技系eスポーツ</option><option value="cpuheavy">CPU負荷大（ストラテジー・シム・MMO）</option><option value="raytracing">レイトレーシング／パストレーシング</option></optgroup>
+              </select>
+            </div>
+            <div class="field field-res">
+              <span class="field-label" id="res-label">解像度</span>
+              <div class="seg" role="radiogroup" aria-labelledby="res-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="res" value="1080p"><span>1080p</span></label>
+                <label><input type="radio" name="res" value="1440p" checked><span>1440p</span></label>
+                <label><input type="radio" name="res" value="uw1440"><span>UW</span></label>
+                <label><input type="radio" name="res" value="4k"><span>4K</span></label>
+              </div>
+            </div>
+            <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false" aria-controls="more">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+              <span class="more-text"><b>詳細設定</b><span id="opt-summary">高画質 · 32 GB · 144 Hz</span></span>
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <div class="more" id="more">
+            <div class="more-inner">
+              <div class="more-grid">
+                <div class="field">
+                  <span class="field-label" id="q-label">画質設定</span>
+              <div class="seg" role="radiogroup" aria-labelledby="q-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="quality" value="low"><span>低</span></label>
+                <label><input type="radio" name="quality" value="medium"><span>中</span></label>
+                <label><input type="radio" name="quality" value="high" checked><span>高</span></label>
+                <label><input type="radio" name="quality" value="ultra"><span>最高</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <span class="field-label" id="ram-label">メモリ（RAM）</span>
+              <div class="seg" role="radiogroup" aria-labelledby="ram-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="ram" value="8"><span>8 GB</span></label>
+                <label><input type="radio" name="ram" value="16"><span>16 GB</span></label>
+                <label><input type="radio" name="ram" value="32" checked><span>32 GB</span></label>
+                <label><input type="radio" name="ram" value="64"><span>64 GB</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <label for="upscale">アップスケーリング</label>
+                  <select id="upscale" name="upscale">
+                    <option value="off" selected>オフ（ネイティブ）</option>
+                    <option value="quality">DLSS/FSR クオリティ</option>
+                    <option value="balanced">DLSS/FSR バランス</option>
+                    <option value="performance">DLSS/FSR パフォーマンス</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hz">モニターのリフレッシュレート</label>
+                  <select id="hz" name="hz">
+                    <option value="60">60 Hz</option>
+                    <option value="75">75 Hz</option>
+                    <option value="120">120 Hz</option>
+                    <option value="144" selected>144 Hz</option>
+                    <option value="165">165 Hz</option>
+                    <option value="180">180 Hz</option>
+                    <option value="240">240 Hz</option>
+                    <option value="360">360 Hz</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <section class="card results" id="results" aria-label="計算結果">
+          <div class="results-head">
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 124">
+                <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <path class="fill" id="gauge-fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+              </svg>
+              <div class="gauge-value"><strong class="num" id="fps">0</strong><small id="fps-label">平均FPS</small></div>
+            </div>
+            <div class="verdict" aria-live="polite">
+              <span class="tone-pill" id="tone-pill">計算中</span>
+              <h2 id="verdict-title">CPU・GPU・ゲームを選んでください</h2>
+              <p id="verdict-text">オプションを変えると、結果がすぐに更新されます。</p>
+            </div>
+          </div>
+
+          <div class="pipeline" id="pipeline" role="img" aria-label="フレームの流れ">
+            <canvas id="pipe-canvas" aria-hidden="true"></canvas>
+            <div class="pipe-node node-cpu" id="node-cpu"><span class="pipe-name">CPU</span><span class="pipe-val num"><span id="cap-cpu-val">–</span><span class="pu"> FPS</span></span><span class="pipe-tag">上限</span></div>
+            <div class="pipe-node node-gpu" id="node-gpu"><span class="pipe-name">GPU</span><span class="pipe-val num"><span id="cap-gpu-val">–</span><span class="pu"> FPS</span></span><span class="pipe-tag">上限</span></div>
+            <div class="pipe-node node-display" id="node-display"><span class="pipe-name">モニター</span><span class="pipe-val num" id="cap-hz-val">–</span></div>
+          </div>
+          <p class="pipe-note">このゲームで各パーツが出せる最大フレーム数です。遅い方がフレームレートを決めます。</p>
+
+          <div class="stats">
+            <div class="stat"><small>平均FPS</small><strong class="num" id="s-fps">0</strong></div>
+            <div class="stat"><small>1% Low</small><strong class="num" id="s-low">0</strong></div>
+            <div class="stat"><small>フレームタイム</small><strong class="num"><span id="s-ms">0</span><span class="unit">ms</span></strong></div>
+            <div class="stat"><small>律速パーツ</small><strong class="num" id="s-limit">–</strong></div>
+          </div>
+
+          <div class="result-actions">
+            <span class="context" id="context-line"></span>
+            <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>リンクをコピー</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="details reveal-group" id="details">
+        <section class="card panel panel-wide">
+          <h3>解像度×画質別のFPS</h3>
+          <p class="sub" id="grid-sub">セルを選ぶとその設定を適用します。</p>
+          <div class="table-scroll"><table id="fps-grid" class="fps-grid"><thead><tr><th scope="col">解像度</th><th class="r" scope="col">低</th><th class="r" scope="col">中</th><th class="r" scope="col">高</th><th class="r" scope="col">最高</th></tr></thead><tbody></tbody></table></div>
+          <p class="legend"><span><span class="dot" data-tone="excellent"></span>144+ FPS</span><span><span class="dot" data-tone="gpu"></span>60–143</span><span><span class="dot" data-tone="moderate"></span>30–59</span><span><span class="dot" data-tone="severe"></span>30未満</span></p>
+        </section>
+        <section class="card panel">
+          <h3>リフレッシュレート別の目標</h3>
+          <p class="sub">60・144・240Hzモニターを活かしきれるかを、平均FPSから判定します。</p>
+          <ul class="tips" id="targets"></ul>
+        </section>
+        <section class="card panel">
+          <h3>おすすめの対策</h3>
+          <p class="sub">このゲーム、パーツ、設定に合わせた内容です。</p>
+          <ul class="tips" id="tips"></ul>
+        </section>
+        <section class="card panel panel-wide">
+          <h3>この構成の全ゲームFPS</h3>
+          <p class="sub" id="games-sub">ゲームを選ぶと読み込みます。</p>
+          <div class="table-scroll"><table id="games-table"><thead><tr><th>ゲーム</th><th class="r">平均FPS</th><th class="r">1% Low</th><th>律速パーツ</th></tr></thead><tbody></tbody></table></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="このページの内容">
+        <p>このページの内容</p>
+        <ol>
+          <li><a href="#what-is">FPS計算ツールとは</a></li>
+          <li><a href="#how-to-use">使い方</a></li>
+          <li><a href="#how-it-works">FPSの推定方法</a></li>
+          <li><a href="#games">対応ゲーム</a></li>
+          <li><a href="#builds">人気構成のFPS</a></li>
+          <li><a href="#targets-guide">必要なFPSの目安</a></li>
+          <li><a href="#lows">平均FPSと1% Low</a></li>
+          <li><a href="#boost">FPSを上げる方法</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="what-is">
+          <h2>FPS計算ツールとは？</h2>
+          <p>FPS計算ツールは、パーツを買ったりアップグレードしたりする前に、そのPCでゲームが毎秒何フレーム（<strong>FPS</strong>）で動くかを推定するツールです。CPU、グラフィックボード、ゲームを入力すると、予定している解像度と画質プリセットでの平均フレームレートと1% Lowを予測します。</p>
+          <p>答えは2つの別々の上限で決まります。<strong>CPU</strong>はゲームロジックが毎秒何フレーム準備できるかを決め、これは解像度ではほとんど変わりません。<strong>GPU</strong>はそのうち何フレームを描画できるかを決め、ピクセル数や画質を上げると大きく下がります。実際のフレームレートは低い方の上限に近い値になります。このツールはゲームごとに両方の上限を計算するので、<em>なぜ</em>そのFPSになるのか、何をすればFPSが上がるのかもわかります。</p>
+          <div class="callout"><p><strong>要点：</strong>CPU律速のゲームでは、設定を下げてもFPSは増えず、速いCPUにすれば増えます。GPU律速なら、設定を下げる、DLSS/FSRを使う、速いグラボにする、のいずれかで増えます。どちらのケースかは「律速パーツ」の列でわかります。</p></div>
+        </section>
+
+        <section id="how-to-use">
+          <h2>FPS計算ツールの使い方</h2>
+          <ol class="steps">
+            <li><strong>CPUとグラボを選びます。</strong>「5600」「14600K」「5070 Ti」のように型番を入力してください。ノートPC向けチップや内蔵GPUも収録し、ラベルで区別しています。</li>
+            <li><strong>ゲームを選びます。</strong>対応する12タイトルから選ぶか、それ以外のゲームならゲームタイプ（AAA、eスポーツ、CPU負荷大、レイトレーシング）を選びます。</li>
+            <li><strong>解像度を設定します。</strong>実際にプレイする解像度を選んでください。<em>詳細設定</em>を開くと、画質、メモリ、アップスケーリング、モニターのリフレッシュレートを変更できます。</li>
+            <li><strong>FPS表を確認します。</strong>1080p・1440p・4Kと低〜最高画質のすべての組み合わせを、フレームレートに応じて色分けして表示します。セルを選ぶとその設定を読み込みます。</li>
+            <li><strong>リフレッシュレートの目標を確認します。</strong>60・144・240Hzに届くかどうかと、届かない場合に何を変えればよいかを表示します。リンクをコピーすれば結果を共有できます。</li>
+          </ol>
+        </section>
+
+        <section id="how-it-works">
+          <h2>FPSの推定方法</h2>
+          <p>FPS計算ツールは、<a href="../">ボトルネックチェッカー</a>と同じエンジンを使っています。すべてのCPUとGPUには、合成スコアではなくベンチマーク結果の平均から作ったゲーム性能指数があり、CPUはRyzen 7 9800X3D、GPUはRTX 4090をそれぞれ100としています。</p>
+          <h3>1. ゲームごとのプロファイル</h3>
+          <p>ゲームによってハードウェアへの負荷のかかり方は大きく違います。VALORANTは1フレームの準備も描画も軽いため、速いCPUなら800 FPSも出ます。一方Microsoft Flight Simulator 2024は地球全体をシミュレートしているため、同じCPUでも100 FPSを超えるのがやっとです。そこで各ゲームは4つのエンジンタイプ（AAA、eスポーツ、CPU負荷大、レイトレーシング）のいずれかをベースに、ゲーム固有のCPU・GPU・VRAM係数を上乗せしています。係数は、RTX 4060の1080p・高画質と、Ryzen 7 9800X3Dの低画質での平均結果で較正しました。</p>
+          <h3>2. CPUとGPUのフレームレート上限</h3>
+          <p>CPU上限は、CPU指数にゲームのCPU係数を掛け、画質プリセットとメモリで補正したものです。GPU上限は、GPU指数を解像度（ピクセル数の<sup>−0.62</sup>乗。単純な比例より実測によく合います）、画質、アップスケーリング、ゲームのGPU係数で補正し、ゲームに必要なVRAMがグラボの搭載量を超える場合はペナルティを適用したものです。</p>
+          <h3>3. 2つの上限の組み合わせ方</h3>
+<div class="formula">CPU上限 = CPU指数 × 2.0 × ゲームタイプ × ゲームのCPU係数 × 画質 × メモリ
+GPU上限 = GPU指数 × 2.3 × (ピクセル数 ÷ 1080p)^−0.62 × ゲームタイプ
+          × ゲームのGPU係数 × 画質 × アップスケーリング × VRAM
+平均FPS = ソフト最小値(CPU上限, GPU上限)。ゲーム側のFPS上限で頭打ち
+1% Low  ≈ 平均の70〜78%。X3D CPUでは良く、メモリ8GBでは悪化</div>
+          <p><strong>精度について：</strong>多くのシステムで、推定値はベンチマーク平均とおおむね10〜15%以内に収まります。パッチ、ドライバー、テストするマップや場面、メモリ速度、冷却、バックグラウンドアプリによって数値は動くため、1回の計測ではそれ以上ずれることもあります。パーツや設定の比較に使い、特定のプレイでの保証値とは考えないでください。</p>
+        </section>
+
+        <section id="games">
+          <h2>対応ゲームとPCへの負荷の特徴</h2>
+          <p>各ゲームのプロファイルを一覧にしました。「エンジンタイプ」はプロファイルのベースとなる負荷の種類、「FPS上限」はゲーム自体が設けているフレームレートの上限です。</p>
+          <div class="table-scroll"><table><thead><tr><th>ゲーム</th><th>エンジンタイプ</th><th class="r">FPS上限</th></tr></thead><tbody><tr><td><strong>Counter-Strike 2</strong><br><small>Source 2はCS:GOよりGPU負荷が高めです。競技勢は少しでもFPSを稼ぐため低〜中設定を使います。</small></td><td>eスポーツ</td><td class="r num">–</td></tr><tr><td><strong>Valorant</strong><br><small>GPU負荷は非常に軽め。約400 FPSを超えると、CPUとメモリの速度がフレームレートを決めます。</small></td><td>eスポーツ</td><td class="r num">–</td></tr><tr><td><strong>Fortnite</strong><br><small>DirectX 12、Lumen・Naniteなしの「高」プリセット。パフォーマンスモードならどのGPUでも大幅に速くなります。</small></td><td>AAAタイトル</td><td class="r num">–</td></tr><tr><td><strong>Cyberpunk 2077</strong><br><small>ラスタライズのみ。レイトレーシングを有効にするとおおむね半分になります。RTオーバードライブはゲームタイプ「レイトレーシング」を選んでください。</small></td><td>AAAタイトル</td><td class="r num">–</td></tr><tr><td><strong>Elden Ring</strong><br><small>ゲーム側で60 FPSに固定されています。ここで高い数値が出ても、フレームタイムを安定させる余裕が増えるだけです。</small></td><td>AAAタイトル</td><td class="r num">60</td></tr><tr><td><strong>GTA V</strong><br><small>レイトレーシングなしのGTA V Enhanced。人の多い市街地と長い描画距離がCPUに最も負荷をかけます。</small></td><td>AAAタイトル</td><td class="r num">–</td></tr><tr><td><strong>Call of Duty: Warzone</strong><br><small>VRAMを多く使います。8GBのグラボではカクつきを避けるためにテクスチャ設定を下げる必要があります。</small></td><td>AAAタイトル</td><td class="r num">–</td></tr><tr><td><strong>Apex Legends</strong><br><small>エンジン側で300 FPSが上限です。エフェクトの多い大規模戦闘が最も重い場面です。</small></td><td>eスポーツ</td><td class="r num">300</td></tr><tr><td><strong>Marvel Rivals</strong><br><small>Lumenライティングを使うUnreal Engine 5タイトル。ミドルクラスのグラボでは低設定やアップスケーリングが大きく効きます。</small></td><td>AAAタイトル</td><td class="r num">–</td></tr><tr><td><strong>Baldur's Gate 3</strong><br><small>Act 3（バルダーズ・ゲートの街）はこの平均より約25%重く、ほとんどのPCでCPU律速になります。</small></td><td>CPU負荷大</td><td class="r num">–</td></tr><tr><td><strong>Microsoft Flight Simulator 2024</strong><br><small>密集した空港やフォトグラメトリーの都市がCPUとVRAMに最も負荷をかけます。フレーム生成の効果が大きいタイトルです。</small></td><td>CPU負荷大</td><td class="r num">–</td></tr><tr><td><strong>Minecraft (Java)</strong><br><small>バニラのJava版、描画距離12チャンク。Sodiumを入れるとおおむね2倍近くになり、シェーダーパックを入れるとGPU負荷が高くなります。</small></td><td>eスポーツ</td><td class="r num">–</td></tr></tbody></table></div>
+          <p>ほかのゲームを遊ぶ場合は、近いゲームタイプを選んでください。<strong>AAA</strong>は大作シングルプレイのほとんど、<strong>eスポーツ</strong>は軽めの競技系シューターやMOBA、<strong>CPU負荷大</strong>はストラテジー、シミュレーター、MMO、<strong>レイトレーシング</strong>はRTやパストレーシングを有効にしたゲームに合います。</p>
+        </section>
+
+        <section id="builds">
+          <h2>定番構成での人気ゲームのFPS</h2>
+          <p>ネイティブ解像度・画質「高」での推定平均FPSです。各構成は、よく想定される解像度で計算しています。数値を選ぶと、その構成とゲームを計算ツールで開けます。</p>
+          <div class="table-scroll"><table class="builds-table"><thead><tr><th>ゲーム</th><th class="r">Ryzen 5 5600 + RTX 4060<br><small>1080p</small></th><th class="r">Ryzen 5 7600 + RTX 5070<br><small>1440p</small></th><th class="r">Ryzen 7 7800X3D + RX 9070 XT<br><small>1440p</small></th><th class="r">Ryzen 7 9800X3D + RTX 5080<br><small>4K</small></th></tr></thead><tbody><tr><td><strong>Counter-Strike 2</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=cs2&amp;res=1080p#calculator">239</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=cs2#calculator">318</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=cs2#calculator">377</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=cs2&amp;res=4k#calculator">274</a></td></tr><tr><td><strong>Valorant</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=valorant&amp;res=1080p#calculator">390</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=valorant#calculator">512</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=valorant#calculator">622</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=valorant&amp;res=4k#calculator">465</a></td></tr><tr><td><strong>Fortnite</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=fortnite&amp;res=1080p#calculator">112</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=fortnite#calculator">147</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=fortnite#calculator">178</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=fortnite&amp;res=4k#calculator">133</a></td></tr><tr><td><strong>Cyberpunk 2077</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=cyberpunk&amp;res=1080p#calculator">73</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=cyberpunk#calculator">100</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=cyberpunk#calculator">118</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=cyberpunk&amp;res=4k#calculator">86</a></td></tr><tr><td><strong>Elden Ring</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=elden-ring&amp;res=1080p#calculator">60 <small>上限</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=elden-ring#calculator">60 <small>上限</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=elden-ring#calculator">60 <small>上限</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=elden-ring&amp;res=4k#calculator">60 <small>上限</small></a></td></tr><tr><td><strong>GTA V</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=gta-5&amp;res=1080p#calculator">113</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=gta-5#calculator">146</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=gta-5#calculator">185</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=gta-5&amp;res=4k#calculator">153</a></td></tr><tr><td><strong>Call of Duty: Warzone</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=warzone&amp;res=1080p#calculator">85</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=warzone#calculator">117</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=warzone#calculator">143</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=warzone&amp;res=4k#calculator">107</a></td></tr><tr><td><strong>Apex Legends</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=apex&amp;res=1080p#calculator">160</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=apex#calculator">209</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=apex#calculator">255</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=apex&amp;res=4k#calculator">192</a></td></tr><tr><td><strong>Marvel Rivals</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=marvel-rivals&amp;res=1080p#calculator">72</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=marvel-rivals#calculator">100</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=marvel-rivals#calculator">118</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=marvel-rivals&amp;res=4k#calculator">86</a></td></tr><tr><td><strong>Baldur's Gate 3</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=bg3&amp;res=1080p#calculator">74</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=bg3#calculator">96</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=bg3#calculator">122</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=bg3&amp;res=4k#calculator">106</a></td></tr><tr><td><strong>Microsoft Flight Simulator 2024</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=msfs-2024&amp;res=1080p#calculator">46</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=msfs-2024#calculator">64</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=msfs-2024#calculator">78</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=msfs-2024&amp;res=4k#calculator">59</a></td></tr><tr><td><strong>Minecraft (Java)</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=minecraft&amp;res=1080p#calculator">220</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=minecraft#calculator">283</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=minecraft#calculator">366</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=minecraft&amp;res=4k#calculator">415</a></td></tr></tbody></table></div>
+          <p>構成のボトルネックを確認したい場合は<a href="../"><strong>ボトルネックチェッカー</strong></a>を使うか、<a href="../../bottleneck/" hreflang="en">人気のCPU＋GPU構成</a>（英語）をご覧ください。</p>
+        </section>
+
+        <section id="targets-guide">
+          <h2>必要なFPSは？ 60・144・240Hzの目安</h2>
+          <p>FPSが高くても、効果があるのはモニターが表示できる範囲までです。144Hzモニターは毎秒最大144フレームしか表示できないので、300 FPS出ても見た目は滑らかになりません。ただし競技系ゲームでは入力遅延がわずかに減ります。</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>目標</th><th>対象</th><th>必要な構成</th></tr></thead>
+              <tbody>
+                <tr><td><strong>60 FPS</strong></td><td>60Hzのモニターやテレビで遊ぶ、シングルプレイ・ストーリー・シミュレーション系のゲーム</td><td>多くはGPU律速。最近の6コアCPUならほぼ何でも十分です。</td></tr>
+                <tr><td><strong>144 FPS</strong></td><td>144〜180Hzモニターを使うほとんどのゲーマー、シューターやアクションゲーム</td><td>1080pか1440pでミドルクラスのGPUと、2022年以降のCPU。</td></tr>
+                <tr><td><strong>240 FPS</strong></td><td>CS2、VALORANT、フォートナイト、Apexの競技プレイヤー</td><td>ほぼCPU律速。7800X3Dや9800X3DのようなX3Dチップに、低〜中画質の組み合わせが最適です。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>フレームレートがリフレッシュレートに届かないときは、<strong>G-SYNCやFreeSync</strong>を有効にしましょう。可変リフレッシュレートなら、144Hzの画面で90 FPSでもティアリングなく滑らかに見えます。リフレッシュレートを超える場合は、FPSを3〜4フレーム低く制限すると、フレームペーシングが安定し、遅延と発熱も減ります。</p>
+        </section>
+
+        <section id="lows">
+          <h2>平均FPSと1% Lowの違い</h2>
+          <p>ベンチマークでよく紹介されるのは平均FPSですが、ゲームの滑らかさを左右するのは<strong>1% Low</strong>です。1% Lowは、全フレームのうち最も遅い1%のフレームレートのことで、撃ち合いや新しいエリアの読み込み時に感じる引っかかりにあたります。平均120 FPSで1% Lowが50のゲームは、平均100 FPSで1% Lowが80のゲームより体感が悪くなります。</p>
+          <p>1% Lowが最も悪化するのは<strong>CPU</strong>が律速しているときです。重い場面では、すでに手一杯のCPUにさらに仕事が積み上がるからです。大容量のL3キャッシュは大きな効果があり、X3Dプロセッサーが平均FPSから想像する以上に良い1% Lowを記録するのはこのためです。メモリやVRAMの不足もカクつきの原因になり、システムメモリ8GBと、高テクスチャ設定の8GBグラボが最もよくある原因です。</p>
+        </section>
+
+        <section id="boost">
+          <h2>FPSを上げる方法</h2>
+          <h3>GPUが律速しているとき</h3>
+          <ul>
+            <li><strong>DLSS、FSR、XeSSをクオリティモードで有効にする</strong>と、見た目の劣化は少なく、おおむね30〜50%FPSが伸びます。</li>
+            <li><strong>重い設定から先に下げる：</strong>レイトレーシング、影、ボリュメトリックフォグ、スクリーンスペースリフレクション。VRAMが足りていれば、テクスチャはFPSにほとんど影響しません。</li>
+            <li><strong>フレーム生成を試す</strong>（DLSS フレーム生成、FSR フレーム生成）。すでに60 FPS以上出ているシングルプレイのゲームで効果的です。</li>
+          </ul>
+          <h3>CPUが律速しているとき</h3>
+          <ul>
+            <li><strong>XMPまたはEXPOを有効にし</strong>、メモリを2枚挿しのデュアルチャネルにする。遅いメモリやシングルチャネルだと、CPU負荷の高いゲームでFPSが10〜25%落ちることがあります。</li>
+            <li><strong>CPU側の設定を下げる：</strong>群衆の密度、描画距離、物理演算、シミュレーションの詳細度。ここでは画質設定はほとんど関係ありません。</li>
+            <li><strong>ブラウザーやランチャーなどのバックグラウンドアプリを閉じ</strong>、配信時はグラボのハードウェアエンコーダーを使う。</li>
+            <li><strong>同じソケット内でアップグレードする。</strong>AM4ならRyzen 7 5700X3Dが最も安上がりな大幅強化になることが多いです。<a href="../">ボトルネックチェッカー</a>で、あなたのGPUを使い切れるCPUがわかります。</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>よくある質問</h2>
+          <details open><summary>このFPS計算ツールの精度は？</summary><div><p>多くのシステムで、推定値はベンチマーク平均とおおむね10〜15%以内に収まります。ゲームのパッチ、ドライバー、プレイするマップや場面、メモリ速度、冷却、バックグラウンドアプリによって個別の結果は変わります。数値はハードウェアや設定の比較に使い、1回のプレイでの正確な約束とは考えないでください。</p></div></details>
+          <details><summary>自分のPCで何FPS出るか計算するには？</summary><div><p>上の計算ツールでCPU、グラボ、ゲームを選び、解像度と画質を設定してください。CPUが準備できるフレーム数とGPUが描画できるフレーム数を推定し、低い方を平均FPSとして、すべての解像度と画質プリセットの1% Lowとあわせて表示します。</p></div></details>
+          <details><summary>FPSにはCPUとGPUのどちらが重要ですか？</summary><div><p>ゲームと解像度によります。AAAタイトルを1440pや4Kで遊ぶならGPUが最も重要です。CS2やVALORANTのようなeスポーツタイトル、1080p、Microsoft Flight Simulatorのようなシミュレーターでは、CPUが上限を決めることがよくあります。計算ツールの「律速パーツ」列で、ゲームごとにどちらが律速しているかがわかります。</p></div></details>
+          <details><summary>ELDEN RING（エルデンリング）はなぜどのPCでも60 FPSなのですか？</summary><div><p>ELDEN RINGはゲーム自体が60 FPSに固定しているためです。速いハードウェアでも上限は上がりませんが、フレームタイムが安定し、60 FPS張り付きに近づきます。Apex Legendsにも300 FPSという同様の上限があります。</p></div></details>
+          <details><summary>ゲームは60 FPSあれば十分ですか？</summary><div><p>シングルプレイやストーリー重視のゲームなら、60 FPSで十分滑らかで操作感も良好です。競技系シューターでは、高リフレッシュレートモニターで144 FPS以上出すと、動きが明らかに滑らかになり入力遅延も減ります。240 FPSを超えて恩恵を受けられる人はごく一部です。</p></div></details>
+          <details><summary>メモリはFPSに影響しますか？</summary><div><p>します。主に1% Lowに影響します。最近のゲームでは8GBだとカクつきが出ますし、シングルチャネルやXMP/EXPOなしのメモリでは、CPU律速時のFPSが10〜25%落ちることがあります。2026年のゲーミングなら、32GBのデュアルチャネルがおすすめです。</p></div></details>
+          <details><summary>DLSSやFSRでFPSはどれくらい上がりますか？</summary><div><p>GPU律速のゲームでは、クオリティモードで通常30〜50%、パフォーマンスモードで60〜90%FPSが伸びます。すでにCPUが上限なら、GPUが足を引っ張っていたわけではないので、アップスケーリングの効果は小さくなります。フレーム生成はこれとは別で、表示フレームレートをおおむね2倍にしますが、遅延がわずかに増えます。</p></div></details>
+          <details><summary>実際のFPSが推定値より低いのはなぜですか？</summary><div><p>よくある原因は、XMP/EXPOを有効にせず定格速度で動いているメモリ、熱でスロットリングするノートPCや小型ケース、グラボではなくマザーボードに挿さったモニターケーブル、古いドライバー、バックグラウンドアプリ、特に重いマップや場面などです。MSI AfterburnerなどのオーバーレイでGPU使用率を確認し、90%を下回っていればCPUかメモリが原因と考えられます。</p></div></details>
+          <details><summary>FPS計算ツールはノートPCにも使えますか？</summary><div><p>使えます。人気のノートPC向けCPU・GPUを収録しており、「ノート」と表示されます。ノートPC向けGPUは電力制限と冷却で性能が大きく変わるため、薄型軽量モデルでは推定値より10〜25%低くなることがあります。</p></div></details>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="サイト"><a href="../../ja/">ボトルネックチェッカー</a><a href="../../ja/fps-calculator/" aria-current="page">FPS計算ツール</a><a href="../../bottleneck/" hreflang="en">人気の構成（英語）</a><a href="../../guides/" hreflang="en">ガイド（英語）</a><a href="../../about/" hreflang="en">運営者情報</a><a href="../../editorial-policy/" hreflang="en">編集方針</a><a href="../../privacy/" hreflang="en">プライバシー</a><a href="../../contact/" hreflang="en">お問い合わせ</a></nav>
+      <nav class="lang-switch" aria-label="言語"><a href="../../fps-calculator/" lang="en" hreflang="en">English</a><span aria-hidden="true">·</span><a href="../../es/calculadora-fps/" lang="es" hreflang="es">Español</a><span aria-hidden="true">·</span><a href="../../ja/fps-calculator/" lang="ja" hreflang="ja" aria-current="page">日本語</a></nav>
+      <p>© 2026 Bottleneck Calculator. 推定値はあくまで目安です。実際の性能はゲーム、設定、ドライバー、冷却によって変わります。</p>
+      <p>製品名およびゲームタイトルは各社の商標です。当サイトはAMD、Intel、NVIDIA、各ゲームパブリッシャーとは提携していません。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../../assets/js/i18n.js?v=8"></script>
+  <script src="../../assets/js/hardware.js?v=8"></script>
+  <script src="../../assets/js/engine.js?v=8"></script>
+  <script src="../../assets/js/games.js?v=8"></script>
+  <script src="../../assets/js/motion.js?v=8"></script>
+  <script src="../../assets/js/combobox.js?v=8"></script>
+  <script src="../../assets/js/fps.js?v=8"></script>
+</body>
+</html>

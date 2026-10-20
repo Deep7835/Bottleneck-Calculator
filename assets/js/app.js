@@ -1,9 +1,11 @@
 (function () {
-  const { HW, Engine, Combobox } = window;
+  const { HW, Engine, Combobox, I18N } = window;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const byId = (list, id) => list.find((x) => x.id === id);
-  const fmt = (n) => Math.round(n).toLocaleString("en-US");
+  const t = I18N.t;
+  const fmt = I18N.fmt;
+  const Meta = I18N.meta;
   const short = Engine.shortName;
 
   const DEFAULTS = Engine.DEFAULTS;
@@ -84,7 +86,7 @@
   const opts = () => ({ res: state.res, quality: state.quality, workload: state.workload, upscale: state.upscale, ram: state.ram, hz: state.hz, streaming: state.streaming });
 
   function limitText(r) {
-    if (r.verdict.key === "excellent") return '<span class="dot" data-tone="excellent"></span>Balanced';
+    if (r.verdict.key === "excellent") return `<span class="dot" data-tone="excellent"></span>${t("limit.balanced")}`;
     return `<span class="dot" data-tone="${r.verdict.tone}"></span>${r.limiter.toUpperCase()} ${Math.round(r.pct)}%`;
   }
 
@@ -100,16 +102,16 @@
     const r = Engine.evaluate(cpu, gpu, o);
 
     // Field meta lines
-    $("#cpu-meta").textContent = `${cpu.cores} cores / ${cpu.threads} threads · ${cpu.socket} · ${cpu.year}`;
-    $("#gpu-meta").textContent = `${gpu.vram ? gpu.vram + " GB VRAM · " : "Shared memory · "}${gpu.rt ? "Ray tracing ✓" : "No hardware RT"} · ${gpu.year}`;
+    $("#cpu-meta").textContent = Meta.cpu(cpu);
+    $("#gpu-meta").textContent = Meta.gpu(gpu);
 
     // Gauge + verdict (the tone colour flows from #results through CSS)
     const tone = r.verdict.tone;
     $("#results").dataset.tone = tone;
     $("#gauge-fill").style.strokeDashoffset = String(100 - Math.max(2, Math.min(100, r.pct)));
     Motion.countUp($("#pct"), r.pct, (v) => Math.round(v) + "%", 900);
-    $("#pct-label").textContent = r.verdict.key === "excellent" ? "bottleneck" : `${r.limiter.toUpperCase()} bottleneck`;
-    $("#tone-pill").textContent = r.verdict.key === "excellent" ? "Balanced" : r.limiter === "cpu" ? "CPU-limited" : "GPU-limited";
+    $("#pct-label").textContent = r.verdict.key === "excellent" ? t("gauge.balanced") : t("gauge.limited", { lim: r.limiter.toUpperCase() });
+    $("#tone-pill").textContent = r.verdict.key === "excellent" ? t("pill.balanced") : t(r.limiter === "cpu" ? "pill.cpu" : "pill.gpu");
     const verdict = $(".verdict");
     if ($("#verdict-title").textContent !== r.verdict.label) {
       verdict.classList.remove("swap");
@@ -127,7 +129,7 @@
     Motion.countUp($("#cap-cpu-val"), r.cpuFps, fmt);
     Motion.countUp($("#cap-gpu-val"), r.gpuFps, fmt);
     $("#cap-hz-val").textContent = state.hz + " Hz";
-    $("#pipeline").setAttribute("aria-label", `CPU can deliver ${fmt(r.cpuFps)} FPS, GPU ${fmt(r.gpuFps)} FPS, display ${state.hz} Hz.`);
+    $("#pipeline").setAttribute("aria-label", t("pipe.aria", { cpu: fmt(r.cpuFps), gpu: fmt(r.gpuFps), hz: state.hz }));
     pipeline.set(r);
 
     // Stats
@@ -139,8 +141,9 @@
     $("#m-gpu").style.transform = `scaleX(${r.gpuLoad / 100})`;
     $("#m-cpu").classList.toggle("hot", cpuLimit);
     $("#m-gpu").classList.toggle("hot", gpuLimit);
-    $("#opt-summary").textContent = `${Engine.QUALITY[o.quality].label} · ${Engine.WORKLOAD[o.workload].short} · ${o.ram} GB · ${o.hz} Hz${o.upscale !== "off" ? " · Upscaling" : ""}${o.streaming ? " · Streaming" : ""}`;
-    $("#context-line").textContent = `${Engine.RES[o.res].full} · ${Engine.QUALITY[o.quality].label} · ${Engine.WORKLOAD[o.workload].short}${o.upscale !== "off" ? " · " + Engine.UPSCALE[o.upscale].label : ""}`;
+    const qCtx = t("ctx.q", { q: Engine.QUALITY[o.quality].label });
+    $("#opt-summary").textContent = `${qCtx} · ${Engine.WORKLOAD[o.workload].short} · ${o.ram} GB · ${o.hz} Hz${o.upscale !== "off" ? t("opt.upscaling") : ""}${o.streaming ? t("opt.streaming") : ""}`;
+    $("#context-line").textContent = `${Engine.RES[o.res].full} · ${qCtx} · ${Engine.WORKLOAD[o.workload].short}${o.upscale !== "off" ? " · " + Engine.UPSCALE[o.upscale].label : ""}`;
 
     // Resolution table
     $("#res-table tbody").innerHTML = Object.entries(Engine.RES).map(([key, res]) => {
@@ -149,7 +152,7 @@
     }).join("");
 
     // Game type table
-    $("#wl-sub").textContent = `At ${Engine.RES[o.res].label}, ${Engine.QUALITY[o.quality].label} settings.`;
+    $("#wl-sub").textContent = t("wl.sub", { res: Engine.RES[o.res].label, q: Engine.QUALITY[o.quality].label });
     $("#wl-table tbody").innerHTML = Object.entries(Engine.WORKLOAD).map(([key, wl]) => {
       const x = Engine.evaluate(cpu, gpu, { ...o, workload: key });
       return `<tr class="${key === o.workload ? "current" : ""}"><td>${wl.label}<br><small>${wl.examples}</small></td><td class="r num">${fmt(x.fps)}</td><td>${limitText(x)}</td></tr>`;
@@ -157,14 +160,14 @@
 
     // Tips
     const tips = Engine.tips(cpu, gpu, o, r);
-    if (!tips.length) tips.push({ type: "good", text: "This build is well matched for your settings. No changes needed." });
+    if (!tips.length) tips.push({ type: "good", text: t("tip.none") });
     $("#tips").innerHTML = tips.map((t) => `<li class="${t.type}">${ICONS[t.type] || ICONS.info}<span>${t.text}</span></li>`).join("");
 
     renderUpgrades(cpu, gpu, o, r);
     // Keep the address bar shareable, but leave a clean URL until the user changes something.
     if (touched) history.replaceState(null, "", shareUrl().replace(location.origin, "") + location.hash);
     // Only retitle for a specific build, so the homepage keeps its SEO title when rendered.
-    if (touched || hadParams) document.title = `${short(cpu.name)} + ${short(gpu.name)} Bottleneck – Bottleneck Calculator`;
+    if (touched || hadParams) document.title = t("title.build", { c: short(cpu.name), g: short(gpu.name) });
   }
 
   function renderUpgrades(cpu, gpu, o, r) {
@@ -175,26 +178,24 @@
       return `<button type="button" class="up" data-kind="${kind}" data-id="${x.part.id}">
         <span class="up-tag">${tag}</span>
         <span class="up-name">${short(x.part.name)}</span>
-        <span class="up-gain">≈${fmt(x.r.fps)} FPS <b>(+${gain}%)</b> · ${x.r.verdict.key === "excellent" ? "balanced" : x.r.limiter.toUpperCase() + " " + Math.round(x.r.pct) + "%"}</span>
+        <span class="up-gain">≈${fmt(x.r.fps)} FPS <b>(+${gain}%)</b> · ${x.r.verdict.key === "excellent" ? t("up.balanced") : x.r.limiter.toUpperCase() + " " + Math.round(x.r.pct) + "%"}</span>
       </button>`;
     };
     let html = "";
     if (up.cpu.length || up.sameSocket.length) {
-      $("#up-title").textContent = "CPU upgrades that fix this";
-      $("#up-sub").textContent = `Slowest CPUs that keep your ${short(gpu.name)} fully fed. Click to try one.`;
-      html += up.sameSocket.map((x) => card(x, "cpu", `Drop-in upgrade · ${x.part.socket}`)).join("");
-      html += up.cpu.map((x) => card(x, "cpu", x.part.socket === cpu.socket ? `Same socket · ${x.part.socket}` : `New platform · ${x.part.socket}`)).join("");
+      $("#up-title").textContent = t("up.cpu.title");
+      $("#up-sub").textContent = t("up.cpu.sub", { g: short(gpu.name) });
+      html += up.sameSocket.map((x) => card(x, "cpu", t("up.dropIn", { socket: x.part.socket }))).join("");
+      html += up.cpu.map((x) => card(x, "cpu", t(x.part.socket === cpu.socket ? "up.sameSocket" : "up.newPlatform", { socket: x.part.socket }))).join("");
     } else if (up.gpu.length) {
-      $("#up-title").textContent = "GPU upgrades for your CPU";
-      $("#up-sub").textContent = `Your ${short(cpu.name)} can drive a faster card. Click to try one.`;
+      $("#up-title").textContent = t("up.gpu.title");
+      $("#up-sub").textContent = t("up.gpu.sub", { c: short(cpu.name) });
       html += up.gpu.map((x) => card(x, "gpu", x.tag)).join("");
     } else {
-      $("#up-title").textContent = "Upgrade suggestions";
-      $("#up-sub").textContent = "The smallest upgrades that balance your build.";
+      $("#up-title").textContent = t("up.title");
+      $("#up-sub").textContent = t("up.sub");
       const laptop = cpu.type === "l" || gpu.type !== "d";
-      html = `<p class="empty-note">${laptop && r.pct >= 15
-        ? "Laptop and integrated parts can't be upgraded separately. Use the recommendations to get the most out of this system."
-        : "No upgrade needed. These parts are well matched at these settings."}</p>`;
+      html = `<p class="empty-note">${laptop && r.pct >= 15 ? t("up.laptop") : t("up.none")}</p>`;
     }
     box.innerHTML = html;
   }
@@ -234,9 +235,9 @@
     const url = shareUrl();
     try {
       await navigator.clipboard.writeText(url);
-      toast("Result link copied");
+      toast(t("toast.copied"));
     } catch {
-      window.prompt("Copy this link:", url);
+      window.prompt(t("prompt.copy"), url);
     }
   });
 

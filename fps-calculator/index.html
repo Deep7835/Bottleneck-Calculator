@@ -7,6 +7,10 @@
   <meta name="description" content="Free FPS calculator: pick your CPU, GPU and game to see estimated FPS and 1% lows at 1080p, 1440p and 4K from Low to Ultra. CS2, Valorant, Fortnite, Cyberpunk 2077, Warzone and more.">
   <!-- Replace https://www.example.com/ with your live domain before publishing -->
   <link rel="canonical" href="https://www.example.com/fps-calculator/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/fps-calculator/">
+  <link rel="alternate" hreflang="es" href="https://www.example.com/es/calculadora-fps/">
+  <link rel="alternate" hreflang="ja" href="https://www.example.com/ja/fps-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/fps-calculator/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
@@ -453,6 +457,7 @@ Avg FPS   = soft-min(CPU limit, GPU limit), capped at the game's FPS limit
   <footer class="site-footer">
     <div class="wrap">
       <nav class="footer-nav" aria-label="Site"><a href="../">Bottleneck calculator</a><a href="./">FPS calculator</a><a href="../bottleneck/">Popular builds</a><a href="../guides/">Guides</a><a href="../about/">About</a><a href="../editorial-policy/">Editorial policy</a><a href="../privacy/">Privacy</a><a href="../contact/">Contact</a></nav>
+      <nav class="lang-switch" aria-label="Language"><a href="./" lang="en" hreflang="en" aria-current="page">English</a><span aria-hidden="true">·</span><a href="../es/calculadora-fps/" lang="es" hreflang="es">Español</a><span aria-hidden="true">·</span><a href="../ja/fps-calculator/" lang="ja" hreflang="ja">日本語</a></nav>
       <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
       <p>Product names and game titles are trademarks of their respective owners. This site isn't affiliated with AMD, Intel, NVIDIA or any game publisher.</p>
     </div>
@@ -460,6 +465,7 @@ Avg FPS   = soft-min(CPU limit, GPU limit), capped at the game's FPS limit
 
   <div class="toast" id="toast" role="status"></div>
 
+  <script src="../assets/js/i18n.js?v=8"></script>
   <script src="../assets/js/hardware.js?v=8"></script>
   <script src="../assets/js/engine.js?v=8"></script>
   <script src="../assets/js/games.js?v=8"></script>

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de FPS (2026): calcula los FPS de tu CPU, GPU y juego</title>
+  <meta name="description" content="Calculadora de FPS gratis: elige tu procesador, tu tarjeta gráfica y el juego para ver los FPS estimados y los mínimos del 1% a 1080p, 1440p y 4K, de Bajo a Ultra. CS2, Valorant, Fortnite, Cyberpunk 2077, Warzone y más.">
+  <link rel="canonical" href="https://www.example.com/es/calculadora-fps/">
+  <link rel="alternate" hreflang="en" href="https://www.example.com/fps-calculator/">
+  <link rel="alternate" hreflang="es" href="https://www.example.com/es/calculadora-fps/">
+  <link rel="alternate" hreflang="ja" href="https://www.example.com/ja/fps-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://www.example.com/fps-calculator/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:title" content="Calculadora de FPS: ¿cuántos FPS dará tu PC?">
+  <meta property="og:description" content="FPS estimados y mínimos del 1% para tu CPU y tu GPU en 12 juegos populares, a cualquier resolución y preajuste de calidad.">
+  <meta property="og:url" content="https://www.example.com/es/calculadora-fps/">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Calculadora de cuello de botella: equilibrio entre CPU y GPU, FPS y mejoras recomendadas">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadora de FPS: ¿cuántos FPS dará tu PC?">
+  <meta name="twitter:description" content="FPS estimados y mínimos del 1% para tu CPU y tu GPU en 12 juegos populares, a cualquier resolución y preajuste de calidad.">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=8">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de FPS",
+      "url": "https://www.example.com/es/calculadora-fps/",
+      "inLanguage": "es",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requiere JavaScript",
+      "description": "Calculadora de FPS gratuita que estima los FPS medios y los mínimos del 1% de cualquier CPU y GPU en juegos populares a 1080p, 1440p y 4K, con ajustes de Bajo a Ultra.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "dateModified": "2026-10-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Calculadora de cuello de botella",
+          "item": "https://www.example.com/es/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Calculadora de FPS",
+          "item": "https://www.example.com/es/calculadora-fps/"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:START -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué precisión tiene esta calculadora de FPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En muchos equipos, las estimaciones suelen quedar a un 10–15% de la media de los benchmarks. Los resultados concretos varían con los parches del juego, los drivers, el mapa o la escena, la velocidad de la RAM, la refrigeración y las aplicaciones en segundo plano. Usa las cifras para comparar hardware y ajustes, no como una promesa exacta para una partida."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo calculo los FPS que dará mi PC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elige tu CPU, tu tarjeta gráfica y el juego en la calculadora de arriba, y después ajusta la resolución y la calidad. La herramienta estima cuántos fotogramas puede preparar la CPU y cuántos puede renderizar la GPU, y muestra el menor de los dos como tus FPS medios, junto con los mínimos del 1% para cada resolución y preajuste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué importa más para los FPS, la CPU o la GPU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depende del juego y de la resolución. A 1440p y 4K en juegos AAA, lo que más importa es la GPU. En esports como CS2 y Valorant, a 1080p o en simuladores como Microsoft Flight Simulator, la CPU suele marcar el límite. La columna «Limitado por» de la calculadora te dice qué pieza limita en cada juego."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué Elden Ring da 60 FPS en cualquier PC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elden Ring está bloqueado a 60 FPS por el propio juego. Un hardware más rápido no sube ese tope, pero mantiene los tiempos de fotograma más estables y la tasa más cerca de unos 60 constantes. Apex Legends tiene un tope integrado parecido de 300 FPS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Son suficientes 60 FPS para jugar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: en juegos para un jugador y de historia, 60 FPS se sienten fluidos y responden bien. En shooters competitivos, 144 FPS o más en un monitor de alta frecuencia dan un movimiento claramente más suave y menos latencia. Muy poca gente se beneficia de más de 240 FPS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La RAM afecta a los FPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, sobre todo a través de los mínimos del 1%. 8 GB de RAM provocan tirones en los juegos actuales, y la memoria en un solo canal o sin XMP/EXPO puede recortar un 10–25% los FPS cuando limita la CPU. Para jugar en 2026, lo ideal son 32 GB en doble canal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos FPS añade DLSS o FSR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En juegos limitados por la GPU, el modo Calidad suele añadir un 30–50% de FPS y el modo Rendimiento un 60–90%. Si la CPU ya es el límite, el escalado aporta poco, porque la GPU no era lo que te frenaba. La generación de fotogramas es aparte y más o menos duplica los fotogramas mostrados, con un pequeño coste de latencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué mis FPS reales son más bajos que la estimación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las causas habituales son la RAM a velocidad de fábrica sin XMP/EXPO, un portátil o una caja pequeña que se calienta y baja frecuencias, el cable del monitor conectado a la placa base en lugar de a la tarjeta gráfica, drivers desactualizados, aplicaciones en segundo plano o un mapa o una escena especialmente exigentes. Comprueba el uso de la GPU con una superposición como MSI Afterburner: por debajo del 90% apunta a la CPU o a la RAM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La calculadora de FPS sirve para portátiles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Incluye los procesadores y las gráficas de portátil más populares, marcados como «Portátil». Las GPU de portátil varían mucho según su límite de potencia y su refrigeración, así que los modelos finos y ligeros pueden ir un 10–25% por debajo de la estimación."
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQSCHEMA:END -->
+</head>
+<body>
+  <a class="skip" href="#calculator">Saltar a la calculadora</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../es/" aria-label="Inicio de la calculadora de cuello de botella">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="../../es/">Calculadora de cuello de botella</a>
+        <a href="../../es/calculadora-fps/" aria-current="page">Calculadora de FPS</a>
+        <a href="#builds">Equipos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>Actualizado en octubre de 2026 · 12 juegos populares</p>
+        <h1 class="reveal">Calculadora de FPS</h1>
+        <p class="lead reveal">Elige tu procesador, tu tarjeta gráfica y el juego para ver cuántos fotogramas por segundo puedes esperar, de 1080p en Bajo a 4K en Ultra.</p>
+      </section>
+
+      <section id="calculator" class="calc reveal" aria-label="Calculadora de FPS">
+        <form class="card builder" id="calc-form" autocomplete="off" onsubmit="return false">
+          <div class="builder-main">
+            <div class="field">
+              <label for="cpu-input">Procesador</label>
+              <div class="combo" data-kind="cpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <input id="cpu-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cpu-list" aria-describedby="cpu-meta" spellcheck="false" placeholder="Busca tu CPU, p. ej. 7800X3D">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Mostrar todos los procesadores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="cpu-list" class="combo-list" role="listbox" aria-label="Procesadores" hidden></ul>
+              </div>
+              <div class="field-meta" id="cpu-meta"></div>
+            </div>
+            <div class="builder-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="field">
+              <label for="gpu-input">Tarjeta gráfica</label>
+              <div class="combo" data-kind="gpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="9" cy="12" r="2.5"/><circle cx="16" cy="12" r="2.5"/><path d="M5 17v2"/></svg>
+                <input id="gpu-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gpu-list" aria-describedby="gpu-meta" spellcheck="false" placeholder="Busca tu GPU, p. ej. RTX 5070">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Mostrar todas las tarjetas gráficas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="gpu-list" class="combo-list" role="listbox" aria-label="Tarjetas gráficas" hidden></ul>
+              </div>
+              <div class="field-meta" id="gpu-meta"></div>
+            </div>
+          </div>
+
+          <div class="builder-sub">
+            <div class="field field-game">
+              <label for="game">Juego</label>
+              <select id="game" name="game">
+                <optgroup label="Juegos populares"><option value="cs2">Counter-Strike 2</option><option value="valorant">Valorant</option><option value="fortnite">Fortnite</option><option value="cyberpunk">Cyberpunk 2077</option><option value="elden-ring">Elden Ring</option><option value="gta-5">GTA V</option><option value="warzone">Call of Duty: Warzone</option><option value="apex">Apex Legends</option><option value="marvel-rivals">Marvel Rivals</option><option value="bg3">Baldur's Gate 3</option><option value="msfs-2024">Microsoft Flight Simulator 2024</option><option value="minecraft">Minecraft (Java)</option></optgroup><optgroup label="Tipos de juego"><option value="general">AAA / juegos variados</option><option value="esports">Esports competitivos</option><option value="cpuheavy">Exigentes en CPU (estrategia, simuladores, MMO)</option><option value="raytracing">Ray tracing / path tracing</option></optgroup>
+              </select>
+            </div>
+            <div class="field field-res">
+              <span class="field-label" id="res-label">Resolución</span>
+              <div class="seg" role="radiogroup" aria-labelledby="res-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="res" value="1080p"><span>1080p</span></label>
+                <label><input type="radio" name="res" value="1440p" checked><span>1440p</span></label>
+                <label><input type="radio" name="res" value="uw1440"><span>UW</span></label>
+                <label><input type="radio" name="res" value="4k"><span>4K</span></label>
+              </div>
+            </div>
+            <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false" aria-controls="more">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+              <span class="more-text"><b>Ajustes</b><span id="opt-summary">Alto · 32 GB · 144 Hz</span></span>
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <div class="more" id="more">
+            <div class="more-inner">
+              <div class="more-grid">
+                <div class="field">
+                  <span class="field-label" id="q-label">Calidad gráfica</span>
+              <div class="seg" role="radiogroup" aria-labelledby="q-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="quality" value="low"><span>Bajo</span></label>
+                <label><input type="radio" name="quality" value="medium"><span>Medio</span></label>
+                <label><input type="radio" name="quality" value="high" checked><span>Alto</span></label>
+                <label><input type="radio" name="quality" value="ultra"><span>Ultra</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <span class="field-label" id="ram-label">Memoria (RAM)</span>
+              <div class="seg" role="radiogroup" aria-labelledby="ram-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="ram" value="8"><span>8 GB</span></label>
+                <label><input type="radio" name="ram" value="16"><span>16 GB</span></label>
+                <label><input type="radio" name="ram" value="32" checked><span>32 GB</span></label>
+                <label><input type="radio" name="ram" value="64"><span>64 GB</span></label>
+              </div>
+                </div>
+                <div class="field">
+                  <label for="upscale">Escalado</label>
+                  <select id="upscale" name="upscale">
+                    <option value="off" selected>Desactivado (nativo)</option>
+                    <option value="quality">DLSS/FSR Calidad</option>
+                    <option value="balanced">DLSS/FSR Equilibrado</option>
+                    <option value="performance">DLSS/FSR Rendimiento</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hz">Frecuencia del monitor</label>
+                  <select id="hz" name="hz">
+                    <option value="60">60 Hz</option>
+                    <option value="75">75 Hz</option>
+                    <option value="120">120 Hz</option>
+                    <option value="144" selected>144 Hz</option>
+                    <option value="165">165 Hz</option>
+                    <option value="180">180 Hz</option>
+                    <option value="240">240 Hz</option>
+                    <option value="360">360 Hz</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <section class="card results" id="results" aria-label="Resultado">
+          <div class="results-head">
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 124">
+                <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <path class="fill" id="gauge-fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+              </svg>
+              <div class="gauge-value"><strong class="num" id="fps">0</strong><small id="fps-label">FPS medios</small></div>
+            </div>
+            <div class="verdict" aria-live="polite">
+              <span class="tone-pill" id="tone-pill">Calculando</span>
+              <h2 id="verdict-title">Elige tu CPU, GPU y juego</h2>
+              <p id="verdict-text">Los resultados se actualizan al instante al cambiar cualquier opción.</p>
+            </div>
+          </div>
+
+          <div class="pipeline" id="pipeline" role="img" aria-label="Cadena de fotogramas">
+            <canvas id="pipe-canvas" aria-hidden="true"></canvas>
+            <div class="pipe-node node-cpu" id="node-cpu"><span class="pipe-name">CPU</span><span class="pipe-val num"><span id="cap-cpu-val">–</span><span class="pu"> FPS</span></span><span class="pipe-tag">Límite</span></div>
+            <div class="pipe-node node-gpu" id="node-gpu"><span class="pipe-name">GPU</span><span class="pipe-val num"><span id="cap-gpu-val">–</span><span class="pu"> FPS</span></span><span class="pipe-tag">Límite</span></div>
+            <div class="pipe-node node-display" id="node-display"><span class="pipe-name">Monitor</span><span class="pipe-val num" id="cap-hz-val">–</span></div>
+          </div>
+          <p class="pipe-note">Fotogramas máximos que cada pieza puede entregar en este juego. La más lenta marca tu tasa de FPS.</p>
+
+          <div class="stats">
+            <div class="stat"><small>FPS medios</small><strong class="num" id="s-fps">0</strong></div>
+            <div class="stat"><small>Mín. 1%</small><strong class="num" id="s-low">0</strong></div>
+            <div class="stat"><small>Tiempo de fotograma</small><strong class="num"><span id="s-ms">0</span><span class="unit">ms</span></strong></div>
+            <div class="stat"><small>Limitado por</small><strong class="num" id="s-limit">–</strong></div>
+          </div>
+
+          <div class="result-actions">
+            <span class="context" id="context-line"></span>
+            <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Copiar enlace</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="details reveal-group" id="details">
+        <section class="card panel panel-wide">
+          <h3>FPS por resolución y calidad</h3>
+          <p class="sub" id="grid-sub">Selecciona una celda para usar esos ajustes.</p>
+          <div class="table-scroll"><table id="fps-grid" class="fps-grid"><thead><tr><th scope="col">Resolución</th><th class="r" scope="col">Bajo</th><th class="r" scope="col">Medio</th><th class="r" scope="col">Alto</th><th class="r" scope="col">Ultra</th></tr></thead><tbody></tbody></table></div>
+          <p class="legend"><span><span class="dot" data-tone="excellent"></span>144+ FPS</span><span><span class="dot" data-tone="gpu"></span>60–143</span><span><span class="dot" data-tone="moderate"></span>30–59</span><span><span class="dot" data-tone="severe"></span>Menos de 30</span></p>
+        </section>
+        <section class="card panel">
+          <h3>Objetivos de frecuencia</h3>
+          <p class="sub">¿Puede este equipo llenar un monitor de 60, 144 o 240 Hz? Según los FPS medios.</p>
+          <ul class="tips" id="targets"></ul>
+        </section>
+        <section class="card panel">
+          <h3>Recomendaciones</h3>
+          <p class="sub">Específicas para este juego, tus piezas y tus ajustes.</p>
+          <ul class="tips" id="tips"></ul>
+        </section>
+        <section class="card panel panel-wide">
+          <h3>Este equipo en todos los juegos</h3>
+          <p class="sub" id="games-sub">Selecciona un juego para cargarlo.</p>
+          <div class="table-scroll"><table id="games-table"><thead><tr><th>Juego</th><th class="r">FPS medios</th><th class="r">Mín. 1%</th><th>Limitado por</th></tr></thead><tbody></tbody></table></div>
+        </section>
+      </div>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="En esta página">
+        <p>En esta página</p>
+        <ol>
+          <li><a href="#what-is">¿Qué es una calculadora de FPS?</a></li>
+          <li><a href="#how-to-use">Cómo usarla</a></li>
+          <li><a href="#how-it-works">Cómo estimamos los FPS</a></li>
+          <li><a href="#games">Juegos compatibles</a></li>
+          <li><a href="#builds">FPS en equipos populares</a></li>
+          <li><a href="#targets-guide">Cuántos FPS necesitas</a></li>
+          <li><a href="#lows">FPS medios y mínimos del 1%</a></li>
+          <li><a href="#boost">Cómo ganar FPS</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="what-is">
+          <h2>¿Qué es una calculadora de FPS?</h2>
+          <p>Una calculadora de FPS estima a cuántos <strong>fotogramas por segundo</strong> moverá un PC un juego antes de que compres o mejores nada. Introduces el procesador, la tarjeta gráfica y el juego, y predice la tasa media de fotogramas y los mínimos del 1% a la resolución y con el preajuste gráfico que piensas usar.</p>
+          <p>La respuesta depende de dos límites distintos. La <strong>CPU</strong> decide cuántos fotogramas puede preparar la lógica del juego cada segundo, algo que apenas cambia con la resolución. La <strong>GPU</strong> decide cuántos de esos fotogramas puede dibujar, y esa cifra cae en picado al añadir píxeles o subir la calidad. Tus FPS reales quedan cerca del límite más bajo. Esta herramienta calcula los dos límites para cada juego, así que también te dice <em>por qué</em> obtienes esos FPS y qué los subiría.</p>
+          <div class="callout"><p><strong>En resumen:</strong> si un juego está limitado por la CPU, bajar los ajustes no sumará FPS y un procesador más rápido sí. Si está limitado por la GPU, lo harán unos ajustes más bajos, DLSS/FSR o una tarjeta gráfica más rápida. La columna «Limitado por» te dice en qué caso estás.</p></div>
+        </section>
+
+        <section id="how-to-use">
+          <h2>Cómo usar la calculadora de FPS</h2>
+          <ol class="steps">
+            <li><strong>Elige tu CPU y tu GPU.</strong> Escribe un número de modelo como «5600», «14600K» o «5070 Ti». Los chips de portátil y las gráficas integradas están incluidos y marcados.</li>
+            <li><strong>Elige un juego.</strong> Escoge uno de los 12 títulos compatibles o, para cualquier otro, un tipo de juego (AAA, esports, exigente en CPU o ray tracing).</li>
+            <li><strong>Ajusta la resolución.</strong> Elige la resolución a la que juegas de verdad. Abre <em>Ajustes</em> para cambiar la calidad, la RAM, el escalado y la frecuencia de tu monitor.</li>
+            <li><strong>Lee la tabla de FPS.</strong> Muestra todas las combinaciones de 1080p, 1440p y 4K con calidad de Bajo a Ultra, coloreadas según la tasa de FPS. Selecciona cualquier celda para cargar esos ajustes.</li>
+            <li><strong>Revisa los objetivos de frecuencia.</strong> La calculadora te dice si llegas a 60, 144 y 240 Hz y qué cambiar si no llegas. Copia el enlace para compartir tu resultado.</li>
+          </ol>
+        </section>
+
+        <section id="how-it-works">
+          <h2>Cómo estimamos los FPS</h2>
+          <p>La calculadora de FPS usa el mismo motor que nuestra <a href="../">calculadora de cuello de botella</a>. Cada CPU y cada GPU tienen un índice de rendimiento en juegos construido a partir de medias de benchmarks, no de puntuaciones sintéticas. El Ryzen 7 9800X3D vale 100 en el lado de la CPU y la RTX 4090 vale 100 en el de la GPU.</p>
+          <h3>1. Un perfil para cada juego</h3>
+          <p>Cada juego carga el hardware de forma muy distinta. Valorant puede ir a 800 FPS con una CPU rápida porque cada fotograma es barato de preparar y de dibujar. Microsoft Flight Simulator 2024 apenas pasa de 100 FPS con la misma CPU porque simula un planeta entero. Por eso cada juego parte de uno de cuatro tipos de motor (AAA, esports, exigente en CPU o ray tracing) y recibe encima sus propios multiplicadores de CPU, GPU y VRAM. Los calibramos con medias de resultados de una RTX 4060 a 1080p en Alto y de un Ryzen 7 9800X3D con ajustes bajos.</p>
+          <h3>2. Límites de FPS de la CPU y de la GPU</h3>
+          <p>El límite de la CPU es su índice multiplicado por el factor de CPU del juego, ajustado según el preajuste de calidad y la RAM. El límite de la GPU es su índice escalado por la resolución (número de píxeles<sup>−0,62</sup>, que encaja mejor con los resultados medidos que una caída lineal), la calidad, el escalado, el factor de GPU del juego y una penalización cuando el juego necesita más VRAM de la que tiene la tarjeta.</p>
+          <h3>3. Cómo se combinan</h3>
+<div class="formula">Límite CPU = índice CPU × 2,0 × tipo de juego × factor CPU del juego × calidad × RAM
+Límite GPU = índice GPU × 2,3 × (píxeles ÷ 1080p)^−0,62 × tipo de juego
+             × factor GPU del juego × calidad × escalado × VRAM
+FPS medios = mín. suave(límite CPU, límite GPU), con el tope de FPS del juego
+Mín. 1%    ≈ 70–78% de la media, mejor con CPU X3D, peor con 8 GB de RAM</div>
+          <p><strong>Precisión:</strong> en muchos equipos, las estimaciones suelen quedar a un 10–15% de la media de los benchmarks. Una prueba concreta puede variar más, porque los parches, los drivers, el mapa o la escena que pruebes, la velocidad de la RAM, la refrigeración y las aplicaciones en segundo plano mueven la cifra. Usa el resultado para comparar piezas y ajustes, no como una garantía para una sesión de juego concreta.</p>
+        </section>
+
+        <section id="games">
+          <h2>Juegos compatibles y cómo cargan tu PC</h2>
+          <p>El perfil de cada juego de un vistazo. El «tipo de motor» es la carga de trabajo en la que se basa el perfil, y el tope es un límite de FPS que impone el propio juego.</p>
+          <div class="table-scroll"><table><thead><tr><th>Juego</th><th>Tipo de motor</th><th class="r">Tope de FPS</th></tr></thead><tbody><tr><td><strong>Counter-Strike 2</strong><br><small>Source 2 exige más a la GPU que CS:GO. Los jugadores competitivos usan ajustes bajos o medios para lograr la tasa de FPS más alta.</small></td><td>Esports</td><td class="r num">–</td></tr><tr><td><strong>Valorant</strong><br><small>Muy ligero para la GPU. Por encima de unos 400 FPS, la CPU y la velocidad de la RAM deciden tu tasa de fotogramas.</small></td><td>Esports</td><td class="r num">–</td></tr><tr><td><strong>Fortnite</strong><br><small>DirectX 12, preajuste Alto sin Lumen ni Nanite. El modo Rendimiento va mucho más rápido en cualquier GPU.</small></td><td>Juegos AAA</td><td class="r num">–</td></tr><tr><td><strong>Cyberpunk 2077</strong><br><small>Solo rasterización. El ray tracing reduce estas cifras más o menos a la mitad; elige el tipo de juego Ray tracing para RT Overdrive.</small></td><td>Juegos AAA</td><td class="r num">–</td></tr><tr><td><strong>Elden Ring</strong><br><small>El propio juego está bloqueado a 60 FPS. Una cifra más alta aquí solo significa más margen para unos tiempos de fotograma estables.</small></td><td>Juegos AAA</td><td class="r num">60</td></tr><tr><td><strong>GTA V</strong><br><small>GTA V Enhanced sin ray tracing. Las zonas concurridas de la ciudad y la distancia de dibujado son lo que más carga la CPU.</small></td><td>Juegos AAA</td><td class="r num">–</td></tr><tr><td><strong>Call of Duty: Warzone</strong><br><small>Consume mucha VRAM. Las tarjetas de 8 GB necesitan bajar las texturas para evitar tirones.</small></td><td>Juegos AAA</td><td class="r num">–</td></tr><tr><td><strong>Apex Legends</strong><br><small>El motor lo limita a 300 FPS. Las peleas grandes con muchos efectos son los momentos más exigentes.</small></td><td>Esports</td><td class="r num">300</td></tr><tr><td><strong>Marvel Rivals</strong><br><small>Unreal Engine 5 con iluminación Lumen. Los ajustes bajos o el escalado ayudan mucho en tarjetas de gama media.</small></td><td>Juegos AAA</td><td class="r num">–</td></tr><tr><td><strong>Baldur's Gate 3</strong><br><small>El acto 3 (la ciudad de Baldur's Gate) va un 25% más lento que estas medias y está limitado por la CPU en la mayoría de equipos.</small></td><td>Exigentes en CPU</td><td class="r num">–</td></tr><tr><td><strong>Microsoft Flight Simulator 2024</strong><br><small>Los aeropuertos densos y las ciudades con fotogrametría son lo que más carga la CPU y la VRAM. La generación de fotogramas ayuda mucho aquí.</small></td><td>Exigentes en CPU</td><td class="r num">–</td></tr><tr><td><strong>Minecraft (Java)</strong><br><small>Java vanilla a 12 chunks. Sodium puede casi duplicar estas cifras; los shaders lo vuelven exigente para la GPU.</small></td><td>Esports</td><td class="r num">–</td></tr></tbody></table></div>
+          <p>¿Juegas a otra cosa? Elige el tipo de juego que encaje. <strong>AAA</strong> sirve para la mayoría de los grandes lanzamientos para un jugador, <strong>Esports</strong> para shooters competitivos ligeros y MOBA, <strong>Exigentes en CPU</strong> para juegos de estrategia, simuladores y MMO, y <strong>Ray tracing</strong> para juegos con RT o path tracing activado.</p>
+        </section>
+
+        <section id="builds">
+          <h2>FPS en juegos populares con equipos habituales</h2>
+          <p>FPS medios estimados en calidad Alta y resolución nativa, cada equipo a la resolución para la que se suele comprar. Selecciona un número para abrir ese equipo y ese juego en la calculadora.</p>
+          <div class="table-scroll"><table class="builds-table"><thead><tr><th>Juego</th><th class="r">Ryzen 5 5600 + RTX 4060<br><small>1080p</small></th><th class="r">Ryzen 5 7600 + RTX 5070<br><small>1440p</small></th><th class="r">Ryzen 7 7800X3D + RX 9070 XT<br><small>1440p</small></th><th class="r">Ryzen 7 9800X3D + RTX 5080<br><small>4K</small></th></tr></thead><tbody><tr><td><strong>Counter-Strike 2</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=cs2&amp;res=1080p#calculator">239</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=cs2#calculator">318</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=cs2#calculator">377</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=cs2&amp;res=4k#calculator">274</a></td></tr><tr><td><strong>Valorant</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=valorant&amp;res=1080p#calculator">390</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=valorant#calculator">512</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=valorant#calculator">622</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=valorant&amp;res=4k#calculator">465</a></td></tr><tr><td><strong>Fortnite</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=fortnite&amp;res=1080p#calculator">112</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=fortnite#calculator">147</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=fortnite#calculator">178</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=fortnite&amp;res=4k#calculator">133</a></td></tr><tr><td><strong>Cyberpunk 2077</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=cyberpunk&amp;res=1080p#calculator">73</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=cyberpunk#calculator">100</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=cyberpunk#calculator">118</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=cyberpunk&amp;res=4k#calculator">86</a></td></tr><tr><td><strong>Elden Ring</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=elden-ring&amp;res=1080p#calculator">60 <small>tope</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=elden-ring#calculator">60 <small>tope</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=elden-ring#calculator">60 <small>tope</small></a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=elden-ring&amp;res=4k#calculator">60 <small>tope</small></a></td></tr><tr><td><strong>GTA V</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=gta-5&amp;res=1080p#calculator">113</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=gta-5#calculator">146</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=gta-5#calculator">185</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=gta-5&amp;res=4k#calculator">153</a></td></tr><tr><td><strong>Call of Duty: Warzone</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=warzone&amp;res=1080p#calculator">85</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=warzone#calculator">117</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=warzone#calculator">143</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=warzone&amp;res=4k#calculator">107</a></td></tr><tr><td><strong>Apex Legends</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=apex&amp;res=1080p#calculator">160</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=apex#calculator">209</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=apex#calculator">255</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=apex&amp;res=4k#calculator">192</a></td></tr><tr><td><strong>Marvel Rivals</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=marvel-rivals&amp;res=1080p#calculator">72</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=marvel-rivals#calculator">100</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=marvel-rivals#calculator">118</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=marvel-rivals&amp;res=4k#calculator">86</a></td></tr><tr><td><strong>Baldur's Gate 3</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=bg3&amp;res=1080p#calculator">74</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=bg3#calculator">96</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=bg3#calculator">122</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=bg3&amp;res=4k#calculator">106</a></td></tr><tr><td><strong>Microsoft Flight Simulator 2024</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=msfs-2024&amp;res=1080p#calculator">46</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=msfs-2024#calculator">64</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=msfs-2024#calculator">78</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=msfs-2024&amp;res=4k#calculator">59</a></td></tr><tr><td><strong>Minecraft (Java)</strong></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;game=minecraft&amp;res=1080p#calculator">220</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070&amp;game=minecraft#calculator">283</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-7800x3d&amp;gpu=rx-9070-xt&amp;game=minecraft#calculator">366</a></td><td class="r"><a class="load-build" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080&amp;game=minecraft&amp;res=4k#calculator">415</a></td></tr></tbody></table></div>
+          <p>¿Prefieres ver el cuello de botella de un equipo? Usa la <a href="../"><strong>calculadora de cuello de botella</strong></a> o consulta las <a href="../../bottleneck/" hreflang="en">combinaciones populares de CPU y GPU</a> (en inglés).</p>
+        </section>
+
+        <section id="targets-guide">
+          <h2>¿Cuántos FPS necesitas? 60, 144 y 240 Hz</h2>
+          <p>Más FPS solo ayudan hasta lo que tu monitor puede mostrar. Un monitor de 144 Hz enseña como mucho 144 fotogramas por segundo, así que 300 FPS no se verán más fluidos, aunque sí reducen un poco la latencia en juegos competitivos.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Objetivo</th><th>Para quién</th><th>Qué hace falta</th></tr></thead>
+              <tbody>
+                <tr><td><strong>60 FPS</strong></td><td>Juegos para un jugador, de historia y de simulación en un monitor o una tele de 60 Hz</td><td>Normalmente limita la GPU. Casi cualquier CPU moderna de 6 núcleos basta.</td></tr>
+                <tr><td><strong>144 FPS</strong></td><td>La mayoría de jugadores con un monitor de 144–180 Hz, shooters y juegos de acción</td><td>Una GPU de gama media a 1080p o 1440p y una CPU de 2022 o posterior.</td></tr>
+                <tr><td><strong>240 FPS</strong></td><td>Jugadores competitivos de CS2, Valorant, Fortnite y Apex</td><td>Sobre todo limita la CPU. Los chips X3D como el 7800X3D y el 9800X3D brillan aquí, con ajustes bajos o medios.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Si tus FPS no llegan a la frecuencia de tu monitor, activa <strong>G-Sync o FreeSync</strong>. La frecuencia variable hace que 90 FPS en una pantalla de 144 Hz se vean fluidos y sin tearing. Si la superas, limita los FPS 3 o 4 fotogramas por debajo de la frecuencia del monitor para un ritmo de fotogramas más estable, menos latencia y menos calor.</p>
+        </section>
+
+        <section id="lows">
+          <h2>FPS medios frente a mínimos del 1%</h2>
+          <p>Los FPS medios son la cifra que citan la mayoría de los benchmarks, pero los <strong>mínimos del 1%</strong> (1% lows) deciden lo fluido que se siente un juego. El mínimo del 1% es la tasa del 1% de fotogramas más lentos, es decir, los tirones que notas en un tiroteo o al cargar una zona nueva. Un juego con una media de 120 FPS y mínimos de 50 se siente peor que otro con una media de 100 y mínimos de 80.</p>
+          <p>Los mínimos sufren más cuando el límite es la <strong>CPU</strong>, porque los momentos de más acción añaden trabajo a una CPU que ya va al máximo. Las cachés L3 grandes ayudan mucho, y por eso los procesadores X3D tienen mínimos del 1% bastante mejores de lo que sugieren sus medias. La falta de RAM o de VRAM también provoca tirones: 8 GB de memoria del sistema y las tarjetas de 8 GB con texturas altas son las causas más habituales.</p>
+        </section>
+
+        <section id="boost">
+          <h2>Cómo ganar FPS</h2>
+          <h3>Si limita la GPU</h3>
+          <ul>
+            <li><strong>Activa DLSS, FSR o XeSS</strong> en modo Calidad para ganar en torno a un 30–50% de FPS con poca pérdida visible.</li>
+            <li><strong>Baja primero los ajustes más pesados:</strong> ray tracing, sombras, niebla volumétrica y reflejos en espacio de pantalla. Las texturas apenas afectan a los FPS si tienes VRAM suficiente.</li>
+            <li><strong>Prueba la generación de fotogramas</strong> (DLSS Frame Generation, FSR Frame Generation) en juegos para un jugador cuando ya tengas 60 FPS o más.</li>
+          </ul>
+          <h3>Si limita la CPU</h3>
+          <ul>
+            <li><strong>Activa XMP o EXPO</strong> y usa dos módulos de RAM en doble canal. La memoria lenta o en un solo canal puede costar un 10–25% de FPS en juegos exigentes en CPU.</li>
+            <li><strong>Baja los ajustes que cargan la CPU:</strong> densidad de multitudes, distancia de visión, física y nivel de simulación. La calidad gráfica apenas importa aquí.</li>
+            <li><strong>Cierra las aplicaciones en segundo plano</strong>, como navegadores y launchers, y usa el codificador por hardware de tu GPU al hacer streaming.</li>
+            <li><strong>Mejora dentro de tu socket.</strong> En AM4, un Ryzen 7 5700X3D suele ser el salto grande más barato. La <a href="../">calculadora de cuello de botella</a> te dice qué CPU aprovecha al completo tu GPU.</li>
+          </ul>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Preguntas frecuentes</h2>
+          <details open><summary>¿Qué precisión tiene esta calculadora de FPS?</summary><div><p>En muchos equipos, las estimaciones suelen quedar a un 10–15% de la media de los benchmarks. Los resultados concretos varían con los parches del juego, los drivers, el mapa o la escena, la velocidad de la RAM, la refrigeración y las aplicaciones en segundo plano. Usa las cifras para comparar hardware y ajustes, no como una promesa exacta para una partida.</p></div></details>
+          <details><summary>¿Cómo calculo los FPS que dará mi PC?</summary><div><p>Elige tu CPU, tu tarjeta gráfica y el juego en la calculadora de arriba, y después ajusta la resolución y la calidad. La herramienta estima cuántos fotogramas puede preparar la CPU y cuántos puede renderizar la GPU, y muestra el menor de los dos como tus FPS medios, junto con los mínimos del 1% para cada resolución y preajuste.</p></div></details>
+          <details><summary>¿Qué importa más para los FPS, la CPU o la GPU?</summary><div><p>Depende del juego y de la resolución. A 1440p y 4K en juegos AAA, lo que más importa es la GPU. En esports como CS2 y Valorant, a 1080p o en simuladores como Microsoft Flight Simulator, la CPU suele marcar el límite. La columna «Limitado por» de la calculadora te dice qué pieza limita en cada juego.</p></div></details>
+          <details><summary>¿Por qué Elden Ring da 60 FPS en cualquier PC?</summary><div><p>Elden Ring está bloqueado a 60 FPS por el propio juego. Un hardware más rápido no sube ese tope, pero mantiene los tiempos de fotograma más estables y la tasa más cerca de unos 60 constantes. Apex Legends tiene un tope integrado parecido de 300 FPS.</p></div></details>
+          <details><summary>¿Son suficientes 60 FPS para jugar?</summary><div><p>Sí: en juegos para un jugador y de historia, 60 FPS se sienten fluidos y responden bien. En shooters competitivos, 144 FPS o más en un monitor de alta frecuencia dan un movimiento claramente más suave y menos latencia. Muy poca gente se beneficia de más de 240 FPS.</p></div></details>
+          <details><summary>¿La RAM afecta a los FPS?</summary><div><p>Sí, sobre todo a través de los mínimos del 1%. 8 GB de RAM provocan tirones en los juegos actuales, y la memoria en un solo canal o sin XMP/EXPO puede recortar un 10–25% los FPS cuando limita la CPU. Para jugar en 2026, lo ideal son 32 GB en doble canal.</p></div></details>
+          <details><summary>¿Cuántos FPS añade DLSS o FSR?</summary><div><p>En juegos limitados por la GPU, el modo Calidad suele añadir un 30–50% de FPS y el modo Rendimiento un 60–90%. Si la CPU ya es el límite, el escalado aporta poco, porque la GPU no era lo que te frenaba. La generación de fotogramas es aparte y más o menos duplica los fotogramas mostrados, con un pequeño coste de latencia.</p></div></details>
+          <details><summary>¿Por qué mis FPS reales son más bajos que la estimación?</summary><div><p>Las causas habituales son la RAM a velocidad de fábrica sin XMP/EXPO, un portátil o una caja pequeña que se calienta y baja frecuencias, el cable del monitor conectado a la placa base en lugar de a la tarjeta gráfica, drivers desactualizados, aplicaciones en segundo plano o un mapa o una escena especialmente exigentes. Comprueba el uso de la GPU con una superposición como MSI Afterburner: por debajo del 90% apunta a la CPU o a la RAM.</p></div></details>
+          <details><summary>¿La calculadora de FPS sirve para portátiles?</summary><div><p>Sí. Incluye los procesadores y las gráficas de portátil más populares, marcados como «Portátil». Las GPU de portátil varían mucho según su límite de potencia y su refrigeración, así que los modelos finos y ligeros pueden ir un 10–25% por debajo de la estimación.</p></div></details>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Sitio"><a href="../../es/">Calculadora de cuello de botella</a><a href="../../es/calculadora-fps/" aria-current="page">Calculadora de FPS</a><a href="../../bottleneck/" hreflang="en">Combinaciones populares (en inglés)</a><a href="../../guides/" hreflang="en">Guías (en inglés)</a><a href="../../about/" hreflang="en">Quiénes somos</a><a href="../../editorial-policy/" hreflang="en">Política editorial</a><a href="../../privacy/" hreflang="en">Privacidad</a><a href="../../contact/" hreflang="en">Contacto</a></nav>
+      <nav class="lang-switch" aria-label="Idioma"><a href="../../fps-calculator/" lang="en" hreflang="en">English</a><span aria-hidden="true">·</span><a href="../../es/calculadora-fps/" lang="es" hreflang="es" aria-current="page">Español</a><span aria-hidden="true">·</span><a href="../../ja/fps-calculator/" lang="ja" hreflang="ja">日本語</a></nav>
+      <p>© 2026 Bottleneck Calculator. Las estimaciones son orientativas. El rendimiento real varía según el juego, los ajustes, los drivers y la refrigeración.</p>
+      <p>Los nombres de productos y de juegos son marcas registradas de sus respectivos propietarios. Este sitio no está afiliado a AMD, Intel, NVIDIA ni a ningún editor de videojuegos.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../../assets/js/i18n.js?v=8"></script>
+  <script src="../../assets/js/hardware.js?v=8"></script>
+  <script src="../../assets/js/engine.js?v=8"></script>
+  <script src="../../assets/js/games.js?v=8"></script>
+  <script src="../../assets/js/motion.js?v=8"></script>
+  <script src="../../assets/js/combobox.js?v=8"></script>
+  <script src="../../assets/js/fps.js?v=8"></script>
+</body>
+</html>
