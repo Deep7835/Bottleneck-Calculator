@@ -184,7 +184,7 @@ const comparePages = require("./compare-pages")({ ROOT, SITE_URL, HW, Engine, bu
 const macPages = require("./mac-pages")({ ROOT, SITE_URL, HW, Engine, faqSchema });
 
 // ---- Trust pages (hand-written; only the domain placeholder is filled in)
-const TRUST_PAGES = ["about/", "editorial-policy/", "privacy/", "contact/"];
+const TRUST_PAGES = ["about/", "editorial-policy/", "privacy/", "terms/", "contact/"];
 const host = new URL(SITE_URL).hostname.replace(/^www\./, "");
 for (const loc of TRUST_PAGES) {
   const f = path.join(ROOT, loc, "index.html");
@@ -203,6 +203,34 @@ for (const [loc, root, current] of [
 ]) {
   const f = path.join(ROOT, loc);
   fs.writeFileSync(f, layout.stampFooter(layout.stampHeader(fs.readFileSync(f, "utf8"), root, current), root));
+}
+
+// ---- Site search index (loaded on demand by assets/js/search.js)
+{
+  const TYPES = [
+    [/^$|^fps-calculator\/$|^mac\/$/, "Tool"], [/^(compare|bottleneck|guides)\/$/, "Hub"],
+    [/^guides\/./, "Guide"], [/^mac\/./, "Mac"], [/^compare\/./, "Compare"], [/^bottleneck\/./, "Build"],
+    [/^es\//, "Español"], [/^ja\//, "日本語"],
+  ];
+  const entries = [];
+  (function walk(dir) {
+    for (const f of fs.readdirSync(dir)) {
+      if ([".git", ".claude", "scripts", "assets", "node_modules"].includes(f)) continue;
+      const full = path.join(dir, f);
+      if (fs.statSync(full).isDirectory()) { walk(full); continue; }
+      if (f !== "index.html") continue;
+      const rel = path.relative(ROOT, path.dirname(full)).split(path.sep).join("/");
+      const loc = rel ? `${rel}/` : "";
+      const html = fs.readFileSync(full, "utf8");
+      const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1];
+      if (!h1) continue;
+      const title = h1.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+      const type = (TYPES.find(([re]) => re.test(loc)) || [null, "Info"])[1];
+      entries.push([loc, title, type]);
+    }
+  })(ROOT);
+  fs.writeFileSync(path.join(ROOT, "search-index.json"), JSON.stringify(entries));
+  console.log(`  search-index.json: ${entries.length} pages`);
 }
 
 const today = new Date().toISOString().slice(0, 10);

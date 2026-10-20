@@ -34,6 +34,10 @@ function header(root = "", current = "") {
       <nav class="nav" aria-label="Main">
         ${links(root, current)}
       </nav>
+      <div class="header-tools">
+        <button type="button" class="icon-btn search-btn" data-root="${root}" aria-label="Search the site" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="icon-btn theme-btn" aria-label="Switch light or dark theme"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </div>
       <details class="menu">
         <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
         <nav class="menu-panel" aria-label="Main (mobile)">
@@ -111,7 +115,7 @@ function footer(root = "", langSwitch = "") {
     columns: [
       { title: "Tools", links: [[home, "Bottleneck calculator"], [`${r}fps-calculator/`, "FPS calculator"], [`${r}compare/`, "Compare parts"], [`${r}mac/`, "Mac gaming"], [`${r}bottleneck/`, "Popular builds"]] },
       { title: "Resources", links: [[`${r}guides/`, "Guides"], [`${r}#how-it-works`, "How it works"], [`${r}#min-cpu`, "Best CPU for your GPU"], [`${r}editorial-policy/`, "Editorial policy"]] },
-      { title: "Company", links: [[`${r}about/`, "About"], [`${r}contact/`, "Contact"], [`${r}privacy/`, "Privacy"]] },
+      { title: "Company", links: [[`${r}about/`, "About"], [`${r}contact/`, "Contact"], [`${r}privacy/`, "Privacy"], [`${r}terms/`, "Terms"]] },
     ],
     copyright: `© 2026 Bottleneck Calculator · Built by <a href="${OWNER.url}">${OWNER.name}</a>`,
     status: "Hardware data updated October 2026",

@@ -23,7 +23,7 @@ module.exports = {
       columns: [
         { title: "Herramientas", links: [["home", "Calculadora de cuello de botella"], ["fps", "Calculadora de FPS"], ["compare/", "Comparar piezas (en inglés)", true], ["mac/", "Juegos en Mac (en inglés)", true], ["bottleneck/", "Combinaciones populares (en inglés)", true]] },
         { title: "Recursos", links: [["guides/", "Guías (en inglés)", true], ["#how-it-works", "Cómo funciona"], ["#min-cpu", "La mejor CPU para tu GPU"], ["editorial-policy/", "Política editorial", true]] },
-        { title: "Sitio", links: [["about/", "Quiénes somos", true], ["contact/", "Contacto", true], ["privacy/", "Privacidad", true]] },
+        { title: "Sitio", links: [["about/", "Quiénes somos", true], ["contact/", "Contacto", true], ["privacy/", "Privacidad", true], ["terms/", "Términos de uso", true]] },
       ],
       builtBy: "Creado por",
       status: "Datos de hardware actualizados en octubre de 2026",

@@ -101,10 +101,10 @@ module.exports = function buildI18nPages({ ROOT, SITE_URL, HW, Engine, faqSchema
   <meta name="twitter:description" content="${esc(P.ogDescription)}">
   <meta name="twitter:image" content="${abs("og-image.png")}">
 
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="${r}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${r}assets/css/style.css?v=24">
+  <link rel="stylesheet" href="${r}assets/css/style.css?v=26">
 
   <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
@@ -137,6 +137,10 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
       <nav class="nav" aria-label="${L.site.navLabel}">
         ${nav}
       </nav>
+      <div class="header-tools">
+        <button type="button" class="icon-btn search-btn" data-root="${r}" aria-label="${L.lang === "ja" ? "サイト内検索" : "Buscar en el sitio"}" aria-keyshortcuts="/ Control+K Meta+K"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button type="button" class="icon-btn theme-btn" aria-label="${L.lang === "ja" ? "ライト／ダークを切り替え" : "Cambiar tema claro u oscuro"}"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+      </div>
       <details class="menu">
         <summary aria-label="${MENU_LABEL[L.lang] || "Menu"}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
         <nav class="menu-panel" aria-label="${L.site.navLabel}">
@@ -172,7 +176,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
 `;
   }
 
-  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=24"></script>`).join("\n");
+  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=26"></script>`).join("\n");
 
   const seg = (name, id, label, items, checked) => `<span class="field-label" id="${id}">${label}</span>
               <div class="seg" role="radiogroup" aria-labelledby="${id}">

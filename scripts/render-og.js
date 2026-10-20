@@ -10,4 +10,8 @@ execFileSync(CHROME, [
   `--screenshot=${path.join(ROOT, "og-image.png")}`,
   "file://" + path.join(__dirname, "og-image.html"),
 ], { stdio: "inherit" });
+// Shrink it ~3x with a 128-colour palette (needs Python + Pillow; skipped if missing).
+try {
+  execFileSync("python3", ["-c", "import sys;from PIL import Image;p=sys.argv[1];Image.open(p).convert('RGB').quantize(colors=128,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE).save(p,optimize=True)", path.join(ROOT, "og-image.png")]);
+} catch { console.warn("Pillow not available; og-image.png left uncompressed"); }
 console.log("Wrote og-image.png");

@@ -119,10 +119,10 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
   <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
   <meta name="twitter:image" content="${SITE_URL}og-image.png">
 
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${root}assets/css/style.css?v=24">
+  <link rel="stylesheet" href="${root}assets/css/style.css?v=26">
   <script type="application/ld+json">
 ${JSON.stringify(schema, null, 2)}
   </script>
@@ -199,7 +199,7 @@ ${JSON.stringify(schema, null, 2)}
         </ol>
       </nav>
 
-      <article class="article">
+      <article class="article" data-progress>
         ${g.sections.map((s) => `<section id="${s.id}">
           <h2>${s.h2}</h2>
           ${s.html.trim()}
@@ -220,7 +220,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../../")}
-  <script src="../../assets/js/motion.js?v=24"></script>
+  <script src="../../assets/js/motion.js?v=26"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>
@@ -278,7 +278,7 @@ ${JSON.stringify(schema, null, 2)}
   </main>
 
   ${footer("../")}
-  <script src="../assets/js/motion.js?v=24"></script>
+  <script src="../assets/js/motion.js?v=26"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>

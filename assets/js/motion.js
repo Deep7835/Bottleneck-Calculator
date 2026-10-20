@@ -9,9 +9,12 @@
   const css = (el, name) => getComputedStyle(el).getPropertyValue(name).trim();
 
   // ---------- Count-up numbers ----------
+  const counting = new Set(); // elements with a count-up, so printing can snap them to the final value
   function countUp(el, to, format, duration = 700) {
     const from = el._v ?? 0;
     el._v = to;
+    el._fmt = format;
+    counting.add(el);
     cancelAnimationFrame(el._raf);
     if (reduced() || Math.abs(from - to) < 0.5) { el.textContent = format(to); return; }
     const t0 = performance.now();
@@ -135,12 +138,22 @@
     document.addEventListener("visibilitychange", kick);
     mq.addEventListener?.("change", () => { kick(); draw(); });
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { readColors(); draw(); });
+    window.addEventListener("themechange", () => requestAnimationFrame(() => { readColors(); draw(); }));
     return { set, measure };
   }
 
   // ---------- Page-level motion ----------
   function initPage() {
     initWordmark();
+    initTheme();
+    initSearch();
+    initToTop();
+    initProgress();
+    // Printing: expand every FAQ answer so nothing is hidden on paper.
+    window.addEventListener("beforeprint", () => {
+      document.querySelectorAll(".faq details, .article details").forEach((d) => (d.open = true));
+      counting.forEach((el) => { cancelAnimationFrame(el._raf); el.textContent = el._fmt(el._v); });
+    });
 
     // Close the compact header menu on outside click or Escape.
     const menu = document.querySelector(".menu");
@@ -184,6 +197,83 @@
       }, { rootMargin: "-20% 0px -70% 0px" });
       links.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
     }
+  }
+
+  // ---------- Light/dark switch (choice saved in localStorage as "theme") ----------
+  function initTheme() {
+    const btn = document.querySelector(".theme-btn");
+    if (!btn) return;
+    const html = document.documentElement;
+    const light = window.matchMedia("(prefers-color-scheme: light)");
+    const current = () => html.dataset.theme || (light.matches ? "light" : "dark");
+    btn.addEventListener("click", () => {
+      const next = current() === "light" ? "dark" : "light";
+      html.dataset.theme = next;
+      try { localStorage.setItem("theme", next); } catch {}
+      btn.classList.add("spin");
+      setTimeout(() => btn.classList.remove("spin"), 500);
+      window.dispatchEvent(new Event("themechange"));
+    });
+  }
+
+  // ---------- Site search: loads search.js and the index only when first opened ----------
+  function initSearch() {
+    const btn = document.querySelector(".search-btn");
+    if (!btn) return;
+    const me = document.querySelector('script[src*="assets/js/motion.js"]');
+    const base = me ? me.getAttribute("src").replace(/motion\.js.*$/, "") : "assets/js/";
+    const ver = me ? (me.getAttribute("src").match(/\?v=\d+/) || [""])[0] : "";
+    let loading = null;
+    const open = () => {
+      if (window.SiteSearch) return window.SiteSearch.open();
+      loading = loading || new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = `${base}search.js${ver}`; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+      loading.then(() => window.SiteSearch.init(btn.dataset.root || "", ver)).then(() => window.SiteSearch.open());
+    };
+    btn.addEventListener("click", open);
+    document.addEventListener("keydown", (e) => {
+      const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
+      if ((e.key === "/" && !typing) || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) { e.preventDefault(); open(); }
+    });
+  }
+
+  // ---------- Back to top ----------
+  function initToTop() {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "to-top"; b.setAttribute("aria-label", "Back to top");
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+    b.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" });
+      document.querySelector(".skip")?.focus({ preventScroll: true });
+    });
+    document.body.appendChild(b);
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => { b.classList.toggle("show", window.scrollY > window.innerHeight * 1.5); ticking = false; });
+    }, { passive: true });
+  }
+
+  // ---------- Reading progress for long articles (marked with data-progress) ----------
+  function initProgress() {
+    const art = document.querySelector("[data-progress]");
+    if (!art) return;
+    const bar = document.createElement("div");
+    bar.className = "read-progress"; bar.setAttribute("aria-hidden", "true");
+    document.body.appendChild(bar);
+    let ticking = false;
+    const update = () => {
+      const r = art.getBoundingClientRect();
+      const total = r.height - window.innerHeight * 0.6;
+      const k = Math.max(0, Math.min(1, -r.top / Math.max(1, total)));
+      bar.style.transform = `scaleX(${k})`;
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
   }
 
   // ---------- Footer wordmark spotlight ----------

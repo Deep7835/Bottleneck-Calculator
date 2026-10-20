@@ -10,7 +10,7 @@ const layout = require("./layout");
 module.exports = function buildMacPages({ ROOT, SITE_URL, HW, Engine, faqSchema }) {
   require(path.join(ROOT, "assets/js/macs.js"));
   const { Macs } = global.window;
-  const V = "?v=24";
+  const V = "?v=26";
   const MODIFIED = "2026-10-20";
   const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const fmt = (n) => Math.round(n).toLocaleString("en-US");
@@ -57,7 +57,7 @@ module.exports = function buildMacPages({ ROOT, SITE_URL, HW, Engine, faqSchema 
   <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
   <meta name="twitter:image" content="${SITE_URL}og-image.png">
 
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preload" href="${root}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${root}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${root}assets/css/style.css${V}">

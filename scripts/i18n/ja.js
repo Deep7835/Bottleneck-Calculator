@@ -23,7 +23,7 @@ module.exports = {
       columns: [
         { title: "ツール", links: [["home", "ボトルネックチェッカー"], ["fps", "FPS計算"], ["compare/", "パーツ比較（英語）", true], ["mac/", "Macゲーム性能（英語）", true], ["bottleneck/", "人気構成（英語）", true]] },
         { title: "リソース", links: [["guides/", "ガイド（英語）", true], ["#how-it-works", "計算方法"], ["#min-cpu", "GPU別おすすめCPU"], ["editorial-policy/", "編集方針（英語）", true]] },
-        { title: "サイト情報", links: [["about/", "運営者情報（英語）", true], ["contact/", "お問い合わせ（英語）", true], ["privacy/", "プライバシー（英語）", true]] },
+        { title: "サイト情報", links: [["about/", "運営者情報（英語）", true], ["contact/", "お問い合わせ（英語）", true], ["privacy/", "プライバシー（英語）", true], ["terms/", "利用規約（英語）", true]] },
       ],
       builtBy: "制作：",
       status: "ハードウェアデータ更新：2026年10月",
