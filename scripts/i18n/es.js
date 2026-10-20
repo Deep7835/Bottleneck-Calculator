@@ -16,6 +16,19 @@ module.exports = {
     requiresJs: "Requiere JavaScript",
     ogImageAlt: "Calculadora de cuello de botella: equilibrio entre CPU y GPU, FPS y mejoras recomendadas",
     copyright: "© 2026 Bottleneck Calculator. Las estimaciones son orientativas. El rendimiento real varía según el juego, los ajustes, los drivers y la refrigeración.",
+    footer: {
+      tagline: "Calculadora gratuita de cuello de botella entre CPU y GPU. Mira tus FPS, compara piezas y encuentra la mejora que de verdad ayuda.",
+      cta: "Comprueba tu equipo",
+      badges: ["Gratis, sin registro", "Datos actualizados cada mes"],
+      columns: [
+        { title: "Herramientas", links: [["home", "Calculadora de cuello de botella"], ["fps", "Calculadora de FPS"], ["compare/", "Comparar piezas (en inglés)", true], ["bottleneck/", "Combinaciones populares (en inglés)", true]] },
+        { title: "Recursos", links: [["guides/", "Guías (en inglés)", true], ["#how-it-works", "Cómo funciona"], ["#min-cpu", "La mejor CPU para tu GPU"], ["editorial-policy/", "Política editorial", true]] },
+        { title: "Sitio", links: [["about/", "Quiénes somos", true], ["contact/", "Contacto", true], ["privacy/", "Privacidad", true]] },
+      ],
+      builtBy: "Creado por",
+      status: "Datos de hardware actualizados en octubre de 2026",
+      disclaimer: "Las estimaciones son orientativas; el rendimiento real varía según el juego, los ajustes, los drivers y la refrigeración. Los nombres de productos son marcas de sus propietarios. Sin afiliación con AMD, Intel ni NVIDIA.",
+    },
     // [page group or path, label, English-only page]
     footerLinks: [
       ["home", "Calculadora de cuello de botella"],

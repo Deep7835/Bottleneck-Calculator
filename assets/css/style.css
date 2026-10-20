@@ -467,11 +467,62 @@ td small { color: var(--text-3); font-size: 12.5px; }
 .faq details > div { padding: 0 0 18px; animation: swap var(--t-med) var(--ease-out); }
 .faq details > div p:last-child { margin: 0; }
 
-.site-footer { border-top: 1px solid var(--border); padding: 32px 0 48px; font-size: 13.5px; color: var(--text-3); }
-.site-footer p { margin: 0 0 6px; }
-.footer-nav { display: flex; flex-wrap: wrap; gap: 0 20px; margin: -6px 0 12px; }
-.footer-nav a { color: var(--text-2); text-decoration: none; padding: 6px 0; transition: color var(--t-fast); }
-.footer-nav a:hover { color: var(--text); }
+/* Footer: brand + columns, bottom bar, giant striped wordmark */
+.site-footer { position: relative; border-top: 1px solid var(--border); padding-top: 64px; font-size: 14.5px; color: var(--text-3); overflow: hidden; }
+.site-footer p { margin: 0; }
+.footer-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; }
+.footer-logo { font-size: 20px; gap: 12px; }
+.footer-logo svg { width: 32px; height: 32px; }
+.footer-tagline { color: var(--text-2); font-size: 15.5px; line-height: 1.6; max-width: 400px; margin: 18px 0 24px !important; }
+.footer-cta {
+  display: inline-flex; align-items: center; gap: 14px; height: 52px; padding: 0 8px 0 22px; border-radius: 14px;
+  background: var(--text); color: var(--bg); font-weight: 500; font-size: 15.5px; text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 8px 24px -10px rgba(0, 0, 0, 0.6);
+  transition: transform var(--t-fast), box-shadow var(--t-med);
+}
+.footer-cta-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: color-mix(in srgb, var(--bg) 14%, transparent); }
+.footer-cta-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--t-med) var(--ease-out); }
+.footer-cta:hover .footer-cta-icon svg { transform: translateX(3px); }
+.footer-cta:active { transform: scale(0.98); }
+.footer-badges { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: 18px 0 0; padding: 0; font-size: 14px; color: var(--text-2); }
+.footer-badges li { display: flex; align-items: center; gap: 8px; }
+.footer-badges svg { width: 17px; height: 17px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.footer-cols { display: grid; grid-template-columns: repeat(3, minmax(150px, auto)); gap: 40px; }
+.fcol h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); margin: 0 0 18px; }
+.fcol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.fcol a { display: inline-block; padding: 7px 0; color: var(--text-2); text-decoration: none; transition: color var(--t-fast); }
+.fcol a:hover { color: var(--text); }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border); }
+.footer-copy a { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; }
+.footer-copy a:hover { color: var(--text); }
+.footer-status { display: flex; align-items: center; gap: 10px; margin-left: auto !important; color: var(--text-2); }
+.footer-disclaimer { margin-top: 14px !important; font-size: 12.5px; max-width: 760px; line-height: 1.6; }
+
+.wordmark {
+  position: relative; margin-top: 28px; text-align: center; white-space: nowrap; user-select: none;
+  font-weight: 600; font-size: clamp(32px, 13.4vw, 196px); line-height: 0.82; letter-spacing: -0.045em;
+  height: 0.86em; overflow: hidden; --mx: 50%; --my: 40%;
+}
+.wordmark span {
+  display: block; color: transparent; -webkit-background-clip: text; background-clip: text;
+}
+.wm-base { background: repeating-linear-gradient(90deg, var(--wm-stripe) 0 2px, transparent 2px 6px); }
+/* Glow layer: an accent gradient clipped to the text, cut into the same stripes and
+   revealed only inside a soft spotlight that follows the cursor (--mx/--my). */
+.wm-glow {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--wm-glow) 0%, var(--wm-glow) 40%, color-mix(in srgb, var(--wm-glow) 45%, transparent) 100%);
+  -webkit-mask-image: radial-gradient(circle 230px at var(--mx) var(--my), #000 0, #000 28%, rgba(0,0,0,.55) 58%, transparent 82%),
+                      repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 6px);
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(circle 230px at var(--mx) var(--my), #000 0, #000 28%, rgba(0,0,0,.55) 58%, transparent 82%),
+              repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 6px);
+  mask-composite: intersect;
+  opacity: 0; transition: opacity 450ms var(--ease-out);
+}
+.wordmark.lit .wm-glow { opacity: 1; }
+:root { --wm-stripe: rgba(250, 250, 250, 0.09); --wm-glow: #34d399; }
+@media (prefers-color-scheme: light) { :root { --wm-stripe: rgba(9, 9, 11, 0.09); --wm-glow: #059669; } }
 
 .toast {
   position: fixed; left: 50%; bottom: 24px; z-index: 50;
@@ -575,6 +626,7 @@ a.up { text-decoration: none; }
    Responsive
    ========================================================================== */
 @media (max-width: 900px) {
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
   .details { grid-template-columns: 1fr; }
   .content { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .toc { display: none; }
@@ -605,6 +657,9 @@ a.up { text-decoration: none; }
   .panel { padding: 18px 16px; }
   th, td { padding: 10px 6px; font-size: 13.5px; }
   .hide-sm { display: none; }
+  .site-footer { padding-top: 48px; }
+  .footer-cols { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .footer-status { margin-left: 0 !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -680,7 +735,7 @@ a.up { text-decoration: none; }
 
 /* ===== i18n ===== */
 /* Language switcher in the footer (English · Español · 日本語). */
-.lang-switch { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin: -6px 0 12px; }
+.lang-switch { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; margin: 0; }
 .lang-switch a { color: var(--text-2); text-decoration: none; padding: 6px 0; transition: color var(--t-fast); }
 .lang-switch a:hover, .lang-switch a[aria-current="page"] { color: var(--text); }
 .lang-switch span { color: var(--text-3); }

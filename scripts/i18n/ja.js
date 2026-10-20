@@ -16,6 +16,19 @@ module.exports = {
     requiresJs: "JavaScriptが必要です",
     ogImageAlt: "ボトルネックチェッカー：CPUとGPUのバランス、FPS、アップグレード候補",
     copyright: "© 2026 Bottleneck Calculator. 推定値はあくまで目安です。実際の性能はゲーム、設定、ドライバー、冷却によって変わります。",
+    footer: {
+      tagline: "無料のCPU・GPUボトルネック計算ツール。FPSの目安、パーツ比較、本当に効くアップグレードがわかります。",
+      cta: "構成をチェック",
+      badges: ["無料・登録不要", "データは毎月更新"],
+      columns: [
+        { title: "ツール", links: [["home", "ボトルネックチェッカー"], ["fps", "FPS計算"], ["compare/", "パーツ比較（英語）", true], ["bottleneck/", "人気構成（英語）", true]] },
+        { title: "リソース", links: [["guides/", "ガイド（英語）", true], ["#how-it-works", "計算方法"], ["#min-cpu", "GPU別おすすめCPU"], ["editorial-policy/", "編集方針（英語）", true]] },
+        { title: "サイト情報", links: [["about/", "運営者情報（英語）", true], ["contact/", "お問い合わせ（英語）", true], ["privacy/", "プライバシー（英語）", true]] },
+      ],
+      builtBy: "制作：",
+      status: "ハードウェアデータ更新：2026年10月",
+      disclaimer: "数値は目安です。実際の性能はゲーム、設定、ドライバー、冷却によって変わります。製品名は各社の商標です。AMD、Intel、NVIDIAとは提携していません。",
+    },
     // [page group or path, label, English-only page]
     footerLinks: [
       ["home", "ボトルネックチェッカー"],

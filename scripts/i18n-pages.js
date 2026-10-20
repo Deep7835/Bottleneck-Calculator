@@ -11,6 +11,8 @@ const fs = require("fs");
 const path = require("path");
 
 // Pages that exist in all three languages (paths relative to the site root).
+const layout = require("./layout");
+
 const GROUPS = {
   home: { en: "", es: "es/", ja: "ja/" },
   fps: { en: "fps-calculator/", es: "es/calculadora-fps/", ja: "ja/fps-calculator/" },
@@ -102,7 +104,7 @@ module.exports = function buildI18nPages({ ROOT, SITE_URL, HW, Engine, faqSchema
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${r}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${r}assets/css/style.css?v=16">
+  <link rel="stylesheet" href="${r}assets/css/style.css?v=20">
 
   <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
@@ -145,26 +147,32 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
   </header>`;
   }
 
+  // Same footer as the English pages (scripts/layout.js), with localized copy.
   function footer(L, P, group, loc) {
-    const r = rel(loc);
-    const links = L.site.footerLinks.map(([href, label, en]) => {
-      const target = GROUPS[href] ? GROUPS[href][L.lang] : href;
-      return `<a href="${r}${target}"${en ? ' hreflang="en"' : ""}${target === loc ? ' aria-current="page"' : ""}>${label}</a>`;
-    }).join("");
-    return `  <footer class="site-footer">
-    <div class="wrap">
-      <nav class="footer-nav" aria-label="${L.site.footerNavLabel}">${links}</nav>
-      ${langSwitch(L, group, loc)}
-      <p>${L.site.copyright}</p>
-      <p>${P.trademarks}</p>
-    </div>
-  </footer>
+    const r = rel(loc), F = L.site.footer;
+    const home = `${r}${GROUPS.home[L.lang]}`;
+    const link = ([to, label, en]) => {
+      const target = GROUPS[to] ? `${r}${GROUPS[to][L.lang]}` : to.startsWith("#") ? `${home}${to}` : `${r}${to}`;
+      return [target, label, `${en ? ' hreflang="en"' : ""}${target === `${r}${loc}` ? ' aria-current="page"' : ""}`];
+    };
+    return `  ${layout.footerShell({
+      home,
+      tagline: F.tagline,
+      cta: { href: `${home}#calculator`, label: F.cta },
+      badges: F.badges,
+      siteLabel: L.site.footerNavLabel,
+      columns: F.columns.map((c) => ({ title: c.title, links: c.links.map(link) })),
+      copyright: `© 2026 Bottleneck Calculator · ${F.builtBy} <a href="${layout.OWNER.url}">${layout.OWNER.name}</a>`,
+      status: F.status,
+      disclaimer: F.disclaimer,
+      langSwitch: langSwitch(L, group, loc),
+    })}
 
   <div class="toast" id="toast" role="status"></div>
 `;
   }
 
-  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=16"></script>`).join("\n");
+  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=20"></script>`).join("\n");
 
   const seg = (name, id, label, items, checked) => `<span class="field-label" id="${id}">${label}</span>
               <div class="seg" role="radiogroup" aria-labelledby="${id}">

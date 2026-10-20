@@ -25,7 +25,7 @@
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=16">
+  <link rel="stylesheet" href="../../assets/css/style.css?v=20">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -274,12 +274,43 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <nav class="footer-nav" aria-label="Site"><a href="../../">Bottleneck calculator</a><a href="../../fps-calculator/">FPS calculator</a><a href="../../compare/">Compare</a><a href="../../bottleneck/">Popular builds</a><a href="../../guides/">Guides</a><a href="../../about/">About</a><a href="../../editorial-policy/">Editorial policy</a><a href="../../privacy/">Privacy</a><a href="../../contact/">Contact</a></nav>
-      <p>© 2026 Bottleneck Calculator by <a href="https://deepammishra.com/">Deepam Mishra</a>. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
-      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo footer-logo" href="../../" aria-label="BottleneckCalc home">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+            <span>Bottleneck<b>Calc</b></span>
+          </a>
+          <p class="footer-tagline">Free CPU and GPU bottleneck calculator. See your FPS, compare parts and find the upgrade that actually helps.</p>
+          <a class="footer-cta" href="../../#calculator">Check your build<span class="footer-cta-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <ul class="footer-badges">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Free, no sign-up</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>Data updated monthly</li>
+          </ul>
+        </div>
+        <nav class="footer-cols" aria-label="Site">
+        <div class="fcol">
+          <h2>Tools</h2>
+          <ul><li><a href="../../">Bottleneck calculator</a></li><li><a href="../../fps-calculator/">FPS calculator</a></li><li><a href="../../compare/">Compare parts</a></li><li><a href="../../bottleneck/">Popular builds</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Resources</h2>
+          <ul><li><a href="../../guides/">Guides</a></li><li><a href="../../#how-it-works">How it works</a></li><li><a href="../../#min-cpu">Best CPU for your GPU</a></li><li><a href="../../editorial-policy/">Editorial policy</a></li></ul>
+        </div>
+        <div class="fcol">
+          <h2>Company</h2>
+          <ul><li><a href="../../about/">About</a></li><li><a href="../../contact/">Contact</a></li><li><a href="../../privacy/">Privacy</a></li></ul>
+        </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Bottleneck Calculator · Built by <a href="https://deepammishra.com/">Deepam Mishra</a></p>
+        <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>Hardware data updated October 2026</p>
+      </div>
+      <p class="footer-disclaimer">Estimates are for guidance only; real performance varies by game, settings, drivers and cooling. Product names are trademarks of their owners. Not affiliated with AMD, Intel or NVIDIA.</p>
     </div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
   </footer>
-  <script src="../../assets/js/motion.js?v=16"></script>
+  <script src="../../assets/js/motion.js?v=20"></script>
   <script>Motion.initPage();</script>
 </body>
 </html>

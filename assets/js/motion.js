@@ -140,6 +140,8 @@
 
   // ---------- Page-level motion ----------
   function initPage() {
+    initWordmark();
+
     // Close the compact header menu on outside click or Escape.
     const menu = document.querySelector(".menu");
     if (menu) {
@@ -181,6 +183,48 @@
         }
       }, { rootMargin: "-20% 0px -70% 0px" });
       links.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+    }
+  }
+
+  // ---------- Footer wordmark spotlight ----------
+  // Mouse: the striped letters light up under the cursor, easing after it.
+  // Touch: one slow sweep across when the footer scrolls into view.
+  function initWordmark() {
+    const wm = document.querySelector(".wordmark");
+    if (!wm || reduced()) return;
+    let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
+    const set = () => { wm.style.setProperty("--mx", x + "px"); wm.style.setProperty("--my", y + "px"); };
+    const loop = () => {
+      x += (tx - x) * 0.16; y += (ty - y) * 0.16; set();
+      raf = Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4 ? requestAnimationFrame(loop) : 0;
+    };
+
+    if (window.matchMedia("(hover: hover)").matches) {
+      const footer = wm.closest(".site-footer") || wm;
+      footer.addEventListener("pointermove", (e) => {
+        const r = wm.getBoundingClientRect();
+        const inside = e.clientY > r.top - 60 && e.clientY < r.bottom + 40;
+        if (!inside) { wm.classList.remove("lit"); return; }
+        tx = e.clientX - r.left; ty = e.clientY - r.top;
+        if (!wm.classList.contains("lit")) { x = tx; y = ty; set(); wm.classList.add("lit"); }
+        if (!raf) raf = requestAnimationFrame(loop);
+      });
+      footer.addEventListener("pointerleave", () => wm.classList.remove("lit"));
+    } else if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        const w = wm.clientWidth, t0 = performance.now(), dur = 2600;
+        y = ty = wm.clientHeight * 0.45;
+        wm.classList.add("lit");
+        const sweep = (t) => {
+          const k = Math.min(1, (t - t0) / dur), ease = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+          x = -150 + (w + 300) * ease; set();
+          if (k < 1) requestAnimationFrame(sweep); else wm.classList.remove("lit");
+        };
+        requestAnimationFrame(sweep);
+      }, { threshold: 0.6 });
+      io.observe(wm);
     }
   }
 

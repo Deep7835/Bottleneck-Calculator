@@ -50,22 +50,73 @@ function stampHeader(html, root, current) {
   return html.replace(re, header(root, current));
 }
 
-const FOOTER_LINKS = [
-  ["", "Bottleneck calculator"], ["fps-calculator/", "FPS calculator"], ["compare/", "Compare"],
-  ["bottleneck/", "Popular builds"], ["guides/", "Guides"], ["about/", "About"],
-  ["editorial-policy/", "Editorial policy"], ["privacy/", "Privacy"], ["contact/", "Contact"],
-];
+const ICON = {
+  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>',
+  refresh: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+};
+
+/*
+ * Footer shell shared by every language. o = {
+ *   home, tagline, cta: {href, label}, badges: [label], columns: [{title, links: [[href, label, attrs]]}],
+ *   copyright (HTML), status, disclaimer, langSwitch (HTML), siteLabel, lang
+ * }
+ * The giant striped wordmark lights up under the cursor (motion.js adds the spotlight).
+ */
+function footerShell(o) {
+  const cols = o.columns.map((c) => `<div class="fcol">
+          <h2>${c.title}</h2>
+          <ul>${c.links.map(([href, label, attrs = ""]) => `<li><a href="${href}"${attrs}>${label}</a></li>`).join("")}</ul>
+        </div>`).join("\n        ");
+  return `<footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo footer-logo" href="${o.home}" aria-label="BottleneckCalc home">
+            ${LOGO}
+            <span>Bottleneck<b>Calc</b></span>
+          </a>
+          <p class="footer-tagline">${o.tagline}</p>
+          <a class="footer-cta" href="${o.cta.href}">${o.cta.label}<span class="footer-cta-icon">${ICON.arrow}</span></a>
+          <ul class="footer-badges">
+            <li>${ICON.check}${o.badges[0]}</li>
+            <li>${ICON.refresh}${o.badges[1]}</li>
+          </ul>
+        </div>
+        <nav class="footer-cols" aria-label="${o.siteLabel}">
+        ${cols}
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">${o.copyright}</p>${o.langSwitch ? `\n        ${o.langSwitch}` : ""}
+        <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>${o.status}</p>
+      </div>
+      <p class="footer-disclaimer">${o.disclaimer}</p>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span class="wm-base">BottleneckCalc</span><span class="wm-glow">BottleneckCalc</span></div>
+  </footer>`;
+}
 
 // langSwitch: optional language row (only pages that have translations carry one).
 function footer(root = "", langSwitch = "") {
-  const links = FOOTER_LINKS.map(([href, label]) => `<a href="${root}${href || (root ? "" : "./")}">${label}</a>`).join("");
-  return `<footer class="site-footer">
-    <div class="wrap">
-      <nav class="footer-nav" aria-label="Site">${links}</nav>${langSwitch ? `\n      ${langSwitch}` : ""}
-      <p>© 2026 Bottleneck Calculator by <a href="${OWNER.url}">${OWNER.name}</a>. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
-      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
-    </div>
-  </footer>`;
+  const r = root;
+  const home = root || "./";
+  return footerShell({
+    home,
+    tagline: "Free CPU and GPU bottleneck calculator. See your FPS, compare parts and find the upgrade that actually helps.",
+    cta: { href: `${r}#calculator`, label: "Check your build" },
+    badges: ["Free, no sign-up", "Data updated monthly"],
+    siteLabel: "Site",
+    columns: [
+      { title: "Tools", links: [[home, "Bottleneck calculator"], [`${r}fps-calculator/`, "FPS calculator"], [`${r}compare/`, "Compare parts"], [`${r}bottleneck/`, "Popular builds"]] },
+      { title: "Resources", links: [[`${r}guides/`, "Guides"], [`${r}#how-it-works`, "How it works"], [`${r}#min-cpu`, "Best CPU for your GPU"], [`${r}editorial-policy/`, "Editorial policy"]] },
+      { title: "Company", links: [[`${r}about/`, "About"], [`${r}contact/`, "Contact"], [`${r}privacy/`, "Privacy"]] },
+    ],
+    copyright: `© 2026 Bottleneck Calculator · Built by <a href="${OWNER.url}">${OWNER.name}</a>`,
+    status: "Hardware data updated October 2026",
+    disclaimer: "Estimates are for guidance only; real performance varies by game, settings, drivers and cooling. Product names are trademarks of their owners. Not affiliated with AMD, Intel or NVIDIA.",
+    langSwitch,
+  });
 }
 
 // Replace the footer of a hand-written page, keeping its language row if it has one.
@@ -77,4 +128,4 @@ function stampFooter(html, root) {
   return html.replace(re, footer(root, lang));
 }
 
-module.exports = { OWNER, OWNER_SCHEMA, NAV, header, stampHeader, footer, stampFooter };
+module.exports = { OWNER, OWNER_SCHEMA, NAV, LOGO, header, stampHeader, footer, footerShell, stampFooter };
