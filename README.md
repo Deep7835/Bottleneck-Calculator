@@ -35,6 +35,21 @@ A static CPU/GPU bottleneck and FPS calculator site. There's no backend and no f
 
 The site is built for **https://bottleneckcalculator.si/** (the default in `scripts/build.js`), so a plain `node scripts/build.js` is all you need. To build for another domain, pass `SITE_URL=https://other.domain/`, but note that hand-written pages keep whatever domain they were last built with.
 
+## AdSense and indexing switches (`site.config.json`)
+
+```json
+{
+  "adsense": { "publisherId": "", "showAds": false, "slots": { "belowResults": "", "inArticle": "", "endOfPage": "" } },
+  "seo": { "noindexWeakPages": false }
+}
+```
+
+- **`publisherId`** (`pub-1234567890123456`): set it when you apply. The build then writes `ads.txt`, adds the `google-adsense-account` verification tag to every page and the AdSense script to content pages (not 404, About, Contact, Privacy, Terms or Editorial policy), switches the privacy policy and terms to their AdSense wording, and adds "Privacy & cookie settings" to the footer for Google's consent message.
+- **`showAds`**: set to `true` after approval. Each ad unit ID you create in AdSense goes into `slots`; empty slots stay empty. Slots sit below results/data, after the second section of guides, and before FAQs — never next to the calculator controls.
+- **`noindexWeakPages`**: noindexes (and removes from the sitemap) build pages where the CPU is a lower class than the GPU or both parts predate 2022, and comparisons where one part is 50%+ faster. Links still work.
+
+Run `node scripts/build.js` after changing it. Switching anything off restores the previous state.
+
 ## After editing CSS or JS
 
 Bump the `?v=` number on the asset links (all pages share one number) so returning visitors don't get a stale cached copy:

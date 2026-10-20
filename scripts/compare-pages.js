@@ -715,6 +715,7 @@ ${JSON.stringify(schema, null, 2)}
         </section>
       </div>
 
+      <!-- AD:belowResults -->
       <div class="article combo-article">
         <section id="verdict">
           <h2>Which should you buy?</h2>
@@ -744,6 +745,7 @@ ${JSON.stringify(schema, null, 2)}
           <p><a href="../">Browse all ${gpuPairs.length} GPU and ${cpuPairs.length} CPU comparisons</a>.</p>
         </section>
 
+        <!-- AD:endOfPage -->
         <section class="faq">
           <h2>${A} vs ${B}: quick answers</h2>
           ${faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${q}</summary><div><p>${a}</p></div></details>`).join("\n          ")}
@@ -846,5 +848,8 @@ ${JSON.stringify(schema, null, 2)}
     fs.writeFileSync(path.join(outDir, p.slug, "index.html"), comparePage(p));
   }
   console.log(`  compare/: ${gpuPairs.length} GPU + ${cpuPairs.length} CPU comparisons + hub`);
-  return ["compare/", ...all.map((x) => `compare/${x.slug}/`)];
+  const out = ["compare/", ...all.map((x) => `compare/${x.slug}/`)];
+  // "Weak" = lopsided matchups (one part 50%+ faster) or two pre-2020 parts; build.js can noindex them.
+  out.weak = all.filter((x) => Math.max(x.a.g, x.b.g) / Math.min(x.a.g, x.b.g) > 1.5 || Math.max(x.a.year, x.b.year) < 2020).map((x) => `compare/${x.slug}/`);
+  return out;
 };

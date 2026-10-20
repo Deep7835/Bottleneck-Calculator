@@ -200,11 +200,12 @@ ${JSON.stringify(schema, null, 2)}
       </nav>
 
       <article class="article" data-progress>
-        ${g.sections.map((s) => `<section id="${s.id}">
+        ${g.sections.map((s, i) => `<section id="${s.id}">
           <h2>${s.h2}</h2>
           ${s.html.trim()}
-        </section>`).join("\n\n        ")}
+        </section>${i === 1 ? "\n        <!-- AD:inArticle -->" : ""}`).join("\n\n        ")}
 
+        <!-- AD:endOfPage -->
         <section id="faq" class="faq">
           <h2>Frequently asked questions</h2>
           ${g.faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${q}</summary><div><p>${a}</p></div></details>`).join("\n          ")}

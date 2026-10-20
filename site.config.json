@@ -1,0 +1,14 @@
+{
+  "adsense": {
+    "publisherId": "",
+    "showAds": false,
+    "slots": {
+      "belowResults": "",
+      "inArticle": "",
+      "endOfPage": ""
+    }
+  },
+  "seo": {
+    "noindexWeakPages": false
+  }
+}

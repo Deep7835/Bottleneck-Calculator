@@ -93,7 +93,7 @@ function footerShell(o) {
         </nav>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">${o.copyright}</p>${o.langSwitch ? `\n        ${o.langSwitch}` : ""}
+        <p class="footer-copy">${o.copyright}</p><!-- CONSENT-LINK -->${o.langSwitch ? `\n        ${o.langSwitch}` : ""}
         <p class="footer-status"><span class="live-dot" aria-hidden="true"></span>${o.status}</p>
       </div>
       <p class="footer-disclaimer">${o.disclaimer}</p>

@@ -894,3 +894,14 @@ a.up { color: inherit; }
   .faq details > div { display: block !important; }
   @page { margin: 16mm; }
 }
+
+/* ==========================================================================
+   Ad slots (filled only when site.config.json turns ads on)
+   ========================================================================== */
+.ad-slot { display: block; margin: 40px auto; max-width: 970px; min-height: 290px; text-align: center; }
+.ad-slot.ad-in-article { margin: 36px 0; min-height: 250px; max-width: none; }
+.ad-label { display: block; margin-bottom: 6px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+.ad-slot ins { display: block; }
+.consent-link { margin-left: 4px; padding: 0; border: 0; background: none; color: var(--text-2); font: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 3px; cursor: pointer; }
+.consent-link:hover { color: var(--text); }
+@media print { .ad-slot, .consent-link { display: none !important; } }

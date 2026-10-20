@@ -27,10 +27,13 @@ Netlify works the same way: "Import from Git", no build command, publish directo
 - [ ] For privacy-friendly analytics with no consent banner needed, use Cloudflare Web Analytics (free, one toggle in Pages) or Plausible.
 - [ ] Google Analytics 4 works too, but then update the Privacy page and add a consent banner for EU/UK visitors.
 
-## 5. Ads (later, once traffic is steady)
-- [ ] Apply for AdSense when you have consistent daily traffic. The trust pages (About, Editorial policy, Privacy, Contact) are already in place.
-- [ ] Before ads go live, update the "Analytics and advertising" section of `privacy/index.html` and enable a Google-certified consent banner (CMP) for EU/UK/Switzerland.
-- [ ] Put the ad unit at the `<!-- Optional ad slot -->` comment below the calculator results. Don't put ads above the calculator, because it hurts Core Web Vitals.
+## 5. Google AdSense (when the site has content and traffic)
+- [ ] Apply only when: the site is live on bottleneckcalculator.si, Search Console shows pages indexed, there's some organic traffic, the contact mailbox works, and there are ~20+ substantial guides.
+- [ ] Optional but safer for review: set `"noindexWeakPages": true` in `site.config.json` and rebuild, so the least-searched templated pages aren't indexed.
+- [ ] Put your publisher ID in `site.config.json` → `adsense.publisherId`, run `node scripts/build.js`, commit and deploy. This adds ads.txt, the verification tag and the AdSense privacy wording.
+- [ ] In AdSense → Privacy & messaging, publish the **European regulations** message (Google's free certified CMP, required for EEA/UK/Switzerland) and optionally the **US state regulations** message.
+- [ ] Add the site in AdSense → Sites and request review. Don't click your own ads, ever.
+- [ ] After approval: create three display/in-article ad units, paste their IDs into `adsense.slots`, set `showAds: true`, rebuild and deploy. Leave Auto ads off or limited to avoid ads near the calculator.
 
 ## 6. First backlinks (ongoing)
 - [ ] Answer real "will X bottleneck Y?" questions on r/buildapc, r/buildapcforme and r/pcmasterrace with a pre-filled result link (`/?cpu=…&gpu=…`). Lead with the answer, not the link.

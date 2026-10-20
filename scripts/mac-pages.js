@@ -253,6 +253,7 @@ ${JSON.stringify(schema, null, 2)}
           <div class="upgrades" id="sixty">${sixty.length ? sixty.map((x) => `<a class="up" href="${x.m.id}/"><span class="up-tag">${esc(x.m.product)}</span><span class="up-name">${esc(x.m.chip.name)} ${x.m.gpuCores}-core GPU</span><span class="up-gain">≈${fmt(x.r.fps)} FPS</span></a>`).join("") : '<p class="empty-note">No current Mac reaches 60 FPS at these settings. Try 1080p, Medium or MetalFX.</p>'}</div>
         </section>
       </div>
+      <!-- AD:belowResults -->
     </div>
 
     <div class="wrap content">
@@ -322,6 +323,7 @@ ${JSON.stringify(schema, null, 2)}
           ${modelLinks}
         </section>
 
+        <!-- AD:endOfPage -->
         <section id="faq" class="faq">
           <h2>Mac gaming FAQ</h2>
           ${faqHtml}
@@ -415,12 +417,14 @@ ${JSON.stringify(schema, null, 2)}
         </section>
       </div>
 
+      <!-- AD:belowResults -->
       <div class="article combo-article">
         <section>
           <p class="cmp-actions"><a class="btn" href="../?mac=${m.id}#calculator">Try other games and settings<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
           <h2>Similar Macs</h2>
           <div class="combos">${siblings.map((x) => { const y = ev(x, "cyberpunk", "1080p"); return `<a class="combo-card" href="../${x.id}/"><b>${esc(x.name)}</b><span>${x.year} · Cyberpunk 1080p ≈${fmt(y.fps)} FPS</span></a>`; }).join("")}</div>
         </section>
+        <!-- AD:endOfPage -->
         <section class="faq">
           <h2>${esc(m.name)}: quick answers</h2>
           ${faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${esc(q)}</summary><div><p>${esc(a)}</p></div></details>`).join("\n          ")}

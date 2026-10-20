@@ -45,7 +45,7 @@ module.exports = function buildComboPages({ ROOT, SITE_URL, HW, Engine }) {
       if (at1440.limiter === "cpu" && at1440.pct > MAX_CPU_BOTTLENECK) continue;
       const res = TIER_RES[g.tier];
       pairs.push({
-        cpu: c.part, gpu: g.part, gpuTier: g.tier, res, o: { ...BASE, res },
+        cpu: c.part, gpu: g.part, cpuTier: c.tier, gpuTier: g.tier, res, o: { ...BASE, res },
         slug: `${c.part.id}-${g.part.id}`,
         r: Engine.evaluate(c.part, g.part, { ...BASE, res }),
       });
@@ -368,6 +368,7 @@ ${JSON.stringify(schema, null, 2)}
         </section>
       </div>
 
+      <!-- AD:belowResults -->
       <div class="article combo-article">
         <section>
           <h2>Related builds</h2>
@@ -375,6 +376,7 @@ ${JSON.stringify(schema, null, 2)}
           <p><a href="../">Browse all ${pairs.length} popular builds</a> or <a href="${calcHref(p.cpu.id, p.gpu.id, p.res, "../../")}">open this build in the bottleneck calculator</a> to try other settings.</p>
         </section>
 
+        <!-- AD:endOfPage -->
         <section class="faq">
           <h2>${c} + ${g}: quick answers</h2>
           ${faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${q}</summary><div><p>${a}</p></div></details>`).join("\n          ")}
@@ -451,5 +453,11 @@ ${JSON.stringify(schema, null, 2)}
     fs.mkdirSync(path.join(outDir, p.slug));
     fs.writeFileSync(path.join(outDir, p.slug, "index.html"), comboPage(p));
   }
-  return ["bottleneck/", ...pairs.map((p) => `bottleneck/${p.slug}/`)];
+  const out = ["bottleneck/", ...pairs.map((p) => `bottleneck/${p.slug}/`)];
+  // "Weak" = least-searched pages: a CPU from a lower class than the graphics card (people
+  // rarely buy that way round), or two parts that both predate 2022. Strong CPU + one-class-
+  // lower GPU stays, because that's the common "upgrade the GPU later" build.
+  // build.js can noindex these (site.config.json → seo.noindexWeakPages).
+  out.weak = pairs.filter((p) => p.cpuTier < p.gpuTier || (p.cpu.year < 2022 && p.gpu.year < 2022)).map((p) => `bottleneck/${p.slug}/`);
+  return out;
 };

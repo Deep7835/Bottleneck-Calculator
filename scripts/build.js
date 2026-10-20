@@ -205,6 +205,30 @@ for (const [loc, root, current] of [
   fs.writeFileSync(f, layout.stampFooter(layout.stampHeader(fs.readFileSync(f, "utf8"), root, current), root));
 }
 
+// ---- AdSense + indexing switches from site.config.json (see scripts/adsense.js)
+const adsense = require("./adsense");
+const adsCfg = adsense.loadConfig(ROOT);
+const weakPages = new Set([...(buildPages.weak || []), ...(comparePages.weak || [])]);
+{
+  let changed = 0;
+  (function walk(dir) {
+    for (const f of fs.readdirSync(dir)) {
+      if ([".git", ".claude", "scripts", "assets", "node_modules"].includes(f)) continue;
+      const full = path.join(dir, f);
+      if (fs.statSync(full).isDirectory()) { walk(full); continue; }
+      if (!f.endsWith(".html")) continue;
+      const rel = path.relative(ROOT, full).split(path.sep).join("/");
+      const loc = rel.replace(/index\.html$/, "");
+      const before = fs.readFileSync(full, "utf8");
+      const after = adsense.applyToPage(before, rel, adsCfg, weakPages.has(loc));
+      if (after !== before) { fs.writeFileSync(full, after); changed++; }
+    }
+  })(ROOT);
+  adsense.writeAdsTxt(ROOT, adsCfg);
+  console.log(`  adsense: ${adsCfg.pub ? `${adsCfg.client}${adsCfg.showAds ? ", ads on" : ", verification only"}` : "off"} · weak pages ${weakPages.size}${adsCfg.noindexWeak ? " (noindexed)" : " (indexed)"} · ${changed} files updated`);
+}
+const inSitemap = (loc) => !(adsCfg.noindexWeak && weakPages.has(loc));
+
 // ---- Site search index (loaded on demand by assets/js/search.js)
 {
   const TYPES = [
@@ -241,9 +265,9 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   sitemapUrl("", "weekly", "1.0") +
   sitemapUrl(fpsPage, "weekly", "0.9") +
   i18n.pages.map((loc) => sitemapUrl(loc, "weekly", "0.9")).join("") +
-  buildPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
+  buildPages.filter(inSitemap).map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
   guidePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.7" : "0.8")).join("") +
-  comparePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.7")).join("") +
+  comparePages.filter(inSitemap).map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.7")).join("") +
   macPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
   TRUST_PAGES.map((loc) => sitemapUrl(loc, "yearly", "0.3")).join("") +
   `</urlset>\n`);

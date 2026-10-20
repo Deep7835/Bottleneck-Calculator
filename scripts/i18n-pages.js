@@ -250,7 +250,8 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
         </ol>
       </nav>`;
 
-  const faqSection = (P) => `<section id="faq" class="faq">
+  const faqSection = (P) => `<!-- AD:endOfPage -->
+        <section id="faq" class="faq">
           <h2>${P.faqTitle}</h2>
           ${P.faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${q}</summary><div><p>${a}</p></div></details>`).join("\n          ")}
         </section>`;
@@ -407,6 +408,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
           <div class="upgrades" id="upgrades"></div>
         </section>
       </div>
+      <!-- AD:belowResults -->
     </div>
 
     <div class="wrap content">
@@ -558,6 +560,7 @@ ${P.updates}
           <div class="table-scroll"><table id="games-table"><thead><tr><th>${L.tables.gameHead}</th><th class="r">${U.avgFps}</th><th class="r">${U.low1}</th><th>${F.limitedBy}</th></tr></thead><tbody></tbody></table></div>
         </section>
       </div>
+      <!-- AD:belowResults -->
     </div>
 
     <div class="wrap content">
