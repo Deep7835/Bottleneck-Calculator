@@ -118,6 +118,8 @@
     let lowRatio = 0.7 + 0.08 * t;
     if (/X3D/.test(cpu.name)) lowRatio += 0.04;
     if (o.ram === 8) lowRatio -= 0.08;
+    // Games streaming assets from a hard drive stutter in open worlds; average FPS barely moves.
+    if (o.storage === "hdd" && o.workload !== "esports") lowRatio -= 0.06;
     return {
       cpuFps: c, gpuFps: g, fps, low1: fps * lowRatio, limiter, pct,
       severity: severityOf(pct),
@@ -204,6 +206,9 @@
     if (o.streaming) {
       out.push({ type: "info", text: t("tip.stream") });
     }
+    if (o.storage === "hdd") {
+      out.push({ type: "warn", text: t("tip.hdd") });
+    }
     if (hz && r.fps > hz * 1.15) {
       out.push({ type: "info", text: t("tip.overHz", { hz, fps: Math.round(r.fps) }) });
     } else if (hz && r.fps < hz * 0.7 && r.fps >= 50) {
@@ -220,8 +225,24 @@
   // Default build shown on first load (also pre-rendered into index.html by scripts/build.js).
   const DEFAULTS = {
     cpu: "ryzen-7-7800x3d", gpu: "rtx-5070-ti", res: "1440p", quality: "high",
-    workload: "general", upscale: "off", ram: 32, hz: 165, streaming: false,
+    workload: "general", upscale: "off", ram: 32, hz: 165, streaming: false, storage: "nvme",
   };
+
+  // One 0–100 number for sharing: half balance (a CPU bottleneck costs full points, a GPU
+  // bottleneck only past 20%), half "is the frame rate good for this monitor", minus
+  // penalties for memory problems.
+  function buildScore(gpu, r, o) {
+    const balance = r.limiter === "cpu" ? 100 - r.pct : 100 - Math.max(0, r.pct - 20) * 0.5;
+    const target = Math.min(o.hz || 144, 144);
+    const fit = Math.max(0, Math.min(1, (r.fps - 30) / (target - 30))) * 100;
+    let score = 0.5 * balance + 0.5 * fit;
+    if (gpu.type !== "i" && gpu.vram < r.vramNeed) score -= 8;
+    if (o.ram === 8) score -= 8;
+    if (o.storage === "hdd") score -= 4;
+    score = Math.round(Math.max(0, Math.min(100, score)));
+    const grade = score >= 90 ? "excellent" : score >= 75 ? "great" : score >= 60 ? "good" : score >= 40 ? "fair" : "poor";
+    return { score, grade };
+  }
 
   // One-paragraph explanation of a result, shared by the calculator and the build script.
   function summary(cpu, gpu, r, o) {
@@ -236,5 +257,5 @@
     return t("sum.gpu", { ...v, cpuFps: fmt(r.cpuFps) }) + (r.fps < 60 ? t("sum.gpu.low") : "");
   }
 
-  window.Engine = { DEFAULTS, summary, verdict, RES, QUALITY, WORKLOAD, UPSCALE, SEVERITY, evaluate, upgrades, tips, severityOf, shortName };
+  window.Engine = { DEFAULTS, buildScore, summary, verdict, RES, QUALITY, WORKLOAD, UPSCALE, SEVERITY, evaluate, upgrades, tips, severityOf, shortName };
 })();

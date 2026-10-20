@@ -30,6 +30,9 @@ module.exports = {
   },
 
   ui: {
+    storage: "ゲームの保存先",
+    storageOptions: [["nvme", "NVMe SSD"], ["sata", "SATA SSD"], ["hdd", "HDD"]],
+    saveImage: "画像を保存",
     processor: "CPU（プロセッサー）",
     cpuPlaceholder: "CPUを検索（例: 7800X3D）",
     cpuToggle: "すべてのCPUを表示",

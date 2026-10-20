@@ -102,7 +102,7 @@ module.exports = function buildI18nPages({ ROOT, SITE_URL, HW, Engine, faqSchema
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="${r}assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="${r}assets/css/style.css?v=12">
+  <link rel="stylesheet" href="${r}assets/css/style.css?v=16">
 
   <script type="application/ld+json">
 ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
@@ -164,7 +164,7 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
 `;
   }
 
-  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=12"></script>`).join("\n");
+  const scripts = (loc, list) => list.map((f) => `  <script src="${rel(loc)}assets/js/${f}.js?v=16"></script>`).join("\n");
 
   const seg = (name, id, label, items, checked) => `<span class="field-label" id="${id}">${label}</span>
               <div class="seg" role="radiogroup" aria-labelledby="${id}">
@@ -331,6 +331,9 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
                 <div class="field">
                   ${select("hz", U.hz, HZ, o.hz)}
                 </div>
+                <div class="field">
+                  ${select("storage", U.storage, U.storageOptions, "nvme")}
+                </div>
                 <label class="switch"><input type="checkbox" id="streaming" name="streaming" role="switch"><span class="switch-track" aria-hidden="true"></span>${U.streaming}</label>
               </div>
             </div>
@@ -358,7 +361,13 @@ ${JSON.stringify({ "@context": "https://schema.org", "@graph": [{
           </div>
 
           <div class="result-actions">
+            <div class="score" id="score" role="img" aria-label="">
+              <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="score-track" cx="18" cy="18" r="15.5"/><circle class="score-fill" id="score-fill" cx="18" cy="18" r="15.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+              <span class="score-num num" id="score-num">0</span>
+              <span class="score-text"><small>${esc(I18N.t("score.label"))}</small><b id="score-grade">&nbsp;</b></span>
+            </div>
             <span class="context" id="context-line">${esc(`${Engine.RES[o.res].full} · ${qCtx} · ${Engine.WORKLOAD[o.workload].short}`)}</span>
+            <button type="button" class="btn-ghost" id="save-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>${U.saveImage}</button>
             ${shareBtn(U)}
           </div>
         </section>

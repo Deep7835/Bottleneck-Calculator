@@ -30,7 +30,7 @@
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=12">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
 
   <script type="application/ld+json">
   {
@@ -271,6 +271,14 @@
                     <option value="360">360 Hz</option>
                   </select>
                 </div>
+                <div class="field">
+                  <label for="storage">Game drive</label>
+                  <select id="storage" name="storage">
+                    <option value="nvme">NVMe SSD</option>
+                    <option value="sata">SATA SSD</option>
+                    <option value="hdd">Hard drive (HDD)</option>
+                  </select>
+                </div>
                 <label class="switch"><input type="checkbox" id="streaming" name="streaming" role="switch"><span class="switch-track" aria-hidden="true"></span>Streaming or recording (CPU encoding)</label>
               </div>
             </div>
@@ -309,7 +317,13 @@
           </div>
 
           <div class="result-actions">
+            <div class="score" id="score" role="img" aria-label="">
+              <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="score-track" cx="18" cy="18" r="15.5"/><circle class="score-fill" id="score-fill" cx="18" cy="18" r="15.5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/></svg>
+              <span class="score-num num" id="score-num">0</span>
+              <span class="score-text"><small>Build score</small><b id="score-grade">&nbsp;</b></span>
+            </div>
             <span class="context" id="context-line">1440p (2560×1440) · High · AAA games</span>
+            <button type="button" class="btn-ghost" id="save-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Save image</button>
             <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Copy link</button>
           </div>
         </section>
@@ -538,11 +552,11 @@ Bottleneck = (faster limit − slower limit) ÷ faster limit × 100%</div>
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/i18n.js?v=12"></script>
-  <script src="assets/js/hardware.js?v=12"></script>
-  <script src="assets/js/engine.js?v=12"></script>
-  <script src="assets/js/motion.js?v=12"></script>
-  <script src="assets/js/combobox.js?v=12"></script>
-  <script src="assets/js/app.js?v=12"></script>
+  <script src="assets/js/i18n.js?v=16"></script>
+  <script src="assets/js/hardware.js?v=16"></script>
+  <script src="assets/js/engine.js?v=16"></script>
+  <script src="assets/js/motion.js?v=16"></script>
+  <script src="assets/js/combobox.js?v=16"></script>
+  <script src="assets/js/app.js?v=16"></script>
 </body>
 </html>

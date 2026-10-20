@@ -12,7 +12,7 @@
   const state = { ...DEFAULTS };
 
   // ---------- URL state (shareable results) ----------
-  const PARAMS = { cpu: "cpu", gpu: "gpu", res: "res", quality: "q", workload: "game", upscale: "up", ram: "ram", hz: "hz", streaming: "stream" };
+  const PARAMS = { cpu: "cpu", gpu: "gpu", res: "res", quality: "q", workload: "game", upscale: "up", ram: "ram", hz: "hz", streaming: "stream", storage: "disk" };
 
   function readUrl() {
     const p = new URLSearchParams(location.search);
@@ -25,6 +25,7 @@
     if ([8, 16, 32, 64].includes(+p.get("ram"))) state.ram = +p.get("ram");
     if (+p.get("hz") >= 30 && +p.get("hz") <= 500) state.hz = +p.get("hz");
     state.streaming = p.get("stream") === "1";
+    if (["nvme", "sata", "hdd"].includes(p.get("disk"))) state.storage = p.get("disk");
   }
 
   function shareUrl() {
@@ -52,6 +53,7 @@
     if (![...hz.options].some((o) => +o.value === state.hz)) hz.add(new Option(state.hz + " Hz", state.hz));
     hz.value = String(state.hz);
     $("#streaming").checked = state.streaming;
+    $("#storage").value = state.storage;
   }
 
   $("#calc-form").addEventListener("change", (e) => {
@@ -63,6 +65,7 @@
     else if (t.id === "upscale") state.upscale = t.value;
     else if (t.id === "hz") state.hz = +t.value;
     else if (t.id === "streaming") state.streaming = t.checked;
+    else if (t.id === "storage") state.storage = t.value;
     else return;
     update();
   });
@@ -83,7 +86,7 @@
   };
 
   // ---------- Rendering ----------
-  const opts = () => ({ res: state.res, quality: state.quality, workload: state.workload, upscale: state.upscale, ram: state.ram, hz: state.hz, streaming: state.streaming });
+  const opts = () => ({ res: state.res, quality: state.quality, workload: state.workload, upscale: state.upscale, ram: state.ram, hz: state.hz, streaming: state.streaming, storage: state.storage });
 
   function limitText(r) {
     if (r.verdict.key === "excellent") return `<span class="dot" data-tone="excellent"></span>${t("limit.balanced")}`;
@@ -93,6 +96,7 @@
   const summary = Engine.summary;
 
   let touched = false;
+  let last = null; // latest result, used by "Save image"
   const hadParams = new URLSearchParams(location.search).has("cpu");
   function update(initial) {
     if (!initial) touched = true;
@@ -142,8 +146,17 @@
     $("#m-cpu").classList.toggle("hot", cpuLimit);
     $("#m-gpu").classList.toggle("hot", gpuLimit);
     const qCtx = t("ctx.q", { q: Engine.QUALITY[o.quality].label });
-    $("#opt-summary").textContent = `${qCtx} · ${Engine.WORKLOAD[o.workload].short} · ${o.ram} GB · ${o.hz} Hz${o.upscale !== "off" ? t("opt.upscaling") : ""}${o.streaming ? t("opt.streaming") : ""}`;
+    $("#opt-summary").textContent = `${qCtx} · ${Engine.WORKLOAD[o.workload].short} · ${o.ram} GB · ${o.hz} Hz${o.upscale !== "off" ? t("opt.upscaling") : ""}${o.streaming ? t("opt.streaming") : ""}${o.storage === "hdd" ? t("opt.hdd") : ""}`;
     $("#context-line").textContent = `${Engine.RES[o.res].full} · ${qCtx} · ${Engine.WORKLOAD[o.workload].short}${o.upscale !== "off" ? " · " + Engine.UPSCALE[o.upscale].label : ""}`;
+
+    // Build score ring
+    const sc = Engine.buildScore(gpu, r, o);
+    $("#score").dataset.grade = sc.grade;
+    $("#score").setAttribute("aria-label", t("score.aria", { score: sc.score, grade: t("grade." + sc.grade) }));
+    $("#score-fill").style.strokeDashoffset = String(100 - sc.score);
+    Motion.countUp($("#score-num"), sc.score, (v) => Math.round(v), 900);
+    $("#score-grade").textContent = t("grade." + sc.grade);
+    last = { cpu, gpu, o, r, sc };
 
     // Resolution table
     $("#res-table tbody").innerHTML = Object.entries(Engine.RES).map(([key, res]) => {
@@ -240,6 +253,102 @@
       window.prompt(t("prompt.copy"), url);
     }
   });
+
+  // ---------- Save the result as a 1200×630 image (for Reddit, Discord, forums) ----------
+  const TONES = { excellent: "#34d399", good: "#a3e635", moderate: "#fbbf24", severe: "#f87171", gpu: "#60a5fa" };
+  const FONT = '"Geist", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif';
+  const MONO = '"Geist Mono", ui-monospace, Menlo, monospace';
+
+  function fitText(ctx, text, max, size, weight, family) {
+    let s = size;
+    do { ctx.font = `${weight} ${s}px ${family}`; s -= 2; } while (ctx.measureText(text).width > max && s > 20);
+    return text;
+  }
+
+  function wrap(ctx, text, x, y, max, lh, lines) {
+    // Japanese has no spaces between words, so it wraps per character.
+    const words = /^ja/.test(document.documentElement.lang) ? Array.from(text) : text.split(/(\s+)/);
+    let line = "", n = 0;
+    for (const w of words) {
+      const test = line + w;
+      if (ctx.measureText(test).width > max && line.trim()) {
+        if (++n === lines) { ctx.fillText(line.trim().replace(/[,.;:]?$/, "…"), x, y); return; }
+        ctx.fillText(line.trim(), x, y); y += lh; line = w.trimStart();
+      } else line = test;
+    }
+    if (line.trim()) ctx.fillText(line.trim(), x, y);
+  }
+
+  async function saveImage() {
+    if (!last) return;
+    const { cpu, gpu, o, r, sc } = last;
+    try { await Promise.all([document.fonts.load(`600 40px Geist`), document.fonts.load(`600 40px "Geist Mono"`)]); } catch {}
+    const W = 1200, H = 630, cv = document.createElement("canvas");
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext("2d");
+    const tone = TONES[r.verdict.tone] || TONES.excellent;
+
+    ctx.fillStyle = "#09090b"; ctx.fillRect(0, 0, W, H);
+    const glow = ctx.createRadialGradient(930, 120, 0, 930, 120, 420);
+    glow.addColorStop(0, tone + "2e"); glow.addColorStop(1, "#09090b00");
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+
+    // Brand
+    ctx.lineCap = "round"; ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(250,250,250,.25)"; ctx.beginPath(); ctx.arc(98, 98, 17, Math.PI, 0); ctx.stroke();
+    ctx.strokeStyle = "#34d399"; ctx.beginPath(); ctx.arc(98, 98, 17, Math.PI, Math.PI * 1.62); ctx.stroke();
+    ctx.fillStyle = "#fafafa"; ctx.font = `600 26px ${FONT}`; ctx.fillText("Bottleneck", 128, 106);
+    const bw = ctx.measureText("Bottleneck").width;
+    ctx.fillStyle = "#34d399"; ctx.fillText("Calc", 128 + bw, 106);
+
+    // Build + settings
+    ctx.fillStyle = "#fafafa";
+    fitText(ctx, short(cpu.name), 640, 54, 650, FONT); ctx.fillText(short(cpu.name), 80, 210);
+    ctx.fillStyle = "#71717a"; ctx.font = `500 34px ${FONT}`; ctx.fillText("+", 80, 262);
+    ctx.fillStyle = "#fafafa"; fitText(ctx, short(gpu.name), 600, 54, 650, FONT); ctx.fillText(short(gpu.name), 116, 266);
+    ctx.fillStyle = "#a1a1aa"; ctx.font = `500 24px ${FONT}`;
+    ctx.fillText(`${Engine.RES[o.res].full} · ${Engine.QUALITY[o.quality].label} · ${Engine.WORKLOAD[o.workload].short}`, 80, 312);
+
+    // Verdict
+    ctx.fillStyle = tone; ctx.font = `600 30px ${FONT}`; ctx.fillText(r.verdict.label, 80, 372);
+    ctx.fillStyle = "#a1a1aa"; ctx.font = `400 21px ${FONT}`;
+    wrap(ctx, summary(cpu, gpu, r, o), 80, 408, 640, 30, 2);
+
+    // Gauge
+    const gx = 950, gy = 250, gr = 120;
+    ctx.lineWidth = 20; ctx.strokeStyle = "#232328"; ctx.beginPath(); ctx.arc(gx, gy, gr, Math.PI, 0); ctx.stroke();
+    ctx.strokeStyle = tone; ctx.beginPath(); ctx.arc(gx, gy, gr, Math.PI, Math.PI + Math.PI * Math.max(0.02, Math.min(1, r.pct / 100))); ctx.stroke();
+    ctx.textAlign = "center"; ctx.fillStyle = "#fafafa"; ctx.font = `600 64px ${MONO}`;
+    ctx.fillText(Math.round(r.pct) + "%", gx, gy - 8);
+    ctx.fillStyle = "#8b8b94"; ctx.font = `500 20px ${FONT}`;
+    ctx.fillText(r.verdict.key === "excellent" ? t("gauge.balanced") : t("gauge.limited", { lim: r.limiter.toUpperCase() }), gx, gy + 24);
+    ctx.textAlign = "left";
+
+    // Stat tiles
+    const tiles = [[t("img.fps"), fmt(r.fps)], [t("img.low"), fmt(r.low1)], [t("img.cpu"), fmt(r.cpuFps)], [t("img.gpu"), fmt(r.gpuFps)], [t("score.label"), `${sc.score}`]];
+    const tw = 196, gap = 12, ty = 470;
+    tiles.forEach(([label, val], i) => {
+      const x = 80 + i * (tw + gap);
+      ctx.fillStyle = "#18181b"; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, ty, tw, 92, 14) : ctx.rect(x, ty, tw, 92); ctx.fill();
+      ctx.fillStyle = "#8b8b94"; fitText(ctx, label, tw - 32, 18, 500, FONT); ctx.fillText(label, x + 16, ty + 32);
+      ctx.fillStyle = i === 4 ? (sc.grade === "poor" ? TONES.severe : sc.grade === "fair" ? TONES.moderate : TONES.excellent) : "#fafafa"; ctx.font = `600 34px ${MONO}`; ctx.fillText(val, x + 16, ty + 74);
+    });
+
+    // Footer
+    ctx.fillStyle = "#71717a"; ctx.font = `500 18px ${FONT}`;
+    ctx.fillText(`${t("img.footer")} ${location.host}${location.pathname}`, 80, 600);
+
+    cv.toBlob((blob) => {
+      if (!blob) return;
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `bottleneck-${cpu.id}-${gpu.id}-${o.res}.png`;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+      toast(t("toast.saved"));
+    }, "image/png");
+  }
+  $("#save-btn").addEventListener("click", saveImage);
 
   readUrl();
   syncInputs();
