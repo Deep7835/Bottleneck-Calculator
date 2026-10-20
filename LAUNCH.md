@@ -15,6 +15,11 @@ Everything in the site is built. These steps need your accounts or decisions, so
 3. Build settings: framework **None**, build command **empty**, output directory **/** (the repo root is the site).
 4. Custom domains → add `bottleneckcalculator.si` (the canonical, no `www`) and `www.bottleneckcalculator.si`, and redirect `www` to the bare domain.
 
+**Cloudflare Workers** (also free; the repo includes `wrangler.jsonc` and `.assetsignore` for it):
+1. Cloudflare dashboard → Workers & Pages → Create → Workers → Import a repository → pick the repo.
+2. Project name **bottleneck-calculator** (matches `name` in `wrangler.jsonc`), build command **empty**, deploy command `npx wrangler deploy` (the default), root directory `/`.
+3. After the first deploy: the Worker → Settings → Domains & Routes → add `bottleneckcalculator.si` and `www.bottleneckcalculator.si` as Custom Domains, then redirect `www` to the bare domain (Rules → Redirect Rules).
+
 Netlify works the same way: "Import from Git", no build command, publish directory `.`. Both hosts read `_headers` (caching and security headers) and serve `404.html` automatically.
 
 ## 3. Search engines (20 minutes)

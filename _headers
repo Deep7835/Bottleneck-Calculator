@@ -1,4 +1,4 @@
-# Response headers for Cloudflare Pages and Netlify (both read this file).
+# Response headers for Cloudflare Workers, Pages and Netlify (all read this file).
 
 # CSS/JS are versioned with ?v=N and fonts never change, so browsers can keep them for a year.
 /assets/*

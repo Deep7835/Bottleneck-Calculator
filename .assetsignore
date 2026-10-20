@@ -1,0 +1,15 @@
+# Files in the repo that are not part of the public site (same format as .gitignore).
+.git
+.github
+.claude
+.wrangler
+.DS_Store
+.gitignore
+.assetsignore
+node_modules
+scripts
+wrangler.jsonc
+site.config.json
+README.md
+LAUNCH.md
+*.log
