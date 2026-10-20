@@ -92,13 +92,7 @@ module.exports = function buildGuides({ ROOT, SITE_URL, HW, Engine, buildPages }
   const header = (root) => `<a class="skip" href="#main">Skip to content</a>
   ${layout.header(root, "guides")}`;
 
-  const footer = (root) => `<footer class="site-footer">
-    <div class="wrap">
-      <nav class="footer-nav" aria-label="Site"><a href="${root}">Bottleneck calculator</a><a href="${root}fps-calculator/">FPS calculator</a><a href="${root}bottleneck/">Popular builds</a><a href="${root}guides/">Guides</a><a href="${root}about/">About</a><a href="${root}editorial-policy/">Editorial policy</a><a href="${root}privacy/">Privacy</a><a href="${root}contact/">Contact</a></nav>
-      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
-      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
-    </div>
-  </footer>`;
+  const footer = (root) => layout.footer(root);
 
   function head({ title, description, url, root, schema, type }) {
     return `<!doctype html>

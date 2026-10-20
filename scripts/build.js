@@ -199,7 +199,7 @@ for (const [loc, root, current] of [
   ["404.html", "/", ""],
 ]) {
   const f = path.join(ROOT, loc);
-  fs.writeFileSync(f, layout.stampHeader(fs.readFileSync(f, "utf8"), root, current));
+  fs.writeFileSync(f, layout.stampFooter(layout.stampHeader(fs.readFileSync(f, "utf8"), root, current), root));
 }
 
 const today = new Date().toISOString().slice(0, 10);

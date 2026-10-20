@@ -46,4 +46,31 @@ function stampHeader(html, root, current) {
   return html.replace(re, header(root, current));
 }
 
-module.exports = { NAV, header, stampHeader };
+const FOOTER_LINKS = [
+  ["", "Bottleneck calculator"], ["fps-calculator/", "FPS calculator"], ["compare/", "Compare"],
+  ["bottleneck/", "Popular builds"], ["guides/", "Guides"], ["about/", "About"],
+  ["editorial-policy/", "Editorial policy"], ["privacy/", "Privacy"], ["contact/", "Contact"],
+];
+
+// langSwitch: optional language row (only pages that have translations carry one).
+function footer(root = "", langSwitch = "") {
+  const links = FOOTER_LINKS.map(([href, label]) => `<a href="${root}${href || (root ? "" : "./")}">${label}</a>`).join("");
+  return `<footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site">${links}</nav>${langSwitch ? `\n      ${langSwitch}` : ""}
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>`;
+}
+
+// Replace the footer of a hand-written page, keeping its language row if it has one.
+function stampFooter(html, root) {
+  const re = /<footer class="site-footer">[\s\S]*?<\/footer>/;
+  const old = html.match(re);
+  if (!old) throw new Error("stampFooter: no site-footer found");
+  const lang = (old[0].match(/<nav class="lang-switch"[\s\S]*?<\/nav>/) || [""])[0];
+  return html.replace(re, footer(root, lang));
+}
+
+module.exports = { NAV, header, stampHeader, footer, stampFooter };
