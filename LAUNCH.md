@@ -2,21 +2,18 @@
 
 Everything in the site is built. These steps need your accounts or decisions, so they can't be done from the code.
 
-## 1. Domain and build (10 minutes)
-- [ ] Buy or pick the domain. A short exact-match or brandable `.com` is best.
-- [ ] Rebuild with it (trailing slash required):
-  ```bash
-  SITE_URL=https://www.yourdomain.com/ node scripts/build.js
-  ```
-- [ ] Fill in every `<!-- OWNER: -->` note: `grep -rn "OWNER:" --include=index.html .`
-- [ ] Commit: `git add -A && git commit -m "Set live domain"`
+## 1. Domain and owner ✅ done
+- [x] Domain set to **https://bottleneckcalculator.si/**. Every canonical, hreflang, sitemap, schema and share-image URL uses it, and it's now the build default.
+- [x] Owner set to **Deepam Mishra** ([deepammishra.com](https://deepammishra.com/)) on the About page, guide bylines, schema and footer.
+- [ ] Create the mailbox **contact@bottleneckcalculator.si**, which the Contact page shows. Cloudflare Email Routing can forward it to your normal inbox for free.
+- [ ] After choosing a host, name it in `privacy/index.html` (search for `OWNER:`).
 
 ## 2. Hosting (15 minutes, free)
 **Cloudflare Pages** (recommended: free, fast, compresses files automatically):
 1. Push the repo to GitHub: create an empty repo, then `git remote add origin <url> && git push -u origin main`.
 2. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → pick the repo.
 3. Build settings: framework **None**, build command **empty**, output directory **/** (the repo root is the site).
-4. Custom domains → add `www.yourdomain.com` and the bare domain, and redirect the bare domain to `www`.
+4. Custom domains → add `bottleneckcalculator.si` (the canonical, no `www`) and `www.bottleneckcalculator.si`, and redirect `www` to the bare domain.
 
 Netlify works the same way: "Import from Git", no build command, publish directory `.`. Both hosts read `_headers` (caching and security headers) and serve `404.html` automatically.
 

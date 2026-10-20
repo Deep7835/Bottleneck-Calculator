@@ -167,7 +167,7 @@ ${JSON.stringify(schema, null, 2)}
           datePublished: PUBLISHED,
           dateModified: MODIFIED,
           wordCount: g.words,
-          author: { ...ORG, url: `${SITE_URL}about/` },
+          author: layout.OWNER_SCHEMA,
           publisher: ORG,
           mainEntityOfPage: url,
         },
@@ -186,7 +186,7 @@ ${JSON.stringify(schema, null, 2)}
       <section class="hero combo-hero">
         <h1>${g.h1}</h1>
         <p class="lead">${g.lead}</p>
-        <p class="updated">Updated <time datetime="${MODIFIED}">${longDate(MODIFIED)}</time> · ${minutes} min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+        <p class="updated">By <a href="../../about/">${layout.OWNER.name}</a> · Updated <time datetime="${MODIFIED}">${longDate(MODIFIED)}</time> · ${minutes} min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
       </section>
     </div>
 

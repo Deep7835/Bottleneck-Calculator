@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const SITE_URL = process.env.SITE_URL || "https://www.example.com/";
+const SITE_URL = process.env.SITE_URL || "https://bottleneckcalculator.si/";
 
 global.window = {};
 require(path.join(ROOT, "assets/js/hardware.js"));

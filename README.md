@@ -27,15 +27,9 @@ A static CPU/GPU bottleneck and FPS calculator site. There's no backend and no f
 | `scripts/guides.js`, `scripts/guides/` | Guide generator and one copy module per guide. Tables and numbers are computed from the engine, and `expect()` checks fail the build if a data change contradicts the copy |
 | `scripts/og-image.html`, `scripts/render-og.js` | Source and renderer for the share image (`node scripts/render-og.js`, needs Chrome) |
 
-## Before you publish
+## Domain
 
-Run the build once with your real domain (trailing slash required):
-
-```bash
-SITE_URL=https://www.yourdomain.com/ node scripts/build.js
-```
-
-This replaces the `example.com` placeholder in canonical tags, Open Graph tags, schema and the contact email, and writes `sitemap.xml` and `robots.txt`. Then fill in the `<!-- OWNER: -->` notes on the trust pages.
+The site is built for **https://bottleneckcalculator.si/** (the default in `scripts/build.js`), so a plain `node scripts/build.js` is all you need. To build for another domain, pass `SITE_URL=https://other.domain/`, but note that hand-written pages keep whatever domain they were last built with.
 
 ## After editing CSS or JS
 

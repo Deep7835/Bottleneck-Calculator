@@ -4,6 +4,10 @@
  *   root:    relative path to the site root ("", "../", "../../" or "/")
  *   current: key of the section the page belongs to (see NAV), for aria-current
  */
+// Site owner, used for bylines, schema and the footer credit.
+const OWNER = { name: "Deepam Mishra", url: "https://deepammishra.com/" };
+const OWNER_SCHEMA = { "@type": "Person", "@id": `${OWNER.url}#person`, name: OWNER.name, url: OWNER.url };
+
 const NAV = [
   { key: "calculator", href: "#calculator", label: "Calculator" },
   { key: "fps", href: "fps-calculator/", label: "FPS calculator" },
@@ -58,7 +62,7 @@ function footer(root = "", langSwitch = "") {
   return `<footer class="site-footer">
     <div class="wrap">
       <nav class="footer-nav" aria-label="Site">${links}</nav>${langSwitch ? `\n      ${langSwitch}` : ""}
-      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>© 2026 Bottleneck Calculator by <a href="${OWNER.url}">${OWNER.name}</a>. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
       <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
     </div>
   </footer>`;
@@ -73,4 +77,4 @@ function stampFooter(html, root) {
   return html.replace(re, footer(root, lang));
 }
 
-module.exports = { NAV, header, stampHeader, footer, stampFooter };
+module.exports = { OWNER, OWNER_SCHEMA, NAV, header, stampHeader, footer, stampFooter };
