@@ -8,7 +8,7 @@ module.exports = {
 
   site: {
     skip: "計算ツールへスキップ",
-    logoAria: "ボトルネックチェッカー ホーム",
+    logoAria: "BottleneckCalc ホーム",
     navLabel: "メイン",
     footerNavLabel: "サイト",
     langLabel: "言語",
