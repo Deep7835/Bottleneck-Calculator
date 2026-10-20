@@ -16,8 +16,11 @@ const GUIDES = [
   "cpu-vs-gpu-bottleneck",
   "does-resolution-affect-bottleneck",
   "how-to-fix-cpu-bottleneck",
-  "best-cpu-for-rtx-5070",
   "best-am4-cpu",
+  "balanced-gaming-pc-build",
+  "best-cpu-for-rtx-5060",
+  "best-cpu-for-rtx-5070",
+  "ryzen-7-7800x3d-rtx-5070-ti",
 ];
 const MODIFIED = "2026-10-20";
 const PUBLISHED = "2026-10-20";
@@ -245,11 +248,14 @@ ${JSON.stringify(schema, null, 2)}
     };
     const groups = [
       ["Diagnose", "Find out what's actually limiting your frame rate.", ["how-to-check-for-bottleneck", "cpu-vs-gpu-bottleneck", "does-resolution-affect-bottleneck"]],
-      ["Fix and upgrade", "Get more FPS from the parts you have, then spend upgrade money where it counts.", ["how-to-fix-cpu-bottleneck", "best-cpu-for-rtx-5070", "best-am4-cpu"]],
+      ["Fix and upgrade", "Get more FPS from the parts you have, then spend upgrade money where it counts.", ["how-to-fix-cpu-bottleneck", "best-am4-cpu"]],
+      ["Plan a build", "Match the processor and graphics card to each other and to your monitor before you buy.", ["balanced-gaming-pc-build", "best-cpu-for-rtx-5060", "best-cpu-for-rtx-5070", "ryzen-7-7800x3d-rtx-5070-ti"]],
     ];
+    const grouped = groups.flatMap(([, , slugs]) => slugs);
+    if (grouped.length !== GUIDES.length || GUIDES.some((s) => !grouped.includes(s))) throw new Error("guides: every guide must appear in exactly one hub group");
     return `${head({
       title: "PC Bottleneck Guides: Check, Fix and Upgrade (2026)",
-      description: "Practical guides to CPU and GPU bottlenecks: how to check yours with MSI Afterburner, how resolution changes it, how to fix a CPU bottleneck, and which CPU to buy.",
+      description: "Practical guides to CPU and GPU bottlenecks: how to check and fix yours, how resolution changes it, which CPU to pair with your GPU, and how to plan a balanced PC build.",
       url, root: "../", schema, type: "website",
     })}
 <body>
@@ -260,7 +266,7 @@ ${JSON.stringify(schema, null, 2)}
       <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <span aria-current="page">Guides</span></nav>
       <section class="hero combo-hero">
         <h1>PC bottleneck guides</h1>
-        <p class="lead">The calculator tells you what to expect. These guides cover the rest: how to confirm a bottleneck on your own PC, why it moves when you change resolution, what fixes it without spending money, and which CPU to buy when it's time to upgrade. Every table is calculated from the same data as the <a href="../#calculator">bottleneck calculator</a> and the <a href="../fps-calculator/">FPS calculator</a>, so the numbers match.</p>
+        <p class="lead">The calculator tells you what to expect. These guides cover the rest: how to confirm a bottleneck on your own PC, why it moves when you change resolution, what fixes it without spending money, which CPU to pair with your graphics card, and how to plan a balanced build from scratch. Every table is calculated from the same data as the <a href="../#calculator">bottleneck calculator</a> and the <a href="../fps-calculator/">FPS calculator</a>, so the numbers match.</p>
       </section>
 
       <div class="article combo-article">

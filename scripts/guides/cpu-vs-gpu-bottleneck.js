@@ -137,6 +137,6 @@ module.exports = function (h) {
       ["Can a CPU bottleneck damage my GPU?", "No. A bottleneck is a performance mismatch, not a fault. An underused GPU just runs cooler and quieter. Neither part is stressed beyond its design."],
       ["How much bottleneck is acceptable?", `Under 10% is excellent and 10–20% is fine. A CPU bottleneck between 20% and 35% starts to show in 1% lows, and above 35% a large part of the graphics card is wasted. A GPU bottleneck of any size is fine as long as your FPS meets your target.`],
     ],
-    related: ["how-to-check-for-bottleneck", "how-to-fix-cpu-bottleneck", "does-resolution-affect-bottleneck"],
+    related: ["balanced-gaming-pc-build", "how-to-check-for-bottleneck", "how-to-fix-cpu-bottleneck"],
   };
 };

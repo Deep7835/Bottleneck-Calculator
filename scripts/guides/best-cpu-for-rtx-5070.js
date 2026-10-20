@@ -136,6 +136,6 @@ module.exports = function (h) {
       ["Is 12 GB of VRAM on the RTX 5070 enough?", `For 1080p and 1440p in 2026, yes. At 4K Ultra, games want around ${Math.round(vram4k.vramNeed)} GB, so lower texture quality one step at 4K. The 5070 Ti's 16 GB has more headroom for the next few years.`],
       ["Is the Core i5-12400F enough for an RTX 5070?", `At 1440p, yes. It's GPU-limited at about ${fmt(min5070i.fps)} FPS. At 1080p it holds the card back by about ${pct(at("i5-12400f", "rtx-5070", "1080p"))}%, which is a minor bottleneck.`],
     ],
-    related: ["best-am4-cpu", "does-resolution-affect-bottleneck", "cpu-vs-gpu-bottleneck"],
+    related: ["ryzen-7-7800x3d-rtx-5070-ti", "best-cpu-for-rtx-5060", "best-am4-cpu"],
   };
 };
