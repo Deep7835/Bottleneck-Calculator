@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Check for a CPU or GPU Bottleneck (MSI Afterburner Guide)</title>
+  <meta name="description" content="Check whether your CPU or GPU is the bottleneck in under 10 minutes: set up the MSI Afterburner and RTSS overlay, read GPU usage and frame times, and confirm with the resolution test.">
+  <link rel="canonical" href="https://www.example.com/guides/how-to-check-for-bottleneck/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Check for a CPU or GPU Bottleneck (MSI Afterburner Guide)">
+  <meta property="og:description" content="Check whether your CPU or GPU is the bottleneck in under 10 minutes: set up the MSI Afterburner and RTSS overlay, read GPU usage and frame times, and confirm with the resolution test.">
+  <meta property="og:url" content="https://www.example.com/guides/how-to-check-for-bottleneck/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=8">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://www.example.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://www.example.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to check for a CPU or GPU bottleneck",
+          "item": "https://www.example.com/guides/how-to-check-for-bottleneck/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "How to check for a CPU or GPU bottleneck",
+      "description": "Check whether your CPU or GPU is the bottleneck in under 10 minutes: set up the MSI Afterburner and RTSS overlay, read GPU usage and frame times, and confirm with the resolution test.",
+      "image": "https://www.example.com/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 2190,
+      "author": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/"
+      },
+      "mainEntityOfPage": "https://www.example.com/guides/how-to-check-for-bottleneck/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is 100% GPU usage bad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. 95–100% GPU usage while gaming means the graphics card is fully used, which is the ideal state. It isn't harmful as long as temperatures are within spec. If you want lower power draw or less fan noise, cap the frame rate slightly below your monitor's refresh rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What CPU usage means a CPU bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Total CPU usage is a poor guide. Look at per-thread usage instead. If one or two threads sit at 90–100% while GPU usage is clearly below 90% and FPS is under your target, the CPU is the bottleneck, even if total CPU usage reads 30–50%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I check for a bottleneck without installing software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The NVIDIA App overlay (Alt+R), AMD Adrenalin's metrics overlay (Ctrl+Shift+O) and Steam's performance monitor all show GPU usage and FPS. Combine one of them with the resolution test: if lowering the resolution doesn't raise FPS, you're CPU-bound."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MSI Afterburner work with AMD and Intel graphics cards?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Despite the name, MSI Afterburner monitors NVIDIA, AMD and Intel Arc cards from any brand. RivaTuner Statistics Server, which draws the overlay, is vendor-neutral too."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are both my CPU and GPU usage low?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually a frame cap is active (V-Sync, an in-game limiter, RTSS or the driver), or the game is limited by a single maxed-out thread that total CPU usage hides. Turn off all caps and check per-thread CPU usage. VRAM overflow and thermal throttling can also cause it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the bottleneck percentage the same as the gap in GPU usage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They're closely related. In our model the bottleneck percentage is how far apart the CPU and GPU frame-rate limits are. A GPU sitting at about 60% usage in a CPU-bound game roughly matches a 40% CPU bottleneck, since the card is idle for the rest of each frame."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/">Guides</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">Check for a bottleneck</span></nav>
+      <section class="hero combo-hero">
+        <h1>How to check for a CPU or GPU bottleneck</h1>
+        <p class="lead">A calculator predicts a bottleneck. Your own PC can prove it. This walkthrough sets up the free MSI Afterburner and RivaTuner overlay, tells you exactly which numbers to watch, and gives you a resolution test that settles the question in about 30 seconds.</p>
+        <p class="updated">Updated <time datetime="2026-10-20">October 20, 2026</time> · 10 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#tools">Tools you need</a></li>
+          <li><a href="#setup">Set up the overlay</a></li>
+          <li><a href="#test">Run a fair test</a></li>
+          <li><a href="#read">Read the numbers</a></li>
+          <li><a href="#resolution-test">Confirm with the resolution test</a></li>
+          <li><a href="#false-alarms">False alarms</a></li>
+          <li><a href="#task-manager">Why not Task Manager</a></li>
+          <li><a href="#calculator">Compare with the calculator</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="short-answer">
+          <h2>The short answer: watch GPU usage</h2>
+          <p>Play a demanding game with an on-screen overlay showing <strong>GPU usage</strong> and <strong>frame rate</strong>, with any FPS cap or V-Sync turned off. If the GPU sits at 95–99%, the graphics card is the limit, which is normal and healthy. If GPU usage hangs well below 90% while your frame rate is lower than you want, something before the GPU is holding it back, and that's almost always the CPU.</p>
+          <p>Then confirm it: drop the resolution or the render scale. If the frame rate barely moves, you're CPU-bound. If it jumps, you were GPU-bound all along. Everything else in this guide is detail on doing those two checks properly and not getting fooled by the exceptions.</p>
+        </section>
+
+        <section id="tools">
+          <h2>What you need (all free)</h2>
+          <p><strong>MSI Afterburner</strong> with <strong>RivaTuner Statistics Server (RTSS)</strong> is still the most flexible option. It works with NVIDIA, AMD and Intel graphics cards, not only MSI ones, and RTSS installs alongside it to draw the overlay in game. Download both from MSI's own site or Guru3D, not from a mirror.</p>
+          <p>If you'd rather not install anything extra, you have decent alternatives:</p>
+          <ul>
+            <li><strong>NVIDIA App</strong>: press Alt+R in game for the statistics overlay with GPU and CPU usage, FPS and latency.</li>
+            <li><strong>AMD Software: Adrenalin Edition</strong>: Performance › Metrics, then Ctrl+Shift+O toggles the overlay.</li>
+            <li><strong>Intel PresentMon</strong>: open source and vendor-neutral. Its <em>GPU Busy</em> reading is the most direct bottleneck metric there is, covered below.</li>
+            <li><strong>CapFrameX</strong>: built on PresentMon, best if you want to record runs and compare 1% lows before and after a change.</li>
+          </ul>
+          <p>Steam's built-in performance monitor (Settings › In Game) also shows FPS and usage, but with fewer options. Windows Task Manager on a second screen isn't a substitute. More on why in a moment.</p>
+        </section>
+
+        <section id="setup">
+          <h2>Set up the MSI Afterburner and RTSS overlay</h2>
+          <ol class="steps">
+            <li><strong>Install both programs.</strong> The Afterburner installer offers RTSS as an option. Leave it ticked. RTSS has to be running in the background for the overlay to appear.</li>
+            <li><strong>Open Afterburner's settings</strong> (the gear icon) and go to the <strong>Monitoring</strong> tab. You'll see a long list of sensors under “Active hardware monitoring graphs”.</li>
+            <li><strong>Enable the sensors that matter.</strong> Tick each of these, then tick <em>Show in On-Screen Display</em> below the list for each one: GPU usage, GPU memory usage, CPU usage, the per-thread items CPU1 usage through CPUn usage, RAM usage, Framerate and Frametime. Newer versions also list a 1% low framerate item; add it if you see it.</li>
+            <li><strong>Show frame time as a graph.</strong> Select Frametime and switch its OSD display from “text” to “graph”. A flat line is smooth gameplay. Spikes are stutter you can feel, even when the average FPS looks fine.</li>
+            <li><strong>Set an overlay hotkey</strong> on the On-Screen Display tab so you can hide it without alt-tabbing.</li>
+            <li><strong>Check RTSS.</strong> Open it from the system tray and make sure “Show On-Screen Display” is on and the <em>Framerate limit</em> is 0. A leftover limit here is the most common reason people misread their results.</li>
+            <li><strong>Launch a game.</strong> If the overlay doesn't show, raise RTSS's “Application detection level” to Medium. A few anti-cheat systems block overlays, so use the vendor overlay for those games.</li>
+          </ol>
+          <p>Per-thread CPU usage is the reading most people skip, and it's the one that explains the “my CPU is only at 40%, so it can't be the bottleneck” confusion. Games rarely load every thread evenly. One main thread often does the heavy lifting, and when it's pinned near 100% the CPU is the limit, whatever the total says.</p>
+        </section>
+
+        <section id="test">
+          <h2>Run a fair test</h2>
+          <p>A bottleneck test only means something if nothing artificial is limiting the frame rate. Before you play:</p>
+          <ul>
+            <li><strong>Turn off every FPS cap:</strong> V-Sync in the game, the in-game frame limiter, the RTSS limit, NVIDIA's Max Frame Rate and AMD's Frame Rate Target Control or Radeon Chill. G-Sync and FreeSync can stay on; they don't cap anything by themselves.</li>
+            <li><strong>Pick the heaviest repeatable scene</strong> you can find: a dense city, a big battle, a busy multiplayer map. Menus and empty corridors tell you nothing.</li>
+            <li><strong>Play for three to five minutes.</strong> The first minute often includes shader compilation stutter that has nothing to do with your hardware balance.</li>
+            <li><strong>Watch the trend, not single spikes.</strong> A GPU that dips to 85% for a second during a loading transition isn't a bottleneck. One that averages 70% through a whole firefight is.</li>
+          </ul>
+          <p>Test more than one game if you can. A bottleneck is a property of your CPU, your GPU <em>and</em> the game. Esports titles, simulators and open-world RPGs load the CPU very differently. The same Ryzen 5 3600 and RTX 5070 that manage about 218 FPS in CS2-style esports games at 1080p are still CPU-limited in a city builder or flight sim at 4K (40% CPU bottleneck), where they average about 46 FPS.</p>
+        </section>
+
+        <section id="read">
+          <h2>How to read the numbers</h2>
+          <p>Here's how the overlay readings translate into a verdict:</p>
+          <div class="table-scroll"><table><thead><tr><th>What you see</th><th>What it means</th></tr></thead><tbody><tr><td><strong>GPU usage 95–99%</strong>, steady frame times</td><td>GPU-bound. The card is working flat out, which is what you paid for. To get more FPS, lower settings, enable upscaling or buy a faster GPU.</td></tr><tr><td><strong>GPU usage 80–95%</strong>, moving around</td><td>Mixed. The game shifts between CPU- and GPU-limited scenes. Usually fine. Check the 1% lows.</td></tr><tr><td><strong>GPU usage under 80%</strong>, FPS below your target</td><td>CPU-bound, or something else is limiting the frame rate (see the false alarms below).</td></tr><tr><td><strong>One or two CPU threads at 90–100%</strong></td><td>The game's main thread is maxed. Classic CPU bottleneck, even if total CPU usage looks low.</td></tr><tr><td><strong>Spiky frame-time graph</strong> with low GPU usage</td><td>CPU or memory stalls. Expect poor 1% lows and stutter in busy scenes.</td></tr></tbody></table></div>
+          <p>To give you a reference point, this is the GPU usage our model predicts for some common builds in a demanding AAA game at High settings. If your overlay shows something wildly different for the same parts, look for a cap, a thermal problem or a configuration issue before blaming the hardware.</p>
+          <div class="table-scroll"><table><thead><tr><th>Build</th><th class="r">GPU usage</th><th class="r">Avg FPS</th><th>Limited by</th></tr></thead><tbody><tr><td><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-4070-super#calculator">Ryzen 5 3600 + RTX 4070 Super</a><br><small>1080p, High, AAA games</small></td><td class="r num">61%</td><td class="r num">84</td><td><span class="dot" data-tone="severe"></span>CPU 39%</td></tr><tr><td><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070#calculator">Core i5-10400F + RTX 5070</a><br><small>1080p, High, AAA games</small></td><td class="r num">61%</td><td class="r num">88</td><td><span class="dot" data-tone="severe"></span>CPU 39%</td></tr><tr><td><a href="../../bottleneck/i5-12400f-rtx-5070-ti/">Core i5-12400F + RTX 5070 Ti</a><br><small>1080p, High, AAA games</small></td><td class="r num">67%</td><td class="r num">119</td><td><span class="dot" data-tone="moderate"></span>CPU 32%</td></tr><tr><td><a href="../../bottleneck/ryzen-5-5600-rx-9070-xt/">Ryzen 5 5600 + RX 9070 XT</a><br><small>1440p, High, AAA games</small></td><td class="r num">85%</td><td class="r num">102</td><td><span class="dot" data-tone="good"></span>CPU 11%</td></tr><tr><td><a href="../../bottleneck/ryzen-5-5600-rtx-4060/">Ryzen 5 5600 + RTX 4060</a><br><small>1080p, High, AAA games</small></td><td class="r num">99%</td><td class="r num">75</td><td><span class="dot" data-tone="gpu"></span>GPU 28%</td></tr><tr><td><a href="../../bottleneck/ryzen-7-7800x3d-rtx-5070-ti/">Ryzen 7 7800X3D + RTX 5070 Ti</a><br><small>1440p, High, AAA games</small></td><td class="r num">99%</td><td class="r num">123</td><td><span class="dot" data-tone="gpu"></span>GPU 30%</td></tr></tbody></table></div>
+          <p>Notice the split. The GPU-bound builds sit at 95% or more, while the CPU-bound ones hover between about 61% and 67%. That gap is the clearest sign you'll get. You can load any of these into the <a href="../../#calculator">bottleneck calculator</a> and change the resolution or game type to see how the prediction moves.</p>
+          <h3>The PresentMon “GPU Busy” shortcut</h3>
+          <p>Intel's PresentMon reports how many milliseconds the GPU was actually busy per frame next to the total frame time. If a frame takes 12 ms but the GPU was busy for only 7 ms, it spent 5 ms waiting on the CPU. When GPU Busy is close to the frame time, you're GPU-bound. When there's a large, persistent gap, you're CPU-bound. It's the same logic as GPU usage, just measured per frame and harder to fool.</p>
+        </section>
+
+        <section id="resolution-test">
+          <h2>Confirm it with the resolution test</h2>
+          <p>GPU usage points you in the right direction. This test proves it, and it takes about 30 seconds:</p>
+          <ol>
+            <li>Note your average FPS in a busy scene at your normal resolution.</li>
+            <li>Drop the resolution one step, or set the render scale to 50–70% if the game has one. Keep every other setting the same.</li>
+            <li>Stand in the same spot and compare.</li>
+          </ol>
+          <p>Lower resolution takes work away from the GPU but leaves the CPU's work per frame the same. If FPS rises a lot, the GPU was the limit. If FPS barely changes, the CPU was. Here's what that looks like for a <a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070&amp;res=1080p#calculator">Ryzen 5 3600 + RTX 5070</a> in AAA games:</p>
+          <div class="table-scroll"><table><thead><tr><th>Resolution</th><th class="r">Avg FPS</th><th class="r">GPU usage</th><th>Limited by</th></tr></thead><tbody><tr><td>1080p</td><td class="r num">84</td><td class="r num">58%</td><td><span class="dot" data-tone="severe"></span>CPU 42%</td></tr><tr><td>1440p</td><td class="r num">82</td><td class="r num">81%</td><td><span class="dot" data-tone="good"></span>CPU 17%</td></tr><tr><td>4K</td><td class="r num">61</td><td class="r num">99%</td><td><span class="dot" data-tone="gpu"></span>GPU 27%</td></tr></tbody></table></div>
+          <p>Going from 1080p to 1440p costs this build only 2% of its frame rate, because the Ryzen 5 3600 is capping it at around 84 FPS either way. At 4K the graphics card finally becomes the limit. If you see the same pattern on your PC, where FPS stays flat as you lower the resolution, you've confirmed a CPU bottleneck. Our guide on <a href="../does-resolution-affect-bottleneck/">how resolution affects bottlenecks</a> explains the effect in more detail.</p>
+        </section>
+
+        <section id="false-alarms">
+          <h2>When low GPU usage isn't a CPU bottleneck</h2>
+          <p>Low GPU usage means the GPU is waiting for <em>something</em>. Usually that's the CPU, but rule these out first:</p>
+          <ul>
+            <li><strong>A frame cap you forgot about.</strong> A game capped at 60 or 144 FPS will show low GPU usage on a fast card. That's the cap working, not a bottleneck.</li>
+            <li><strong>The game's own engine limit.</strong> Some games cap physics or simulation speed, and a few older titles barely use more than one CPU thread no matter what you own.</li>
+            <li><strong>Running out of VRAM.</strong> When the card's memory fills up, textures spill into system RAM over PCIe and the GPU stalls. You'll see GPU memory usage at the maximum, heavy stutter and dipping GPU usage. Lowering texture quality fixes it. That's a VRAM limit, not a CPU one.</li>
+            <li><strong>The monitor cable is in the motherboard.</strong> On a desktop with a graphics card, plug the display into the card itself.</li>
+            <li><strong>Laptops on the wrong GPU.</strong> Check that the game runs on the dedicated GPU. A laptop with a MUX switch set to hybrid mode also loses some performance.</li>
+            <li><strong>Thermal or power throttling.</strong> A CPU at 95–100 °C clocks down and becomes a bottleneck it shouldn't be. Add CPU temperature and clock speed to the overlay if you suspect this.</li>
+            <li><strong>Shader compilation and asset streaming.</strong> Stutter during the first few minutes or when entering new areas is often the game building shaders. It settles on its own.</li>
+          </ul>
+          <p>If none of these apply and GPU usage is still low with FPS under your target, it's the CPU (or the RAM feeding it). Our guide on <a href="../how-to-fix-cpu-bottleneck/">how to fix a CPU bottleneck</a> goes through the fixes in order, starting with the free ones.</p>
+        </section>
+
+        <section id="task-manager">
+          <h2>Why Task Manager gets this wrong</h2>
+          <p>Task Manager's headline CPU figure is an average across every thread. A game that maxes out two threads on a 16-thread processor reads as roughly 12–25% CPU usage, which looks like plenty of headroom while the game is completely CPU-bound. Switching the CPU graph to “logical processors” helps a little, but Windows moves threads between cores many times a second, so even that view smooths out the peaks.</p>
+          <p>Its GPU percentage has a similar problem: by default it shows the 3D engine only and updates slowly. An in-game overlay sampling every second or faster, with per-thread CPU usage, is far more reliable.</p>
+        </section>
+
+        <section id="calculator">
+          <h2>Compare your results with the calculator</h2>
+          <p>Once you've measured, put the same parts and settings into the <a href="../../#calculator">bottleneck calculator</a>. If your results roughly match the prediction, your PC is behaving normally and the bottleneck is simply the balance of your parts. If your real FPS is far below the estimate, especially with low GPU <em>and</em> low per-thread CPU usage, something is misconfigured: RAM running at default speed, a single memory stick, a power-saving plan or a cooling problem.</p>
+          <p>For a specific game rather than an average, the <a href="../../fps-calculator/">FPS calculator</a> adjusts the estimate for each title's engine. And if your build is a common one, it probably has its own page in our <a href="../../bottleneck/">popular builds</a> list with results at every resolution.</p>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>Is 100% GPU usage bad?</summary><div><p>No. 95–100% GPU usage while gaming means the graphics card is fully used, which is the ideal state. It isn't harmful as long as temperatures are within spec. If you want lower power draw or less fan noise, cap the frame rate slightly below your monitor's refresh rate.</p></div></details>
+          <details><summary>What CPU usage means a CPU bottleneck?</summary><div><p>Total CPU usage is a poor guide. Look at per-thread usage instead. If one or two threads sit at 90–100% while GPU usage is clearly below 90% and FPS is under your target, the CPU is the bottleneck, even if total CPU usage reads 30–50%.</p></div></details>
+          <details><summary>Can I check for a bottleneck without installing software?</summary><div><p>Yes. The NVIDIA App overlay (Alt+R), AMD Adrenalin's metrics overlay (Ctrl+Shift+O) and Steam's performance monitor all show GPU usage and FPS. Combine one of them with the resolution test: if lowering the resolution doesn't raise FPS, you're CPU-bound.</p></div></details>
+          <details><summary>Does MSI Afterburner work with AMD and Intel graphics cards?</summary><div><p>Yes. Despite the name, MSI Afterburner monitors NVIDIA, AMD and Intel Arc cards from any brand. RivaTuner Statistics Server, which draws the overlay, is vendor-neutral too.</p></div></details>
+          <details><summary>Why are both my CPU and GPU usage low?</summary><div><p>Usually a frame cap is active (V-Sync, an in-game limiter, RTSS or the driver), or the game is limited by a single maxed-out thread that total CPU usage hides. Turn off all caps and check per-thread CPU usage. VRAM overflow and thermal throttling can also cause it.</p></div></details>
+          <details><summary>Is the bottleneck percentage the same as the gap in GPU usage?</summary><div><p>They're closely related. In our model the bottleneck percentage is how far apart the CPU and GPU frame-rate limits are. A GPU sitting at about 60% usage in a CPU-bound game roughly matches a 40% CPU bottleneck, since the card is idle for the rest of each frame.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-to-fix-cpu-bottleneck/"><b>How to fix a CPU bottleneck</b><span>Free settings changes first, then RAM, XMP and Windows fixes, then the drop-in CPU upgrade that gives the most FPS per dollar.</span></a><a class="combo-card" href="../cpu-vs-gpu-bottleneck/"><b>CPU bottleneck vs GPU bottleneck: which is worse?</b><span>Why a CPU bottleneck feels worse at the same average FPS, when a GPU bottleneck is the real problem, and which part to upgrade first.</span></a><a class="combo-card" href="../does-resolution-affect-bottleneck/"><b>Does resolution affect bottleneck? 1080p vs 1440p vs 4K</b><span>Why a higher resolution moves the bottleneck from CPU to GPU, what switching from 1080p to 1440p really costs, and when 4K still needs a fast CPU.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="../../">Bottleneck calculator</a><a href="../../fps-calculator/">FPS calculator</a><a href="../../bottleneck/">Popular builds</a><a href="../../guides/">Guides</a><a href="../../about/">About</a><a href="../../editorial-policy/">Editorial policy</a><a href="../../privacy/">Privacy</a><a href="../../contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=8"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>

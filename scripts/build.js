@@ -171,6 +171,9 @@ const buildPages = require("./combo-pages")({ ROOT, SITE_URL, HW, Engine });
 // ---- FPS calculator page (/fps-calculator/)
 const fpsPage = require("./fps-page")({ ROOT, SITE_URL, HW, Engine, inject, faqSchema });
 
+// ---- Guides (/guides/ and one page per guide)
+const guidePages = require("./guides")({ ROOT, SITE_URL, HW, Engine, buildPages });
+
 // ---- Trust pages (hand-written; only the domain placeholder is filled in)
 const TRUST_PAGES = ["about/", "editorial-policy/", "privacy/", "contact/"];
 const host = new URL(SITE_URL).hostname.replace(/^www\./, "");
@@ -188,8 +191,9 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"),
   sitemapUrl("", "weekly", "1.0") +
   sitemapUrl(fpsPage, "weekly", "0.9") +
   buildPages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.6" : "0.8")).join("") +
+  guidePages.map((loc, i) => sitemapUrl(loc, "monthly", i ? "0.7" : "0.8")).join("") +
   TRUST_PAGES.map((loc) => sitemapUrl(loc, "yearly", "0.3")).join("") +
   `</urlset>\n`);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}sitemap.xml\n`);
 
-console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, sitemap.xml, robots.txt for ${SITE_URL}`);
+console.log(`Built index.html (${HW.cpus.length} CPUs, ${HW.gpus.length} GPUs), ${buildPages.length - 1} build pages + index in bottleneck/, ${guidePages.length - 1} guides + hub in guides/, ${TRUST_PAGES.length} trust pages, ${fpsPage}, sitemap.xml, robots.txt for ${SITE_URL}`);

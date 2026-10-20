@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Does Resolution Affect Bottleneck? 1080p vs 1440p vs 4K Explained</title>
+  <meta name="description" content="Yes: higher resolution shifts the bottleneck from the CPU to the GPU. See how switching from 1080p to 1440p or 4K changes FPS and bottleneck, and when 4K still needs a fast CPU.">
+  <link rel="canonical" href="https://www.example.com/guides/does-resolution-affect-bottleneck/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Does Resolution Affect Bottleneck? 1080p vs 1440p vs 4K Explained">
+  <meta property="og:description" content="Yes: higher resolution shifts the bottleneck from the CPU to the GPU. See how switching from 1080p to 1440p or 4K changes FPS and bottleneck, and when 4K still needs a fast CPU.">
+  <meta property="og:url" content="https://www.example.com/guides/does-resolution-affect-bottleneck/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=8">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://www.example.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://www.example.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Does resolution affect bottleneck? 1080p vs 1440p vs 4K",
+          "item": "https://www.example.com/guides/does-resolution-affect-bottleneck/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Does resolution affect bottleneck? 1080p vs 1440p vs 4K",
+      "description": "Yes: higher resolution shifts the bottleneck from the CPU to the GPU. See how switching from 1080p to 1440p or 4K changes FPS and bottleneck, and when 4K still needs a fast CPU.",
+      "image": "https://www.example.com/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 1699,
+      "author": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/"
+      },
+      "mainEntityOfPage": "https://www.example.com/guides/does-resolution-affect-bottleneck/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does higher resolution reduce CPU bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Higher resolution adds work for the GPU but not for the CPU, so the GPU becomes the limiting part. Your average FPS won't go up, but the CPU stops holding the graphics card back and you get a sharper image at a similar frame rate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is 1440p more CPU or GPU intensive than 1080p?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "More GPU intensive. The CPU's work per frame is about the same at both resolutions, while the GPU has to render 1.8 times as many pixels. That's why 1440p shifts the balance toward the graphics card."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a better CPU for 1440p?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. If your CPU keeps up at 1080p, it will keep up at 1440p, because the frame rate at 1440p is lower and the CPU's job doesn't get harder. You only need a faster CPU if you want a higher frame rate than you get now."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does 4K need a good CPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not for average FPS at native 4K, where most CPUs keep the graphics card busy. It does matter for 1% lows, for CPU-heavy games like simulators and strategy titles, and when you use DLSS or FSR Performance mode, which renders at 1080p internally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my FPS stay the same when I lower the resolution?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because your CPU is the bottleneck. Lowering resolution only reduces the GPU's work. If the CPU was already the slower part, the frame rate stays where the CPU caps it. That's the standard way to confirm a CPU bottleneck."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does DLSS change the bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Upscaling renders at a lower internal resolution, so it behaves like dropping the resolution: GPU load falls and the bottleneck shifts toward the CPU. At 4K with DLSS Performance, the GPU renders 1080p, so a CPU that's fine for native 4K can become the limit."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/">Guides</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">Resolution and bottleneck</span></nav>
+      <section class="hero combo-hero">
+        <h1>Does resolution affect bottleneck? 1080p vs 1440p vs 4K</h1>
+        <p class="lead">Yes, a lot. Resolution is the single biggest factor in whether your CPU or your graphics card sets the frame rate. The same PC can be badly CPU-limited at 1080p and completely GPU-limited at 4K. This guide shows why, with numbers, and what it means if you're thinking of moving up from 1080p.</p>
+        <p class="updated">Updated <time datetime="2026-10-20">October 20, 2026</time> · 7 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#why">Why resolution matters</a></li>
+          <li><a href="#one-build">One build, four resolutions</a></li>
+          <li><a href="#1080p-to-1440p">Switching 1080p → 1440p</a></li>
+          <li><a href="#4k">Does 4K need a good CPU?</a></li>
+          <li><a href="#ultrawide">Ultrawide 1440p</a></li>
+          <li><a href="#esports">Why esports stays at 1080p</a></li>
+          <li><a href="#buying">What it means for buying</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="short-answer">
+          <h2>The short answer</h2>
+          <p><strong>Higher resolution shifts the bottleneck toward the GPU. Lower resolution shifts it toward the CPU.</strong> The CPU does about the same work per frame at any resolution, while the GPU's work grows with every extra pixel. So as resolution rises, the GPU's frame-rate limit falls and the CPU's stays where it was.</p>
+          <p>That has two practical consequences. If your CPU holds back your graphics card at 1080p, moving to 1440p fixes it at almost no cost in frame rate. And at 4K you need a much less powerful CPU to keep a given card busy than you do at 1080p, with a couple of important exceptions covered below.</p>
+        </section>
+
+        <section id="why">
+          <h2>Why resolution changes the bottleneck</h2>
+          <p>Each frame is a two-step job. The CPU runs the game: input, AI, physics, animation, and the list of draw calls describing what's on screen. That list is the same whether the image ends up 1920 pixels wide or 3840. Then the GPU shades every pixel of the final image. 1440p has 1.8 times as many pixels as 1080p, and 4K has 4.0 times as many.</p>
+          <p>GPU frame rate doesn't fall in direct proportion to pixel count, though. Some of the GPU's work per frame, such as geometry, shadow maps and post-processing passes, doesn't scale with resolution, and bigger frames use the hardware more efficiently. In our model, calibrated against GPU-limited benchmarks, a card at 1440p keeps about 70% of its 1080p frame rate, and about 42% at 4K, not the 25% the pixel count alone suggests. You can see the formula in the <a href="../../#how-it-works">how we calculate</a> section of the calculator.</p>
+          <p>Put the two together: the CPU's frame-rate limit is a flat line and the GPU's slopes down as resolution rises. Wherever the GPU line drops below the CPU line, the bottleneck flips from one part to the other.</p>
+        </section>
+
+        <section id="one-build">
+          <h2>One build at every resolution</h2>
+          <p>Here's a <a href="../../?cpu=ryzen-5-5600&amp;gpu=rx-9070-xt&amp;res=1080p#calculator">Ryzen 5 5600 with an RX 9070 XT</a> in AAA games at High settings. The CPU column doesn't move. Everything else does.</p>
+          <div class="table-scroll"><table><thead><tr><th>Resolution</th><th class="r">Pixels vs 1080p</th><th class="r">CPU limit</th><th class="r">GPU limit</th><th class="r">Avg FPS</th><th>Bottleneck</th></tr></thead><tbody><tr><td>1080p</td><td class="r num">1.0×</td><td class="r num">106</td><td class="r num">170</td><td class="r num">106</td><td><span class="dot" data-tone="severe"></span>CPU 38%</td></tr><tr><td>1440p</td><td class="r num">1.8×</td><td class="r num">106</td><td class="r num">119</td><td class="r num">102</td><td><span class="dot" data-tone="good"></span>CPU 11%</td></tr><tr><td>UW 1440p</td><td class="r num">2.4×</td><td class="r num">106</td><td class="r num">99</td><td class="r num">94</td><td><span class="dot" data-tone="excellent"></span>Balanced</td></tr><tr><td>4K</td><td class="r num">4.0×</td><td class="r num">106</td><td class="r num">72</td><td class="r num">72</td><td><span class="dot" data-tone="gpu"></span>GPU 32%</td></tr></tbody></table></div>
+          <p>At 1080p this build is 38% CPU-limited: the graphics card could deliver about 170 FPS but gets fed only 106. At 1440p the gap shrinks to 11% CPU-limited, and from ultrawide upward the GPU takes over. Note what happens to the average: it barely changes between 1080p and 1440p (106 to 102 FPS), because the CPU was setting the pace at both.</p>
+        </section>
+
+        <section id="1080p-to-1440p">
+          <h2>Switching from 1080p to 1440p: what happens to FPS</h2>
+          <p>This is the most common question, and the answer depends entirely on which part limits you today. Here are six builds, from badly CPU-bound to fully GPU-bound, at both resolutions:</p>
+          <div class="table-scroll"><table><thead><tr><th>Build</th><th class="r">1080p</th><th class="r">1440p</th><th class="r">FPS lost</th></tr></thead><tbody><tr><td><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti#calculator">Ryzen 5 3600 + RTX 5070 Ti</a><br><small>53% CPU-limited → 32% CPU-limited</small></td><td class="r num">84</td><td class="r num">84</td><td class="r num">1%</td></tr><tr><td><a href="../../bottleneck/i5-12400f-rtx-5070-ti/">Core i5-12400F + RTX 5070 Ti</a><br><small>32% CPU-limited → balanced</small></td><td class="r num">119</td><td class="r num">112</td><td class="r num">6%</td></tr><tr><td><a href="../../bottleneck/ryzen-5-5600-rtx-5070/">Ryzen 5 5600 + RTX 5070</a><br><small>27% CPU-limited → balanced</small></td><td class="r num">105</td><td class="r num">95</td><td class="r num">10%</td></tr><tr><td><a href="../../bottleneck/i5-13400f-rtx-4070-super/">Core i5-13400F + RTX 4070 Super</a><br><small>balanced → 23% GPU-limited</small></td><td class="r num">120</td><td class="r num">95</td><td class="r num">21%</td></tr><tr><td><a href="../../bottleneck/ryzen-7-7800x3d-rtx-5070/">Ryzen 7 7800X3D + RTX 5070</a><br><small>18% GPU-limited → 42% GPU-limited</small></td><td class="r num">141</td><td class="r num">101</td><td class="r num">29%</td></tr><tr><td><a href="../../bottleneck/i5-12400f-rtx-5060/">Core i5-12400F + RTX 5060</a><br><small>21% GPU-limited → 49% GPU-limited</small></td><td class="r num">93</td><td class="r num">61</td><td class="r num">34%</td></tr></tbody></table></div>
+          <p>The Ryzen 5 3600 + RTX 5070 Ti build loses just 1% when it moves to 1440p, because the CPU was the limit all along and the GPU had capacity to spare. The Core i5-12400F + RTX 5060 build loses 34%, because its GPU was already maxed out at 1080p. Most builds fall somewhere in between.</p>
+          <p>So, if you're thinking about a 1440p monitor:</p>
+          <ul>
+            <li><strong>CPU-bound at 1080p</strong> (low GPU usage, FPS doesn't rise when you lower settings)? Switch. You'll get a much sharper image for very little FPS, and the money goes on a monitor instead of a CPU.</li>
+            <li><strong>GPU-bound at 1080p?</strong> Expect to lose up to a third of your frame rate. The last build in the table drops from 93 to 61 FPS. Plan on DLSS or FSR at 1440p, or a GPU upgrade.</li>
+            <li><strong>Do you need a better CPU for 1440p?</strong> No. 1440p is <em>easier</em> on the CPU relative to the GPU. A CPU that keeps up at 1080p will keep up at 1440p. A faster CPU only helps if you also want higher frame rates than you had at 1080p.</li>
+          </ul>
+          <p>Check your own parts in the <a href="../../#calculator">bottleneck calculator</a> and flip the resolution switch to see the same comparison for your build.</p>
+        </section>
+
+        <section id="4k">
+          <h2>Does 4K need a good CPU?</h2>
+          <p>Less than you'd think for averages, more than you'd think for everything else. At native 4K, even a mid-range processor keeps most graphics cards busy: the Ryzen 5 5600 with an RTX 5070 Ti is 29% GPU-limited at about 74 FPS, within a frame or two of a Ryzen 7 7800X3D (75 FPS). But three things bring the CPU back into play.</p>
+          <h3>1. Upscaling renders at a lower resolution</h3>
+          <p>Almost nobody plays new games at native 4K. DLSS or FSR in Performance mode renders internally at 1080p and upscales the result, so the GPU's load drops and the CPU matters again. With the Ryzen 5 5600 and RX 9070 XT at 4K:</p>
+          <ul>
+            <li><strong>Off (native):</strong> 72 FPS, 32% GPU-limited</li>
+            <li><strong>DLSS/FSR Quality:</strong> 95 FPS, balanced</li>
+            <li><strong>DLSS/FSR Performance:</strong> 104 FPS, 20% CPU-limited</li>
+          </ul>
+          <p>With Performance upscaling, the Ryzen 5 5600 becomes the limit again. A Ryzen 7 7800X3D in the same spot reaches about 132 FPS. If you plan to rely on upscaling at 4K, budget for a CPU that would suit the internal resolution, not the output.</p>
+          <h3>2. CPU-heavy games don't care about resolution</h3>
+          <p>Strategy games, simulators and MMOs can be CPU-bound at any resolution. In that kind of game, the Ryzen 5 5600 with an RTX 5070 Ti averages about 58 FPS even at 4K (38% CPU-limited), against 87 for the Ryzen 7 7800X3D.</p>
+          <h3>3. 1% lows still come from the CPU</h3>
+          <p>A GPU-limited average hides the CPU spikes during explosions, crowds and streaming. A faster CPU won't raise your 4K average much, but it smooths out the hitches. In our model the 7800X3D's 1% lows at 4K are 61 FPS against 58 for the 5600.</p>
+        </section>
+
+        <section id="ultrawide">
+          <h2>What about ultrawide?</h2>
+          <p>A 3440×1440 ultrawide has about 34% more pixels than standard 1440p, so it sits between 1440p and 4K in GPU load. In practice it behaves like a slightly heavier 1440p: a <a href="../../bottleneck/i5-12400f-rtx-5070-ti/">Core i5-12400F + RTX 5070 Ti</a>, which is balanced at 1440p, is 14% GPU-limited on an ultrawide at about 100 FPS. Some games also render a wider field of view on ultrawide, which adds a little CPU work, but the GPU effect is far larger.</p>
+        </section>
+
+        <section id="esports">
+          <h2>Why competitive players stay at 1080p</h2>
+          <p>If higher resolution is so cheap on a CPU-bound PC, why do so many competitive players still run 1080p with low settings? Because they're chasing the opposite goal. On a 360 Hz or 500 Hz monitor, every extra frame cuts input latency and makes motion clearer, so they deliberately remove GPU load until the CPU is the only limit left.</p>
+          <p>In CS2-style esports games, a Ryzen 7 7800X3D with an RTX 5070 runs at about 422 FPS at 1080p and 322 at 1440p. Both clear a 240 Hz panel, so 1440p is a fair trade for most people. Beyond that, the CPU decides how high you go. That's why X3D processors dominate high-refresh esports builds, and why “just play at a higher resolution” isn't the right fix for someone who bought a 500 Hz monitor.</p>
+        </section>
+
+        <section id="buying">
+          <h2>What this means when you buy parts</h2>
+          <ul>
+            <li><strong>Choose the graphics card for your resolution</strong> and the image quality you want. That's what decides whether the game looks good.</li>
+            <li><strong>Choose the CPU for your target frame rate.</strong> If you want 144 FPS or more, the CPU has to manage it at any resolution. A 60 FPS 4K player and a 240 FPS esports player need very different processors, even with the same graphics card.</li>
+            <li><strong>Don't pair a flagship card with 1080p.</strong> Even a Ryzen 7 9800X3D holds an RTX 5090 back by 34% at 1080p. Fast cards are built for 1440p and 4K.</li>
+            <li><strong>Upgrading the monitor can be the cheapest fix</strong> for a CPU bottleneck, as long as you're happy with roughly the frame rate you have now.</li>
+          </ul>
+          <p>Our <a href="../best-cpu-for-rtx-5070/">best CPU for RTX 5070 guide</a> shows this in practice, with every pairing at 1080p, 1440p and 4K. For game-specific numbers at each resolution, use the <a href="../../fps-calculator/">FPS calculator</a>, and if you want to see what your own PC is doing, follow the <a href="../how-to-check-for-bottleneck/">bottleneck check walkthrough</a>.</p>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>Does higher resolution reduce CPU bottleneck?</summary><div><p>Yes. Higher resolution adds work for the GPU but not for the CPU, so the GPU becomes the limiting part. Your average FPS won't go up, but the CPU stops holding the graphics card back and you get a sharper image at a similar frame rate.</p></div></details>
+          <details><summary>Is 1440p more CPU or GPU intensive than 1080p?</summary><div><p>More GPU intensive. The CPU's work per frame is about the same at both resolutions, while the GPU has to render 1.8 times as many pixels. That's why 1440p shifts the balance toward the graphics card.</p></div></details>
+          <details><summary>Do I need a better CPU for 1440p?</summary><div><p>No. If your CPU keeps up at 1080p, it will keep up at 1440p, because the frame rate at 1440p is lower and the CPU's job doesn't get harder. You only need a faster CPU if you want a higher frame rate than you get now.</p></div></details>
+          <details><summary>Does 4K need a good CPU?</summary><div><p>Not for average FPS at native 4K, where most CPUs keep the graphics card busy. It does matter for 1% lows, for CPU-heavy games like simulators and strategy titles, and when you use DLSS or FSR Performance mode, which renders at 1080p internally.</p></div></details>
+          <details><summary>Why does my FPS stay the same when I lower the resolution?</summary><div><p>Because your CPU is the bottleneck. Lowering resolution only reduces the GPU's work. If the CPU was already the slower part, the frame rate stays where the CPU caps it. That's the standard way to confirm a CPU bottleneck.</p></div></details>
+          <details><summary>Does DLSS change the bottleneck?</summary><div><p>Yes. Upscaling renders at a lower internal resolution, so it behaves like dropping the resolution: GPU load falls and the bottleneck shifts toward the CPU. At 4K with DLSS Performance, the GPU renders 1080p, so a CPU that's fine for native 4K can become the limit.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-to-check-for-bottleneck/"><b>How to check for a CPU or GPU bottleneck</b><span>Set up MSI Afterburner and RTSS, read GPU usage and frame times, and confirm the result with a 30-second resolution test.</span></a><a class="combo-card" href="../best-cpu-for-rtx-5070/"><b>Best CPU for the RTX 5070 and RTX 5070 Ti</b><span>FPS and bottleneck for 11 CPUs with each card at 1080p, 1440p and 4K, plus the best pick for every budget and platform.</span></a><a class="combo-card" href="../cpu-vs-gpu-bottleneck/"><b>CPU bottleneck vs GPU bottleneck: which is worse?</b><span>Why a CPU bottleneck feels worse at the same average FPS, when a GPU bottleneck is the real problem, and which part to upgrade first.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="../../">Bottleneck calculator</a><a href="../../fps-calculator/">FPS calculator</a><a href="../../bottleneck/">Popular builds</a><a href="../../guides/">Guides</a><a href="../../about/">About</a><a href="../../editorial-policy/">Editorial policy</a><a href="../../privacy/">Privacy</a><a href="../../contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=8"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>

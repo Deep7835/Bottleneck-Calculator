@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPU Bottleneck vs GPU Bottleneck: Which Is Worse? (2026)</title>
+  <meta name="description" content="A CPU bottleneck is worse for gaming than a GPU bottleneck: worse 1% lows, stutter, and settings can't fix it. See the numbers, the exceptions, and which part to upgrade first.">
+  <link rel="canonical" href="https://www.example.com/guides/cpu-vs-gpu-bottleneck/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="CPU Bottleneck vs GPU Bottleneck: Which Is Worse? (2026)">
+  <meta property="og:description" content="A CPU bottleneck is worse for gaming than a GPU bottleneck: worse 1% lows, stutter, and settings can't fix it. See the numbers, the exceptions, and which part to upgrade first.">
+  <meta property="og:url" content="https://www.example.com/guides/cpu-vs-gpu-bottleneck/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=8">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Bottleneck Calculator",
+          "item": "https://www.example.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://www.example.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CPU bottleneck vs GPU bottleneck: which is worse?",
+          "item": "https://www.example.com/guides/cpu-vs-gpu-bottleneck/"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "CPU bottleneck vs GPU bottleneck: which is worse?",
+      "description": "A CPU bottleneck is worse for gaming than a GPU bottleneck: worse 1% lows, stutter, and settings can't fix it. See the numbers, the exceptions, and which part to upgrade first.",
+      "image": "https://www.example.com/og-image.png",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "wordCount": 1669,
+      "author": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Bottleneck Calculator",
+        "url": "https://www.example.com/"
+      },
+      "mainEntityOfPage": "https://www.example.com/guides/cpu-vs-gpu-bottleneck/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is it better to be CPU or GPU bottlenecked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GPU bottlenecked. A GPU-bound game has smoother frame times and better 1% lows, and you can raise FPS with settings or upscaling. A CPU-bound game stutters more in busy scenes, and lowering settings barely helps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a CPU bottleneck cause stutter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It often does. A CPU-bound game's frame rate depends on how much simulation work each frame needs, which spikes during explosions, crowds and streaming. Those spikes show up as low 1% lows and visible hitches, even when the average FPS looks fine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a GPU bottleneck bad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not by itself. A GPU running at 95–99% means you're getting the performance you paid for. It's only a problem if your FPS is too low for your monitor even after lowering settings or enabling DLSS or FSR, or if the card is running out of VRAM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does DLSS help a CPU bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DLSS and FSR upscaling don't. They render fewer pixels, which lightens the GPU's load, so a CPU-bound game gains nothing and becomes even more CPU-bound. Frame generation is different: it adds generated frames without CPU work, which raises perceived smoothness, with slightly higher input latency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a CPU bottleneck damage my GPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A bottleneck is a performance mismatch, not a fault. An underused GPU just runs cooler and quieter. Neither part is stressed beyond its design."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much bottleneck is acceptable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under 10% is excellent and 10–20% is fine. A CPU bottleneck between 20% and 35% starts to show in 1% lows, and above 35% a large part of the graphics card is wasted. A GPU bottleneck of any size is fine as long as your FPS meets your target."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../../" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../../#calculator">Calculator</a>
+        <a href="../../fps-calculator/">FPS calculator</a>
+        <a href="../../bottleneck/">Builds</a>
+        <a href="../../guides/">Guides</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <a href="../">Guides</a> <span aria-hidden="true">›</span> <span aria-current="page">CPU vs GPU bottleneck</span></nav>
+      <section class="hero combo-hero">
+        <h1>CPU bottleneck vs GPU bottleneck: which is worse?</h1>
+        <p class="lead">Every gaming PC is limited by one part or the other, so the useful question isn't whether you have a bottleneck but which kind. Short version: a CPU bottleneck is usually worse, because it hurts smoothness and you can't tune it away. Here's why, with numbers, and the cases where it doesn't matter.</p>
+        <p class="updated">Updated <time datetime="2026-10-20">October 20, 2026</time> · 7 min read · Numbers from our <a href="../../#how-it-works">bottleneck model</a></p>
+      </section>
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#what-happens">What each one is</a></li>
+          <li><a href="#lows">Why CPU limits feel worse</a></li>
+          <li><a href="#settings">Settings can't fix CPU limits</a></li>
+          <li><a href="#when-gpu-worse">When a GPU bottleneck is the problem</a></li>
+          <li><a href="#when-cpu-fine">When a CPU bottleneck doesn't matter</a></li>
+          <li><a href="#upgrade-first">Which to upgrade first</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="short-answer">
+          <h2>The short answer</h2>
+          <p><strong>A CPU bottleneck is worse for gaming.</strong> At the same average frame rate, a CPU-bound game has lower 1% lows and more stutter, and lowering graphics settings or turning on upscaling does almost nothing to help. You're stuck with it until you change hardware or the game.</p>
+          <p><strong>A GPU bottleneck is the normal, healthy state.</strong> It means the graphics card, usually the most expensive part in the build, is being used fully. Frame delivery is even, and you have a dozen settings that trade image quality for frame rate.</p>
+          <p>There are exceptions. A GPU bottleneck is a real problem when your frame rate is too low for your monitor and settings are already turned down. A CPU bottleneck stops mattering when you're already above your refresh rate. Both are covered below.</p>
+        </section>
+
+        <section id="what-happens">
+          <h2>What actually happens in each case</h2>
+          <p>Each frame passes through two stages. The CPU runs the game simulation (input, physics, AI, animation, and the draw calls that tell the GPU what to render). Then the GPU turns those instructions into pixels. They work in parallel on different frames, so your frame rate is set by whichever stage takes longer.</p>
+          <p><strong>When the GPU is slower</strong>, the CPU finishes its frame early and queues it up. There's always work waiting for the graphics card, so it runs at 95–99% usage and frames come out at a steady pace. The workload per frame is also fairly consistent: the same resolution, the same shaders, more or less the same pixel count every frame.</p>
+          <p><strong>When the CPU is slower</strong>, the GPU finishes early and waits. Its usage drops, and the frame rate now depends on how much the simulation has to do on each frame. That varies a lot: an explosion, a crowd turning a corner or a new area streaming in can double the CPU's work for a handful of frames. Each spike becomes a long frame, which you feel as a hitch.</p>
+          <p>That difference in consistency is the whole story. A GPU-bound game slows down smoothly. A CPU-bound game slows down in jolts.</p>
+        </section>
+
+        <section id="lows">
+          <h2>Why a CPU bottleneck feels worse: 1% lows</h2>
+          <p>The <strong>1% low</strong> is the frame rate of the slowest 1% of frames. It's the closest single number to how smooth a game <em>feels</em>, because your eyes notice the hitches, not the average. The table below compares builds with similar average frame rates in AAA games. Some are limited by the CPU, some by the GPU.</p>
+          <div class="table-scroll"><table><thead><tr><th>Build</th><th class="r">Avg FPS</th><th class="r">1% low</th><th class="r">Low ÷ avg</th><th>Limited by</th></tr></thead><tbody><tr><td><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-4070-super#calculator">Ryzen 5 3600 + RTX 4070 Super</a><br><small>1080p, High</small></td><td class="r num">84</td><td class="r num">59</td><td class="r num">70%</td><td><span class="dot" data-tone="severe"></span>CPU 39%</td></tr><tr><td><a href="../../?cpu=i5-10400f&amp;gpu=rtx-5070#calculator">Core i5-10400F + RTX 5070</a><br><small>1440p, High</small></td><td class="r num">85</td><td class="r num">61</td><td class="r num">71%</td><td><span class="dot" data-tone="good"></span>CPU 13%</td></tr><tr><td><a href="../../?cpu=ryzen-5-3600&amp;gpu=rtx-5070-ti#calculator">Ryzen 5 3600 + RTX 5070 Ti</a><br><small>1440p, High</small></td><td class="r num">84</td><td class="r num">58</td><td class="r num">70%</td><td><span class="dot" data-tone="moderate"></span>CPU 32%</td></tr><tr><td><a href="../../?cpu=i5-12400f&amp;gpu=rtx-4060-ti-16gb#calculator">Core i5-12400F + RTX 4060 Ti 16GB</a><br><small>1080p, High</small></td><td class="r num">93</td><td class="r num">72</td><td class="r num">78%</td><td><span class="dot" data-tone="gpu"></span>GPU 21%</td></tr><tr><td><a href="../../bottleneck/ryzen-5-5600-rtx-5060-ti-16gb/">Ryzen 5 5600 + RTX 5060 Ti 16GB</a><br><small>1440p, High</small></td><td class="r num">76</td><td class="r num">60</td><td class="r num">78%</td><td><span class="dot" data-tone="gpu"></span>GPU 27%</td></tr><tr><td><a href="../../?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5060-ti-16gb#calculator">Ryzen 7 7800X3D + RTX 5060 Ti 16GB</a><br><small>1440p, High</small></td><td class="r num">77</td><td class="r num">63</td><td class="r num">82%</td><td><span class="dot" data-tone="gpu"></span>GPU 56%</td></tr></tbody></table></div>
+          <p>The CPU-bound builds keep only 70–71% of their average in the 1% lows, while the GPU-bound builds keep 78–82%. Look at the first and last rows: the Ryzen 5 3600 build averages more frames than the Ryzen 7 7800X3D build (84 vs 77 FPS), yet its worst moments drop to about 59 FPS while the GPU-bound build holds 63. Higher average, rougher experience. Large-cache X3D processors such as the Ryzen 7 7800X3D hold their lows best of all, which is a big part of why they're the default recommendation for gaming.</p>
+          <p>The numbers come from the same model as the <a href="../../#calculator">bottleneck calculator</a>, which estimates 1% lows from whichever part is the limit. Real games vary, but the pattern is consistent in independent benchmarks: CPU-limited scenes are where the stutter lives.</p>
+        </section>
+
+        <section id="settings">
+          <h2>Why settings fix one and not the other</h2>
+          <p>Almost every graphics setting changes how much work the <em>GPU</em> does. Resolution, shadows, anti-aliasing, texture filtering and upscaling all lighten the graphics card's load. Very few settings reduce the CPU's work per frame. Here's the same set of changes applied to a CPU-bound build and a GPU-bound one:</p>
+          <div class="table-scroll"><table><thead><tr><th>Setting</th><th class="r">Ryzen 5 3600 + RTX 5070 Ti<br><small>1080p · CPU-bound</small></th><th class="r">Core i5-12400F + RTX 5060 Ti 16GB<br><small>1440p · GPU-bound</small></th></tr></thead><tbody><tr><td>High (baseline)</td><td class="r num">84</td><td class="r num">77</td></tr><tr><td>Ultra</td><td class="r num">81 <small>−4%</small></td><td class="r num">62 <small>−20%</small></td></tr><tr><td>Medium</td><td class="r num">87 <small>+3%</small></td><td class="r num">101 <small>+32%</small></td></tr><tr><td>Low</td><td class="r num">89 <small>+6%</small></td><td class="r num">120 <small>+56%</small></td></tr><tr><td>DLSS/FSR Quality</td><td class="r num">84 <small>±0%</small></td><td class="r num">103 <small>+34%</small></td></tr></tbody></table></div>
+          <p>Dropping from High to Low gives the GPU-bound Core i5-12400F build 56% more frames. The CPU-bound Ryzen 5 3600 build gets 6%, and turning on DLSS or FSR changes nothing at all, because the GPU was already waiting. The flip side is useful too: when you're CPU-bound, you can raise graphics quality or resolution almost for free. Going to Ultra costs that build only 4% of its frame rate.</p>
+          <p>A handful of settings do lean on the CPU: crowd and traffic density, view distance and level of detail, physics quality, and in some engines shadow quality (more objects to draw). Ray tracing also adds CPU work to build its acceleration structures. Those are the ones to turn down first when you're CPU-limited, as covered in our guide on <a href="../how-to-fix-cpu-bottleneck/">how to fix a CPU bottleneck</a>.</p>
+        </section>
+
+        <section id="when-gpu-worse">
+          <h2>When a GPU bottleneck is the real problem</h2>
+          <p>Being GPU-bound is healthy only if the frame rate is good enough. It becomes the problem when:</p>
+          <ul>
+            <li><strong>FPS is below what you need</strong> even at Medium settings with upscaling on. A <a href="../../bottleneck/ryzen-5-5600-rtx-4060/">Ryzen 5 5600 + RTX 4060</a> build is GPU-bound in AAA games at 1440p at about 49 FPS. That's a perfectly healthy bottleneck that still needs settings turned down for a smooth experience.</li>
+            <li><strong>You're out of VRAM.</strong> When textures don't fit in the card's memory, the GPU stalls while data crosses PCIe, and the result looks like a CPU bottleneck: low GPU usage and stutter. Eight-gigabyte cards hit this at 1440p in many 2025–2026 releases. Lowering texture quality is the fix.</li>
+            <li><strong>You want ray tracing or 4K</strong> and the card doesn't have the muscle. No CPU upgrade will help there.</li>
+          </ul>
+          <p>In those cases the GPU is the right thing to upgrade, and the calculator's upgrade cards will show which models your CPU can keep fed without creating a new CPU bottleneck.</p>
+        </section>
+
+        <section id="when-cpu-fine">
+          <h2>When a CPU bottleneck doesn't matter</h2>
+          <p>A CPU bottleneck is only a problem if it holds you below a frame rate you care about. If you play esports titles on a 144 Hz monitor, being CPU-bound at 300 FPS changes nothing you can see. A <a href="../../?cpu=ryzen-5-5600&amp;gpu=rx-9070-xt&amp;res=1080p&amp;game=esports#calculator">Ryzen 5 5600 with an RX 9070 XT</a> is CPU-limited in CS2-style games at 1080p, yet still averages about 275 FPS, which is more than a 240 Hz panel can show.</p>
+          <p>It also doesn't matter much when you cap the frame rate. Many people run a cap a few frames below their refresh rate to keep G-Sync or FreeSync active and cut input lag. If the CPU can hold that cap in the busiest scenes, it doesn't matter that it couldn't go higher.</p>
+          <h3>The latency twist</h3>
+          <p>There's one way a GPU bottleneck is worse: input latency. When the GPU is pegged at 99%, finished CPU frames wait in a render queue, which adds a few milliseconds between your mouse movement and the screen. Competitive players fix that with NVIDIA Reflex or AMD Anti-Lag 2, or with a frame cap just below what the GPU can sustain. A CPU-bound game has no queue, so its latency is naturally lower, even though its frame pacing is worse.</p>
+        </section>
+
+        <section id="upgrade-first">
+          <h2>Which part should you upgrade first?</h2>
+          <p>Work out which part limits you in the games you actually play, at the resolution you actually use, then follow these rules of thumb:</p>
+          <ol>
+            <li><strong>CPU-bound by 20% or more and below your target FPS:</strong> upgrade the CPU first. A faster graphics card would mostly sit idle. Check for a drop-in upgrade on your current socket before buying a new platform.</li>
+            <li><strong>GPU-bound and below your target FPS:</strong> upgrade the GPU, but make sure the new card won't flip you into a CPU bottleneck. A card that's 60% faster helps little if your CPU tops out 20% above your current frame rate.</li>
+            <li><strong>Slightly GPU-bound and happy with your FPS:</strong> don't upgrade anything. That's a well-balanced PC.</li>
+          </ol>
+          <p>The <a href="../../#calculator">calculator</a> does this comparison for you and suggests the smallest upgrade that balances the build. If you're about to change resolution, read <a href="../does-resolution-affect-bottleneck/">how resolution changes the bottleneck</a> first, because a new monitor can move the bottleneck from one part to the other. To measure what your PC is doing right now, see <a href="../how-to-check-for-bottleneck/">how to check for a bottleneck</a>.</p>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>Is it better to be CPU or GPU bottlenecked?</summary><div><p>GPU bottlenecked. A GPU-bound game has smoother frame times and better 1% lows, and you can raise FPS with settings or upscaling. A CPU-bound game stutters more in busy scenes, and lowering settings barely helps.</p></div></details>
+          <details><summary>Does a CPU bottleneck cause stutter?</summary><div><p>It often does. A CPU-bound game's frame rate depends on how much simulation work each frame needs, which spikes during explosions, crowds and streaming. Those spikes show up as low 1% lows and visible hitches, even when the average FPS looks fine.</p></div></details>
+          <details><summary>Is a GPU bottleneck bad?</summary><div><p>Not by itself. A GPU running at 95–99% means you're getting the performance you paid for. It's only a problem if your FPS is too low for your monitor even after lowering settings or enabling DLSS or FSR, or if the card is running out of VRAM.</p></div></details>
+          <details><summary>Does DLSS help a CPU bottleneck?</summary><div><p>DLSS and FSR upscaling don't. They render fewer pixels, which lightens the GPU's load, so a CPU-bound game gains nothing and becomes even more CPU-bound. Frame generation is different: it adds generated frames without CPU work, which raises perceived smoothness, with slightly higher input latency.</p></div></details>
+          <details><summary>Can a CPU bottleneck damage my GPU?</summary><div><p>No. A bottleneck is a performance mismatch, not a fault. An underused GPU just runs cooler and quieter. Neither part is stressed beyond its design.</p></div></details>
+          <details><summary>How much bottleneck is acceptable?</summary><div><p>Under 10% is excellent and 10–20% is fine. A CPU bottleneck between 20% and 35% starts to show in 1% lows, and above 35% a large part of the graphics card is wasted. A GPU bottleneck of any size is fine as long as your FPS meets your target.</p></div></details>
+        </section>
+
+        <section id="more">
+          <h2>More guides</h2>
+          <div class="combos"><a class="combo-card" href="../how-to-check-for-bottleneck/"><b>How to check for a CPU or GPU bottleneck</b><span>Set up MSI Afterburner and RTSS, read GPU usage and frame times, and confirm the result with a 30-second resolution test.</span></a><a class="combo-card" href="../how-to-fix-cpu-bottleneck/"><b>How to fix a CPU bottleneck</b><span>Free settings changes first, then RAM, XMP and Windows fixes, then the drop-in CPU upgrade that gives the most FPS per dollar.</span></a><a class="combo-card" href="../does-resolution-affect-bottleneck/"><b>Does resolution affect bottleneck? 1080p vs 1440p vs 4K</b><span>Why a higher resolution moves the bottleneck from CPU to GPU, what switching from 1080p to 1440p really costs, and when 4K still needs a fast CPU.</span></a></div>
+          <p><a class="btn" href="../../#calculator">Check your CPU and GPU<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="../../">Bottleneck calculator</a><a href="../../fps-calculator/">FPS calculator</a><a href="../../bottleneck/">Popular builds</a><a href="../../guides/">Guides</a><a href="../../about/">About</a><a href="../../editorial-policy/">Editorial policy</a><a href="../../privacy/">Privacy</a><a href="../../contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+  <script src="../../assets/js/motion.js?v=8"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>
