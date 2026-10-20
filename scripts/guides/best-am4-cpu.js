@@ -151,6 +151,6 @@ module.exports = function (h) {
       ["Does the 5700X3D need a new cooler?", "It doesn't include one, so you need a cooler either way. A Ryzen 5 3600's stock cooler is too small for a 105 W chip. A decent single-tower air cooler keeps it at full boost."],
       ["Should I upgrade to a 5700X3D or switch to AM5?", "If your current board supports it and your graphics card is RTX 5070 Ti or RX 9070 XT class or slower, the 5700X3D gives most of the gaming performance for a fraction of the cost. Move to AM5 for an RTX 5080 or faster, very high refresh esports, or if you need a new board anyway."],
     ],
-    related: ["best-cpu-for-rtx-5070", "how-to-fix-cpu-bottleneck", "how-to-check-for-bottleneck"],
+    related: ["best-cpu-for-rtx-5060", "best-cpu-for-rtx-5070", "how-to-fix-cpu-bottleneck"],
   };
 };

@@ -146,6 +146,6 @@ module.exports = function (h) {
       ["Why does my FPS stay the same when I lower the resolution?", "Because your CPU is the bottleneck. Lowering resolution only reduces the GPU's work. If the CPU was already the slower part, the frame rate stays where the CPU caps it. That's the standard way to confirm a CPU bottleneck."],
       ["Does DLSS change the bottleneck?", "Yes. Upscaling renders at a lower internal resolution, so it behaves like dropping the resolution: GPU load falls and the bottleneck shifts toward the CPU. At 4K with DLSS Performance, the GPU renders 1080p, so a CPU that's fine for native 4K can become the limit."],
     ],
-    related: ["how-to-check-for-bottleneck", "best-cpu-for-rtx-5070", "cpu-vs-gpu-bottleneck"],
+    related: ["balanced-gaming-pc-build", "how-to-check-for-bottleneck", "best-cpu-for-rtx-5070"],
   };
 };
