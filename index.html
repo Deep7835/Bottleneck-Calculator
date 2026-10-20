@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bottleneck Calculator (2026) – CPU & GPU Bottleneck + FPS Checker</title>
+  <meta name="description" content="Free bottleneck calculator for 2026. Check if your CPU bottlenecks your GPU, see estimated FPS at 1080p, 1440p and 4K, and get balanced upgrade picks. 280+ CPUs & GPUs incl. RTX 50 and RX 9000.">
+  <!-- Replace https://www.example.com/ with your live domain before publishing -->
+  <link rel="canonical" href="https://www.example.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bottleneck Calculator – Is Your CPU Holding Back Your GPU?">
+  <meta property="og:description" content="Check CPU/GPU balance, estimated FPS and 1% lows at any resolution, plus the exact upgrade that fixes your bottleneck.">
+  <meta property="og:url" content="https://www.example.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=8">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bottleneck Calculator",
+    "url": "https://www.example.com/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "description": "Free CPU and GPU bottleneck calculator with FPS estimates for 1080p, 1440p, ultrawide and 4K, game-type modeling, VRAM checks and upgrade recommendations.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "dateModified": "2026-10-20"
+  }
+  </script>
+  <!-- FAQSCHEMA:START -->
+          <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good bottleneck percentage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under 10% is excellent balance and 10–20% is fine for gaming. Between 20% and 35% a CPU bottleneck becomes noticeable in 1% lows. Above 35% you're wasting a large part of your GPU. If the GPU is the limiting part, even higher percentages are fine as long as your FPS meets your target."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate is a bottleneck calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A good one is accurate for judging balance and getting ballpark FPS, typically within about 10–15% of averaged benchmarks. No calculator can predict one specific game exactly, because engines, patches, drivers, cooling, RAM speed and background software all change results. Tools based on synthetic scores like PassMark are much less reliable for gaming than tools based on gaming benchmarks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to be CPU bottlenecked or GPU bottlenecked?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPU bottlenecked. A GPU-bound game has smooth, consistent frame times and you can raise FPS with settings or upscaling. A CPU-bound game has worse 1% lows and stutter, and lowering settings doesn't help."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does playing at a higher resolution reduce a CPU bottleneck?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Higher resolutions add GPU work but barely change CPU work, so the GPU becomes the limiting part. Moving from 1080p to 1440p is often the simplest fix for a strong GPU paired with an older CPU. Your average FPS won't rise, but image quality improves at almost no cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does DLSS or FSR fix a CPU bottleneck?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Upscaling renders at a lower internal resolution, which reduces GPU work and pushes you further into a CPU bottleneck. Frame generation is different: it inserts generated frames without CPU involvement, so it can improve perceived smoothness when CPU-bound, at the cost of slightly higher input latency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can RAM cause a bottleneck?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. 8 GB of RAM is too little for modern games and causes stutter. Running a single stick (single-channel) or forgetting to enable XMP/EXPO can also cut CPU-bound performance by 10–25%. For gaming in 2026, 32 GB of dual-channel DDR5 (or 16–32 GB of DDR4-3600) is the sweet spot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a bottleneck damage my PC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A bottleneck is a performance mismatch, not a fault. Neither part is stressed beyond its design. The only cost is performance you paid for but can't use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a 0% bottleneck possible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not really. In every frame one part finishes later than the other, and the balance shifts between games and even between scenes. A result under 10% means the parts are as well matched as you can realistically get."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator work for laptops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Popular laptop CPUs and GPUs are included and marked “Laptop”. Laptop GPUs vary a lot with power limit (TGP) and cooling, so thin-and-light models can perform 10–25% below the estimate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do different bottleneck calculators show different results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They use different data and formulas. Many compare synthetic CPU scores that don't reflect gaming, ignore resolution, or treat a GPU bottleneck as a problem. This calculator uses gaming-specific indexes, models resolution, quality, upscaling, VRAM and game type, and shows its full formula above."
+      }
+    }
+  ]
+}
+  </script>
+          <!-- FAQSCHEMA:END -->
+</head>
+<body>
+  <a class="skip" href="#calculator">Skip to calculator</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="./" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path class="logo-arc" d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="fps-calculator/">FPS calculator</a>
+        <a href="#how-it-works">Method</a>
+        <a href="#min-cpu">CPU for your GPU</a>
+        <a href="#popular">Builds</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>Updated October 2026 · 284 CPUs &amp; GPUs</p>
+        <h1 class="reveal">Bottleneck Calculator</h1>
+        <p class="lead reveal">See if your CPU holds back your GPU, how many FPS to expect, and which upgrade actually fixes it.</p>
+      </section>
+
+      <section id="calculator" class="calc reveal" aria-label="Bottleneck calculator">
+        <form class="card builder" id="calc-form" autocomplete="off" onsubmit="return false">
+          <div class="builder-main">
+            <div class="field">
+              <label for="cpu-input">Processor</label>
+              <div class="combo" data-kind="cpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <input id="cpu-input" value="AMD Ryzen 7 7800X3D" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cpu-list" aria-describedby="cpu-meta" spellcheck="false" placeholder="Search CPU, e.g. 7800X3D">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Show all processors"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="cpu-list" class="combo-list" role="listbox" aria-label="Processors" hidden></ul>
+              </div>
+              <div class="field-meta" id="cpu-meta">8 cores / 16 threads · AM5 · 2023</div>
+            </div>
+            <div class="builder-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <div class="field">
+              <label for="gpu-input">Graphics card</label>
+              <div class="combo" data-kind="gpu">
+                <svg class="combo-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="9" cy="12" r="2.5"/><circle cx="16" cy="12" r="2.5"/><path d="M5 17v2"/></svg>
+                <input id="gpu-input" value="NVIDIA GeForce RTX 5070 Ti" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gpu-list" aria-describedby="gpu-meta" spellcheck="false" placeholder="Search GPU, e.g. RTX 5070">
+                <button type="button" class="combo-toggle" tabindex="-1" aria-label="Show all graphics cards"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <ul id="gpu-list" class="combo-list" role="listbox" aria-label="Graphics cards" hidden></ul>
+              </div>
+              <div class="field-meta" id="gpu-meta">16 GB VRAM · Ray tracing ✓ · 2025</div>
+            </div>
+          </div>
+
+          <div class="builder-sub">
+            <div class="field field-res">
+              <span class="field-label" id="res-label">Resolution</span>
+              <div class="seg" role="radiogroup" aria-labelledby="res-label">
+                <span class="seg-thumb" aria-hidden="true"></span>
+                <label><input type="radio" name="res" value="1080p"><span>1080p</span></label>
+                <label><input type="radio" name="res" value="1440p" checked><span>1440p</span></label>
+                <label><input type="radio" name="res" value="uw1440"><span>UW</span></label>
+                <label><input type="radio" name="res" value="4k"><span>4K</span></label>
+              </div>
+            </div>
+            <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false" aria-controls="more">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+              <span class="more-text"><b>Settings</b><span id="opt-summary">High · AAA games · 32 GB · 165 Hz</span></span>
+              <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+          </div>
+
+          <div class="more" id="more">
+            <div class="more-inner">
+              <div class="more-grid">
+                <div class="field">
+                  <span class="field-label" id="q-label">Graphics quality</span>
+                  <div class="seg" role="radiogroup" aria-labelledby="q-label">
+                    <span class="seg-thumb" aria-hidden="true"></span>
+                    <label><input type="radio" name="quality" value="low"><span>Low</span></label>
+                    <label><input type="radio" name="quality" value="medium"><span>Med</span></label>
+                    <label><input type="radio" name="quality" value="high" checked><span>High</span></label>
+                    <label><input type="radio" name="quality" value="ultra"><span>Ultra</span></label>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="field-label" id="ram-label">Memory (RAM)</span>
+                  <div class="seg" role="radiogroup" aria-labelledby="ram-label">
+                    <span class="seg-thumb" aria-hidden="true"></span>
+                    <label><input type="radio" name="ram" value="8"><span>8 GB</span></label>
+                    <label><input type="radio" name="ram" value="16"><span>16 GB</span></label>
+                    <label><input type="radio" name="ram" value="32" checked><span>32 GB</span></label>
+                    <label><input type="radio" name="ram" value="64"><span>64 GB</span></label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="workload">Games you play</label>
+                  <select id="workload" name="workload">
+                    <option value="general">AAA / mixed games</option>
+                    <option value="esports">Competitive esports (CS2, Valorant, Fortnite)</option>
+                    <option value="cpuheavy">CPU-heavy (strategy, simulators, MMOs)</option>
+                    <option value="raytracing">Ray tracing / path tracing</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="upscale">Upscaling</label>
+                  <select id="upscale" name="upscale">
+                    <option value="off">Off (native)</option>
+                    <option value="quality">DLSS/FSR Quality</option>
+                    <option value="balanced">DLSS/FSR Balanced</option>
+                    <option value="performance">DLSS/FSR Performance</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hz">Monitor refresh rate</label>
+                  <select id="hz" name="hz">
+                    <option value="60">60 Hz</option>
+                    <option value="75">75 Hz</option>
+                    <option value="120">120 Hz</option>
+                    <option value="144">144 Hz</option>
+                    <option value="165" selected>165 Hz</option>
+                    <option value="180">180 Hz</option>
+                    <option value="240">240 Hz</option>
+                    <option value="360">360 Hz</option>
+                  </select>
+                </div>
+                <label class="switch"><input type="checkbox" id="streaming" name="streaming" role="switch"><span class="switch-track" aria-hidden="true"></span>Streaming or recording (CPU encoding)</label>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <section class="card results" id="results" data-tone="gpu" aria-label="Result">
+          <div class="results-head">
+            <div class="gauge" aria-hidden="true">
+              <svg viewBox="0 0 220 124">
+                <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+                <path class="fill" id="gauge-fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+              </svg>
+              <div class="gauge-value"><strong class="num" id="pct">30%</strong><small id="pct-label">GPU bottleneck</small></div>
+            </div>
+            <div class="verdict" aria-live="polite">
+              <span class="tone-pill" id="tone-pill">GPU-limited</span>
+              <h2 id="verdict-title">GPU-limited, CPU has headroom</h2>
+              <p id="verdict-text">Your RTX 5070 Ti is the limiting part at 1440p, which is the normal and preferred situation for gaming. The Ryzen 7 7800X3D has headroom for about 176 FPS, so it can handle a faster GPU later.</p>
+            </div>
+          </div>
+
+          <div class="pipeline" id="pipeline" role="img" aria-label="Frame pipeline">
+            <canvas id="pipe-canvas" aria-hidden="true"></canvas>
+            <div class="pipe-node node-cpu" id="node-cpu"><span class="pipe-name">CPU</span><span class="pipe-val num"><span id="cap-cpu-val">176</span><span class="pu"> FPS</span></span><span class="pipe-tag">Bottleneck</span></div>
+            <div class="pipe-node node-gpu" id="node-gpu"><span class="pipe-name">GPU</span><span class="pipe-val num"><span id="cap-gpu-val">124</span><span class="pu"> FPS</span></span><span class="pipe-tag">Bottleneck</span></div>
+            <div class="pipe-node node-display" id="node-display"><span class="pipe-name">Display</span><span class="pipe-val num" id="cap-hz-val">165 Hz</span></div>
+          </div>
+          <p class="pipe-note">Max frames each part can deliver. Frames pile up in front of the slower one.</p>
+
+          <div class="stats">
+            <div class="stat"><small>Avg FPS</small><strong class="num" id="s-fps">123</strong></div>
+            <div class="stat"><small>1% low</small><strong class="num" id="s-low">101</strong></div>
+            <div class="stat"><small>CPU load</small><strong class="num"><span id="s-cpu">70</span><span class="unit">%</span></strong><div class="meter"><i id="m-cpu"></i></div></div>
+            <div class="stat"><small>GPU load</small><strong class="num"><span id="s-gpu">99</span><span class="unit">%</span></strong><div class="meter"><i id="m-gpu"></i></div></div>
+          </div>
+
+          <div class="result-actions">
+            <span class="context" id="context-line">1440p (2560×1440) · High · AAA games</span>
+            <button type="button" class="btn-ghost" id="share-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>Copy link</button>
+          </div>
+        </section>
+      </section>
+
+      <div class="details reveal-group" id="details">
+        <section class="card panel">
+          <h3>Bottleneck by resolution</h3>
+          <p class="sub">Same build and settings, different screen resolutions.</p>
+          <div class="table-scroll"><table id="res-table"><thead><tr><th>Resolution</th><th class="r">Avg FPS</th><th class="r">1% low</th><th>Bottleneck</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>FPS by game type</h3>
+          <p class="sub" id="wl-sub">At your chosen resolution and quality.</p>
+          <div class="table-scroll"><table id="wl-table"><thead><tr><th>Game type</th><th class="r">Avg FPS</th><th>Limited by</th></tr></thead><tbody></tbody></table></div>
+        </section>
+        <section class="card panel">
+          <h3>Recommendations</h3>
+          <p class="sub">Specific to your parts and settings.</p>
+          <ul class="tips" id="tips"></ul>
+        </section>
+        <section class="card panel">
+          <h3 id="up-title">Upgrade suggestions</h3>
+          <p class="sub" id="up-sub">The smallest upgrades that balance your build.</p>
+          <div class="upgrades" id="upgrades"></div>
+        </section>
+      </div>
+      <!-- Optional ad slot: a responsive unit fits here, below the results -->
+    </div>
+
+    <div class="wrap content">
+      <nav class="toc" aria-label="On this page">
+        <p>On this page</p>
+        <ol>
+          <li><a href="#what-is">What is a bottleneck?</a></li>
+          <li><a href="#how-to-use">How to use the calculator</a></li>
+          <li><a href="#how-it-works">How we calculate</a></li>
+          <li><a href="#thresholds">What % is acceptable</a></li>
+          <li><a href="#cpu-vs-gpu">CPU vs GPU bottleneck</a></li>
+          <li><a href="#resolution">Why resolution matters</a></li>
+          <li><a href="#min-cpu">Best CPU for your GPU</a></li>
+          <li><a href="#popular">Popular builds</a></li>
+          <li><a href="#fix">How to fix a bottleneck</a></li>
+          <li><a href="#check">Check your own PC</a></li>
+          <li><a href="#platforms">Best CPU per platform</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <section id="what-is">
+          <h2>What is a PC bottleneck?</h2>
+          <p>Every frame in a game is made in two stages. First the <strong>CPU</strong> works out the game logic, physics, AI and draw calls. Then the <strong>GPU</strong> renders that frame into pixels. The two parts work in a pipeline, so your frame rate can never be higher than the slower of the two. The slower part is the <strong>bottleneck</strong>.</p>
+          <p>A bottleneck calculator estimates how many frames each part can deliver on its own and compares them. If your CPU can prepare 110 frames per second but your GPU could render 180, the GPU waits for the CPU about 39% of the time. That GPU performance is wasted, and that is the number this tool shows as the bottleneck percentage.</p>
+          <div class="callout"><p><strong>Short version:</strong> some bottleneck always exists, because one part is always the slower one. What matters is <em>which</em> part limits you, by how much, and whether your FPS is high enough for your monitor. A GPU bottleneck at 4K is normal and healthy. A large CPU bottleneck at 1080p means you paid for GPU power you can't use.</p></div>
+        </section>
+
+        <section id="how-to-use">
+          <h2>How to use this bottleneck calculator</h2>
+          <ol class="steps">
+            <li><strong>Pick your CPU and GPU.</strong> Start typing a model number such as “5600”, “14600K” or “5070 Ti”. Laptop chips and integrated graphics are included.</li>
+            <li><strong>Choose your resolution and quality.</strong> These change GPU load the most. Pick what you actually play at, not what your monitor supports.</li>
+            <li><strong>Select the type of games you play.</strong> Esports titles, simulators and ray-traced games stress the CPU and GPU very differently.</li>
+            <li><strong>Set upscaling, refresh rate and RAM.</strong> DLSS/FSR lowers GPU load, refresh rate tells us how many frames you can actually see, and 8 GB of RAM causes stutter on its own.</li>
+            <li><strong>Read the verdict and recommendations.</strong> Check the per-resolution table, the game-type table and the upgrade cards. Copy the result link to share your build on Reddit or Discord.</li>
+          </ol>
+        </section>
+
+        <section id="how-it-works">
+          <h2>How we calculate bottleneck and FPS</h2>
+          <p>Many bottleneck checkers compare synthetic benchmark scores such as PassMark or Cinebench. Those scores measure multi-core rendering, not gaming, so they rate a 16-core workstation chip far above an 8-core X3D gaming CPU. That's backwards for games. This calculator uses <strong>gaming-specific performance indexes</strong> instead.</p>
+          <h3>1. CPU frame-rate limit</h3>
+          <p>Each CPU has a gaming index calibrated against published CPU-limited benchmark averages (1080p, fastest GPU, modern titles). The Ryzen 7 9800X3D is 100. The index is turned into a frame-rate limit, then adjusted for game type, graphics quality, RAM capacity and streaming load. The CPU limit doesn't depend on resolution, because the CPU does the same work per frame at 1080p and at 4K.</p>
+          <h3>2. GPU frame-rate limit</h3>
+          <p>Each GPU has a raster performance index (RTX 4090 = 100) calibrated against GPU-limited benchmark averages. We scale it by resolution using a measured curve (pixel count<sup>−0.62</sup>, not a naive linear drop). Then we apply quality, upscaling, ray-tracing efficiency (it differs between NVIDIA, AMD and Intel architectures) and a VRAM penalty when your settings need more video memory than the card has.</p>
+          <h3>3. Combining them</h3>
+<div class="formula">CPU limit  = CPU index × 2.0 × game-type × quality × RAM × streaming
+GPU limit  = GPU index × 2.3 × (pixels ÷ 1080p)^−0.62 × game-type
+             × quality × upscaling × ray-tracing × VRAM
+Avg FPS    = soft-min(CPU limit, GPU limit)
+Bottleneck = (faster limit − slower limit) ÷ faster limit × 100%</div>
+          <p>The soft minimum reflects real behaviour: when both parts are near their limit, frame pacing suffers and the result is a little below either limit. 1% lows are estimated from the limiting part. CPU-bound games have worse lows, and X3D cache chips have better ones.</p>
+          <p><strong>Accuracy:</strong> averaged across many games, the estimates typically land within about 10–15% of real benchmarks. Individual games can differ more because of engine quirks, driver versions, patches, cooling, power limits, RAM speed and background apps. Use the result to judge balance and upgrades, not as an exact FPS figure for one game.</p>
+        </section>
+
+        <section id="thresholds">
+          <h2>What bottleneck percentage is acceptable?</h2>
+          <p>These are the thresholds used everywhere on this site. The calculator, this table and the FAQ all use the same numbers.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Bottleneck</th><th>If your CPU limits</th><th>If your GPU limits</th></tr></thead>
+              <tbody>
+                <tr><td><span class="dot" data-tone="excellent"></span><strong>0–10%</strong></td><td>Excellent balance</td><td>Excellent balance</td></tr>
+                <tr><td><span class="dot" data-tone="good"></span><strong>10–20%</strong></td><td>Minor. Hardly noticeable</td><td>Well balanced. This is the ideal gaming state</td></tr>
+                <tr><td><span class="dot" data-tone="moderate"></span><strong>20–35%</strong></td><td>Moderate. Lower lows, GPU partly idle</td><td>GPU-limited. Your CPU can handle a stronger GPU later</td></tr>
+                <tr><td><span class="dot" data-tone="severe"></span><strong>35%+</strong></td><td>Severe. Upgrade the CPU before the GPU</td><td>Heavily GPU-limited. Fine if FPS is high enough, otherwise upgrade the GPU</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Notice the two columns aren't treated the same. A GPU bottleneck just means your graphics card is working at full capacity, which is what you paid for. A CPU bottleneck causes uneven frame times, stutter in busy scenes and a GPU sitting idle.</p>
+        </section>
+
+        <section id="cpu-vs-gpu">
+          <h2>CPU bottleneck vs GPU bottleneck: which is worse?</h2>
+          <p><strong>A CPU bottleneck is worse for gaming.</strong> When the CPU limits, frame times jump around with every explosion, crowd or physics event, so 1% lows drop and the game feels choppy even when the average FPS looks fine. Lowering graphics settings barely helps, because the GPU wasn't the problem.</p>
+          <p><strong>A GPU bottleneck is the normal, preferred state.</strong> Frame delivery stays even, and you control performance with settings: lower shadows, turn on DLSS or FSR, or drop resolution. Most well-built gaming PCs are slightly GPU-bound at their target resolution.</p>
+          <h3>Signs your CPU is the bottleneck</h3>
+          <ul>
+            <li>GPU usage stays well below 95% in game while FPS is lower than you want.</li>
+            <li>Lowering resolution or graphics settings doesn't increase FPS.</li>
+            <li>Stutters in busy areas such as cities, large battles or many players.</li>
+            <li>One or two CPU threads sit near 100% even though total CPU usage looks moderate.</li>
+          </ul>
+        </section>
+
+        <section id="resolution">
+          <h2>Why resolution changes your bottleneck</h2>
+          <p>The CPU's work per frame is almost the same at any resolution. The GPU's work grows with every extra pixel, and 4K has four times the pixels of 1080p. So moving to a higher resolution lowers GPU frame rate while the CPU limit stays the same. The bottleneck shifts from the CPU toward the GPU.</p>
+          <p>Here is a Ryzen 5 3600 paired with an RTX 4070 Super at High settings, calculated with this tool:</p>
+          <!-- RESEXAMPLE:START -->
+          <div class="table-scroll"><table><thead><tr><th>Resolution</th><th class="r">CPU limit</th><th class="r">GPU limit</th><th class="r">Avg FPS</th><th>Bottleneck</th></tr></thead><tbody><tr><td>1080p (1920×1080)</td><td class="r num">84</td><td class="r num">138</td><td class="r num">84</td><td><span class="dot" data-tone="severe"></span>CPU 39%</td></tr><tr><td>1440p (2560×1440)</td><td class="r num">84</td><td class="r num">96</td><td class="r num">81</td><td><span class="dot" data-tone="good"></span>CPU 13%</td></tr><tr><td>Ultrawide 1440p (3440×1440)</td><td class="r num">84</td><td class="r num">80</td><td class="r num">75</td><td><span class="dot" data-tone="excellent"></span>Balanced</td></tr><tr><td>4K (3840×2160)</td><td class="r num">84</td><td class="r num">58</td><td class="r num">58</td><td><span class="dot" data-tone="gpu"></span>GPU 30%</td></tr></tbody></table></div>
+          <!-- RESEXAMPLE:END -->
+          <p>The same GPU is badly held back at 1080p, close to balanced at 1440p, and fully used at 4K. That's why the question “will this bottleneck?” is only meaningful with a resolution attached. It's also why upscaling (which renders at a lower internal resolution) can <em>increase</em> a CPU bottleneck.</p>
+        </section>
+
+        <section id="min-cpu">
+          <h2>Best CPU for your GPU (minimum CPU without a bottleneck)</h2>
+          <p>Here is the most affordable popular CPU that keeps each graphics card within a 10% bottleneck at High settings in AAA games. Anything faster works too. “Ryzen 5 3600+” means any modern 6-core CPU is enough. Calculated from the same data as the tool above.</p>
+          <!-- MINCPU:START -->
+          <div class="table-scroll"><table><thead><tr><th>Graphics card</th><th>1080p</th><th>1440p</th><th>4K</th></tr></thead><tbody><tr><td><strong>RTX 5090</strong></td><td>Ryzen 7 9800X3D <small>(still CPU-bound)</small></td><td>Ryzen 7 9800X3D</td><td>Core i5-12400F</td></tr><tr><td><strong>RTX 5080</strong></td><td>Ryzen 7 9800X3D</td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070 Ti</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070 XT</strong></td><td>Ryzen 7 7800X3D</td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5070</strong></td><td>Ryzen 7 5700X3D</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9070</strong></td><td>Ryzen 7 7700X</td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4070 Super</strong></td><td>Core i5-13400F</td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 7800 XT</strong></td><td>Core i5-12400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060 Ti 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RX 9060 XT 16GB</strong></td><td>Ryzen 5 5600</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 5060</strong></td><td>Core i5-10400F</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 4060</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>Arc B580</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr><tr><td><strong>RTX 3060 12GB</strong></td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td><td>Ryzen 5 3600+</td></tr></tbody></table></div>
+          <!-- MINCPU:END -->
+          <p>Playing esports titles at 240 Hz or more? Pick a faster CPU than the table suggests. Competitive games at low settings shift almost all the work to the CPU, so X3D chips such as the Ryzen 7 7800X3D and 9800X3D shine there.</p>
+        </section>
+
+        <section id="popular">
+          <h2>Popular CPU + GPU combinations</h2>
+          <p>Live results for builds people often ask about. Click any card to load it into the calculator and change the settings.</p>
+          <!-- COMBOS:START -->
+          <div class="combos"><a class="combo-card" href="?cpu=ryzen-7-7800x3d&amp;gpu=rtx-5070-ti#calculator"><b>Ryzen 7 7800X3D + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">GPU-limited 30%</em> · ≈123 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5090&amp;res=4k#calculator"><b>Ryzen 7 9800X3D + RTX 5090</b><span>4K · <em data-tone="gpu">GPU-limited 36%</em> · ≈127 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9800x3d&amp;gpu=rtx-5080#calculator"><b>Ryzen 7 9800X3D + RTX 5080</b><span>1440p · <em data-tone="gpu">GPU-limited 29%</em> · ≈140 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-7600&amp;gpu=rtx-5070#calculator"><b>Ryzen 5 7600 + RTX 5070</b><span>1440p · <em data-tone="gpu">GPU-limited 26%</em> · ≈100 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600&amp;gpu=rtx-4060&amp;res=1080p#calculator"><b>Ryzen 5 5600 + RTX 4060</b><span>1080p · <em data-tone="gpu">GPU-limited 28%</em> · ≈75 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=rtx-5060&amp;res=1080p#calculator"><b>Core i5-12400F + RTX 5060</b><span>1080p · <em data-tone="gpu">GPU-limited 21%</em> · ≈93 FPS</span></a><a class="combo-card" href="?cpu=i5-13400f&amp;gpu=rtx-4070-super#calculator"><b>Core i5-13400F + RTX 4070 Super</b><span>1440p · <em data-tone="gpu">GPU-limited 23%</em> · ≈95 FPS</span></a><a class="combo-card" href="?cpu=i5-14600k&amp;gpu=rx-9070-xt#calculator"><b>Core i5-14600K + RX 9070 XT</b><span>1440p · <em data-tone="gpu">GPU-limited 22%</em> · ≈117 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5700x3d&amp;gpu=rx-9070#calculator"><b>Ryzen 7 5700X3D + RX 9070</b><span>1440p · <em data-tone="gpu">GPU-limited 20%</em> · ≈104 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-3600&amp;gpu=rtx-3060-12gb&amp;res=1080p#calculator"><b>Ryzen 5 3600 + RTX 3060 12GB</b><span>1080p · <em data-tone="gpu">GPU-limited 23%</em> · ≈63 FPS</span></a><a class="combo-card" href="?cpu=i7-14700k&amp;gpu=rtx-4070-ti-super#calculator"><b>Core i7-14700K + RTX 4070 Ti Super</b><span>1440p · <em data-tone="gpu">GPU-limited 31%</em> · ≈112 FPS</span></a><a class="combo-card" href="?cpu=ultra-7-265k&amp;gpu=rtx-5070-ti#calculator"><b>Core Ultra 7 265K + RTX 5070 Ti</b><span>1440p · <em data-tone="gpu">GPU-limited 21%</em> · ≈122 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-5800x3d&amp;gpu=rtx-4080-super#calculator"><b>Ryzen 7 5800X3D + RTX 4080 Super</b><span>1440p · <em data-tone="excellent">Balanced</em> · ≈122 FPS</span></a><a class="combo-card" href="?cpu=ryzen-5-5600x&amp;gpu=rx-7800-xt#calculator"><b>Ryzen 5 5600X + RX 7800 XT</b><span>1440p · <em data-tone="gpu">GPU-limited 18%</em> · ≈86 FPS</span></a><a class="combo-card" href="?cpu=i5-12400f&amp;gpu=arc-b580&amp;res=1080p#calculator"><b>Core i5-12400F + Arc B580</b><span>1080p · <em data-tone="gpu">GPU-limited 35%</em> · ≈78 FPS</span></a><a class="combo-card" href="?cpu=ryzen-7-9700x&amp;gpu=rx-9060-xt-16gb&amp;res=1080p#calculator"><b>Ryzen 7 9700X + RX 9060 XT 16GB</b><span>1080p · <em data-tone="gpu">GPU-limited 34%</em> · ≈101 FPS</span></a></div>
+          <!-- COMBOS:END -->
+          <p><a href="bottleneck/"><strong>Browse all popular CPU + GPU builds</strong></a> with pre-calculated bottleneck and FPS results at 1080p, 1440p and 4K.</p>
+        </section>
+
+        <section id="fix">
+          <h2>How to fix a bottleneck</h2>
+          <h3>Fixing a CPU bottleneck</h3>
+          <ul>
+            <li><strong>Raise resolution or graphics quality.</strong> It costs almost nothing when the GPU is idle, and the game looks better at nearly the same FPS.</li>
+            <li><strong>Enable XMP/EXPO and run dual-channel RAM.</strong> A single memory stick or RAM at default 2133/4800 MT/s can cost 10–25% CPU-bound performance.</li>
+            <li><strong>Upgrade within your socket first.</strong> On AM4 a Ryzen 7 5700X3D or 5800X3D is often the cheapest big jump, with no new motherboard needed.</li>
+            <li><strong>Close background apps and use hardware encoding</strong> (NVENC, AMF or Quick Sync) for streaming.</li>
+            <li><strong>Use frame generation</strong> (DLSS 3/4 Frame Gen or FSR 3/4) to raise perceived smoothness when the CPU limits. It doesn't add “real” frames, but it can help in single-player games.</li>
+            <li><strong>Check cooling.</strong> A CPU that hits 95–100 °C clocks down and becomes a bottleneck it shouldn't be.</li>
+          </ul>
+          <h3>Fixing a GPU bottleneck</h3>
+          <ul>
+            <li><strong>Enable DLSS, FSR or XeSS</strong> on Quality mode. That usually gives 30–50% more FPS with little visible loss.</li>
+            <li><strong>Lower the heaviest settings:</strong> ray tracing, shadows, volumetric fog and screen-space reflections, in that order.</li>
+            <li><strong>Reduce texture quality if you're out of VRAM.</strong> Stutter and blurry textures on 8 GB cards are a VRAM bottleneck.</li>
+            <li><strong>Update graphics drivers</strong> and make sure the monitor cable is plugged into the GPU, not the motherboard.</li>
+            <li><strong>Upgrade the GPU.</strong> The upgrade cards above show which models match your CPU without creating a new CPU bottleneck.</li>
+          </ul>
+        </section>
+
+        <section id="check">
+          <h2>How to check for a bottleneck on your own PC</h2>
+          <p>A calculator gives you a prediction. To confirm it in a real game, use a free performance overlay:</p>
+          <ol>
+            <li>Install <strong>MSI Afterburner</strong> with RivaTuner Statistics Server, or use the NVIDIA App / AMD Adrenalin overlay.</li>
+            <li>Enable on-screen display for <strong>GPU usage, CPU usage per thread, FPS and frame time</strong>.</li>
+            <li>Play the most demanding part of your game for a few minutes with V-Sync and FPS caps turned off.</li>
+            <li><strong>GPU usage 95–99%</strong> means you're GPU-bound, which is healthy. <strong>GPU usage clearly below 90%</strong> while FPS is below your target means the CPU (or RAM) is the bottleneck.</li>
+            <li>Double-check by dropping the resolution. If FPS doesn't go up, you're CPU-limited.</li>
+          </ol>
+          <p>Windows Task Manager isn't reliable for this. Its total CPU percentage averages all cores, so a game maxing out two threads on a 16-thread CPU shows only “25% CPU usage” while being completely CPU-bound.</p>
+        </section>
+
+        <section id="platforms">
+          <h2>Best gaming CPU upgrades by platform</h2>
+          <p>Upgrading the CPU on your current motherboard is the cheapest way to fix a CPU bottleneck. Update your BIOS before swapping chips.</p>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Socket</th><th>Best for gaming</th><th>Best value</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AM4</strong></td><td>Ryzen 7 5800X3D / 5700X3D</td><td>Ryzen 5 5600 / 5600X</td><td>The X3D chips are the best AM4 CPUs for gaming. Avoid the 5600G/5700G with fast GPUs, as they have half the cache and PCIe 3.0.</td></tr>
+                <tr><td><strong>AM5</strong></td><td>Ryzen 7 9850X3D / 9800X3D</td><td>Ryzen 5 7600 / 9600X</td><td>The 7800X3D is still excellent value. AMD has committed to supporting AM5 for future CPUs.</td></tr>
+                <tr><td><strong>LGA1700</strong></td><td>Core i7-14700K / i9-14900K</td><td>Core i5-13400F / i5-14600K</td><td>Install the latest BIOS with Intel's 13th/14th-gen stability microcode before upgrading.</td></tr>
+                <tr><td><strong>LGA1851</strong></td><td>Core Ultra 9 285K</td><td>Core Ultra 5 245K</td><td>Strong in productivity. Gaming is close to 14th gen, so fast DDR5 helps.</td></tr>
+                <tr><td><strong>LGA1200</strong></td><td>Core i9-11900K / i9-10900K</td><td>Core i5-11400F</td><td>A dead-end platform. Fine for RTX 4060-class GPUs; plan a full platform upgrade for faster cards.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="faq" class="faq">
+          <h2>Frequently asked questions</h2>
+          <details open><summary>What is a good bottleneck percentage?</summary><div><p>Under 10% is excellent balance and 10–20% is fine for gaming. Between 20% and 35% a CPU bottleneck becomes noticeable in 1% lows. Above 35% you're wasting a large part of your GPU. If the GPU is the limiting part, even higher percentages are fine as long as your FPS meets your target.</p></div></details>
+          <details><summary>How accurate is a bottleneck calculator?</summary><div><p>A good one is accurate for judging balance and getting ballpark FPS, typically within about 10–15% of averaged benchmarks. No calculator can predict one specific game exactly, because engines, patches, drivers, cooling, RAM speed and background software all change results. Tools based on synthetic scores like PassMark are much less reliable for gaming than tools based on gaming benchmarks.</p></div></details>
+          <details><summary>Is it better to be CPU bottlenecked or GPU bottlenecked?</summary><div><p>GPU bottlenecked. A GPU-bound game has smooth, consistent frame times and you can raise FPS with settings or upscaling. A CPU-bound game has worse 1% lows and stutter, and lowering settings doesn't help.</p></div></details>
+          <details><summary>Does playing at a higher resolution reduce a CPU bottleneck?</summary><div><p>Yes. Higher resolutions add GPU work but barely change CPU work, so the GPU becomes the limiting part. Moving from 1080p to 1440p is often the simplest fix for a strong GPU paired with an older CPU. Your average FPS won't rise, but image quality improves at almost no cost.</p></div></details>
+          <details><summary>Does DLSS or FSR fix a CPU bottleneck?</summary><div><p>No. Upscaling renders at a lower internal resolution, which reduces GPU work and pushes you further into a CPU bottleneck. Frame generation is different: it inserts generated frames without CPU involvement, so it can improve perceived smoothness when CPU-bound, at the cost of slightly higher input latency.</p></div></details>
+          <details><summary>Can RAM cause a bottleneck?</summary><div><p>Yes. 8 GB of RAM is too little for modern games and causes stutter. Running a single stick (single-channel) or forgetting to enable XMP/EXPO can also cut CPU-bound performance by 10–25%. For gaming in 2026, 32 GB of dual-channel DDR5 (or 16–32 GB of DDR4-3600) is the sweet spot.</p></div></details>
+          <details><summary>Can a bottleneck damage my PC?</summary><div><p>No. A bottleneck is a performance mismatch, not a fault. Neither part is stressed beyond its design. The only cost is performance you paid for but can't use.</p></div></details>
+          <details><summary>Is a 0% bottleneck possible?</summary><div><p>Not really. In every frame one part finishes later than the other, and the balance shifts between games and even between scenes. A result under 10% means the parts are as well matched as you can realistically get.</p></div></details>
+          <details><summary>Does the calculator work for laptops?</summary><div><p>Yes. Popular laptop CPUs and GPUs are included and marked “Laptop”. Laptop GPUs vary a lot with power limit (TGP) and cooling, so thin-and-light models can perform 10–25% below the estimate.</p></div></details>
+          <details><summary>Why do different bottleneck calculators show different results?</summary><div><p>They use different data and formulas. Many compare synthetic CPU scores that don't reflect gaming, ignore resolution, or treat a GPU bottleneck as a problem. This calculator uses gaming-specific indexes, models resolution, quality, upscaling, VRAM and game type, and shows its full formula above.</p></div></details>
+        </section>
+
+        <section id="updates">
+          <h2>Data updates</h2>
+          <p><strong>October 2026:</strong> Added Ryzen 7 9850X3D, RTX 5050, RX 9060 XT and Arc B570. Recalibrated the GPU indexes with the latest driver results. Added laptop and integrated graphics, the ray-tracing efficiency model and the VRAM penalty.</p>
+          <p>Missing a CPU or GPU? The database is updated regularly as new hardware launches.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="fps-calculator/">FPS calculator</a><a href="bottleneck/">Popular builds</a><a href="about/">About</a><a href="editorial-policy/">Editorial policy</a><a href="privacy/">Privacy</a><a href="contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="assets/js/hardware.js?v=8"></script>
+  <script src="assets/js/engine.js?v=8"></script>
+  <script src="assets/js/motion.js?v=8"></script>
+  <script src="assets/js/combobox.js?v=8"></script>
+  <script src="assets/js/app.js?v=8"></script>
+</body>
+</html>

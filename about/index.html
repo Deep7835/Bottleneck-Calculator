@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Bottleneck Calculator: Who Runs It and Where the Data Comes From</title>
+  <meta name="description" content="Who runs Bottleneck Calculator, how the CPU and GPU performance data is compiled from independent gaming benchmarks, and how often it's updated.">
+  <link rel="canonical" href="https://www.example.com/about/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About Bottleneck Calculator">
+  <meta property="og:description" content="Who runs the site, how the hardware data is compiled, and how often it's updated.">
+  <meta property="og:url" content="https://www.example.com/about/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Bottleneck Calculator", "item": "https://www.example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.example.com/about/" }
+      ] },
+      { "@type": "AboutPage", "name": "About Bottleneck Calculator", "url": "https://www.example.com/about/", "dateModified": "2026-10-20" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../#calculator">Calculator</a>
+        <a href="../#min-cpu">CPU for your GPU</a>
+        <a href="../bottleneck/">Builds</a>
+        <a href="../#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <span aria-current="page">About</span></nav>
+      <section class="hero combo-hero">
+        <h1>About Bottleneck Calculator</h1>
+        <p class="lead">A free tool that tells you whether your CPU or your graphics card limits your frame rate, how many FPS to expect, and which upgrade actually helps. It's built on gaming benchmarks rather than synthetic scores, and the full formula is public.</p>
+      </section>
+
+      <article class="article trust">
+        <section>
+          <h2>Who runs this site</h2>
+          <!-- OWNER: add the name (or team) behind the site and a one-paragraph bio here, e.g. how long you've built and benchmarked PCs. A real, named owner helps E-E-A-T and AdSense review. -->
+          <p>Bottleneck Calculator is an independent, self-funded project. It isn't owned by, sponsored by or affiliated with AMD, Intel, NVIDIA or any retailer, and no company can pay to change how its products are rated.</p>
+          <p>The site exists because most bottleneck checkers compare synthetic benchmark scores that don't reflect gaming, and many treat a normal GPU bottleneck as a problem. We wanted a calculator that shows its working, so you can see exactly why it reached a verdict.</p>
+        </section>
+
+        <section>
+          <h2>How the hardware data is compiled</h2>
+          <p>Every processor and graphics card in the database has a <strong>gaming performance index</strong>. The indexes are compiled from published, independent gaming benchmark averages, not from a single review or from manufacturer claims.</p>
+          <ul>
+            <li><strong>CPUs</strong> are rated from CPU-limited results: 1080p with the fastest available graphics card, across a spread of modern games. The Ryzen 7 9800X3D is the reference at 100.</li>
+            <li><strong>Graphics cards</strong> are rated from GPU-limited results at 1440p and 4K, so the processor doesn't skew the numbers. The RTX 4090 is the reference at 100.</li>
+            <li>Each part also carries the specs that change real-world results: cores and threads, socket, VRAM, and how efficiently its architecture handles ray tracing.</li>
+          </ul>
+          <p>Those indexes feed one formula that models resolution, graphics quality, upscaling, VRAM limits, RAM capacity and game type. You can read the whole thing, with the exact multipliers, in <a href="../#how-it-works">How we calculate bottleneck and FPS</a> on the homepage.</p>
+        </section>
+
+        <section>
+          <h2>How the data is updated</h2>
+          <p>New processors and graphics cards are added once independent launch reviews are out, and existing indexes are rechecked when new drivers or game patches shift results. Every change is listed in the <a href="../#updates">Data updates</a> log on the homepage, and the date at the top of the calculator shows when the database last changed.</p>
+          <p>All pages on this site, including the <a href="../bottleneck/">popular build pages</a>, are generated from the same data and formula, so a correction in one place fixes every page that uses it.</p>
+        </section>
+
+        <section>
+          <h2>What the numbers mean</h2>
+          <p>Results are estimates for judging balance and getting ballpark FPS, typically within about 10–15% of averaged benchmarks. A specific game can run faster or slower depending on its engine, patches, drivers, cooling, RAM speed and background software. Our <a href="../editorial-policy/">editorial policy</a> explains how estimates are made and what we will and won't publish.</p>
+        </section>
+
+        <section>
+          <h2>Get in touch</h2>
+          <p>Spotted a wrong number, or missing a CPU or GPU? <a href="../contact/">Contact us</a>. Corrections backed by benchmark data are the most useful messages we get.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="../about/">About</a><a href="../editorial-policy/">Editorial policy</a><a href="../privacy/">Privacy</a><a href="../contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+  <script src="../assets/js/motion.js?v=8"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>

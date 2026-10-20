@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- Source for og-image.png (1200×630). Re-render with: node scripts/render-og.js -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@500;650&family=Geist+Mono:wght@600&display=block">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #09090b; color: #fafafa; font-family: "Geist", system-ui, sans-serif;
+    padding: 72px 80px; position: relative;
+  }
+  body::before {
+    content: ""; position: absolute; right: -160px; top: -220px; width: 760px; height: 760px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(96,165,250,.16), transparent);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 30px; font-weight: 650; letter-spacing: -0.02em; }
+  .brand b { color: #34d399; font-weight: 650; }
+  h1 { margin-top: 70px; font-size: 92px; line-height: 1; font-weight: 650; letter-spacing: -0.045em; }
+  p { margin-top: 22px; font-size: 32px; color: #a1a1aa; letter-spacing: -0.01em; }
+  .pipe { position: absolute; left: 80px; right: 80px; bottom: 56px; height: 104px; border-radius: 20px; background: #18181b; }
+  .node {
+    position: absolute; top: 50%; transform: translate(-50%, -50%); padding: 12px 22px; border-radius: 16px;
+    background: #111113; border: 2px solid rgba(255,255,255,.14); text-align: center; min-width: 150px;
+  }
+  .node span { display: block; font-size: 18px; color: #8b8b94; }
+  .node strong { display: block; font: 600 26px "Geist Mono", monospace; letter-spacing: -0.02em; }
+  .node.limit { border-color: #60a5fa; box-shadow: 0 0 0 6px rgba(96,165,250,.18); }
+  .tag { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #60a5fa; color: #0b0b0d; font-size: 16px; font-weight: 650; padding: 3px 12px; border-radius: 99px; white-space: nowrap; }
+  .f { position: absolute; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 3px; background: #a1a1aa; }
+  .q { background: #60a5fa; width: 14px; height: 14px; margin-top: -7px; }
+  .gauge { position: absolute; right: 80px; top: 150px; width: 300px; text-align: center; }
+  .gauge strong { position: absolute; left: 0; right: 0; top: 80px; font: 600 72px "Geist Mono", monospace; letter-spacing: -0.04em; }
+  .gauge small { position: absolute; left: 0; right: 0; top: 160px; font-size: 20px; color: #8b8b94; }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <svg width="40" height="40" viewBox="0 0 24 24"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="#fafafa" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/><path d="M12 17l4-5.5" stroke="#fafafa" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="#fafafa"/></svg>
+    <span>Bottleneck<b>Calc</b></span>
+  </div>
+  <h1>Bottleneck<br>Calculator</h1>
+  <p>CPU vs GPU balance, FPS &amp; the upgrade that fixes it.</p>
+
+  <div class="gauge">
+    <svg width="300" height="170" viewBox="0 0 220 124"><path d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke="#232328" stroke-width="14" stroke-linecap="round"/><path d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke="#60a5fa" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="70"/></svg>
+    <strong>30%</strong>
+    <small>GPU-limited</small>
+  </div>
+
+  <div class="pipe">
+    <div class="f" style="left:19%"></div><div class="f" style="left:23.5%"></div><div class="f" style="left:28%"></div>
+    <div class="f q" style="left:34.5%"></div><div class="f q" style="left:36.6%"></div><div class="f q" style="left:38.7%"></div>
+    <div class="f" style="left:58%"></div><div class="f" style="left:64%"></div><div class="f" style="left:70%"></div><div class="f" style="left:76%"></div>
+    <div class="node" style="left:11%"><span>CPU</span><strong>176 FPS</strong></div>
+    <div class="node limit" style="left:50%"><div class="tag">Bottleneck</div><span>GPU</span><strong>124 FPS</strong></div>
+    <div class="node" style="left:89%"><span>Display</span><strong>165 Hz</strong></div>
+  </div>
+</body>
+</html>

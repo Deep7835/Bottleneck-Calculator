@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found – Bottleneck Calculator</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- Root-relative paths so this page works at any URL depth. -->
+  <link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css?v=8">
+  <style>
+    .nf { min-height: calc(100dvh - 160px); display: grid; place-items: center; text-align: center; padding: 48px 0; }
+    .nf .gauge { margin: 0 auto 8px; }
+    .nf .gauge .fill { stroke: var(--severe); animation: nf-fill 1.2s var(--ease-out) both 150ms; }
+    @keyframes nf-fill { from { stroke-dashoffset: 100; } }
+    .nf h1 { font-size: clamp(30px, 5vw, 44px); letter-spacing: -0.035em; margin: 20px 0 10px; }
+    .nf p { color: var(--text-2); max-width: 440px; margin: 0 auto 28px; }
+    .nf-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .nf-links a.alt { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+    @media (prefers-reduced-motion: reduce) { .nf .gauge .fill { animation: none; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap nf">
+    <div>
+      <div class="gauge" aria-hidden="true">
+        <svg viewBox="0 0 220 124">
+          <path class="track" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round"/>
+          <path class="fill" d="M15 115 A95 95 0 0 1 205 115" fill="none" stroke-width="14" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/>
+        </svg>
+        <div class="gauge-value"><strong class="num">404</strong><small>page not found</small></div>
+      </div>
+      <h1>This page is 100% bottlenecked</h1>
+      <p>The link may be old or mistyped. Check your build in the calculator or pick a popular CPU and GPU pairing.</p>
+      <div class="nf-links">
+        <a class="btn" href="/#calculator">Open the calculator</a>
+        <a class="btn alt" href="/fps-calculator/">FPS calculator</a>
+        <a class="btn alt" href="/bottleneck/">Popular builds</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p>© 2026 Bottleneck Calculator.</p></div>
+  </footer>
+</body>
+</html>

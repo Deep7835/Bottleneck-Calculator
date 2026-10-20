@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editorial Policy: How Our Bottleneck and FPS Estimates Are Made</title>
+  <meta name="description" content="How Bottleneck Calculator makes its CPU and GPU estimates, how often the data is updated, how corrections work, and why there are no paid placements.">
+  <link rel="canonical" href="https://www.example.com/editorial-policy/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Editorial Policy – Bottleneck Calculator">
+  <meta property="og:description" content="How estimates are made, how often the data is updated, and why there are no paid placements.">
+  <meta property="og:url" content="https://www.example.com/editorial-policy/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://www.example.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bottleneck Calculator: CPU vs GPU balance, FPS and upgrade picks">
+  <meta name="twitter:image" content="https://www.example.com/og-image.png">
+
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css?v=8">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Bottleneck Calculator", "item": "https://www.example.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Editorial policy", "item": "https://www.example.com/editorial-policy/" }
+      ] },
+      { "@type": "WebPage", "name": "Editorial policy", "url": "https://www.example.com/editorial-policy/", "dateModified": "2026-10-20" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../" aria-label="Bottleneck Calculator home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/><path d="M4 17a8 8 0 0 1 11.3-7.3" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/><path class="logo-needle" d="M12 17l4-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.8" fill="currentColor"/></svg>
+        <span>Bottleneck<b>Calc</b></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../#calculator">Calculator</a>
+        <a href="../#min-cpu">CPU for your GPU</a>
+        <a href="../bottleneck/">Builds</a>
+        <a href="../#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Bottleneck Calculator</a> <span aria-hidden="true">›</span> <span aria-current="page">Editorial policy</span></nav>
+      <section class="hero combo-hero">
+        <h1>Editorial policy</h1>
+        <p class="lead">How our bottleneck and FPS estimates are made, how often the data changes, and the rules we follow so that results stay independent.</p>
+        <p class="updated">Last updated: October 20, 2026</p>
+      </section>
+
+      <article class="article trust">
+        <section>
+          <h2>How estimates are made</h2>
+          <p>Every result on this site, in the calculator and on each build page, comes from the same model. Nothing is written or adjusted by hand for a particular product.</p>
+          <ol>
+            <li><strong>Gaming indexes, not synthetic scores.</strong> Each CPU and GPU has a performance index compiled from published, independent gaming benchmark averages. We don't use PassMark, Cinebench or manufacturer figures, because they don't track gaming performance.</li>
+            <li><strong>Separate CPU and GPU limits.</strong> The model estimates how many frames each part could deliver on its own at your settings, then combines them. The slower part is the bottleneck, and the gap between them is the percentage.</li>
+            <li><strong>Settings that matter.</strong> Resolution, graphics quality, upscaling, ray tracing, VRAM, RAM capacity, game type and CPU-based streaming all change the result.</li>
+            <li><strong>Public formula.</strong> The full formula, including its multipliers, is published in <a href="../#how-it-works">How we calculate bottleneck and FPS</a>, so anyone can check how a verdict was reached.</li>
+          </ol>
+          <div class="callout"><p><strong>Accuracy:</strong> estimates are typically within about 10–15% of averaged benchmarks. They're for judging balance and getting ballpark FPS. No calculator can predict one specific game exactly, and we say so wherever a number is shown.</p></div>
+        </section>
+
+        <section>
+          <h2>Update cadence</h2>
+          <ul>
+            <li><strong>New hardware</strong> is added once independent launch reviews are published, so the index is based on measured results rather than announcements.</li>
+            <li><strong>Existing indexes</strong> are rechecked when new drivers, game patches or a wider set of benchmarks shift results noticeably.</li>
+            <li><strong>Every change</strong> is recorded in the <a href="../#updates">Data updates</a> log on the homepage, and the date on the calculator shows when the database last changed.</li>
+          </ul>
+          <p>Because all pages are generated from one database, an update or correction reaches the calculator and every build page at the same time.</p>
+        </section>
+
+        <section>
+          <h2>No paid placements</h2>
+          <p>No manufacturer, retailer or brand pays for a product to be included, rated higher, or recommended. Upgrade suggestions are picked by the formula: the smallest upgrade that balances your build at your settings. The same rules apply to every brand.</p>
+          <p>We don't accept free hardware in exchange for coverage. If the site ever carries advertising or affiliate links, they will be clearly labelled, they will never change a result or a recommendation, and this page will be updated to say so.</p>
+        </section>
+
+        <section>
+          <h2>Corrections</h2>
+          <p>If a result looks wrong, tell us through the <a href="../contact/">contact page</a>. Include the parts, the settings, and a link to the benchmark you're comparing against if you have one. When a correction changes the data, it's applied to the database and noted in the update log.</p>
+        </section>
+
+        <section>
+          <h2>Who is responsible</h2>
+          <p>This policy, the database and the formula are maintained by the people who run the site. See the <a href="../about/">About page</a> for who that is and how the data is compiled.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="footer-nav" aria-label="Site"><a href="../about/">About</a><a href="../editorial-policy/">Editorial policy</a><a href="../privacy/">Privacy</a><a href="../contact/">Contact</a></nav>
+      <p>© 2026 Bottleneck Calculator. Estimates are for guidance only. Real performance varies by game, settings, drivers and cooling.</p>
+      <p>Product names are trademarks of their respective owners. This site isn't affiliated with AMD, Intel or NVIDIA.</p>
+    </div>
+  </footer>
+  <script src="../assets/js/motion.js?v=8"></script>
+  <script>Motion.initPage();</script>
+</body>
+</html>
